@@ -1,0 +1,8 @@
+# Normalize all text files to LF in the repository and on checkout, so
+# committed line endings are always Unix-style (linux/mac) regardless of the
+# platform or git settings of whoever commits.
+* text=auto eol=lf
+
+# Batch files need CRLF in the working tree to run reliably on Windows.
+# They are still stored as LF in the repository.
+*.bat text eol=crlf

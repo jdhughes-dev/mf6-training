@@ -1,0 +1,8 @@
+# codespell configuration (also read by the codespell pre-commit hook).
+# https://github.com/codespell-project/codespell
+[codespell]
+# Don't spell-check generated / non-prose files.
+skip = .git,.pixi,pixi.lock,*.lock,*.svg,*.png,*.jpg,*.pdf
+# To treat words codespell wrongly flags as typos (domain terms, names) as
+# correct, add a comma-separated, lowercase list, e.g.:
+#   ignore-words-list = mf,nd,thex

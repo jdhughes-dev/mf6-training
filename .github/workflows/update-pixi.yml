@@ -1,0 +1,44 @@
+name: Update pixi lockfile
+
+on:
+  schedule:
+    # weekly, Monday 05:00 UTC
+    - cron: "0 5 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-lockfile:
+    name: pixi update
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up pixi
+        uses: prefix-dev/setup-pixi@v0.9.6
+        with:
+          run-install: false
+
+      - name: Update lockfile
+        run: |
+          set -o pipefail
+          pixi update --json | pixi exec pixi-diff-to-markdown >> diff.md
+
+      - name: Open pull request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          # PAT (or GitHub App token) with contents + pull-requests write, stored
+          # as the PIXI_UPDATE_TOKEN repo secret. Using a PAT (rather than the
+          # default GITHUB_TOKEN) lets the lockfile PR trigger the CI workflow.
+          token: ${{ secrets.PIXI_UPDATE_TOKEN }}
+          commit-message: "ci: update pixi lockfile"
+          title: "Update pixi lockfile"
+          body-path: diff.md
+          branch: update-pixi-lockfile
+          base: main
+          labels: dependencies
+          delete-branch: true
+          add-paths: pixi.lock

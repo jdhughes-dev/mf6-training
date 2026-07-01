@@ -216,3 +216,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# MODFLOW 6 build artifacts (created by scripts/get_mf6.py)
+/modflow6/
+/win64ext/
+/win64ext.zip

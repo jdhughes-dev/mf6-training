@@ -1,0 +1,82 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  schedule:
+    # nightly at 06:00 UTC - also catches the pinned MODFLOW 6 nightly tag
+    # disappearing from the modflow6-nightly-build releases.
+    - cron: "0 6 * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  # Lint/format gate: strip notebook outputs + ruff lint/format check. Runs
+  # first; the (expensive) install matrix below only runs if this passes.
+  pre-commit:
+    name: pre-commit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up pixi and install the locked environment
+        uses: prefix-dev/setup-pixi@v0.9.6
+        env:
+          # Skip the mf6/get-modflow auto-install; the lint job only needs the
+          # Python tooling (ruff, nbstripout, pre-commit).
+          MF6_SKIP_AUTOINSTALL: "1"
+        with:
+          locked: true
+          cache: true
+
+      - name: Run pre-commit hooks on all files
+        run: pixi run pre-commit-run
+
+  install:
+    name: pixi install (${{ matrix.os }})
+    needs: pre-commit
+    runs-on: ${{ matrix.os }}
+    env:
+      # Disable the activation-hook auto-install (mf6 build + get-modflow exes);
+      # CI runs the get-mf6 / get-exes tasks explicitly in their own steps.
+      MF6_SKIP_AUTOINSTALL: "1"
+    strategy:
+      fail-fast: false
+      matrix:
+        # macos-latest = Apple Silicon (osx-arm64); macos-15-intel = Intel (osx-64)
+        os: [ubuntu-latest, macos-latest, macos-15-intel, windows-latest]
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Set up pixi and install the locked environment
+        uses: prefix-dev/setup-pixi@v0.9.6
+        with:
+          locked: true
+          cache: true
+
+      - name: Build/download parallel MODFLOW 6 (fresh build)
+        # --force so it rebuilds even if setup-pixi restored an env from cache
+        # that still contains a previously built mf6.
+        run: pixi run get-mf6 --force
+
+      - name: Verify MODFLOW 6 runs
+        run: pixi run python -c "import shutil, subprocess; exe = shutil.which('mf6'); assert exe, 'mf6 not found on PATH'; print(exe); subprocess.run([exe, '-v'], check=True)"
+
+      - name: Verify Python packages import
+        run: pixi run python -c "import flopy, modflowapi, pandas, numpy, scipy, matplotlib, shapely, pyproj; print('flopy', flopy.__version__); print('modflowapi', modflowapi.__version__)"
+
+      - name: Verify modflowapi can load the MODFLOW 6 shared library (libmf6)
+        run: pixi run python scripts/check_libmf6.py
+
+      - name: Install MODFLOW executables (mp7, gridgen, triangle)
+        # Skipped on Intel mac: USGS publishes no x86_64 macOS binaries anymore.
+        # GITHUB_TOKEN authenticates get-modflow's GitHub API call to avoid the
+        # low unauthenticated rate limit (HTTP 403) on shared runners.
+        if: matrix.os != 'macos-15-intel'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: pixi run get-exes

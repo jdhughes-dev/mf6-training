@@ -1,0 +1,96 @@
+[workspace]
+name = "mf6-training"
+version = "0.1.0"
+channels = ["conda-forge"]
+# Per-platform virtual-package requirements (replaces the deprecated
+# [system-requirements] table):
+#  - linux-64 pins a lower __linux (kernel) version for the openmpi/petsc stack
+#    used by the parallel (extended) MODFLOW 6 build.
+#  - the macOS minimums keep resolution on recent SDKs so conda-forge can supply
+#    the openmpi/petsc binaries the extended MODFLOW 6 build links against.
+platforms = [
+    "win-64",
+    { platform = "linux-64", linux = "4.4.0" },
+    { platform = "osx-arm64", macos = "14.0" },
+    "osx-64",
+]
+
+[dependencies]
+python = "3.11.*"
+pandas = ">=2.0,<3.0"
+numpy = "*"
+matplotlib = "*"
+jupyter = "*"
+jupyterlab = "*"
+notebook = "*"
+scipy = "*"
+shapely = "*"
+rtree = "*"
+pyproj = ">=2.0"
+pyshp = "*"
+git = "*"
+nbconvert = "*"
+# Core MODFLOW 6 stack: flopy to build/post-process models and modflowapi to
+# drive a running MODFLOW 6 through the libmf6 shared library (installed by the
+# get-mf6 task / activation hook).
+flopy = "*"
+modflowapi = "*"
+# Dev tooling for the pre-commit hook: ruff (lint + format), nbstripout
+# (clear notebook outputs), and codespell (spell-check + fix), driven by
+# pre-commit itself. See .pre-commit-config.yaml and the pre-commit-install
+# task below.
+ruff = "*"
+nbstripout = "*"
+codespell = "*"
+pre-commit = "*"
+
+[tasks]
+# Launch JupyterLab in the project directory.
+jupyter = "jupyter lab"
+# Open the project in VS Code (requires the `code` CLI on PATH).
+vscode = "code ."
+# Build/download the parallel (extended) MODFLOW 6 for the current platform.
+# Idempotent: does nothing if `mf6` is already on PATH. Pass --force to rebuild.
+get-mf6 = "python scripts/get_mf6.py"
+# Install the USGS MODFLOW-family executables that the notebooks need but that
+# aren't provided by mf6, into the env (on PATH) via flopy's get-modflow:
+# mp7 (MODPATH 7) for particle tracking, plus gridgen/triangle for unstructured
+# grid generation. (mf6 itself comes from the get-mf6 (extended) task.)
+# NOTE: USGS no longer publishes x86_64 macOS binaries (executables release
+# >= 26.0 are arm64-only), so this won't work on an Intel mac. Use win-64,
+# linux-64 or Apple-Silicon macs.
+get-exes = "get-modflow --subset mp7,gridgen,triangle :python"
+# Install the git pre-commit hook (run once per clone). The hook clears notebook
+# outputs (nbstripout) and applies ruff lint fixes + formatting on commit.
+pre-commit-install = "pre-commit install"
+# Run all pre-commit hooks against every file (not just staged changes).
+pre-commit-run = "pre-commit run --all-files"
+
+# --- Auto-install parallel (extended) MODFLOW 6 ---------------------------
+# conda-forge does NOT ship a parallel-enabled mf6, so we provide it ourselves:
+#   * Windows (win-64): download the prebuilt extended nightly and copy it in.
+#   * Unix (linux-64, osx-64, osx-arm64): build from source with PETSc/MPI.
+# pixi has no post-install hook, so we run the (idempotent) installer from an
+# activation script. The first `pixi run`/`pixi shell` performs the build;
+# every later activation is a fast no-op once `mf6` is present. Binaries are
+# installed into the env prefix so they land on PATH automatically.
+[target.unix.activation]
+scripts = ["scripts/postinstall.sh"]
+
+[target.win-64.activation]
+scripts = ["scripts/postinstall.bat"]
+
+# Build toolchain + extended-build libraries. Unix-only; Windows uses a
+# prebuilt binary so it needs no compilers.
+[target.unix.dependencies]
+# build toolchain
+clang = "*"
+gfortran = "*"
+meson = ">=1.3.0"
+ninja = "*"
+pkg-config = "*"
+# extended-build libraries (parallel + netcdf)
+libnetcdf = "*"
+netcdf-fortran = "*"
+openmpi = "*"
+petsc = "==3.20.5"

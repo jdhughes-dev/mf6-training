@@ -1,0 +1,47 @@
+# Pre-commit hooks for the mf6-training repo.
+#
+# Install once per clone (inside the pixi environment):
+#
+#     pixi run pre-commit-install
+#
+# Thereafter, on every `git commit` the staged files are:
+#   1. stripped of notebook outputs / execution counts (nbstripout),
+#   2. spell-checked and auto-corrected (codespell), then
+#   3. lint-fixed and formatted with ruff (Python files *and* notebooks).
+#
+# The hooks run the tools from the pixi environment (language: system) rather
+# than letting pre-commit manage its own isolated envs, so the versions match
+# pixi.lock and no extra downloads are needed. Run against everything with:
+#
+#     pixi run pre-commit-run
+repos:
+  - repo: local
+    hooks:
+      - id: nbstripout
+        name: strip notebook outputs
+        entry: nbstripout
+        language: system
+        types: [jupyter]
+
+      - id: codespell
+        name: codespell (spell-check + fix)
+        # --write-changes auto-corrects typos; codespell still exits non-zero
+        # when it finds/fixes any, so the hook fails and the fix is staged for
+        # re-commit. Config (skips, ignore-words) lives in .codespellrc.
+        entry: codespell --write-changes
+        language: system
+        types: [text]
+
+      - id: ruff-check
+        name: ruff lint (--fix)
+        entry: ruff check --fix --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true
+
+      - id: ruff-format
+        name: ruff format
+        entry: ruff format --force-exclude
+        language: system
+        types_or: [python, pyi, jupyter]
+        require_serial: true

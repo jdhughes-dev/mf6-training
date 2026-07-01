@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Keep the GitHub Actions used in our workflows (checkout, setup-pixi,
+  # create-pull-request, ...) up to date.
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
+    labels:
+      - dependencies
+    commit-message:
+      prefix: ci

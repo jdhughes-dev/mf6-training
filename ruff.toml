@@ -1,0 +1,28 @@
+# Ruff configuration for the mf6-training repo.
+# Applies to Python files and Jupyter notebooks (ruff handles .ipynb natively).
+# See https://docs.astral.sh/ruff/settings/ for all options.
+
+# Match the Python version pinned in pixi.toml.
+target-version = "py311"
+
+line-length = 88
+indent-width = 4
+
+[lint]
+# Ruff's default rules (E4/E7/E9 pyflakes-style + F) plus:
+#   I  - isort (import sorting)
+#   W  - pycodestyle warnings
+#   UP - pyupgrade (modernize syntax for the target version)
+#   B  - flake8-bugbear (likely bugs)
+select = ["E4", "E7", "E9", "F", "I", "W", "UP", "B"]
+ignore = []
+
+# Allow autofix for all enabled rules when running `ruff check --fix`.
+fixable = ["ALL"]
+unfixable = []
+
+[format]
+# Match Black's defaults (double quotes, spaces, trailing commas as needed).
+quote-style = "double"
+indent-style = "space"
+line-ending = "auto"
