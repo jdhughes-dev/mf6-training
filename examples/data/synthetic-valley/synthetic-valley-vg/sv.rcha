@@ -1,0 +1,612 @@
+BEGIN options
+  READASARRAYS
+  auxiliary  iflowface
+END options
+
+BEGIN period  1
+  recharge
+    CONSTANT       0.00283953
+  iflowface
+    CONSTANT      -1.00000000
+END period  1
+
+BEGIN period  2
+  recharge
+    CONSTANT       0.00195828
+END period  2
+
+BEGIN period  3
+  recharge
+    CONSTANT       0.00215902
+END period  3
+
+BEGIN period  4
+  recharge
+    CONSTANT  5.73553613E-05
+END period  4
+
+BEGIN period  5
+  recharge
+    CONSTANT       0.00411484
+END period  5
+
+BEGIN period  6
+  recharge
+    CONSTANT       0.00147485
+END period  6
+
+BEGIN period  7
+  recharge
+    CONSTANT       0.00998229
+END period  7
+
+BEGIN period  8
+  recharge
+    CONSTANT       0.00200744
+END period  8
+
+BEGIN period  9
+  recharge
+    CONSTANT       0.00101601
+END period  9
+
+BEGIN period  10
+  recharge
+    CONSTANT       0.00602832
+END period  10
+
+BEGIN period  11
+  recharge
+    CONSTANT       0.00394933
+END period  11
+
+BEGIN period  12
+  recharge
+    CONSTANT       0.00449584
+END period  12
+
+BEGIN period  13
+  recharge
+    CONSTANT       0.00142569
+END period  13
+
+BEGIN period  14
+  recharge
+    CONSTANT       0.00172885
+END period  14
+
+BEGIN period  15
+  recharge
+    CONSTANT       0.00230416
+END period  15
+
+BEGIN period  16
+  recharge
+    CONSTANT       0.00240073
+END period  16
+
+BEGIN period  17
+  recharge
+    CONSTANT       0.00286176
+END period  17
+
+BEGIN period  18
+  recharge
+    CONSTANT  2.78583184E-04
+END period  18
+
+BEGIN period  19
+  recharge
+    CONSTANT       0.00247229
+END period  19
+
+BEGIN period  20
+  recharge
+    CONSTANT       0.00143388
+END period  20
+
+BEGIN period  21
+  recharge
+    CONSTANT       0.00136834
+END period  21
+
+BEGIN period  22
+  recharge
+    CONSTANT       0.00118534
+END period  22
+
+BEGIN period  23
+  recharge
+    CONSTANT       0.00288416
+END period  23
+
+BEGIN period  24
+  recharge
+    CONSTANT       0.00126154
+END period  24
+
+BEGIN period  25
+  recharge
+    CONSTANT       0.00243351
+END period  25
+
+BEGIN period  26
+  recharge
+    CONSTANT       0.00103240
+END period  26
+
+BEGIN period  27
+  recharge
+    CONSTANT       0.00233857
+END period  27
+
+BEGIN period  28
+  recharge
+    CONSTANT       0.00202382
+END period  28
+
+BEGIN period  29
+  recharge
+    CONSTANT       0.00526631
+END period  29
+
+BEGIN period  30
+  recharge
+    CONSTANT       0.00768562
+END period  30
+
+BEGIN period  31
+  recharge
+    CONSTANT       0.00356450
+END period  31
+
+BEGIN period  32
+  recharge
+    CONSTANT       0.00178621
+END period  32
+
+BEGIN period  33
+  recharge
+    CONSTANT       0.00203202
+END period  33
+
+BEGIN period  34
+  recharge
+    CONSTANT       0.00607912
+END period  34
+
+BEGIN period  35
+  recharge
+    CONSTANT       0.00107336
+END period  35
+
+BEGIN period  36
+  recharge
+    CONSTANT       0.00170182
+END period  36
+
+BEGIN period  37
+  recharge
+    CONSTANT       0.00213854
+END period  37
+
+BEGIN period  38
+  recharge
+    CONSTANT       0.00216312
+END period  38
+
+BEGIN period  39
+  recharge
+    CONSTANT  3.17502893E-04
+END period  39
+
+BEGIN period  40
+  recharge
+    CONSTANT       0.00197466
+END period  40
+
+BEGIN period  41
+  recharge
+    CONSTANT       0.00348830
+END period  41
+
+BEGIN period  42
+  recharge
+    CONSTANT       0.00840666
+END period  42
+
+BEGIN period  43
+  recharge
+    CONSTANT       0.00566425
+END period  43
+
+BEGIN period  44
+  recharge
+    CONSTANT       0.00178621
+END period  44
+
+BEGIN period  45
+  recharge
+    CONSTANT       0.00225325
+END period  45
+
+BEGIN period  46
+  recharge
+    CONSTANT       0.00154941
+END period  46
+
+BEGIN period  47
+  recharge
+    CONSTANT       0.00467037
+END period  47
+
+BEGIN period  48
+  recharge
+    CONSTANT       0.00314116
+END period  48
+
+BEGIN period  49
+  recharge
+    CONSTANT       0.00489979
+END period  49
+
+BEGIN period  50
+  recharge
+    CONSTANT       0.00164692
+END period  50
+
+BEGIN period  51
+  recharge
+    CONSTANT       0.00420011
+END period  51
+
+BEGIN period  52
+  recharge
+    CONSTANT       0.00275306
+END period  52
+
+BEGIN period  53
+  recharge
+    CONSTANT       0.00109221
+END period  53
+
+BEGIN period  54
+  recharge
+    CONSTANT       0.00444094
+END period  54
+
+BEGIN period  55
+  recharge
+    CONSTANT       0.00109221
+END period  55
+
+BEGIN period  56
+  recharge
+    CONSTANT       0.00341674
+END period  56
+
+BEGIN period  57
+  recharge
+    CONSTANT       0.00362158
+END period  57
+
+BEGIN period  58
+  recharge
+    CONSTANT       0.00521551
+END period  58
+
+BEGIN period  59
+  recharge
+    CONSTANT       0.00195008
+END period  59
+
+BEGIN period  60
+  recharge
+    CONSTANT       0.00211669
+END period  60
+
+BEGIN period  61
+  recharge
+    CONSTANT       0.00120446
+END period  61
+
+BEGIN period  62
+  recharge
+    CONSTANT       0.00153221
+END period  62
+
+BEGIN period  63
+  recharge
+    CONSTANT       0.00200480
+END period  63
+
+BEGIN period  64
+  recharge
+    CONSTANT       0.00415417
+END period  64
+
+BEGIN period  65
+  recharge
+    CONSTANT       0.00441117
+END period  65
+
+BEGIN period  66
+  recharge
+    CONSTANT       0.00268751
+END period  66
+
+BEGIN period  67
+  recharge
+    CONSTANT       0.00118534
+END period  67
+
+BEGIN period  68
+  recharge
+    CONSTANT       0.00211395
+END period  68
+
+BEGIN period  69
+  recharge
+    CONSTANT       0.00306442
+END period  69
+
+BEGIN period  70
+  recharge
+    CONSTANT       0.00671413
+END period  70
+
+BEGIN period  71
+  recharge
+    CONSTANT       0.00513740
+END period  71
+
+BEGIN period  72
+  recharge
+    CONSTANT       0.00184575
+END period  72
+
+BEGIN period  73
+  recharge
+    CONSTANT       0.00365436
+END period  73
+
+BEGIN period  74
+  recharge
+    CONSTANT       0.00151582
+END period  74
+
+BEGIN period  75
+  recharge
+    CONSTANT       0.00196195
+END period  75
+
+BEGIN period  76
+  recharge
+    CONSTANT       0.00124543
+END period  76
+
+BEGIN period  77
+  recharge
+    CONSTANT       0.00154095
+END period  77
+
+BEGIN period  78
+  recharge
+    CONSTANT       0.00440817
+END period  78
+
+BEGIN period  79
+  recharge
+    CONSTANT       0.00151555
+END period  79
+
+BEGIN period  80
+  recharge
+    CONSTANT       0.00199105
+END period  80
+
+BEGIN period  81
+  recharge
+    CONSTANT       0.00247447
+END period  81
+
+BEGIN period  82
+  recharge
+    CONSTANT       0.00229449
+END period  82
+
+BEGIN period  83
+  recharge
+    CONSTANT       0.00727594
+END period  83
+
+BEGIN period  84
+  recharge
+    CONSTANT  9.48275307E-04
+END period  84
+
+BEGIN period  85
+  recharge
+    CONSTANT       0.00235157
+END period  85
+
+BEGIN period  86
+  recharge
+    CONSTANT       0.00303164
+END period  86
+
+BEGIN period  87
+  recharge
+    CONSTANT       0.00147866
+END period  87
+
+BEGIN period  88
+  recharge
+    CONSTANT       0.00258918
+END period  88
+
+BEGIN period  89
+  recharge
+    CONSTANT       0.00194735
+END period  89
+
+BEGIN period  90
+  recharge
+    CONSTANT       0.00262196
+END period  90
+
+BEGIN period  91
+  recharge
+    CONSTANT       0.00392857
+END period  91
+
+BEGIN period  92
+  recharge
+    CONSTANT       0.00595676
+END period  92
+
+BEGIN period  93
+  recharge
+    CONSTANT       0.00159776
+END period  93
+
+BEGIN period  94
+  recharge
+    CONSTANT       0.00136315
+END period  94
+
+BEGIN period  95
+  recharge
+    CONSTANT       0.00615341
+END period  95
+
+BEGIN period  96
+  recharge
+    CONSTANT       0.00236222
+END period  96
+
+BEGIN period  97
+  recharge
+    CONSTANT       0.00457204
+END period  97
+
+BEGIN period  98
+  recharge
+    CONSTANT       0.00220408
+END period  98
+
+BEGIN period  99
+  recharge
+    CONSTANT       0.00345625
+END period  99
+
+BEGIN period  100
+  recharge
+    CONSTANT       0.00335939
+END period  100
+
+BEGIN period  101
+  recharge
+    CONSTANT       0.00627386
+END period  101
+
+BEGIN period  102
+  recharge
+    CONSTANT       0.00519476
+END period  102
+
+BEGIN period  103
+  recharge
+    CONSTANT       0.00391164
+END period  103
+
+BEGIN period  104
+  recharge
+    CONSTANT       0.00171247
+END period  104
+
+BEGIN period  105
+  recharge
+    CONSTANT       0.00421972
+END period  105
+
+BEGIN period  106
+  recharge
+    CONSTANT  7.87407175E-04
+END period  106
+
+BEGIN period  107
+  recharge
+    CONSTANT       0.00246628
+END period  107
+
+BEGIN period  108
+  recharge
+    CONSTANT       0.00225215
+END period  108
+
+BEGIN period  109
+  recharge
+    CONSTANT       0.00267112
+END period  109
+
+BEGIN period  110
+  recharge
+    CONSTANT       0.00267112
+END period  110
+
+BEGIN period  111
+  recharge
+    CONSTANT       0.00159659
+END period  111
+
+BEGIN period  112
+  recharge
+    CONSTANT       0.00321190
+END period  112
+
+BEGIN period  113
+  recharge
+    CONSTANT       0.00208282
+END period  113
+
+BEGIN period  114
+  recharge
+    CONSTANT       0.00201563
+END period  114
+
+BEGIN period  115
+  recharge
+    CONSTANT       0.00629926
+END period  115
+
+BEGIN period  116
+  recharge
+    CONSTANT       0.00400668
+END period  116
+
+BEGIN period  117
+  recharge
+    CONSTANT  8.93104912E-04
+END period  117
+
+BEGIN period  118
+  recharge
+    CONSTANT       0.00197275
+END period  118
+
+BEGIN period  119
+  recharge
+    CONSTANT       0.00323648
+END period  119
+
+BEGIN period  120
+  recharge
+    CONSTANT       0.00174415
+END period  120
+
+BEGIN period  121
+  recharge
+    CONSTANT       0.00308080
+END period  121
+

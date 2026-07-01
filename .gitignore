@@ -221,3 +221,23 @@ __marimo__/
 /modflow6/
 /win64ext/
 /win64ext.zip
+
+# Executable source builds on platforms without prebuilt binaries - Intel mac
+# and linux-aarch64 (cloned by scripts/build_exes.py)
+/modpath-v7/
+/triangle/
+/gridgen/
+
+# additional files to ignore here
+.DS_Store
+._*
+*.hds
+*.cbc
+*.bin
+*.lst
+*.list
+*.csv
+
+.figures/
+examples/notebooks/models/
+

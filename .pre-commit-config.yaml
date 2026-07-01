@@ -5,9 +5,13 @@
 #     pixi run pre-commit-install
 #
 # Thereafter, on every `git commit` the staged files are:
-#   1. stripped of notebook outputs / execution counts (nbstripout),
+#   1. stripped of notebook outputs / execution counts (nbstripout; the class
+#      notebooks under examples/notebooks/),
 #   2. spell-checked and auto-corrected (codespell), then
-#   3. lint-fixed and formatted with ruff (Python files *and* notebooks).
+#   3. lint-fixed and formatted with ruff.
+#
+# codespell and ruff run on all Python scripts plus the notebooks under
+# examples/notebooks/; nbstripout runs on those notebooks only.
 #
 # The hooks run the tools from the pixi environment (language: system) rather
 # than letting pre-commit manage its own isolated envs, so the versions match
@@ -22,6 +26,8 @@ repos:
         entry: nbstripout
         language: system
         types: [jupyter]
+        # Only strip the class notebooks under examples/notebooks/.
+        files: ^examples/notebooks/.*\.ipynb$
 
       - id: codespell
         name: codespell (spell-check + fix)
@@ -30,18 +36,21 @@ repos:
         # re-commit. Config (skips, ignore-words) lives in .codespellrc.
         entry: codespell --write-changes
         language: system
-        types: [text]
+        # All Python scripts, plus the notebooks under examples/notebooks/.
+        files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
 
       - id: ruff-check
         name: ruff lint (--fix)
         entry: ruff check --fix --force-exclude
         language: system
-        types_or: [python, pyi, jupyter]
+        # All Python scripts, plus the notebooks under examples/notebooks/.
+        files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
         require_serial: true
 
       - id: ruff-format
         name: ruff format
         entry: ruff format --force-exclude
         language: system
-        types_or: [python, pyi, jupyter]
+        # All Python scripts, plus the notebooks under examples/notebooks/.
+        files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
         require_serial: true

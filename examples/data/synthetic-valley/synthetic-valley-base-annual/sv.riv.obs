@@ -1,0 +1,7 @@
+BEGIN options
+END options
+
+BEGIN continuous  FILEOUT  sv.riv.obs.csv
+  RIV-SWGW  RIV  RIV
+END continuous  FILEOUT  sv.riv.obs.csv
+

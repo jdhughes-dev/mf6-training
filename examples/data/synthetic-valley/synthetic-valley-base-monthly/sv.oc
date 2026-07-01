@@ -1,0 +1,11 @@
+BEGIN options
+  BUDGET  FILEOUT  sv.cbc
+  BUDGETCSV  FILEOUT  sv-budget.csv
+  HEAD  FILEOUT  sv.hds
+END options
+
+BEGIN period  1
+  SAVE  HEAD  ALL
+  SAVE  BUDGET  ALL
+END period  1
+

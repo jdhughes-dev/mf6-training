@@ -21,6 +21,18 @@ ignore = []
 fixable = ["ALL"]
 unfixable = []
 
+# Teaching materials under examples/notebooks/ intentionally keep "unused" demo
+# variables (e.g. `npf = flopy.mf6.ModflowGwfnpf(...)`, whose creation registers
+# the package as a side effect), unused loop variables, and cells that reference
+# names defined interactively/elsewhere. Relax those rules there so the notebooks
+# lint cleanly, while keeping the full rule set for the project's own scripts/.
+[lint.per-file-ignores]
+"examples/notebooks/**" = [
+    "F841",  # local variable assigned but never used
+    "B007",  # loop control variable not used within loop body
+    "F821",  # undefined name (cells that rely on interactive/earlier state)
+]
+
 [format]
 # Match Black's defaults (double quotes, spaces, trailing commas as needed).
 quote-style = "double"

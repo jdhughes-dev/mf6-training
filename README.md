@@ -150,12 +150,14 @@ hook installed keeps notebooks clean and code consistently formatted.
 |---|---|
 | Windows 64-bit | `win-64` |
 | Linux 64-bit | `linux-64` |
+| Linux ARM64 | `linux-aarch64` |
 | macOS Apple Silicon | `osx-arm64` |
 | macOS Intel | `osx-64` |
 
 CI (GitHub Actions) installs the environment and verifies MODFLOW 6 (including
-that modflowapi can load `libmf6`) and the Python packages on all four platforms
-on every push and pull request, plus a nightly run.
+that modflowapi can load `libmf6`) and the Python packages on all five platforms
+on every push and pull request, plus a nightly run. (linux-aarch64 uses the free
+arm64 hosted runners available for public repositories.)
 
 ## Notes
 
@@ -164,6 +166,17 @@ on every push and pull request, plus a nightly run.
   tag. Nightly releases are eventually deleted upstream; if `pixi run get-mf6`
   fails to download on Windows, update `NIGHTLY` in `scripts/get_mf6.py` to a
   current tag. (The nightly CI run flags this automatically.)
+- On the platforms USGS ships no prebuilt binaries for - **Intel macs (osx-64)**
+  and **linux-aarch64** - the mp7 / triangle / gridgen executables are built from
+  source (cloned from the [MODFLOW-ORG](https://github.com/MODFLOW-ORG) GitHub
+  org and compiled with meson); every other platform gets prebuilt binaries via
+  flopy's `get-modflow`. Either way it is automatic (`pixi run get-exes`) and the
+  executables install into the environment like mf6.
+- All from-source builds (mf6, and the executables above where applicable) use a
+  single GNU toolchain (gcc/g++/gfortran), matching how MODFLOW-ORG builds its
+  release binaries. Note that conda-forge only began shipping real GNU gcc/g++ on
+  macOS in Nov 2025 (its mac `gcc` was previously a clang wrapper), currently
+  gcc 15 only, so the gcc version may differ across platforms.
 - If you see `WARN ignoring SSL_CERT_DIR: no certificates found` while running
   pixi, it is harmless and comes from another conda/pixi environment already
   being active in your shell. It does not appear in a fresh terminal.

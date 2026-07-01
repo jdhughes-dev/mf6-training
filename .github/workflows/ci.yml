@@ -47,8 +47,10 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        # macos-latest = Apple Silicon (osx-arm64); macos-15-intel = Intel (osx-64)
-        os: [ubuntu-latest, macos-latest, macos-15-intel, windows-latest]
+        # ubuntu-latest = linux-64; ubuntu-24.04-arm = linux-aarch64 (free arm64
+        # runner for public repos); macos-latest = Apple Silicon (osx-arm64);
+        # macos-15-intel = Intel (osx-64)
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest]
     steps:
       - uses: actions/checkout@v7
 
@@ -73,10 +75,14 @@ jobs:
         run: pixi run python scripts/check_libmf6.py
 
       - name: Install MODFLOW executables (mp7, gridgen, triangle)
-        # Skipped on Intel mac: USGS publishes no x86_64 macOS binaries anymore.
-        # GITHUB_TOKEN authenticates get-modflow's GitHub API call to avoid the
-        # low unauthenticated rate limit (HTTP 403) on shared runners.
-        if: matrix.os != 'macos-15-intel'
+        # Prebuilt via get-modflow where USGS ships binaries (win-64/linux-64/
+        # osx-arm64); built from source (MODFLOW-ORG repos) on Intel mac and
+        # linux-aarch64. --force so the source build runs fresh even if setup-pixi
+        # restored a cached env. GITHUB_TOKEN authenticates get-modflow's GitHub
+        # API call to avoid the low unauthenticated rate limit (HTTP 403).
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: pixi run get-exes
+        run: pixi run get-exes --force
+
+      - name: Verify mp7, triangle, gridgen are on PATH
+        run: pixi run check-exes

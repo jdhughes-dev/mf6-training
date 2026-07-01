@@ -1,0 +1,1688 @@
+BEGIN options
+  BOUNDNAMES
+END options
+
+BEGIN dimensions
+  MAXBOUND  4
+END dimensions
+
+BEGIN period  2
+  4 6 15 -3.69026309E+04 reilly
+  5 6 15 -3.63972929E+04 reilly
+  4 33 6 -1.46593215E+05 vc
+  5 33 6 -1.46606481E+05 vc
+END period  2
+
+BEGIN period  3
+  4 6 15 -3.69246437E+04 reilly
+  5 6 15 -3.64190043E+04 reilly
+  4 33 6 -1.46680659E+05 vc
+  5 33 6 -1.46693933E+05 vc
+END period  3
+
+BEGIN period  4
+  4 6 15 -4.20096014E+04 reilly
+  5 6 15 -4.14343294E+04 reilly
+  4 33 6 -1.66880311E+05 vc
+  5 33 6 -1.66895413E+05 vc
+END period  4
+
+BEGIN period  5
+  4 6 15 -3.14654684E+04 reilly
+  5 6 15 -3.10345860E+04 reilly
+  4 33 6 -1.24994453E+05 vc
+  5 33 6 -1.25005765E+05 vc
+END period  5
+
+BEGIN period  6
+  4 6 15 -3.82013863E+04 reilly
+  5 6 15 -3.76782634E+04 reilly
+  4 33 6 -1.51752433E+05 vc
+  5 33 6 -1.51766166E+05 vc
+END period  6
+
+BEGIN period  7
+  4 6 15 -1.62105955E+04 reilly
+  5 6 15 -1.59886105E+04 reilly
+  4 33 6 -6.43954982E+04 vc
+  5 33 6 -6.44013258E+04 vc
+END period  7
+
+BEGIN period  8
+  4 6 15 -3.67705541E+04 reilly
+  5 6 15 -3.62670247E+04 reilly
+  4 33 6 -1.46068548E+05 vc
+  5 33 6 -1.46081767E+05 vc
+END period  8
+
+BEGIN period  9
+  4 6 15 -3.94341033E+04 reilly
+  5 6 15 -3.88940998E+04 reilly
+  4 33 6 -1.56649318E+05 vc
+  5 33 6 -1.56663495E+05 vc
+END period  9
+
+BEGIN period  10
+  4 6 15 -2.64905748E+04 reilly
+  5 6 15 -2.61278176E+04 reilly
+  4 33 6 -1.05232023E+05 vc
+  5 33 6 -1.05241546E+05 vc
+END period  10
+
+BEGIN period  11
+  4 6 15 -3.15535196E+04 reilly
+  5 6 15 -3.11214314E+04 reilly
+  4 33 6 -1.25344230E+05 vc
+  5 33 6 -1.25355574E+05 vc
+END period  11
+
+BEGIN period  12
+  4 6 15 -3.04748923E+04 reilly
+  5 6 15 -3.00575746E+04 reilly
+  4 33 6 -1.21059456E+05 vc
+  5 33 6 -1.21070411E+05 vc
+END period  12
+
+BEGIN period  13
+  4 6 15 -3.83334632E+04 reilly
+  5 6 15 -3.78085316E+04 reilly
+  4 33 6 -1.52277099E+05 vc
+  5 33 6 -1.52290880E+05 vc
+END period  13
+
+BEGIN period  14
+  4 6 15 -3.42615100E+04 reilly
+  5 6 15 -3.37923390E+04 reilly
+  4 33 6 -1.36101540E+05 vc
+  5 33 6 -1.36113856E+05 vc
+END period  14
+
+BEGIN period  15
+  4 6 15 -3.26511129E+04 reilly
+  5 6 15 -3.22039944E+04 reilly
+  4 33 6 -1.29704346E+05 vc
+  5 33 6 -1.29716084E+05 vc
+END period  15
+
+BEGIN period  16
+  4 6 15 -3.11905202E+04 reilly
+  5 6 15 -3.07634028E+04 reilly
+  4 33 6 -1.23902240E+05 vc
+  5 33 6 -1.23913452E+05 vc
+END period  16
+
+BEGIN period  17
+  4 6 15 -2.95052209E+04 reilly
+  5 6 15 -2.91011817E+04 reilly
+  4 33 6 -1.17207502E+05 vc
+  5 33 6 -1.17218109E+05 vc
+END period  17
+
+BEGIN period  18
+  4 6 15 -4.08903538E+04 reilly
+  5 6 15 -4.03304086E+04 reilly
+  4 33 6 -1.62434175E+05 vc
+  5 33 6 -1.62448875E+05 vc
+END period  18
+
+BEGIN period  19
+  4 6 15 -3.12279713E+04 reilly
+  5 6 15 -3.08003411E+04 reilly
+  4 33 6 -1.24051012E+05 vc
+  5 33 6 -1.24062238E+05 vc
+END period  19
+
+BEGIN period  20
+  4 6 15 -3.56097494E+04 reilly
+  5 6 15 -3.51221159E+04 reilly
+  4 33 6 -1.41457330E+05 vc
+  5 33 6 -1.41470131E+05 vc
+END period  20
+
+BEGIN period  21
+  4 6 15 -3.59093582E+04 reilly
+  5 6 15 -3.54176219E+04 reilly
+  4 33 6 -1.42647505E+05 vc
+  5 33 6 -1.42660415E+05 vc
+END period  21
+
+BEGIN period  22
+  4 6 15 -3.69205377E+04 reilly
+  5 6 15 -3.64149545E+04 reilly
+  4 33 6 -1.46664348E+05 vc
+  5 33 6 -1.46677621E+05 vc
+END period  22
+
+BEGIN period  23
+  4 6 15 -2.89809056E+04 reilly
+  5 6 15 -2.85840463E+04 reilly
+  4 33 6 -1.15124695E+05 vc
+  5 33 6 -1.15135113E+05 vc
+END period  23
+
+BEGIN period  24
+  4 6 15 -3.65834779E+04 reilly
+  5 6 15 -3.60825103E+04 reilly
+  4 33 6 -1.45325401E+05 vc
+  5 33 6 -1.45338552E+05 vc
+END period  24
+
+BEGIN period  25
+  4 6 15 -3.10407158E+04 reilly
+  5 6 15 -3.06156498E+04 reilly
+  4 33 6 -1.23307152E+05 vc
+  5 33 6 -1.23318311E+05 vc
+END period  25
+
+BEGIN period  26
+  4 6 15 -3.92645777E+04 reilly
+  5 6 15 -3.87268957E+04 reilly
+  4 33 6 -1.55975889E+05 vc
+  5 33 6 -1.55990005E+05 vc
+END period  26
+
+BEGIN period  27
+  4 6 15 -3.60203319E+04 reilly
+  5 6 15 -3.55270760E+04 reilly
+  4 33 6 -1.43088341E+05 vc
+  5 33 6 -1.43101290E+05 vc
+END period  27
+
+BEGIN period  28
+  4 6 15 -3.64805086E+04 reilly
+  5 6 15 -3.59809511E+04 reilly
+  4 33 6 -1.44916362E+05 vc
+  5 33 6 -1.44929477E+05 vc
+END period  28
+
+BEGIN period  29
+  4 6 15 -2.78521953E+04 reilly
+  5 6 15 -2.74707924E+04 reilly
+  4 33 6 -1.10640969E+05 vc
+  5 33 6 -1.10650982E+05 vc
+END period  29
+
+BEGIN period  30
+  4 6 15 -2.05814033E+04 reilly
+  5 6 15 -2.02995653E+04 reilly
+  4 33 6 -8.17582378E+04 vc
+  5 33 6 -8.17656367E+04 vc
+END period  30
+
+BEGIN period  31
+  4 6 15 -3.24769713E+04 reilly
+  5 6 15 -3.20322375E+04 reilly
+  4 33 6 -1.29012580E+05 vc
+  5 33 6 -1.29024255E+05 vc
+END period  31
+
+BEGIN period  32
+  4 6 15 -3.71477649E+04 reilly
+  5 6 15 -3.66390701E+04 reilly
+  4 33 6 -1.47566993E+05 vc
+  5 33 6 -1.47580347E+05 vc
+END period  32
+
+BEGIN period  33
+  4 6 15 -3.64574998E+04 reilly
+  5 6 15 -3.59582574E+04 reilly
+  4 33 6 -1.44824961E+05 vc
+  5 33 6 -1.44838067E+05 vc
+END period  33
+
+BEGIN period  34
+  4 6 15 -2.56433471E+04 reilly
+  5 6 15 -2.52921917E+04 reilly
+  4 33 6 -1.01866468E+05 vc
+  5 33 6 -1.01875687E+05 vc
+END period  34
+
+BEGIN period  35
+  4 6 15 -3.91495336E+04 reilly
+  5 6 15 -3.86134269E+04 reilly
+  4 33 6 -1.55518884E+05 vc
+  5 33 6 -1.55532958E+05 vc
+END period  35
+
+BEGIN period  36
+  4 6 15 -3.75389151E+04 reilly
+  5 6 15 -3.70248639E+04 reilly
+  4 33 6 -1.49120810E+05 vc
+  5 33 6 -1.49134306E+05 vc
+END period  36
+
+BEGIN period  37
+  4 6 15 -3.61583849E+04 reilly
+  5 6 15 -3.56632385E+04 reilly
+  4 33 6 -1.43636748E+05 vc
+  5 33 6 -1.43649746E+05 vc
+END period  37
+
+BEGIN period  38
+  4 6 15 -3.66690562E+04 reilly
+  5 6 15 -3.61669167E+04 reilly
+  4 33 6 -1.45665355E+05 vc
+  5 33 6 -1.45678537E+05 vc
+END period  38
+
+BEGIN period  39
+  4 6 15 -4.14352356E+04 reilly
+  5 6 15 -4.08678290E+04 reilly
+  4 33 6 -1.64598681E+05 vc
+  5 33 6 -1.64613577E+05 vc
+END period  39
+
+BEGIN period  40
+  4 6 15 -3.71477554E+04 reilly
+  5 6 15 -3.66390607E+04 reilly
+  4 33 6 -1.47566955E+05 vc
+  5 33 6 -1.47580309E+05 vc
+END period  40
+
+BEGIN period  41
+  4 6 15 -3.35887306E+04 reilly
+  5 6 15 -3.31287725E+04 reilly
+  4 33 6 -1.33428969E+05 vc
+  5 33 6 -1.33441044E+05 vc
+END period  41
+
+BEGIN period  42
+  4 6 15 -2.08095419E+04 reilly
+  5 6 15 -2.05245798E+04 reilly
+  4 33 6 -8.26645030E+04 vc
+  5 33 6 -8.26719840E+04 vc
+END period  42
+
+BEGIN period  43
+  4 6 15 -2.82397868E+04 reilly
+  5 6 15 -2.78530762E+04 reilly
+  4 33 6 -1.12180650E+05 vc
+  5 33 6 -1.12190802E+05 vc
+END period  43
+
+BEGIN period  44
+  4 6 15 -3.76264547E+04 reilly
+  5 6 15 -3.71112047E+04 reilly
+  4 33 6 -1.49468556E+05 vc
+  5 33 6 -1.49482082E+05 vc
+END period  44
+
+BEGIN period  45
+  4 6 15 -3.64401130E+04 reilly
+  5 6 15 -3.59411087E+04 reilly
+  4 33 6 -1.44755893E+05 vc
+  5 33 6 -1.44768993E+05 vc
+END period  45
+
+BEGIN period  46
+  4 6 15 -3.83549100E+04 reilly
+  5 6 15 -3.78296848E+04 reilly
+  4 33 6 -1.52362295E+05 vc
+  5 33 6 -1.52376084E+05 vc
+END period  46
+
+BEGIN period  47
+  4 6 15 -3.03002749E+04 reilly
+  5 6 15 -2.98853483E+04 reilly
+  4 33 6 -1.20365800E+05 vc
+  5 33 6 -1.20376693E+05 vc
+END period  47
+
+BEGIN period  48
+  4 6 15 -3.44420640E+04 reilly
+  5 6 15 -3.39704206E+04 reilly
+  4 33 6 -1.36818778E+05 vc
+  5 33 6 -1.36831160E+05 vc
+END period  48
+
+BEGIN period  49
+  4 6 15 -2.97175106E+04 reilly
+  5 6 15 -2.93105643E+04 reilly
+  4 33 6 -1.18050808E+05 vc
+  5 33 6 -1.18061491E+05 vc
+END period  49
+
+BEGIN period  50
+  4 6 15 -3.69617052E+04 reilly
+  5 6 15 -3.64555582E+04 reilly
+  4 33 6 -1.46827883E+05 vc
+  5 33 6 -1.46841171E+05 vc
+END period  50
+
+BEGIN period  51
+  4 6 15 -3.01810073E+04 reilly
+  5 6 15 -2.97677140E+04 reilly
+  4 33 6 -1.19892017E+05 vc
+  5 33 6 -1.19902867E+05 vc
+END period  51
+
+BEGIN period  52
+  4 6 15 -3.34678341E+04 reilly
+  5 6 15 -3.30095316E+04 reilly
+  4 33 6 -1.32948716E+05 vc
+  5 33 6 -1.32960747E+05 vc
+END period  52
+
+BEGIN period  53
+  4 6 15 -3.88251031E+04 reilly
+  5 6 15 -3.82934391E+04 reilly
+  4 33 6 -1.54230106E+05 vc
+  5 33 6 -1.54244063E+05 vc
+END period  53
+
+BEGIN period  54
+  4 6 15 -2.81364457E+04 reilly
+  5 6 15 -2.77511502E+04 reilly
+  4 33 6 -1.11770134E+05 vc
+  5 33 6 -1.11780249E+05 vc
+END period  54
+
+BEGIN period  55
+  4 6 15 -3.88251031E+04 reilly
+  5 6 15 -3.82934391E+04 reilly
+  4 33 6 -1.54230106E+05 vc
+  5 33 6 -1.54244063E+05 vc
+END period  55
+
+BEGIN period  56
+  4 6 15 -3.13715115E+04 reilly
+  5 6 15 -3.09419156E+04 reilly
+  4 33 6 -1.24621215E+05 vc
+  5 33 6 -1.24632493E+05 vc
+END period  56
+
+BEGIN period  57
+  4 6 15 -3.07244983E+04 reilly
+  5 6 15 -3.03037626E+04 reilly
+  4 33 6 -1.22050999E+05 vc
+  5 33 6 -1.22062044E+05 vc
+END period  57
+
+BEGIN period  58
+  4 6 15 -2.62212867E+04 reilly
+  5 6 15 -2.58622171E+04 reilly
+  4 33 6 -1.04162294E+05 vc
+  5 33 6 -1.04171721E+05 vc
+END period  58
+
+BEGIN period  59
+  4 6 15 -3.60041257E+04 reilly
+  5 6 15 -3.55110917E+04 reilly
+  4 33 6 -1.43023963E+05 vc
+  5 33 6 -1.43036906E+05 vc
+END period  59
+
+BEGIN period  60
+  4 6 15 -3.56935594E+04 reilly
+  5 6 15 -3.52047782E+04 reilly
+  4 33 6 -1.41790259E+05 vc
+  5 33 6 -1.41803091E+05 vc
+END period  60
+
+BEGIN period  61
+  4 6 15 -3.83592536E+04 reilly
+  5 6 15 -3.78339689E+04 reilly
+  4 33 6 -1.52379550E+05 vc
+  5 33 6 -1.52393340E+05 vc
+END period  61
+
+BEGIN period  62
+  4 6 15 -3.80677896E+04 reilly
+  5 6 15 -3.75464961E+04 reilly
+  4 33 6 -1.51221729E+05 vc
+  5 33 6 -1.51235414E+05 vc
+END period  62
+
+BEGIN period  63
+  4 6 15 -3.73230802E+04 reilly
+  5 6 15 -3.68119847E+04 reilly
+  4 33 6 -1.48263421E+05 vc
+  5 33 6 -1.48276839E+05 vc
+END period  63
+
+BEGIN period  64
+  4 6 15 -3.10587604E+04 reilly
+  5 6 15 -3.06334474E+04 reilly
+  4 33 6 -1.23378833E+05 vc
+  5 33 6 -1.23389998E+05 vc
+END period  64
+
+BEGIN period  65
+  4 6 15 -3.07521154E+04 reilly
+  5 6 15 -3.03310015E+04 reilly
+  4 33 6 -1.22160706E+05 vc
+  5 33 6 -1.22171761E+05 vc
+END period  65
+
+BEGIN period  66
+  4 6 15 -3.49794361E+04 reilly
+  5 6 15 -3.45004340E+04 reilly
+  4 33 6 -1.38953453E+05 vc
+  5 33 6 -1.38966028E+05 vc
+END period  66
+
+BEGIN period  67
+  4 6 15 -3.90972407E+04 reilly
+  5 6 15 -3.85618502E+04 reilly
+  4 33 6 -1.55311154E+05 vc
+  5 33 6 -1.55325209E+05 vc
+END period  67
+
+BEGIN period  68
+  4 6 15 -3.65126612E+04 reilly
+  5 6 15 -3.60126634E+04 reilly
+  4 33 6 -1.45044086E+05 vc
+  5 33 6 -1.45057212E+05 vc
+END period  68
+
+BEGIN period  69
+  4 6 15 -3.39718882E+04 reilly
+  5 6 15 -3.35066832E+04 reilly
+  4 33 6 -1.34951036E+05 vc
+  5 33 6 -1.34963249E+05 vc
+END period  69
+
+BEGIN period  70
+  4 6 15 -2.47944406E+04 reilly
+  5 6 15 -2.44549100E+04 reilly
+  4 33 6 -9.84942445E+04 vc
+  5 33 6 -9.85031581E+04 vc
+END period  70
+
+BEGIN period  71
+  4 6 15 -2.84303745E+04 reilly
+  5 6 15 -2.80410541E+04 reilly
+  4 33 6 -1.12937747E+05 vc
+  5 33 6 -1.12947967E+05 vc
+END period  71
+
+BEGIN period  72
+  4 6 15 -3.73887899E+04 reilly
+  5 6 15 -3.68767945E+04 reilly
+  4 33 6 -1.48524448E+05 vc
+  5 33 6 -1.48537889E+05 vc
+END period  72
+
+BEGIN period  73
+  4 6 15 -3.23948566E+04 reilly
+  5 6 15 -3.19512473E+04 reilly
+  4 33 6 -1.28686385E+05 vc
+  5 33 6 -1.28698031E+05 vc
+END period  73
+
+BEGIN period  74
+  4 6 15 -3.69095010E+04 reilly
+  5 6 15 -3.64040690E+04 reilly
+  4 33 6 -1.46620506E+05 vc
+  5 33 6 -1.46633774E+05 vc
+END period  74
+
+BEGIN period  75
+  4 6 15 -3.58018610E+04 reilly
+  5 6 15 -3.53115968E+04 reilly
+  4 33 6 -1.42220480E+05 vc
+  5 33 6 -1.42233351E+05 vc
+END period  75
+
+BEGIN period  76
+  4 6 15 -3.78467349E+04 reilly
+  5 6 15 -3.73284685E+04 reilly
+  4 33 6 -1.50343604E+05 vc
+  5 33 6 -1.50357210E+05 vc
+END period  76
+
+BEGIN period  77
+  4 6 15 -3.69947041E+04 reilly
+  5 6 15 -3.64881053E+04 reilly
+  4 33 6 -1.46958969E+05 vc
+  5 33 6 -1.46972269E+05 vc
+END period  77
+
+BEGIN period  78
+  4 6 15 -2.68839386E+04 reilly
+  5 6 15 -2.65157948E+04 reilly
+  4 33 6 -1.06794634E+05 vc
+  5 33 6 -1.06804299E+05 vc
+END period  78
+
+BEGIN period  79
+  4 6 15 -3.70799072E+04 reilly
+  5 6 15 -3.65721416E+04 reilly
+  4 33 6 -1.47297433E+05 vc
+  5 33 6 -1.47310763E+05 vc
+END period  79
+
+BEGIN period  80
+  4 6 15 -3.52622415E+04 reilly
+  5 6 15 -3.47793667E+04 reilly
+  4 33 6 -1.40076878E+05 vc
+  5 33 6 -1.40089555E+05 vc
+END period  80
+
+BEGIN period  81
+  4 6 15 -3.35865809E+04 reilly
+  5 6 15 -3.31266523E+04 reilly
+  4 33 6 -1.33420429E+05 vc
+  5 33 6 -1.33432504E+05 vc
+END period  81
+
+BEGIN period  82
+  4 6 15 -3.44670127E+04 reilly
+  5 6 15 -3.39950277E+04 reilly
+  4 33 6 -1.36917885E+05 vc
+  5 33 6 -1.36930276E+05 vc
+END period  82
+
+BEGIN period  83
+  4 6 15 -1.69435792E+04 reilly
+  5 6 15 -1.67115569E+04 reilly
+  4 33 6 -6.73072267E+04 vc
+  5 33 6 -6.73133178E+04 vc
+END period  83
+
+BEGIN period  84
+  4 6 15 -3.89827760E+04 reilly
+  5 6 15 -3.84489529E+04 reilly
+  4 33 6 -1.54856451E+05 vc
+  5 33 6 -1.54870465E+05 vc
+END period  84
+
+BEGIN period  85
+  4 6 15 -3.40125963E+04 reilly
+  5 6 15 -3.35468339E+04 reilly
+  4 33 6 -1.35112747E+05 vc
+  5 33 6 -1.35124974E+05 vc
+END period  85
+
+BEGIN period  86
+  4 6 15 -3.39057824E+04 reilly
+  5 6 15 -3.34414827E+04 reilly
+  4 33 6 -1.34688436E+05 vc
+  5 33 6 -1.34700625E+05 vc
+END period  86
+
+BEGIN period  87
+  4 6 15 -3.85257475E+04 reilly
+  5 6 15 -3.79981828E+04 reilly
+  4 33 6 -1.53040936E+05 vc
+  5 33 6 -1.53054786E+05 vc
+END period  87
+
+BEGIN period  88
+  4 6 15 -3.51109907E+04 reilly
+  5 6 15 -3.46301871E+04 reilly
+  4 33 6 -1.39476044E+05 vc
+  5 33 6 -1.39488667E+05 vc
+END period  88
+
+BEGIN period  89
+  4 6 15 -3.70303965E+04 reilly
+  5 6 15 -3.65233089E+04 reilly
+  4 33 6 -1.47100755E+05 vc
+  5 33 6 -1.47114067E+05 vc
+END period  89
+
+BEGIN period  90
+  4 6 15 -3.50217160E+04 reilly
+  5 6 15 -3.45421349E+04 reilly
+  4 33 6 -1.39121407E+05 vc
+  5 33 6 -1.39133997E+05 vc
+END period  90
+
+BEGIN period  91
+  4 6 15 -3.18078272E+04 reilly
+  5 6 15 -3.13722566E+04 reilly
+  4 33 6 -1.26354450E+05 vc
+  5 33 6 -1.26365885E+05 vc
+END period  91
+
+BEGIN period  92
+  4 6 15 -2.59380165E+04 reilly
+  5 6 15 -2.55828260E+04 reilly
+  4 33 6 -1.03037023E+05 vc
+  5 33 6 -1.03046347E+05 vc
+END period  92
+
+BEGIN period  93
+  4 6 15 -3.78115500E+04 reilly
+  5 6 15 -3.72937654E+04 reilly
+  4 33 6 -1.50203834E+05 vc
+  5 33 6 -1.50217427E+05 vc
+END period  93
+
+BEGIN period  94
+  4 6 15 -3.85703848E+04 reilly
+  5 6 15 -3.80422089E+04 reilly
+  4 33 6 -1.53218255E+05 vc
+  5 33 6 -1.53232120E+05 vc
+END period  94
+
+BEGIN period  95
+  4 6 15 -2.54023684E+04 reilly
+  5 6 15 -2.50545129E+04 reilly
+  4 33 6 -1.00909197E+05 vc
+  5 33 6 -1.00918329E+05 vc
+END period  95
+
+BEGIN period  96
+  4 6 15 -3.59367815E+04 reilly
+  5 6 15 -3.54446697E+04 reilly
+  4 33 6 -1.42756443E+05 vc
+  5 33 6 -1.42769362E+05 vc
+END period  96
+
+BEGIN period  97
+  4 6 15 -2.97098721E+04 reilly
+  5 6 15 -2.93030304E+04 reilly
+  4 33 6 -1.18020465E+05 vc
+  5 33 6 -1.18031145E+05 vc
+END period  97
+
+BEGIN period  98
+  4 6 15 -3.62551000E+04 reilly
+  5 6 15 -3.57586291E+04 reilly
+  4 33 6 -1.44020941E+05 vc
+  5 33 6 -1.44033975E+05 vc
+END period  98
+
+BEGIN period  99
+  4 6 15 -3.37950175E+04 reilly
+  5 6 15 -3.33322346E+04 reilly
+  4 33 6 -1.34248429E+05 vc
+  5 33 6 -1.34260579E+05 vc
+END period  99
+
+BEGIN period  100
+  4 6 15 -3.31580318E+04 reilly
+  5 6 15 -3.27039717E+04 reilly
+  4 33 6 -1.31718047E+05 vc
+  5 33 6 -1.31729967E+05 vc
+END period  100
+
+BEGIN period  101
+  4 6 15 -2.58876094E+04 reilly
+  5 6 15 -2.55331091E+04 reilly
+  4 33 6 -1.02836784E+05 vc
+  5 33 6 -1.02846090E+05 vc
+END period  101
+
+BEGIN period  102
+  4 6 15 -2.82378668E+04 reilly
+  5 6 15 -2.78511825E+04 reilly
+  4 33 6 -1.12173023E+05 vc
+  5 33 6 -1.12183174E+05 vc
+END period  102
+
+BEGIN period  103
+  4 6 15 -3.20158506E+04 reilly
+  5 6 15 -3.15774313E+04 reilly
+  4 33 6 -1.27180809E+05 vc
+  5 33 6 -1.27192319E+05 vc
+END period  103
+
+BEGIN period  104
+  4 6 15 -3.75730013E+04 reilly
+  5 6 15 -3.70584834E+04 reilly
+  4 33 6 -1.49256216E+05 vc
+  5 33 6 -1.49269723E+05 vc
+END period  104
+
+BEGIN period  105
+  4 6 15 -3.08517044E+04 reilly
+  5 6 15 -3.04292267E+04 reilly
+  4 33 6 -1.22556317E+05 vc
+  5 33 6 -1.22567408E+05 vc
+END period  105
+
+BEGIN period  106
+  4 6 15 -4.01209439E+04 reilly
+  5 6 15 -3.95715349E+04 reilly
+  4 33 6 -1.59377746E+05 vc
+  5 33 6 -1.59392169E+05 vc
+END period  106
+
+BEGIN period  107
+  4 6 15 -3.55522192E+04 reilly
+  5 6 15 -3.50653735E+04 reilly
+  4 33 6 -1.41228795E+05 vc
+  5 33 6 -1.41241576E+05 vc
+END period  107
+
+BEGIN period  108
+  4 6 15 -3.63209950E+04 reilly
+  5 6 15 -3.58236219E+04 reilly
+  4 33 6 -1.44282705E+05 vc
+  5 33 6 -1.44295762E+05 vc
+END period  108
+
+BEGIN period  109
+  4 6 15 -3.50030937E+04 reilly
+  5 6 15 -3.45237676E+04 reilly
+  4 33 6 -1.39047431E+05 vc
+  5 33 6 -1.39060014E+05 vc
+END period  109
+
+BEGIN period  110
+  4 6 15 -3.37866286E+04 reilly
+  5 6 15 -3.33239606E+04 reilly
+  4 33 6 -1.34215105E+05 vc
+  5 33 6 -1.34227251E+05 vc
+END period  110
+
+BEGIN period  111
+  4 6 15 -3.76411052E+04 reilly
+  5 6 15 -3.71256546E+04 reilly
+  4 33 6 -1.49526754E+05 vc
+  5 33 6 -1.49540285E+05 vc
+END period  111
+
+BEGIN period  112
+  4 6 15 -3.20906589E+04 reilly
+  5 6 15 -3.16512152E+04 reilly
+  4 33 6 -1.27477980E+05 vc
+  5 33 6 -1.27489516E+05 vc
+END period  112
+
+BEGIN period  113
+  4 6 15 -3.58423494E+04 reilly
+  5 6 15 -3.53515307E+04 reilly
+  4 33 6 -1.42381318E+05 vc
+  5 33 6 -1.42394203E+05 vc
+END period  113
+
+BEGIN period  114
+  4 6 15 -3.58423494E+04 reilly
+  5 6 15 -3.53515307E+04 reilly
+  4 33 6 -1.42381318E+05 vc
+  5 33 6 -1.42394203E+05 vc
+END period  114
+
+BEGIN period  115
+  4 6 15 -2.30454872E+04 reilly
+  5 6 15 -2.27299064E+04 reilly
+  4 33 6 -9.15466448E+04 vc
+  5 33 6 -9.15549296E+04 vc
+END period  115
+
+BEGIN period  116
+  4 6 15 -2.95980974E+04 reilly
+  5 6 15 -2.91927863E+04 reilly
+  4 33 6 -1.17576447E+05 vc
+  5 33 6 -1.17587088E+05 vc
+END period  116
+
+BEGIN period  117
+  4 6 15 -3.93627714E+04 reilly
+  5 6 15 -3.88237446E+04 reilly
+  4 33 6 -1.56365957E+05 vc
+  5 33 6 -1.56380107E+05 vc
+END period  117
+
+BEGIN period  118
+  4 6 15 -3.61764041E+04 reilly
+  5 6 15 -3.56810109E+04 reilly
+  4 33 6 -1.43708327E+05 vc
+  5 33 6 -1.43721333E+05 vc
+END period  118
+
+BEGIN period  119
+  4 6 15 -3.20135693E+04 reilly
+  5 6 15 -3.15751813E+04 reilly
+  4 33 6 -1.27171747E+05 vc
+  5 33 6 -1.27183256E+05 vc
+END period  119
+
+BEGIN period  120
+  4 6 15 -3.68702098E+04 reilly
+  5 6 15 -3.63653158E+04 reilly
+  4 33 6 -1.46464424E+05 vc
+  5 33 6 -1.46477679E+05 vc
+END period  120
+
+BEGIN period  121
+  4 6 15 -3.25018030E+04 reilly
+  5 6 15 -3.20567292E+04 reilly
+  4 33 6 -1.29111222E+05 vc
+  5 33 6 -1.29122907E+05 vc
+END period  121
+
+BEGIN period  122
+  4 6 15 -2.93606319E+04 reilly
+  5 6 15 -2.89585727E+04 reilly
+  4 33 6 -1.16633132E+05 vc
+  5 33 6 -1.16643687E+05 vc
+END period  122
+
+BEGIN period  123
+  4 6 15 -3.13083009E+04 reilly
+  5 6 15 -3.08795706E+04 reilly
+  4 33 6 -1.24370115E+05 vc
+  5 33 6 -1.24381371E+05 vc
+END period  123
+
+BEGIN period  124
+  4 6 15 -3.80105734E+04 reilly
+  5 6 15 -3.74900634E+04 reilly
+  4 33 6 -1.50994441E+05 vc
+  5 33 6 -1.51008106E+05 vc
+END period  124
+
+BEGIN period  125
+  4 6 15 -3.67789592E+04 reilly
+  5 6 15 -3.62753148E+04 reilly
+  4 33 6 -1.46101937E+05 vc
+  5 33 6 -1.46115159E+05 vc
+END period  125
+
+BEGIN period  126
+  4 6 15 -2.47492393E+04 reilly
+  5 6 15 -2.44103277E+04 reilly
+  4 33 6 -9.83146853E+04 vc
+  5 33 6 -9.83235825E+04 vc
+END period  126
+
+BEGIN period  127
+  4 6 15 -2.39759001E+04 reilly
+  5 6 15 -2.36475785E+04 reilly
+  4 33 6 -9.52426476E+04 vc
+  5 33 6 -9.52512669E+04 vc
+END period  127
+
+BEGIN period  128
+  4 6 15 -3.35137495E+04 reilly
+  5 6 15 -3.30548183E+04 reilly
+  4 33 6 -1.33131112E+05 vc
+  5 33 6 -1.33143160E+05 vc
+END period  128
+
+BEGIN period  129
+  4 6 15 -3.94140407E+04 reilly
+  5 6 15 -3.88743119E+04 reilly
+  4 33 6 -1.56569621E+05 vc
+  5 33 6 -1.56583790E+05 vc
+END period  129
+
+BEGIN period  130
+  4 6 15 -3.48599325E+04 reilly
+  5 6 15 -3.43825668E+04 reilly
+  4 33 6 -1.38478733E+05 vc
+  5 33 6 -1.38491265E+05 vc
+END period  130
+
+BEGIN period  131
+  4 6 15 -4.03019486E+04 reilly
+  5 6 15 -3.97500610E+04 reilly
+  4 33 6 -1.60096775E+05 vc
+  5 33 6 -1.60111263E+05 vc
+END period  131
+
+BEGIN period  132
+  4 6 15 -3.70940233E+04 reilly
+  5 6 15 -3.65860644E+04 reilly
+  4 33 6 -1.47353508E+05 vc
+  5 33 6 -1.47366843E+05 vc
+END period  132
+
+BEGIN period  133
+  4 6 15 -3.54041341E+04 reilly
+  5 6 15 -3.49193162E+04 reilly
+  4 33 6 -1.40640537E+05 vc
+  5 33 6 -1.40653264E+05 vc
+END period  133
+
+BEGIN period  134
+  4 6 15 -3.53693845E+04 reilly
+  5 6 15 -3.48850425E+04 reilly
+  4 33 6 -1.40502496E+05 vc
+  5 33 6 -1.40515211E+05 vc
+END period  134
+
+BEGIN period  135
+  4 6 15 -4.03966736E+04 reilly
+  5 6 15 -3.98434888E+04 reilly
+  4 33 6 -1.60473063E+05 vc
+  5 33 6 -1.60487586E+05 vc
+END period  135
+
+BEGIN period  136
+  4 6 15 -3.19100123E+04 reilly
+  5 6 15 -3.14730423E+04 reilly
+  4 33 6 -1.26760373E+05 vc
+  5 33 6 -1.26771845E+05 vc
+END period  136
+
+BEGIN period  137
+  4 6 15 -3.45978698E+04 reilly
+  5 6 15 -3.41240928E+04 reilly
+  4 33 6 -1.37437706E+05 vc
+  5 33 6 -1.37450144E+05 vc
+END period  137
+
+BEGIN period  138
+  4 6 15 -2.10341443E+04 reilly
+  5 6 15 -2.07461065E+04 reilly
+  4 33 6 -8.35567209E+04 vc
+  5 33 6 -8.35642826E+04 vc
+END period  138
+
+BEGIN period  139
+  4 6 15 -3.89780821E+04 reilly
+  5 6 15 -3.84443232E+04 reilly
+  4 33 6 -1.54837804E+05 vc
+  5 33 6 -1.54851817E+05 vc
+END period  139
+
+BEGIN period  140
+  4 6 15 -2.02626297E+04 reilly
+  5 6 15 -1.99851569E+04 reilly
+  4 33 6 -8.04919309E+04 vc
+  5 33 6 -8.04992152E+04 vc
+END period  140
+
+BEGIN period  141
+  4 6 15 -3.26317518E+04 reilly
+  5 6 15 -3.21848985E+04 reilly
+  4 33 6 -1.29627435E+05 vc
+  5 33 6 -1.29639166E+05 vc
+END period  141
+
+BEGIN period  142
+  4 6 15 -3.78083663E+04 reilly
+  5 6 15 -3.72906253E+04 reilly
+  4 33 6 -1.50191187E+05 vc
+  5 33 6 -1.50204779E+05 vc
+END period  142
+
+BEGIN period  143
+  4 6 15 -3.43241065E+04 reilly
+  5 6 15 -3.38540784E+04 reilly
+  4 33 6 -1.36350200E+05 vc
+  5 33 6 -1.36362540E+05 vc
+END period  143
+
+BEGIN period  144
+  4 6 15 -3.72110646E+04 reilly
+  5 6 15 -3.67015030E+04 reilly
+  4 33 6 -1.47818447E+05 vc
+  5 33 6 -1.47831824E+05 vc
+END period  144
+
+BEGIN period  145
+  4 6 15 -4.02473481E+04 reilly
+  5 6 15 -3.96962082E+04 reilly
+  4 33 6 -1.59879878E+05 vc
+  5 33 6 -1.59894347E+05 vc
+END period  145
+
+BEGIN period  146
+  4 6 15 -3.94496482E+04 reilly
+  5 6 15 -3.89094318E+04 reilly
+  4 33 6 -1.56711069E+05 vc
+  5 33 6 -1.56725251E+05 vc
+END period  146
+
+BEGIN period  147
+  4 6 15 -3.51890559E+04 reilly
+  5 6 15 -3.47071833E+04 reilly
+  4 33 6 -1.39786153E+05 vc
+  5 33 6 -1.39798803E+05 vc
+END period  147
+
+BEGIN period  148
+  4 6 15 -3.94496482E+04 reilly
+  5 6 15 -3.89094318E+04 reilly
+  4 33 6 -1.56711069E+05 vc
+  5 33 6 -1.56725251E+05 vc
+END period  148
+
+BEGIN period  149
+  4 6 15 -3.67810922E+04 reilly
+  5 6 15 -3.62774185E+04 reilly
+  4 33 6 -1.46110410E+05 vc
+  5 33 6 -1.46123633E+05 vc
+END period  149
+
+BEGIN period  150
+  4 6 15 -2.86389637E+04 reilly
+  5 6 15 -2.82467869E+04 reilly
+  4 33 6 -1.13766354E+05 vc
+  5 33 6 -1.13776649E+05 vc
+END period  150
+
+BEGIN period  151
+  4 6 15 -3.58410326E+04 reilly
+  5 6 15 -3.53502320E+04 reilly
+  4 33 6 -1.42376087E+05 vc
+  5 33 6 -1.42388972E+05 vc
+END period  151
+
+BEGIN period  152
+  4 6 15 -2.51668084E+04 reilly
+  5 6 15 -2.48221787E+04 reilly
+  4 33 6 -9.99734505E+04 vc
+  5 33 6 -9.99824979E+04 vc
+END period  152
+
+BEGIN period  153
+  4 6 15 -3.12013840E+04 reilly
+  5 6 15 -3.07741179E+04 reilly
+  4 33 6 -1.23945396E+05 vc
+  5 33 6 -1.23956612E+05 vc
+END period  153
+
+BEGIN period  154
+  4 6 15 -3.10042748E+04 reilly
+  5 6 15 -3.05797078E+04 reilly
+  4 33 6 -1.23162392E+05 vc
+  5 33 6 -1.23173538E+05 vc
+END period  154
+
+BEGIN period  155
+  4 6 15 -3.81002079E+04 reilly
+  5 6 15 -3.75784705E+04 reilly
+  4 33 6 -1.51350508E+05 vc
+  5 33 6 -1.51364205E+05 vc
+END period  155
+
+BEGIN period  156
+  4 6 15 -3.05190828E+04 reilly
+  5 6 15 -3.01011599E+04 reilly
+  4 33 6 -1.21235000E+05 vc
+  5 33 6 -1.21245971E+05 vc
+END period  156
+
+BEGIN period  157
+  4 6 15 -3.34302348E+04 reilly
+  5 6 15 -3.29724472E+04 reilly
+  4 33 6 -1.32799355E+05 vc
+  5 33 6 -1.32811373E+05 vc
+END period  157
+
+BEGIN period  158
+  4 6 15 -3.23444379E+04 reilly
+  5 6 15 -3.19015190E+04 reilly
+  4 33 6 -1.28486100E+05 vc
+  5 33 6 -1.28497728E+05 vc
+END period  158
+
+BEGIN period  159
+  4 6 15 -3.34850582E+04 reilly
+  5 6 15 -3.30265198E+04 reilly
+  4 33 6 -1.33017137E+05 vc
+  5 33 6 -1.33029175E+05 vc
+END period  159
+
+BEGIN period  160
+  4 6 15 -3.08814684E+04 reilly
+  5 6 15 -3.04585831E+04 reilly
+  4 33 6 -1.22674552E+05 vc
+  5 33 6 -1.22685654E+05 vc
+END period  160
+
+BEGIN period  161
+  4 6 15 -3.51711926E+04 reilly
+  5 6 15 -3.46895646E+04 reilly
+  4 33 6 -1.39715192E+05 vc
+  5 33 6 -1.39727836E+05 vc
+END period  161
+
+BEGIN period  162
+  4 6 15 -2.96416637E+04 reilly
+  5 6 15 -2.92357561E+04 reilly
+  4 33 6 -1.17749511E+05 vc
+  5 33 6 -1.17760168E+05 vc
+END period  162
+
+BEGIN period  163
+  4 6 15 -3.61134441E+04 reilly
+  5 6 15 -3.56189131E+04 reilly
+  4 33 6 -1.43458223E+05 vc
+  5 33 6 -1.43471206E+05 vc
+END period  163
+
+BEGIN period  164
+  4 6 15 -3.53943574E+04 reilly
+  5 6 15 -3.49096735E+04 reilly
+  4 33 6 -1.40601700E+05 vc
+  5 33 6 -1.40614424E+05 vc
+END period  164
+
+BEGIN period  165
+  4 6 15 -3.02863621E+04 reilly
+  5 6 15 -2.98716261E+04 reilly
+  4 33 6 -1.20310533E+05 vc
+  5 33 6 -1.20321420E+05 vc
+END period  165
+
+BEGIN period  166
+  4 6 15 -4.11470512E+04 reilly
+  5 6 15 -4.05835908E+04 reilly
+  4 33 6 -1.63453888E+05 vc
+  5 33 6 -1.63468680E+05 vc
+END period  166
+
+BEGIN period  167
+  4 6 15 -2.73604231E+04 reilly
+  5 6 15 -2.69857543E+04 reilly
+  4 33 6 -1.08687437E+05 vc
+  5 33 6 -1.08697273E+05 vc
+END period  167
+
+BEGIN period  168
+  4 6 15 -3.81467238E+04 reilly
+  5 6 15 -3.76243494E+04 reilly
+  4 33 6 -1.51535290E+05 vc
+  5 33 6 -1.51549003E+05 vc
+END period  168
+
+BEGIN period  169
+  4 6 15 -3.47992512E+04 reilly
+  5 6 15 -3.43227165E+04 reilly
+  4 33 6 -1.38237680E+05 vc
+  5 33 6 -1.38250190E+05 vc
+END period  169
+
+BEGIN period  170
+  4 6 15 -3.53520432E+04 reilly
+  5 6 15 -3.48679386E+04 reilly
+  4 33 6 -1.40433609E+05 vc
+  5 33 6 -1.40446318E+05 vc
+END period  170
+
+BEGIN period  171
+  4 6 15 -3.55361418E+04 reilly
+  5 6 15 -3.50495162E+04 reilly
+  4 33 6 -1.41164928E+05 vc
+  5 33 6 -1.41177704E+05 vc
+END period  171
+
+BEGIN period  172
+  4 6 15 -3.80930666E+04 reilly
+  5 6 15 -3.75714270E+04 reilly
+  4 33 6 -1.51322140E+05 vc
+  5 33 6 -1.51335834E+05 vc
+END period  172
+
+BEGIN period  173
+  4 6 15 -3.07904892E+04 reilly
+  5 6 15 -3.03688498E+04 reilly
+  4 33 6 -1.22313143E+05 vc
+  5 33 6 -1.22324213E+05 vc
+END period  173
+
+BEGIN period  174
+  4 6 15 -3.72543953E+04 reilly
+  5 6 15 -3.67442403E+04 reilly
+  4 33 6 -1.47990575E+05 vc
+  5 33 6 -1.48003967E+05 vc
+END period  174
+
+BEGIN period  175
+  4 6 15 -3.15064282E+04 reilly
+  5 6 15 -3.10749848E+04 reilly
+  4 33 6 -1.25157163E+05 vc
+  5 33 6 -1.25168489E+05 vc
+END period  175
+
+BEGIN period  176
+  4 6 15 -3.22428225E+04 reilly
+  5 6 15 -3.18012951E+04 reilly
+  4 33 6 -1.28082440E+05 vc
+  5 33 6 -1.28094031E+05 vc
+END period  176
+
+BEGIN period  177
+  4 6 15 -2.65357662E+04 reilly
+  5 6 15 -2.61723902E+04 reilly
+  4 33 6 -1.05411543E+05 vc
+  5 33 6 -1.05421083E+05 vc
+END period  177
+
+BEGIN period  178
+  4 6 15 -3.74794047E+04 reilly
+  5 6 15 -3.69661684E+04 reilly
+  4 33 6 -1.48884409E+05 vc
+  5 33 6 -1.48897883E+05 vc
+END period  178
+
+BEGIN period  179
+  4 6 15 -3.49224798E+04 reilly
+  5 6 15 -3.44442576E+04 reilly
+  4 33 6 -1.38727198E+05 vc
+  5 33 6 -1.38739752E+05 vc
+END period  179
+
+BEGIN period  180
+  4 6 15 -3.47792920E+04 reilly
+  5 6 15 -3.43030306E+04 reilly
+  4 33 6 -1.38158394E+05 vc
+  5 33 6 -1.38170897E+05 vc
+END period  180
+
+BEGIN period  181
+  4 6 15 -3.02791042E+04 reilly
+  5 6 15 -2.98644676E+04 reilly
+  4 33 6 -1.20281701E+05 vc
+  5 33 6 -1.20292586E+05 vc
+END period  181
+
+BEGIN period  182
+  4 6 15 -3.67219698E+04 reilly
+  5 6 15 -3.62191057E+04 reilly
+  4 33 6 -1.45875550E+05 vc
+  5 33 6 -1.45888752E+05 vc
+END period  182
+
+BEGIN period  183
+  4 6 15 -2.97750916E+04 reilly
+  5 6 15 -2.93673569E+04 reilly
+  4 33 6 -1.18279545E+05 vc
+  5 33 6 -1.18290249E+05 vc
+END period  183
+
+BEGIN period  184
+  4 6 15 -3.55931021E+04 reilly
+  5 6 15 -3.51056965E+04 reilly
+  4 33 6 -1.41391199E+05 vc
+  5 33 6 -1.41403995E+05 vc
+END period  184
+
+BEGIN period  185
+  4 6 15 -3.55641568E+04 reilly
+  5 6 15 -3.50771476E+04 reilly
+  4 33 6 -1.41276216E+05 vc
+  5 33 6 -1.41289001E+05 vc
+END period  185
+
+BEGIN period  186
+  4 6 15 -3.38563825E+04 reilly
+  5 6 15 -3.33927593E+04 reilly
+  4 33 6 -1.34492198E+05 vc
+  5 33 6 -1.34504369E+05 vc
+END period  186
+
+BEGIN period  187
+  4 6 15 -3.15986471E+04 reilly
+  5 6 15 -3.11659410E+04 reilly
+  4 33 6 -1.25523496E+05 vc
+  5 33 6 -1.25534856E+05 vc
+END period  187
+
+BEGIN period  188
+  4 6 15 -3.51299769E+04 reilly
+  5 6 15 -3.46489133E+04 reilly
+  4 33 6 -1.39551466E+05 vc
+  5 33 6 -1.39564095E+05 vc
+END period  188
+
+BEGIN period  189
+  4 6 15 -2.78936455E+04 reilly
+  5 6 15 -2.75116749E+04 reilly
+  4 33 6 -1.10805627E+05 vc
+  5 33 6 -1.10815655E+05 vc
+END period  189
+
+BEGIN period  190
+  4 6 15 -2.85014973E+04 reilly
+  5 6 15 -2.81112029E+04 reilly
+  4 33 6 -1.13220277E+05 vc
+  5 33 6 -1.13230524E+05 vc
+END period  190
+
+BEGIN period  191
+  4 6 15 -2.97750916E+04 reilly
+  5 6 15 -2.93673569E+04 reilly
+  4 33 6 -1.18279545E+05 vc
+  5 33 6 -1.18290249E+05 vc
+END period  191
+
+BEGIN period  192
+  4 6 15 -3.95296664E+04 reilly
+  5 6 15 -3.89883542E+04 reilly
+  4 33 6 -1.57028936E+05 vc
+  5 33 6 -1.57043147E+05 vc
+END period  192
+
+BEGIN period  193
+  4 6 15 -4.08322060E+04 reilly
+  5 6 15 -4.02730571E+04 reilly
+  4 33 6 -1.62203187E+05 vc
+  5 33 6 -1.62217866E+05 vc
+END period  193
+
+BEGIN period  194
+  4 6 15 -3.24813518E+04 reilly
+  5 6 15 -3.20365580E+04 reilly
+  4 33 6 -1.29029981E+05 vc
+  5 33 6 -1.29041658E+05 vc
+END period  194
+
+BEGIN period  195
+  4 6 15 -3.64535935E+04 reilly
+  5 6 15 -3.59544045E+04 reilly
+  4 33 6 -1.44809444E+05 vc
+  5 33 6 -1.44822549E+05 vc
+END period  195
+
+BEGIN period  196
+  4 6 15 -3.73970009E+04 reilly
+  5 6 15 -3.68848931E+04 reilly
+  4 33 6 -1.48557066E+05 vc
+  5 33 6 -1.48570510E+05 vc
+END period  196
+
+BEGIN period  197
+  4 6 15 -3.65777261E+04 reilly
+  5 6 15 -3.60768372E+04 reilly
+  4 33 6 -1.45302552E+05 vc
+  5 33 6 -1.45315701E+05 vc
+END period  197
+
+BEGIN period  198
+  4 6 15 -2.51575310E+04 reilly
+  5 6 15 -2.48130283E+04 reilly
+  4 33 6 -9.99365967E+04 vc
+  5 33 6 -9.99456408E+04 vc
+END period  198
+
+BEGIN period  199
+  4 6 15 -3.53364005E+04 reilly
+  5 6 15 -3.48525102E+04 reilly
+  4 33 6 -1.40371470E+05 vc
+  5 33 6 -1.40384173E+05 vc
+END period  199
+
+BEGIN period  200
+  4 6 15 -2.91794258E+04 reilly
+  5 6 15 -2.87798480E+04 reilly
+  4 33 6 -1.15913303E+05 vc
+  5 33 6 -1.15923793E+05 vc
+END period  200
+
+BEGIN period  201
+  4 6 15 -3.64535935E+04 reilly
+  5 6 15 -3.59544045E+04 reilly
+  4 33 6 -1.44809444E+05 vc
+  5 33 6 -1.44822549E+05 vc
+END period  201
+
+BEGIN period  202
+  4 6 15 -3.40205954E+04 reilly
+  5 6 15 -3.35547235E+04 reilly
+  4 33 6 -1.35144523E+05 vc
+  5 33 6 -1.35156753E+05 vc
+END period  202
+
+BEGIN period  203
+  4 6 15 -3.66025526E+04 reilly
+  5 6 15 -3.61013238E+04 reilly
+  4 33 6 -1.45401173E+05 vc
+  5 33 6 -1.45414332E+05 vc
+END period  203
+
+BEGIN period  204
+  4 6 15 -3.52370945E+04 reilly
+  5 6 15 -3.47545640E+04 reilly
+  4 33 6 -1.39976983E+05 vc
+  5 33 6 -1.39989651E+05 vc
+END period  204
+
+BEGIN period  205
+  4 6 15 -2.98745681E+04 reilly
+  5 6 15 -2.94654711E+04 reilly
+  4 33 6 -1.18674709E+05 vc
+  5 33 6 -1.18685448E+05 vc
+END period  205
+
+BEGIN period  206
+  4 6 15 -3.82067535E+04 reilly
+  5 6 15 -3.76835571E+04 reilly
+  4 33 6 -1.51773753E+05 vc
+  5 33 6 -1.51787489E+05 vc
+END period  206
+
+BEGIN period  207
+  4 6 15 -3.55590967E+04 reilly
+  5 6 15 -3.50721569E+04 reilly
+  4 33 6 -1.41256116E+05 vc
+  5 33 6 -1.41268899E+05 vc
+END period  207
+
+BEGIN period  208
+  4 6 15 -3.75957558E+04 reilly
+  5 6 15 -3.70809262E+04 reilly
+  4 33 6 -1.49346606E+05 vc
+  5 33 6 -1.49360122E+05 vc
+END period  208
+
+BEGIN period  209
+  4 6 15 -3.25622985E+04 reilly
+  5 6 15 -3.21163962E+04 reilly
+  4 33 6 -1.29351536E+05 vc
+  5 33 6 -1.29363242E+05 vc
+END period  209
+
+BEGIN period  210
+  4 6 15 -3.78576119E+04 reilly
+  5 6 15 -3.73391966E+04 reilly
+  4 33 6 -1.50386812E+05 vc
+  5 33 6 -1.50400422E+05 vc
+END period  210
+
+BEGIN period  211
+  4 6 15 -3.54718113E+04 reilly
+  5 6 15 -3.49860667E+04 reilly
+  4 33 6 -1.40909380E+05 vc
+  5 33 6 -1.40922132E+05 vc
+END period  211
+
+BEGIN period  212
+  4 6 15 -2.73542704E+04 reilly
+  5 6 15 -2.69796859E+04 reilly
+  4 33 6 -1.08662996E+05 vc
+  5 33 6 -1.08672829E+05 vc
+END period  212
+
+BEGIN period  213
+  4 6 15 -3.67810922E+04 reilly
+  5 6 15 -3.62774185E+04 reilly
+  4 33 6 -1.46110410E+05 vc
+  5 33 6 -1.46123633E+05 vc
+END period  213
+
+BEGIN period  214
+  4 6 15 -2.28154303E+04 reilly
+  5 6 15 -2.25029999E+04 reilly
+  4 33 6 -9.06327592E+04 vc
+  5 33 6 -9.06409613E+04 vc
+END period  214
+
+BEGIN period  215
+  4 6 15 -4.02143174E+04 reilly
+  5 6 15 -3.96636297E+04 reilly
+  4 33 6 -1.59748666E+05 vc
+  5 33 6 -1.59763123E+05 vc
+END period  215
+
+BEGIN period  216
+  4 6 15 -3.49190039E+04 reilly
+  5 6 15 -3.44408293E+04 reilly
+  4 33 6 -1.38713390E+05 vc
+  5 33 6 -1.38725943E+05 vc
+END period  216
+
+BEGIN period  217
+  4 6 15 -2.54339919E+04 reilly
+  5 6 15 -2.50857034E+04 reilly
+  4 33 6 -1.01034819E+05 vc
+  5 33 6 -1.01043962E+05 vc
+END period  217
+
+BEGIN period  218
+  4 6 15 -2.44983680E+04 reilly
+  5 6 15 -2.41628918E+04 reilly
+  4 33 6 -9.73181161E+04 vc
+  5 33 6 -9.73269232E+04 vc
+END period  218
+
+BEGIN period  219
+  4 6 15 -3.78945713E+04 reilly
+  5 6 15 -3.73756498E+04 reilly
+  4 33 6 -1.50533631E+05 vc
+  5 33 6 -1.50547254E+05 vc
+END period  219
+
+BEGIN period  220
+  4 6 15 -3.07106733E+04 reilly
+  5 6 15 -3.02901268E+04 reilly
+  4 33 6 -1.21996080E+05 vc
+  5 33 6 -1.22007120E+05 vc
+END period  220
+
+BEGIN period  221
+  4 6 15 -3.70407473E+04 reilly
+  5 6 15 -3.65335180E+04 reilly
+  4 33 6 -1.47141873E+05 vc
+  5 33 6 -1.47155189E+05 vc
+END period  221
+
+BEGIN period  222
+  4 6 15 -2.97390805E+04 reilly
+  5 6 15 -2.93318389E+04 reilly
+  4 33 6 -1.18136493E+05 vc
+  5 33 6 -1.18147184E+05 vc
+END period  222
+
+BEGIN period  223
+  4 6 15 -4.01321789E+04 reilly
+  5 6 15 -3.95826160E+04 reilly
+  4 33 6 -1.59422376E+05 vc
+  5 33 6 -1.59436803E+05 vc
+END period  223
+
+BEGIN period  224
+  4 6 15 -3.43320645E+04 reilly
+  5 6 15 -3.38619274E+04 reilly
+  4 33 6 -1.36381813E+05 vc
+  5 33 6 -1.36394155E+05 vc
+END period  224
+
+BEGIN period  225
+  4 6 15 -2.70598399E+04 reilly
+  5 6 15 -2.66892873E+04 reilly
+  4 33 6 -1.07493390E+05 vc
+  5 33 6 -1.07503118E+05 vc
+END period  225
+
+BEGIN period  226
+  4 6 15 -3.25360900E+04 reilly
+  5 6 15 -3.20905466E+04 reilly
+  4 33 6 -1.29247425E+05 vc
+  5 33 6 -1.29259122E+05 vc
+END period  226
+
+BEGIN period  227
+  4 6 15 -4.17809423E+04 reilly
+  5 6 15 -4.12088016E+04 reilly
+  4 33 6 -1.65971978E+05 vc
+  5 33 6 -1.65986998E+05 vc
+END period  227
+
+BEGIN period  228
+  4 6 15 -3.67168831E+04 reilly
+  5 6 15 -3.62140887E+04 reilly
+  4 33 6 -1.45855344E+05 vc
+  5 33 6 -1.45868543E+05 vc
+END period  228
+
+BEGIN period  229
+  4 6 15 -3.23299945E+04 reilly
+  5 6 15 -3.18872734E+04 reilly
+  4 33 6 -1.28428725E+05 vc
+  5 33 6 -1.28440347E+05 vc
+END period  229
+
+BEGIN period  230
+  4 6 15 -3.54757538E+04 reilly
+  5 6 15 -3.49899552E+04 reilly
+  4 33 6 -1.40925041E+05 vc
+  5 33 6 -1.40937795E+05 vc
+END period  230
+
+BEGIN period  231
+  4 6 15 -3.40306217E+04 reilly
+  5 6 15 -3.35646125E+04 reilly
+  4 33 6 -1.35184351E+05 vc
+  5 33 6 -1.35196585E+05 vc
+END period  231
+
+BEGIN period  232
+  4 6 15 -3.73913941E+04 reilly
+  5 6 15 -3.68793631E+04 reilly
+  4 33 6 -1.48534793E+05 vc
+  5 33 6 -1.48548235E+05 vc
+END period  232
+
+BEGIN period  233
+  4 6 15 -3.54085384E+04 reilly
+  5 6 15 -3.49236602E+04 reilly
+  4 33 6 -1.40658033E+05 vc
+  5 33 6 -1.40670762E+05 vc
+END period  233
+
+BEGIN period  234
+  4 6 15 -2.17638022E+04 reilly
+  5 6 15 -2.14657726E+04 reilly
+  4 33 6 -8.64552378E+04 vc
+  5 33 6 -8.64630618E+04 vc
+END period  234
+
+BEGIN period  235
+  4 6 15 -1.88735379E+04 reilly
+  5 6 15 -1.86150871E+04 reilly
+  4 33 6 -7.49738576E+04 vc
+  5 33 6 -7.49806426E+04 vc
+END period  235
+
+BEGIN period  236
+  4 6 15 -3.22830200E+04 reilly
+  5 6 15 -3.18409421E+04 reilly
+  4 33 6 -1.28242121E+05 vc
+  5 33 6 -1.28253727E+05 vc
+END period  236
+
+BEGIN period  237
+  4 6 15 -3.93070344E+04 reilly
+  5 6 15 -3.87687710E+04 reilly
+  4 33 6 -1.56144545E+05 vc
+  5 33 6 -1.56158676E+05 vc
+END period  237
+
+BEGIN period  238
+  4 6 15 -3.80635486E+04 reilly
+  5 6 15 -3.75423132E+04 reilly
+  4 33 6 -1.51204882E+05 vc
+  5 33 6 -1.51218566E+05 vc
+END period  238
+
+BEGIN period  239
+  4 6 15 -3.50052457E+04 reilly
+  5 6 15 -3.45258901E+04 reilly
+  4 33 6 -1.39055980E+05 vc
+  5 33 6 -1.39068564E+05 vc
+END period  239
+
+BEGIN period  240
+  4 6 15 -3.91726035E+04 reilly
+  5 6 15 -3.86361809E+04 reilly
+  4 33 6 -1.55610528E+05 vc
+  5 33 6 -1.55624610E+05 vc
+END period  240
+
+BEGIN period  241
+  4 6 15 -3.79963332E+04 reilly
+  5 6 15 -3.74760182E+04 reilly
+  4 33 6 -1.50937873E+05 vc
+  5 33 6 -1.50951533E+05 vc
+END period  241
+

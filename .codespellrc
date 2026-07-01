@@ -3,6 +3,9 @@
 [codespell]
 # Don't spell-check generated / non-prose files.
 skip = .git,.pixi,pixi.lock,*.lock,*.svg,*.png,*.jpg,*.pdf
+# Ignore long base64 runs (e.g. image attachments embedded in notebook cells),
+# which otherwise produce false positives. No real word/identifier is this long.
+ignore-regex = [A-Za-z0-9+/=]{50,}
 # To treat words codespell wrongly flags as typos (domain terms, names) as
 # correct, add a comma-separated, lowercase list, e.g.:
 #   ignore-words-list = mf,nd,thex

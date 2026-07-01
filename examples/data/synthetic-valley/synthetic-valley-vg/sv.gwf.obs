@@ -1,0 +1,44 @@
+BEGIN options
+  PRINT_INPUT
+END options
+
+BEGIN continuous  FILEOUT  sv.gwf.aq.csv
+  aq01  HEAD  5 5459
+  aq02  HEAD  4 6250
+  aq03  HEAD  4 5718
+  aq04  HEAD  4 5407
+  aq05  HEAD  5 5480
+  aq06  HEAD  4 5942
+  aq07  HEAD  4 5349
+  aq08  HEAD  4 5614
+  aq09  HEAD  4 5604
+  aq10  HEAD  4 5658
+  aq11  HEAD  4 5078
+  aq12  HEAD  4 5101
+  aq13  HEAD  4 5252
+  aq14  HEAD  4 3999
+  aq15  HEAD  5 5026
+  aq16  HEAD  4 5350
+  aq17  HEAD  4 5646
+END continuous  FILEOUT  sv.gwf.aq.csv
+
+BEGIN continuous  FILEOUT  sv.gwf.wt.csv
+  wt01  HEAD  1 5459
+  wt02  HEAD  1 6250
+  wt03  HEAD  1 5718
+  wt04  HEAD  1 5407
+  wt05  HEAD  1 5480
+  wt06  HEAD  1 5942
+  wt07  HEAD  1 5349
+  wt08  HEAD  1 5614
+  wt09  HEAD  1 5604
+  wt10  HEAD  1 5658
+  wt11  HEAD  1 5078
+  wt12  HEAD  1 5101
+  wt13  HEAD  1 5252
+  wt14  HEAD  1 3999
+  wt15  HEAD  1 5026
+  wt16  HEAD  1 5350
+  wt17  HEAD  1 5646
+END continuous  FILEOUT  sv.gwf.wt.csv
+

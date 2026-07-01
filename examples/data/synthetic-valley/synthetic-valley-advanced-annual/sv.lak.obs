@@ -1,0 +1,9 @@
+BEGIN options
+  PRINT_INPUT
+END options
+
+BEGIN continuous  FILEOUT  sv.lake.obs.csv
+  lake-stage  stage  lake_harbaugh
+  lake-swgw  lak  lake_harbaugh
+END continuous  FILEOUT  sv.lake.obs.csv
+

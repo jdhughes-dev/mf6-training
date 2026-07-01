@@ -1,0 +1,487 @@
+BEGIN options
+END options
+
+BEGIN dimensions
+  MAXBOUND  1
+END dimensions
+
+BEGIN period  122
+  5 35 16 -3.00000000E+05
+END period  122
+
+BEGIN period  123
+  5 35 16 -3.00000000E+05
+END period  123
+
+BEGIN period  124
+  5 35 16 -3.00000000E+05
+END period  124
+
+BEGIN period  125
+  5 35 16 -3.00000000E+05
+END period  125
+
+BEGIN period  126
+  5 35 16 -3.00000000E+05
+END period  126
+
+BEGIN period  127
+  5 35 16 -3.00000000E+05
+END period  127
+
+BEGIN period  128
+  5 35 16 -3.00000000E+05
+END period  128
+
+BEGIN period  129
+  5 35 16 -3.00000000E+05
+END period  129
+
+BEGIN period  130
+  5 35 16 -3.00000000E+05
+END period  130
+
+BEGIN period  131
+  5 35 16 -3.00000000E+05
+END period  131
+
+BEGIN period  132
+  5 35 16 -3.00000000E+05
+END period  132
+
+BEGIN period  133
+  5 35 16 -3.00000000E+05
+END period  133
+
+BEGIN period  134
+  5 35 16 -3.00000000E+05
+END period  134
+
+BEGIN period  135
+  5 35 16 -3.00000000E+05
+END period  135
+
+BEGIN period  136
+  5 35 16 -3.00000000E+05
+END period  136
+
+BEGIN period  137
+  5 35 16 -3.00000000E+05
+END period  137
+
+BEGIN period  138
+  5 35 16 -3.00000000E+05
+END period  138
+
+BEGIN period  139
+  5 35 16 -3.00000000E+05
+END period  139
+
+BEGIN period  140
+  5 35 16 -3.00000000E+05
+END period  140
+
+BEGIN period  141
+  5 35 16 -3.00000000E+05
+END period  141
+
+BEGIN period  142
+  5 35 16 -3.00000000E+05
+END period  142
+
+BEGIN period  143
+  5 35 16 -3.00000000E+05
+END period  143
+
+BEGIN period  144
+  5 35 16 -3.00000000E+05
+END period  144
+
+BEGIN period  145
+  5 35 16 -3.00000000E+05
+END period  145
+
+BEGIN period  146
+  5 35 16 -3.00000000E+05
+END period  146
+
+BEGIN period  147
+  5 35 16 -3.00000000E+05
+END period  147
+
+BEGIN period  148
+  5 35 16 -3.00000000E+05
+END period  148
+
+BEGIN period  149
+  5 35 16 -3.00000000E+05
+END period  149
+
+BEGIN period  150
+  5 35 16 -3.00000000E+05
+END period  150
+
+BEGIN period  151
+  5 35 16 -3.00000000E+05
+END period  151
+
+BEGIN period  152
+  5 35 16 -3.00000000E+05
+END period  152
+
+BEGIN period  153
+  5 35 16 -3.00000000E+05
+END period  153
+
+BEGIN period  154
+  5 35 16 -3.00000000E+05
+END period  154
+
+BEGIN period  155
+  5 35 16 -3.00000000E+05
+END period  155
+
+BEGIN period  156
+  5 35 16 -3.00000000E+05
+END period  156
+
+BEGIN period  157
+  5 35 16 -3.00000000E+05
+END period  157
+
+BEGIN period  158
+  5 35 16 -3.00000000E+05
+END period  158
+
+BEGIN period  159
+  5 35 16 -3.00000000E+05
+END period  159
+
+BEGIN period  160
+  5 35 16 -3.00000000E+05
+END period  160
+
+BEGIN period  161
+  5 35 16 -3.00000000E+05
+END period  161
+
+BEGIN period  162
+  5 35 16 -3.00000000E+05
+END period  162
+
+BEGIN period  163
+  5 35 16 -3.00000000E+05
+END period  163
+
+BEGIN period  164
+  5 35 16 -3.00000000E+05
+END period  164
+
+BEGIN period  165
+  5 35 16 -3.00000000E+05
+END period  165
+
+BEGIN period  166
+  5 35 16 -3.00000000E+05
+END period  166
+
+BEGIN period  167
+  5 35 16 -3.00000000E+05
+END period  167
+
+BEGIN period  168
+  5 35 16 -3.00000000E+05
+END period  168
+
+BEGIN period  169
+  5 35 16 -3.00000000E+05
+END period  169
+
+BEGIN period  170
+  5 35 16 -3.00000000E+05
+END period  170
+
+BEGIN period  171
+  5 35 16 -3.00000000E+05
+END period  171
+
+BEGIN period  172
+  5 35 16 -3.00000000E+05
+END period  172
+
+BEGIN period  173
+  5 35 16 -3.00000000E+05
+END period  173
+
+BEGIN period  174
+  5 35 16 -3.00000000E+05
+END period  174
+
+BEGIN period  175
+  5 35 16 -3.00000000E+05
+END period  175
+
+BEGIN period  176
+  5 35 16 -3.00000000E+05
+END period  176
+
+BEGIN period  177
+  5 35 16 -3.00000000E+05
+END period  177
+
+BEGIN period  178
+  5 35 16 -3.00000000E+05
+END period  178
+
+BEGIN period  179
+  5 35 16 -3.00000000E+05
+END period  179
+
+BEGIN period  180
+  5 35 16 -3.00000000E+05
+END period  180
+
+BEGIN period  181
+  5 35 16 -3.00000000E+05
+END period  181
+
+BEGIN period  182
+  5 35 16 -3.00000000E+05
+END period  182
+
+BEGIN period  183
+  5 35 16 -3.00000000E+05
+END period  183
+
+BEGIN period  184
+  5 35 16 -3.00000000E+05
+END period  184
+
+BEGIN period  185
+  5 35 16 -3.00000000E+05
+END period  185
+
+BEGIN period  186
+  5 35 16 -3.00000000E+05
+END period  186
+
+BEGIN period  187
+  5 35 16 -3.00000000E+05
+END period  187
+
+BEGIN period  188
+  5 35 16 -3.00000000E+05
+END period  188
+
+BEGIN period  189
+  5 35 16 -3.00000000E+05
+END period  189
+
+BEGIN period  190
+  5 35 16 -3.00000000E+05
+END period  190
+
+BEGIN period  191
+  5 35 16 -3.00000000E+05
+END period  191
+
+BEGIN period  192
+  5 35 16 -3.00000000E+05
+END period  192
+
+BEGIN period  193
+  5 35 16 -3.00000000E+05
+END period  193
+
+BEGIN period  194
+  5 35 16 -3.00000000E+05
+END period  194
+
+BEGIN period  195
+  5 35 16 -3.00000000E+05
+END period  195
+
+BEGIN period  196
+  5 35 16 -3.00000000E+05
+END period  196
+
+BEGIN period  197
+  5 35 16 -3.00000000E+05
+END period  197
+
+BEGIN period  198
+  5 35 16 -3.00000000E+05
+END period  198
+
+BEGIN period  199
+  5 35 16 -3.00000000E+05
+END period  199
+
+BEGIN period  200
+  5 35 16 -3.00000000E+05
+END period  200
+
+BEGIN period  201
+  5 35 16 -3.00000000E+05
+END period  201
+
+BEGIN period  202
+  5 35 16 -3.00000000E+05
+END period  202
+
+BEGIN period  203
+  5 35 16 -3.00000000E+05
+END period  203
+
+BEGIN period  204
+  5 35 16 -3.00000000E+05
+END period  204
+
+BEGIN period  205
+  5 35 16 -3.00000000E+05
+END period  205
+
+BEGIN period  206
+  5 35 16 -3.00000000E+05
+END period  206
+
+BEGIN period  207
+  5 35 16 -3.00000000E+05
+END period  207
+
+BEGIN period  208
+  5 35 16 -3.00000000E+05
+END period  208
+
+BEGIN period  209
+  5 35 16 -3.00000000E+05
+END period  209
+
+BEGIN period  210
+  5 35 16 -3.00000000E+05
+END period  210
+
+BEGIN period  211
+  5 35 16 -3.00000000E+05
+END period  211
+
+BEGIN period  212
+  5 35 16 -3.00000000E+05
+END period  212
+
+BEGIN period  213
+  5 35 16 -3.00000000E+05
+END period  213
+
+BEGIN period  214
+  5 35 16 -3.00000000E+05
+END period  214
+
+BEGIN period  215
+  5 35 16 -3.00000000E+05
+END period  215
+
+BEGIN period  216
+  5 35 16 -3.00000000E+05
+END period  216
+
+BEGIN period  217
+  5 35 16 -3.00000000E+05
+END period  217
+
+BEGIN period  218
+  5 35 16 -3.00000000E+05
+END period  218
+
+BEGIN period  219
+  5 35 16 -3.00000000E+05
+END period  219
+
+BEGIN period  220
+  5 35 16 -3.00000000E+05
+END period  220
+
+BEGIN period  221
+  5 35 16 -3.00000000E+05
+END period  221
+
+BEGIN period  222
+  5 35 16 -3.00000000E+05
+END period  222
+
+BEGIN period  223
+  5 35 16 -3.00000000E+05
+END period  223
+
+BEGIN period  224
+  5 35 16 -3.00000000E+05
+END period  224
+
+BEGIN period  225
+  5 35 16 -3.00000000E+05
+END period  225
+
+BEGIN period  226
+  5 35 16 -3.00000000E+05
+END period  226
+
+BEGIN period  227
+  5 35 16 -3.00000000E+05
+END period  227
+
+BEGIN period  228
+  5 35 16 -3.00000000E+05
+END period  228
+
+BEGIN period  229
+  5 35 16 -3.00000000E+05
+END period  229
+
+BEGIN period  230
+  5 35 16 -3.00000000E+05
+END period  230
+
+BEGIN period  231
+  5 35 16 -3.00000000E+05
+END period  231
+
+BEGIN period  232
+  5 35 16 -3.00000000E+05
+END period  232
+
+BEGIN period  233
+  5 35 16 -3.00000000E+05
+END period  233
+
+BEGIN period  234
+  5 35 16 -3.00000000E+05
+END period  234
+
+BEGIN period  235
+  5 35 16 -3.00000000E+05
+END period  235
+
+BEGIN period  236
+  5 35 16 -3.00000000E+05
+END period  236
+
+BEGIN period  237
+  5 35 16 -3.00000000E+05
+END period  237
+
+BEGIN period  238
+  5 35 16 -3.00000000E+05
+END period  238
+
+BEGIN period  239
+  5 35 16 -3.00000000E+05
+END period  239
+
+BEGIN period  240
+  5 35 16 -3.00000000E+05
+END period  240
+
+BEGIN period  241
+  5 35 16 -3.00000000E+05
+END period  241
+

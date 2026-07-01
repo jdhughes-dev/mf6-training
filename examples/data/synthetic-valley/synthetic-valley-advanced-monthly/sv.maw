@@ -1,0 +1,1227 @@
+BEGIN options
+  BOUNDNAMES
+END options
+
+BEGIN dimensions
+  NMAWWELLS  2
+END dimensions
+
+BEGIN packagedata
+  1       0.50000000    -220.40000000       0.00000000  thiem  2  reilly
+  2       0.50000000    -271.72000000       0.00000000  thiem  2  vc
+END packagedata
+
+BEGIN connectiondata
+  1  1  4 6 15     -50.69000000    -136.13000000    -999.00000000    -999.00000000
+  1  2  5 6 15    -136.13000000    -220.40000000    -999.00000000    -999.00000000
+  2  1  4 33 6     -50.71000000    -161.21000000    -999.00000000    -999.00000000
+  2  2  5 33 6    -161.21000000    -271.72000000    -999.00000000    -999.00000000
+END connectiondata
+
+BEGIN period  1
+  1  status  inactive
+  2  status  inactive
+END period  1
+
+BEGIN period  2
+  1  status  active
+  2  status  active
+  1  rate  -73299.92386339
+  2  rate  -2.93199695E+05
+END period  2
+
+BEGIN period  3
+  1  rate  -73343.64803132
+  2  rate  -2.93374592E+05
+END period  3
+
+BEGIN period  4
+  1  rate  -83443.93082445
+  2  rate  -3.33775723E+05
+END period  4
+
+BEGIN period  5
+  1  rate  -62500.05438329
+  2  rate  -2.50000218E+05
+END period  5
+
+BEGIN period  6
+  1  rate  -75879.64977159
+  2  rate  -3.03518599E+05
+END period  6
+
+BEGIN period  7
+  1  rate  -32199.20600392
+  2  rate  -1.28796824E+05
+END period  7
+
+BEGIN period  8
+  1  rate  -73037.57885578
+  2  rate  -2.92150315E+05
+END period  8
+
+BEGIN period  9
+  1  rate  -78328.20317598
+  2  rate  -3.13312813E+05
+END period  9
+
+BEGIN period  10
+  1  rate  -52618.39242985
+  2  rate  -2.10473570E+05
+END period  10
+
+BEGIN period  11
+  1  rate  -62674.95105504
+  2  rate  -2.50699804E+05
+END period  11
+
+BEGIN period  12
+  1  rate  -60532.46682619
+  2  rate  -2.42129867E+05
+END period  12
+
+BEGIN period  13
+  1  rate  -76141.99477920
+  2  rate  -3.04567979E+05
+END period  13
+
+BEGIN period  14
+  1  rate  -68053.84900074
+  2  rate  -2.72215396E+05
+END period  14
+
+BEGIN period  15
+  1  rate  -64855.10732791
+  2  rate  -2.59420429E+05
+END period  15
+
+BEGIN period  16
+  1  rate  -61953.92301999
+  2  rate  -2.47815692E+05
+END period  16
+
+BEGIN period  17
+  1  rate  -58606.40266469
+  2  rate  -2.34425611E+05
+END period  17
+
+BEGIN period  18
+  1  rate  -81220.76239822
+  2  rate  -3.24883050E+05
+END period  18
+
+BEGIN period  19
+  1  rate  -62028.31236121
+  2  rate  -2.48113249E+05
+END period  19
+
+BEGIN period  20
+  1  rate  -70731.86528497
+  2  rate  -2.82927461E+05
+END period  20
+
+BEGIN period  21
+  1  rate  -71326.98001480
+  2  rate  -2.85307920E+05
+END period  21
+
+BEGIN period  22
+  1  rate  -73335.49222798
+  2  rate  -2.93341969E+05
+END period  22
+
+BEGIN period  23
+  1  rate  -57564.95188749
+  2  rate  -2.30259808E+05
+END period  23
+
+BEGIN period  24
+  1  rate  -72665.98815692
+  2  rate  -2.90663953E+05
+END period  24
+
+BEGIN period  25
+  1  rate  -61656.36565507
+  2  rate  -2.46625463E+05
+END period  25
+
+BEGIN period  26
+  1  rate  -77991.47339700
+  2  rate  -3.11965894E+05
+END period  26
+
+BEGIN period  27
+  1  rate  -71547.40791269
+  2  rate  -2.86189632E+05
+END period  27
+
+BEGIN period  28
+  1  rate  -72461.45975443
+  2  rate  -2.89845839E+05
+END period  28
+
+BEGIN period  29
+  1  rate  -55322.98772169
+  2  rate  -2.21291951E+05
+END period  29
+
+BEGIN period  30
+  1  rate  -40880.96862210
+  2  rate  -1.63523874E+05
+END period  30
+
+BEGIN period  31
+  1  rate  -64509.20873124
+  2  rate  -2.58036835E+05
+END period  31
+
+BEGIN period  32
+  1  rate  -73786.83492497
+  2  rate  -2.95147340E+05
+END period  32
+
+BEGIN period  33
+  1  rate  -72415.75716235
+  2  rate  -2.89663029E+05
+END period  33
+
+BEGIN period  34
+  1  rate  -50935.53888131
+  2  rate  -2.03742156E+05
+END period  34
+
+BEGIN period  35
+  1  rate  -77762.96043656
+  2  rate  -3.11051842E+05
+END period  35
+
+BEGIN period  36
+  1  rate  -74563.77899045
+  2  rate  -2.98255116E+05
+END period  36
+
+BEGIN period  37
+  1  rate  -71821.62346521
+  2  rate  -2.87286494E+05
+END period  37
+
+BEGIN period  38
+  1  rate  -72835.97285068
+  2  rate  -2.91343891E+05
+END period  38
+
+BEGIN period  39
+  1  rate  -82303.06458248
+  2  rate  -3.29212258E+05
+END period  39
+
+BEGIN period  40
+  1  rate  -73786.81612505
+  2  rate  -2.95147265E+05
+END period  40
+
+BEGIN period  41
+  1  rate  -66717.50308515
+  2  rate  -2.66870012E+05
+END period  41
+
+BEGIN period  42
+  1  rate  -41334.12176059
+  2  rate  -1.65336487E+05
+END period  42
+
+BEGIN period  43
+  1  rate  -56092.86301933
+  2  rate  -2.24371452E+05
+END period  43
+
+BEGIN period  44
+  1  rate  -74737.65939942
+  2  rate  -2.98950638E+05
+END period  44
+
+BEGIN period  45
+  1  rate  -72381.22171946
+  2  rate  -2.89524887E+05
+END period  45
+
+BEGIN period  46
+  1  rate  -76184.59481695
+  2  rate  -3.04738379E+05
+END period  46
+
+BEGIN period  47
+  1  rate  -60185.62320033
+  2  rate  -2.40742493E+05
+END period  47
+
+BEGIN period  48
+  1  rate  -68412.48457425
+  2  rate  -2.73649938E+05
+END period  48
+
+BEGIN period  49
+  1  rate  -59028.07486631
+  2  rate  -2.36112299E+05
+END period  49
+
+BEGIN period  50
+  1  rate  -73417.26342711
+  2  rate  -2.93669054E+05
+END period  50
+
+BEGIN period  51
+  1  rate  -59948.72122762
+  2  rate  -2.39794885E+05
+END period  51
+
+BEGIN period  52
+  1  rate  -66477.36572890
+  2  rate  -2.65909463E+05
+END period  52
+
+BEGIN period  53
+  1  rate  -77118.54219949
+  2  rate  -3.08474169E+05
+END period  53
+
+BEGIN period  54
+  1  rate  -55887.59590793
+  2  rate  -2.23550384E+05
+END period  54
+
+BEGIN period  55
+  1  rate  -77118.54219949
+  2  rate  -3.08474169E+05
+END period  55
+
+BEGIN period  56
+  1  rate  -62313.42710997
+  2  rate  -2.49253708E+05
+END period  56
+
+BEGIN period  57
+  1  rate  -61028.26086957
+  2  rate  -2.44113043E+05
+END period  57
+
+BEGIN period  58
+  1  rate  -52083.50383632
+  2  rate  -2.08334015E+05
+END period  58
+
+BEGIN period  59
+  1  rate  -71515.21739130
+  2  rate  -2.86060870E+05
+END period  59
+
+BEGIN period  60
+  1  rate  -70898.33759591
+  2  rate  -2.83593350E+05
+END period  60
+
+BEGIN period  61
+  1  rate  -76193.22250639
+  2  rate  -3.04772890E+05
+END period  61
+
+BEGIN period  62
+  1  rate  -75614.28571429
+  2  rate  -3.02457143E+05
+END period  62
+
+BEGIN period  63
+  1  rate  -74135.06493506
+  2  rate  -2.96540260E+05
+END period  63
+
+BEGIN period  64
+  1  rate  -61692.20779221
+  2  rate  -2.46768831E+05
+END period  64
+
+BEGIN period  65
+  1  rate  -61083.11688312
+  2  rate  -2.44332468E+05
+END period  65
+
+BEGIN period  66
+  1  rate  -69479.87012987
+  2  rate  -2.77919481E+05
+END period  66
+
+BEGIN period  67
+  1  rate  -77659.09090909
+  2  rate  -3.10636364E+05
+END period  67
+
+BEGIN period  68
+  1  rate  -72525.32467532
+  2  rate  -2.90101299E+05
+END period  68
+
+BEGIN period  69
+  1  rate  -67478.57142857
+  2  rate  -2.69914286E+05
+END period  69
+
+BEGIN period  70
+  1  rate  -49249.35064935
+  2  rate  -1.96997403E+05
+END period  70
+
+BEGIN period  71
+  1  rate  -56471.42857143
+  2  rate  -2.25885714E+05
+END period  71
+
+BEGIN period  72
+  1  rate  -74265.58441558
+  2  rate  -2.97062338E+05
+END period  72
+
+BEGIN period  73
+  1  rate  -64346.10389610
+  2  rate  -2.57384416E+05
+END period  73
+
+BEGIN period  74
+  1  rate  -73313.57002526
+  2  rate  -2.93254280E+05
+END period  74
+
+BEGIN period  75
+  1  rate  -71113.45776031
+  2  rate  -2.84453831E+05
+END period  75
+
+BEGIN period  76
+  1  rate  -75175.20348021
+  2  rate  -3.00700814E+05
+END period  76
+
+BEGIN period  77
+  1  rate  -73482.80943026
+  2  rate  -2.93931238E+05
+END period  77
+
+BEGIN period  78
+  1  rate  -53399.73337075
+  2  rate  -2.13598933E+05
+END period  78
+
+BEGIN period  79
+  1  rate  -73652.04883525
+  2  rate  -2.94608195E+05
+END period  79
+
+BEGIN period  80
+  1  rate  -70041.60819534
+  2  rate  -2.80166433E+05
+END period  80
+
+BEGIN period  81
+  1  rate  -66713.23323042
+  2  rate  -2.66852933E+05
+END period  81
+
+BEGIN period  82
+  1  rate  -68462.04041538
+  2  rate  -2.73848162E+05
+END period  82
+
+BEGIN period  83
+  1  rate  -33655.13612125
+  2  rate  -1.34620544E+05
+END period  83
+
+BEGIN period  84
+  1  rate  -77431.72888016
+  2  rate  -3.09726916E+05
+END period  84
+
+BEGIN period  85
+  1  rate  -67559.43025540
+  2  rate  -2.70237721E+05
+END period  85
+
+BEGIN period  86
+  1  rate  -67347.26510807
+  2  rate  -2.69389060E+05
+END period  86
+
+BEGIN period  87
+  1  rate  -76523.93030437
+  2  rate  -3.06095721E+05
+END period  87
+
+BEGIN period  88
+  1  rate  -69741.17776798
+  2  rate  -2.78964711E+05
+END period  88
+
+BEGIN period  89
+  1  rate  -73553.70533745
+  2  rate  -2.94214821E+05
+END period  89
+
+BEGIN period  90
+  1  rate  -69563.85090428
+  2  rate  -2.78255404E+05
+END period  90
+
+BEGIN period  91
+  1  rate  -63180.08381120
+  2  rate  -2.52720335E+05
+END period  91
+
+BEGIN period  92
+  1  rate  -51520.84252316
+  2  rate  -2.06083370E+05
+END period  92
+
+BEGIN period  93
+  1  rate  -75105.31539479
+  2  rate  -3.00421262E+05
+END period  93
+
+BEGIN period  94
+  1  rate  -76612.59373622
+  2  rate  -3.06450375E+05
+END period  94
+
+BEGIN period  95
+  1  rate  -50456.88134098
+  2  rate  -2.01827525E+05
+END period  95
+
+BEGIN period  96
+  1  rate  -71381.45125717
+  2  rate  -2.85525805E+05
+END period  96
+
+BEGIN period  97
+  1  rate  -59012.90251434
+  2  rate  -2.36051610E+05
+END period  97
+
+BEGIN period  98
+  1  rate  -72013.72910788
+  2  rate  -2.88054916E+05
+END period  98
+
+BEGIN period  99
+  1  rate  -67127.25200781
+  2  rate  -2.68509008E+05
+END period  99
+
+BEGIN period  100
+  1  rate  -65862.00347298
+  2  rate  -2.63448014E+05
+END period  100
+
+BEGIN period  101
+  1  rate  -51420.71847189
+  2  rate  -2.05682874E+05
+END period  101
+
+BEGIN period  102
+  1  rate  -56089.04927285
+  2  rate  -2.24356197E+05
+END period  102
+
+BEGIN period  103
+  1  rate  -63593.28196223
+  2  rate  -2.54373128E+05
+END period  103
+
+BEGIN period  104
+  1  rate  -74631.48469720
+  2  rate  -2.98525939E+05
+END period  104
+
+BEGIN period  105
+  1  rate  -61280.93119166
+  2  rate  -2.45123725E+05
+END period  105
+
+BEGIN period  106
+  1  rate  -79692.47883655
+  2  rate  -3.18769915E+05
+END period  106
+
+BEGIN period  107
+  1  rate  -70617.59279357
+  2  rate  -2.82470371E+05
+END period  107
+
+BEGIN period  108
+  1  rate  -72144.61688735
+  2  rate  -2.88578468E+05
+END period  108
+
+BEGIN period  109
+  1  rate  -69526.86129802
+  2  rate  -2.78107445E+05
+END period  109
+
+BEGIN period  110
+  1  rate  -67110.58913154
+  2  rate  -2.68442357E+05
+END period  110
+
+BEGIN period  111
+  1  rate  -74766.75977654
+  2  rate  -2.99067039E+05
+END period  111
+
+BEGIN period  112
+  1  rate  -63741.87404774
+  2  rate  -2.54967496E+05
+END period  112
+
+BEGIN period  113
+  1  rate  -71193.88014220
+  2  rate  -2.84775521E+05
+END period  113
+
+BEGIN period  114
+  1  rate  -71193.88014220
+  2  rate  -2.84775521E+05
+END period  114
+
+BEGIN period  115
+  1  rate  -45775.39360081
+  2  rate  -1.83101574E+05
+END period  115
+
+BEGIN period  116
+  1  rate  -58790.88369731
+  2  rate  -2.35163535E+05
+END period  116
+
+BEGIN period  117
+  1  rate  -78186.51599797
+  2  rate  -3.12746064E+05
+END period  117
+
+BEGIN period  118
+  1  rate  -71857.41493144
+  2  rate  -2.87429660E+05
+END period  118
+
+BEGIN period  119
+  1  rate  -63588.75063484
+  2  rate  -2.54355003E+05
+END period  119
+
+BEGIN period  120
+  1  rate  -73235.52564754
+  2  rate  -2.92942103E+05
+END period  120
+
+BEGIN period  121
+  1  rate  -64558.53224987
+  2  rate  -2.58234129E+05
+END period  121
+
+BEGIN period  122
+  1  rate  -58319.20464195
+  2  rate  -2.33276819E+05
+END period  122
+
+BEGIN period  123
+  1  rate  -62187.87149731
+  2  rate  -2.48751486E+05
+END period  123
+
+BEGIN period  124
+  1  rate  -75500.63685253
+  2  rate  -3.02002547E+05
+END period  124
+
+BEGIN period  125
+  1  rate  -73054.27398811
+  2  rate  -2.92217096E+05
+END period  125
+
+BEGIN period  126
+  1  rate  -49159.56694028
+  2  rate  -1.96638268E+05
+END period  126
+
+BEGIN period  127
+  1  rate  -47623.47863006
+  2  rate  -1.90493915E+05
+END period  127
+
+BEGIN period  128
+  1  rate  -66568.56778941
+  2  rate  -2.66274271E+05
+END period  128
+
+BEGIN period  129
+  1  rate  -78288.35267478
+  2  rate  -3.13153411E+05
+END period  129
+
+BEGIN period  130
+  1  rate  -69242.49929239
+  2  rate  -2.76969997E+05
+END period  130
+
+BEGIN period  131
+  1  rate  -80052.00962355
+  2  rate  -3.20208038E+05
+END period  131
+
+BEGIN period  132
+  1  rate  -73680.08774413
+  2  rate  -2.94720351E+05
+END period  132
+
+BEGIN period  133
+  1  rate  -70323.45032550
+  2  rate  -2.81293801E+05
+END period  133
+
+BEGIN period  134
+  1  rate  -70254.42695524
+  2  rate  -2.81017708E+05
+END period  134
+
+BEGIN period  135
+  1  rate  -80240.16232169
+  2  rate  -3.20960649E+05
+END period  135
+
+BEGIN period  136
+  1  rate  -63383.05459911
+  2  rate  -2.53532218E+05
+END period  136
+
+BEGIN period  137
+  1  rate  -68721.96261682
+  2  rate  -2.74887850E+05
+END period  137
+
+BEGIN period  138
+  1  rate  -41780.25086080
+  2  rate  -1.67121003E+05
+END period  138
+
+BEGIN period  139
+  1  rate  -77422.40531235
+  2  rate  -3.09689621E+05
+END period  139
+
+BEGIN period  140
+  1  rate  -40247.78652238
+  2  rate  -1.60991146E+05
+END period  140
+
+BEGIN period  141
+  1  rate  -64816.65027054
+  2  rate  -2.59266601E+05
+END period  141
+
+BEGIN period  142
+  1  rate  -75098.99163797
+  2  rate  -3.00395967E+05
+END period  142
+
+BEGIN period  143
+  1  rate  -68178.18494835
+  2  rate  -2.72712740E+05
+END period  143
+
+BEGIN period  144
+  1  rate  -73912.56763404
+  2  rate  -2.95650271E+05
+END period  144
+
+BEGIN period  145
+  1  rate  -79943.55632071
+  2  rate  -3.19774225E+05
+END period  145
+
+BEGIN period  146
+  1  rate  -78359.08001199
+  2  rate  -3.13436320E+05
+END period  146
+
+BEGIN period  147
+  1  rate  -69896.23913695
+  2  rate  -2.79584957E+05
+END period  147
+
+BEGIN period  148
+  1  rate  -78359.08001199
+  2  rate  -3.13436320E+05
+END period  148
+
+BEGIN period  149
+  1  rate  -73058.51063830
+  2  rate  -2.92234043E+05
+END period  149
+
+BEGIN period  150
+  1  rate  -56885.75067426
+  2  rate  -2.27543003E+05
+END period  150
+
+BEGIN period  151
+  1  rate  -71191.26460893
+  2  rate  -2.84765058E+05
+END period  151
+
+BEGIN period  152
+  1  rate  -49988.98711417
+  2  rate  -1.99955948E+05
+END period  152
+
+BEGIN period  153
+  1  rate  -61975.50194786
+  2  rate  -2.47902008E+05
+END period  153
+
+BEGIN period  154
+  1  rate  -61583.98261912
+  2  rate  -2.46335930E+05
+END period  154
+
+BEGIN period  155
+  1  rate  -75678.67845370
+  2  rate  -3.02714714E+05
+END period  155
+
+BEGIN period  156
+  1  rate  -60620.24273299
+  2  rate  -2.42480971E+05
+END period  156
+
+BEGIN period  157
+  1  rate  -66402.68204975
+  2  rate  -2.65610728E+05
+END period  157
+
+BEGIN period  158
+  1  rate  -64245.95687332
+  2  rate  -2.56983827E+05
+END period  158
+
+BEGIN period  159
+  1  rate  -66511.57804460
+  2  rate  -2.66046312E+05
+END period  159
+
+BEGIN period  160
+  1  rate  -61340.05145798
+  2  rate  -2.45360206E+05
+END period  160
+
+BEGIN period  161
+  1  rate  -69860.75716736
+  2  rate  -2.79443029E+05
+END period  161
+
+BEGIN period  162
+  1  rate  -58877.41975006
+  2  rate  -2.35509679E+05
+END period  162
+
+BEGIN period  163
+  1  rate  -71732.35726538
+  2  rate  -2.86929429E+05
+END period  163
+
+BEGIN period  164
+  1  rate  -70304.03087479
+  2  rate  -2.81216123E+05
+END period  164
+
+BEGIN period  165
+  1  rate  -60157.98823818
+  2  rate  -2.40631953E+05
+END period  165
+
+BEGIN period  166
+  1  rate  -81730.64199951
+  2  rate  -3.26922568E+05
+END period  166
+
+BEGIN period  167
+  1  rate  -54346.17740750
+  2  rate  -2.17384710E+05
+END period  167
+
+BEGIN period  168
+  1  rate  -75771.07326636
+  2  rate  -3.03084293E+05
+END period  168
+
+BEGIN period  169
+  1  rate  -69121.96765499
+  2  rate  -2.76487871E+05
+END period  169
+
+BEGIN period  170
+  1  rate  -70219.98180716
+  2  rate  -2.80879927E+05
+END period  170
+
+BEGIN period  171
+  1  rate  -70585.65797453
+  2  rate  -2.82342632E+05
+END period  171
+
+BEGIN period  172
+  1  rate  -75664.49363250
+  2  rate  -3.02657975E+05
+END period  172
+
+BEGIN period  173
+  1  rate  -61159.33899333
+  2  rate  -2.44637356E+05
+END period  173
+
+BEGIN period  174
+  1  rate  -73998.63553669
+  2  rate  -2.95994542E+05
+END period  174
+
+BEGIN period  175
+  1  rate  -62581.41297756
+  2  rate  -2.50325652E+05
+END period  175
+
+BEGIN period  176
+  1  rate  -64044.11764706
+  2  rate  -2.56176471E+05
+END period  176
+
+BEGIN period  177
+  1  rate  -52708.15645846
+  2  rate  -2.10832626E+05
+END period  177
+
+BEGIN period  178
+  1  rate  -74445.57307459
+  2  rate  -2.97782292E+05
+END period  178
+
+BEGIN period  179
+  1  rate  -69366.73741662
+  2  rate  -2.77466950E+05
+END period  179
+
+BEGIN period  180
+  1  rate  -69082.32261977
+  2  rate  -2.76329290E+05
+END period  180
+
+BEGIN period  181
+  1  rate  -60143.57186173
+  2  rate  -2.40574287E+05
+END period  181
+
+BEGIN period  182
+  1  rate  -72941.07551487
+  2  rate  -2.91764302E+05
+END period  182
+
+BEGIN period  183
+  1  rate  -59142.44851259
+  2  rate  -2.36569794E+05
+END period  183
+
+BEGIN period  184
+  1  rate  -70698.79862700
+  2  rate  -2.82795195E+05
+END period  184
+
+BEGIN period  185
+  1  rate  -70641.30434783
+  2  rate  -2.82565217E+05
+END period  185
+
+BEGIN period  186
+  1  rate  -67249.14187643
+  2  rate  -2.68996568E+05
+END period  186
+
+BEGIN period  187
+  1  rate  -62764.58810069
+  2  rate  -2.51058352E+05
+END period  187
+
+BEGIN period  188
+  1  rate  -69778.89016018
+  2  rate  -2.79115561E+05
+END period  188
+
+BEGIN period  189
+  1  rate  -55405.32036613
+  2  rate  -2.21621281E+05
+END period  189
+
+BEGIN period  190
+  1  rate  -56612.70022883
+  2  rate  -2.26450801E+05
+END period  190
+
+BEGIN period  191
+  1  rate  -59142.44851259
+  2  rate  -2.36569794E+05
+END period  191
+
+BEGIN period  192
+  1  rate  -78518.02059497
+  2  rate  -3.14072082E+05
+END period  192
+
+BEGIN period  193
+  1  rate  -81105.26315789
+  2  rate  -3.24421053E+05
+END period  193
+
+BEGIN period  194
+  1  rate  -64517.90971541
+  2  rate  -2.58071639E+05
+END period  194
+
+BEGIN period  195
+  1  rate  -72407.99803729
+  2  rate  -2.89631992E+05
+END period  195
+
+BEGIN period  196
+  1  rate  -74281.89401374
+  2  rate  -2.97127576E+05
+END period  196
+
+BEGIN period  197
+  1  rate  -72654.56329735
+  2  rate  -2.90618253E+05
+END period  197
+
+BEGIN period  198
+  1  rate  -49970.55937193
+  2  rate  -1.99882237E+05
+END period  198
+
+BEGIN period  199
+  1  rate  -70188.91069676
+  2  rate  -2.80755643E+05
+END period  199
+
+BEGIN period  200
+  1  rate  -57959.27379784
+  2  rate  -2.31837095E+05
+END period  200
+
+BEGIN period  201
+  1  rate  -72407.99803729
+  2  rate  -2.89631992E+05
+END period  201
+
+BEGIN period  202
+  1  rate  -67575.31894014
+  2  rate  -2.70301276E+05
+END period  202
+
+BEGIN period  203
+  1  rate  -72703.87634936
+  2  rate  -2.90815505E+05
+END period  203
+
+BEGIN period  204
+  1  rate  -69991.65848871
+  2  rate  -2.79966634E+05
+END period  204
+
+BEGIN period  205
+  1  rate  -59340.03925417
+  2  rate  -2.37360157E+05
+END period  205
+
+BEGIN period  206
+  1  rate  -75890.31052329
+  2  rate  -3.03561242E+05
+END period  206
+
+BEGIN period  207
+  1  rate  -70631.25359402
+  2  rate  -2.82525014E+05
+END period  207
+
+BEGIN period  208
+  1  rate  -74676.68200115
+  2  rate  -2.98706728E+05
+END period  208
+
+BEGIN period  209
+  1  rate  -64678.69465210
+  2  rate  -2.58714779E+05
+END period  209
+
+BEGIN period  210
+  1  rate  -75196.80851064
+  2  rate  -3.00787234E+05
+END period  210
+
+BEGIN period  211
+  1  rate  -70457.87809086
+  2  rate  -2.81831512E+05
+END period  211
+
+BEGIN period  212
+  1  rate  -54333.95629672
+  2  rate  -2.17335825E+05
+END period  212
+
+BEGIN period  213
+  1  rate  -73058.51063830
+  2  rate  -2.92234043E+05
+END period  213
+
+BEGIN period  214
+  1  rate  -45318.43013226
+  2  rate  -1.81273721E+05
+END period  214
+
+BEGIN period  215
+  1  rate  -79877.94709603
+  2  rate  -3.19511788E+05
+END period  215
+
+BEGIN period  216
+  1  rate  -69359.83323749
+  2  rate  -2.77439333E+05
+END period  216
+
+BEGIN period  217
+  1  rate  -50519.69522714
+  2  rate  -2.02078781E+05
+END period  217
+
+BEGIN period  218
+  1  rate  -48661.25981961
+  2  rate  -1.94645039E+05
+END period  218
+
+BEGIN period  219
+  1  rate  -75270.22112307
+  2  rate  -3.01080884E+05
+END period  219
+
+BEGIN period  220
+  1  rate  -61000.80011638
+  2  rate  -2.44003200E+05
+END period  220
+
+BEGIN period  221
+  1  rate  -73574.26534769
+  2  rate  -2.94297061E+05
+END period  221
+
+BEGIN period  222
+  1  rate  -59070.91940646
+  2  rate  -2.36283678E+05
+END period  222
+
+BEGIN period  223
+  1  rate  -79714.79487926
+  2  rate  -3.18859180E+05
+END period  223
+
+BEGIN period  224
+  1  rate  -68193.99185336
+  2  rate  -2.72775967E+05
+END period  224
+
+BEGIN period  225
+  1  rate  -53749.12714577
+  2  rate  -2.14996509E+05
+END period  225
+
+BEGIN period  226
+  1  rate  -64626.63660169
+  2  rate  -2.58506546E+05
+END period  226
+
+BEGIN period  227
+  1  rate  -82989.74396276
+  2  rate  -3.31958976E+05
+END period  227
+
+BEGIN period  228
+  1  rate  -72930.97177771
+  2  rate  -2.91723887E+05
+END period  228
+
+BEGIN period  229
+  1  rate  -64217.26796625
+  2  rate  -2.56869072E+05
+END period  229
+
+BEGIN period  230
+  1  rate  -70465.70906676
+  2  rate  -2.81862836E+05
+END period  230
+
+BEGIN period  231
+  1  rate  -67595.23414148
+  2  rate  -2.70380937E+05
+END period  231
+
+BEGIN period  232
+  1  rate  -74270.75722351
+  2  rate  -2.97083029E+05
+END period  232
+
+BEGIN period  233
+  1  rate  -70332.19860511
+  2  rate  -2.81328794E+05
+END period  233
+
+BEGIN period  234
+  1  rate  -43229.57489206
+  2  rate  -1.72918300E+05
+END period  234
+
+BEGIN period  235
+  1  rate  -37488.62504151
+  2  rate  -1.49954500E+05
+END period  235
+
+BEGIN period  236
+  1  rate  -64123.96213882
+  2  rate  -2.56495849E+05
+END period  236
+
+BEGIN period  237
+  1  rate  -78075.80538027
+  2  rate  -3.12303222E+05
+END period  237
+
+BEGIN period  238
+  1  rate  -75605.86183992
+  2  rate  -3.02423447E+05
+END period  238
+
+BEGIN period  239
+  1  rate  -69531.13583527
+  2  rate  -2.78124543E+05
+END period  239
+
+BEGIN period  240
+  1  rate  -77808.78445699
+  2  rate  -3.11235138E+05
+END period  240
+
+BEGIN period  241
+  1  rate  -75472.35137828
+  2  rate  -3.01889406E+05
+END period  241
+

@@ -1,0 +1,1330 @@
+BEGIN options
+  BOUNDNAMES
+  PRINT_INPUT
+  PRINT_STAGE
+  STAGE  FILEOUT  sv.lak.hds
+  OBS6  FILEIN  sv.lak.obs
+  MOVER
+END options
+
+BEGIN dimensions
+  NLAKES  1
+END dimensions
+
+BEGIN packagedata
+  1      13.00000000  105  lake_harbaugh
+END packagedata
+
+BEGIN connectiondata
+  1  1  1 3 4  horizontal  0.01      -5.00000000      13.13000000     250.00000000     500.00000000
+  1  2  1 4 3  horizontal  0.01      -5.00000000      13.06000000     250.00000000     500.00000000
+  1  3  2 4 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  4  1 3 5  horizontal  0.01      -5.00000000      13.12000000     250.00000000     500.00000000
+  1  5  2 4 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  6  1 3 6  horizontal  0.01      -5.00000000      13.13000000     250.00000000     500.00000000
+  1  7  2 4 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  8  1 3 7  horizontal  0.01      -5.00000000      13.20000000     250.00000000     500.00000000
+  1  9  1 4 8  horizontal  0.01      -5.00000000      13.20000000     250.00000000     500.00000000
+  1  10  2 4 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  11  1 4 3  horizontal  0.01      -5.00000000      13.06000000     250.00000000     500.00000000
+  1  12  1 5 2  horizontal  0.01      -5.00000000      13.10000000     250.00000000     500.00000000
+  1  13  2 5 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  14  2 5 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  15  2 5 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  16  2 5 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  17  1 5 8  horizontal  0.01      -5.00000000      13.14000000     250.00000000     500.00000000
+  1  18  2 5 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  19  1 6 2  horizontal  0.01      -5.00000000      13.07000000     250.00000000     500.00000000
+  1  20  2 6 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  21  2 6 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  22  2 6 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  23  2 6 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  24  1 6 8  horizontal  0.01      -5.00000000      13.13000000     250.00000000     500.00000000
+  1  25  2 6 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  26  1 7 2  horizontal  0.01      -5.00000000      13.06000000     250.00000000     500.00000000
+  1  27  2 7 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  28  2 7 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  29  2 7 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  30  2 7 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  31  1 7 8  horizontal  0.01      -5.00000000      13.12000000     250.00000000     500.00000000
+  1  32  2 7 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  33  1 8 2  horizontal  0.01      -5.00000000      13.05000000     250.00000000     500.00000000
+  1  34  2 8 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  35  2 8 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  36  2 8 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  37  2 8 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  38  1 8 8  horizontal  0.01      -5.00000000      13.11000000     250.00000000     500.00000000
+  1  39  2 8 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  40  1 9 2  horizontal  0.01      -5.00000000      13.03000000     250.00000000     500.00000000
+  1  41  2 9 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  42  2 9 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  43  2 9 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  44  2 9 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  45  1 9 8  horizontal  0.01      -5.00000000      13.06000000     250.00000000     500.00000000
+  1  46  2 9 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  47  1 10 2  horizontal  0.01      -5.00000000      13.02000000     250.00000000     500.00000000
+  1  48  1 11 3  horizontal  0.01      -5.00000000      12.99000000     250.00000000     500.00000000
+  1  49  2 10 3  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  50  2 10 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  51  2 10 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  52  2 10 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  53  2 10 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  54  1 9 8  horizontal  0.01      -5.00000000      13.06000000     250.00000000     500.00000000
+  1  55  1 10 9  horizontal  0.01      -5.00000000      13.14000000     250.00000000     500.00000000
+  1  56  2 10 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  57  1 11 3  horizontal  0.01      -5.00000000      12.99000000     250.00000000     500.00000000
+  1  58  2 11 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  59  2 11 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  60  2 11 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  61  2 11 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  62  1 11 9  horizontal  0.01      -5.00000000      13.07000000     250.00000000     500.00000000
+  1  63  2 11 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  64  1 12 3  horizontal  0.01      -5.00000000      12.94000000     250.00000000     500.00000000
+  1  65  1 13 4  horizontal  0.01      -5.00000000      12.95000000     250.00000000     500.00000000
+  1  66  2 12 4  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  67  2 12 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  68  2 12 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  69  2 12 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  70  2 12 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  71  1 11 9  horizontal  0.01      -5.00000000      13.07000000     250.00000000     500.00000000
+  1  72  1 12 10  horizontal  0.01      -5.00000000      13.16000000     250.00000000     500.00000000
+  1  73  2 12 9  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  74  1 13 4  horizontal  0.01      -5.00000000      12.95000000     250.00000000     500.00000000
+  1  75  2 13 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  76  2 13 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  77  2 13 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  78  2 13 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  79  1 13 10  horizontal  0.01      -5.00000000      13.09000000     250.00000000     500.00000000
+  1  80  2 13 9  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  81  1 14 4  horizontal  0.01      -5.00000000      12.87000000     250.00000000     500.00000000
+  1  82  2 14 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  83  2 14 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  84  2 14 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  85  2 14 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  86  1 14 10  horizontal  0.01      -5.00000000      13.03000000     250.00000000     500.00000000
+  1  87  2 14 9  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  88  1 15 4  horizontal  0.01      -5.00000000      12.71000000     250.00000000     500.00000000
+  1  89  1 16 5  horizontal  0.01      -5.00000000      12.77000000     250.00000000     500.00000000
+  1  90  2 15 5  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  91  2 15 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  92  2 15 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  93  2 15 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  94  1 15 10  horizontal  0.01      -5.00000000      12.92000000     250.00000000     500.00000000
+  1  95  2 15 9  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  96  1 16 5  horizontal  0.01      -5.00000000      12.77000000     250.00000000     500.00000000
+  1  97  1 17 6  horizontal  0.01      -5.00000000      12.30000000     250.00000000     500.00000000
+  1  98  2 16 6  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  99  1 17 7  horizontal  0.01      -5.00000000      12.43000000     250.00000000     500.00000000
+  1  100  2 16 7  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  101  1 17 8  horizontal  0.01      -5.00000000      12.40000000     250.00000000     500.00000000
+  1  102  2 16 8  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+  1  103  1 16 10  horizontal  0.01      -5.00000000      12.69000000     250.00000000     500.00000000
+  1  104  1 17 9  horizontal  0.01      -5.00000000      12.29000000     250.00000000     500.00000000
+  1  105  2 16 9  vertical  0.01       0.00000000       0.00000000       0.00000000       0.00000000
+END connectiondata
+
+BEGIN period  1
+  1  rainfall  0.009315952129093811
+  1  evaporation  0.006998886867583425
+END period  1
+
+BEGIN period  2
+  1  rainfall  0.006424731182795699
+  1  evaporation  3.9500793268182775e-05
+END period  2
+
+BEGIN period  3
+  1  rainfall  0.007083333333333332
+  1  evaporation  0.0004144238336003703
+END period  3
+
+BEGIN period  4
+  1  rainfall  0.0001881720430107527
+  1  evaporation  0.0018806384075753585
+END period  4
+
+BEGIN period  5
+  1  rainfall  0.0135
+  1  evaporation  0.007266320501511152
+END period  5
+
+BEGIN period  6
+  1  rainfall  0.004838709677419355
+  1  evaporation  0.01603149188470965
+END period  6
+
+BEGIN period  7
+  1  rainfall  0.03275
+  1  evaporation  0.02626993825368215
+END period  7
+
+BEGIN period  8
+  1  rainfall  0.006586021505376344
+  1  evaporation  0.02460243957160659
+END period  8
+
+BEGIN period  9
+  1  rainfall  0.003333333333333333
+  1  evaporation  0.01603149188470965
+END period  9
+
+BEGIN period  10
+  1  rainfall  0.019777777777777776
+  1  evaporation  0.00726632050151115
+END period  10
+
+BEGIN period  11
+  1  rainfall  0.012956989247311828
+  1  evaporation  0.0018806384075753552
+END period  11
+
+BEGIN period  12
+  1  rainfall  0.014750000000000001
+  1  evaporation  0.00036100920615855434
+END period  12
+
+BEGIN period  13
+  1  rainfall  0.004677419354838709
+  1  evaporation  3.950079326817753e-05
+END period  13
+
+BEGIN period  14
+  1  rainfall  0.005672043010752687
+  1  evaporation  1.3646695438060177e-05
+END period  14
+
+BEGIN period  15
+  1  rainfall  0.007559523809523809
+  1  evaporation  0.00014317474084686309
+END period  15
+
+BEGIN period  16
+  1  rainfall  0.007876344086021506
+  1  evaporation  0.0006497211183343934
+END period  16
+
+BEGIN period  17
+  1  rainfall  0.009388888888888888
+  1  evaporation  0.0025103613025242223
+END period  17
+
+BEGIN period  18
+  1  rainfall  0.000913978494623656
+  1  evaporation  0.005538544142215671
+END period  18
+
+BEGIN period  19
+  1  rainfall  0.00811111111111111
+  1  evaporation  0.009075712583559954
+END period  19
+
+BEGIN period  20
+  1  rainfall  0.0047043010752688165
+  1  evaporation  0.008499626769202871
+END period  20
+
+BEGIN period  21
+  1  rainfall  0.004489247311827957
+  1  evaporation  0.005538544142215671
+END period  21
+
+BEGIN period  22
+  1  rainfall  0.0038888888888888883
+  1  evaporation  0.002510361302524222
+END period  22
+
+BEGIN period  23
+  1  rainfall  0.00946236559139785
+  1  evaporation  0.0006497211183343924
+END period  23
+
+BEGIN period  24
+  1  rainfall  0.004138888888888888
+  1  evaporation  0.0001247211075821596
+END period  24
+
+BEGIN period  25
+  1  rainfall  0.007983870967741936
+  1  evaporation  1.3646695438058365e-05
+END period  25
+
+BEGIN period  26
+  1  rainfall  0.003387096774193548
+  1  evaporation  3.615490792903315e-05
+END period  26
+
+BEGIN period  27
+  1  rainfall  0.007672413793103448
+  1  evaporation  0.0003536113801049241
+END period  27
+
+BEGIN period  28
+  1  rainfall  0.006639784946236559
+  1  evaporation  0.0017213403288398985
+END period  28
+
+BEGIN period  29
+  1  rainfall  0.017277777777777774
+  1  evaporation  0.0066508322233263285
+END period  29
+
+BEGIN period  30
+  1  rainfall  0.02521505376344086
+  1  evaporation  0.01467355627826319
+END period  30
+
+BEGIN period  31
+  1  rainfall  0.011694444444444445
+  1  evaporation  0.024044762656154094
+END period  31
+
+BEGIN period  32
+  1  rainfall  0.005860215053763441
+  1  evaporation  0.022518508210758258
+END period  32
+
+BEGIN period  33
+  1  rainfall  0.006666666666666668
+  1  evaporation  0.01467355627826319
+END period  33
+
+BEGIN period  34
+  1  rainfall  0.01994444444444444
+  1  evaporation  0.006650832223326327
+END period  34
+
+BEGIN period  35
+  1  rainfall  0.003521505376344086
+  1  evaporation  0.0017213403288398963
+END period  35
+
+BEGIN period  36
+  1  rainfall  0.005583333333333333
+  1  evaporation  0.0003304301896313879
+END period  36
+
+BEGIN period  37
+  1  rainfall  0.007016129032258064
+  1  evaporation  3.615490792902835e-05
+END period  37
+
+BEGIN period  38
+  1  rainfall  0.007096774193548386
+  1  evaporation  4.418620660339653e-05
+END period  38
+
+BEGIN period  39
+  1  rainfall  0.0010416666666666664
+  1  evaporation  0.00046358099718436395
+END period  39
+
+BEGIN period  40
+  1  rainfall  0.006478494623655914
+  1  evaporation  0.002103711605466457
+END period  40
+
+BEGIN period  41
+  1  rainfall  0.011444444444444445
+  1  evaporation  0.008128220027036392
+END period  41
+
+BEGIN period  42
+  1  rainfall  0.02758064516129032
+  1  evaporation  0.017933078147801054
+END period  42
+
+BEGIN period  43
+  1  rainfall  0.01858333333333333
+  1  evaporation  0.0293859647641722
+END period  43
+
+BEGIN period  44
+  1  rainfall  0.005860215053763441
+  1  evaporation  0.027520674597039524
+END period  44
+
+BEGIN period  45
+  1  rainfall  0.00739247311827957
+  1  evaporation  0.017933078147801054
+END period  45
+
+BEGIN period  46
+  1  rainfall  0.005083333333333334
+  1  evaporation  0.008128220027036392
+END period  46
+
+BEGIN period  47
+  1  rainfall  0.01532258064516129
+  1  evaporation  0.002103711605466454
+END period  47
+
+BEGIN period  48
+  1  rainfall  0.010305555555555554
+  1  evaporation  0.00040383055754727895
+END period  48
+
+BEGIN period  49
+  1  rainfall  0.0160752688172043
+  1  evaporation  4.418620660339066e-05
+END period  49
+
+BEGIN period  50
+  1  rainfall  0.005403225806451613
+  1  evaporation  2.8576584788005233e-05
+END period  50
+
+BEGIN period  51
+  1  rainfall  0.013779761904761902
+  1  evaporation  0.00029981215158507576
+END period  51
+
+BEGIN period  52
+  1  rainfall  0.009032258064516128
+  1  evaporation  0.0013605352820330527
+END period  52
+
+BEGIN period  53
+  1  rainfall  0.0035833333333333333
+  1  evaporation  0.005256770984280713
+END period  53
+
+BEGIN period  54
+  1  rainfall  0.014569892473118278
+  1  evaporation  0.011597875617617924
+END period  54
+
+BEGIN period  55
+  1  rainfall  0.0035833333333333333
+  1  evaporation  0.01900481118911327
+END period  55
+
+BEGIN period  56
+  1  rainfall  0.011209677419354839
+  1  evaporation  0.01779847041644323
+END period  56
+
+BEGIN period  57
+  1  rainfall  0.011881720430107526
+  1  evaporation  0.011597875617617924
+END period  57
+
+BEGIN period  58
+  1  rainfall  0.01711111111111111
+  1  evaporation  0.005256770984280712
+END period  58
+
+BEGIN period  59
+  1  rainfall  0.006397849462365591
+  1  evaporation  0.001360535282033051
+END period  59
+
+BEGIN period  60
+  1  rainfall  0.006944444444444444
+  1  evaporation  0.00026116969649189514
+END period  60
+
+BEGIN period  61
+  1  rainfall  0.003951612903225806
+  1  evaporation  2.857658478800145e-05
+END period  61
+
+BEGIN period  62
+  1  rainfall  0.0050268817204301075
+  1  evaporation  3.989704779201465e-05
+END period  62
+
+BEGIN period  63
+  1  rainfall  0.006577380952380953
+  1  evaporation  0.00041858115058722087
+END period  63
+
+BEGIN period  64
+  1  rainfall  0.013629032258064515
+  1  evaporation  0.0018995041420337582
+END period  64
+
+BEGIN period  65
+  1  rainfall  0.014472222222222221
+  1  evaporation  0.007339213021688849
+END period  65
+
+BEGIN period  66
+  1  rainfall  0.00881720430107527
+  1  evaporation  0.01619231273557107
+END period  66
+
+BEGIN period  67
+  1  rainfall  0.0038888888888888883
+  1  evaporation  0.026533466679633792
+END period  67
+
+BEGIN period  68
+  1  rainfall  0.006935483870967742
+  1  evaporation  0.024849240386753818
+END period  68
+
+BEGIN period  69
+  1  rainfall  0.010053763440860215
+  1  evaporation  0.01619231273557107
+END period  69
+
+BEGIN period  70
+  1  rainfall  0.022027777777777775
+  1  evaporation  0.007339213021688848
+END period  70
+
+BEGIN period  71
+  1  rainfall  0.016854838709677418
+  1  evaporation  0.0018995041420337556
+END period  71
+
+BEGIN period  72
+  1  rainfall  0.0060555555555555545
+  1  evaporation  0.00036463069117821103
+END period  72
+
+BEGIN period  73
+  1  rainfall  0.011989247311827956
+  1  evaporation  3.989704779200935e-05
+END period  73
+
+BEGIN period  74
+  1  rainfall  0.004973118279569892
+  1  evaporation  2.3729492743349266e-05
+END period  74
+
+BEGIN period  75
+  1  rainfall  0.006436781609195402
+  1  evaporation  0.0002320851900559633
+END period  75
+
+BEGIN period  76
+  1  rainfall  0.004086021505376344
+  1  evaporation  0.0011297645377002937
+END period  76
+
+BEGIN period  77
+  1  rainfall  0.005055555555555555
+  1  evaporation  0.004365130047915904
+END period  77
+
+BEGIN period  78
+  1  rainfall  0.014462365591397849
+  1  evaporation  0.009630671661718288
+END period  78
+
+BEGIN period  79
+  1  rainfall  0.004972222222222222
+  1  evaporation  0.015781260516129936
+END period  79
+
+BEGIN period  80
+  1  rainfall  0.0065322580645161285
+  1  evaporation  0.014779536383472363
+END period  80
+
+BEGIN period  81
+  1  rainfall  0.008118279569892473
+  1  evaporation  0.009630671661718288
+END period  81
+
+BEGIN period  82
+  1  rainfall  0.007527777777777777
+  1  evaporation  0.004365130047915902
+END period  82
+
+BEGIN period  83
+  1  rainfall  0.02387096774193548
+  1  evaporation  0.001129764537700292
+END period  83
+
+BEGIN period  84
+  1  rainfall  0.0031111111111111105
+  1  evaporation  0.00021687071648563374
+END period  84
+
+BEGIN period  85
+  1  rainfall  0.00771505376344086
+  1  evaporation  2.3729492743346115e-05
+END period  85
+
+BEGIN period  86
+  1  rainfall  0.009946236559139784
+  1  evaporation  3.8425527791828334e-05
+END period  86
+
+BEGIN period  87
+  1  rainfall  0.004851190476190476
+  1  evaporation  0.0004031426515283162
+END period  87
+
+BEGIN period  88
+  1  rainfall  0.00849462365591398
+  1  evaporation  0.001829444864715529
+END period  88
+
+BEGIN period  89
+  1  rainfall  0.006388888888888889
+  1  evaporation  0.007068521345368764
+END period  89
+
+BEGIN period  90
+  1  rainfall  0.008602150537634409
+  1  evaporation  0.015595092806821519
+END period  90
+
+BEGIN period  91
+  1  rainfall  0.012888888888888887
+  1  evaporation  0.025554834699220125
+END period  91
+
+BEGIN period  92
+  1  rainfall  0.019543010752688172
+  1  evaporation  0.023932727605929356
+END period  92
+
+BEGIN period  93
+  1  rainfall  0.005241935483870967
+  1  evaporation  0.015595092806821519
+END period  93
+
+BEGIN period  94
+  1  rainfall  0.004472222222222222
+  1  evaporation  0.0070685213453687635
+END period  94
+
+BEGIN period  95
+  1  rainfall  0.020188172043010752
+  1  evaporation  0.0018294448647155261
+END period  95
+
+BEGIN period  96
+  1  rainfall  0.00775
+  1  evaporation  0.00035118204310912034
+END period  96
+
+BEGIN period  97
+  1  rainfall  0.015
+  1  evaporation  3.842552779182324e-05
+END period  97
+
+BEGIN period  98
+  1  rainfall  0.007231182795698924
+  1  evaporation  3.9672834847181344e-05
+END period  98
+
+BEGIN period  99
+  1  rainfall  0.011339285714285713
+  1  evaporation  0.0004162288133187061
+END period  99
+
+BEGIN period  100
+  1  rainfall  0.011021505376344084
+  1  evaporation  0.0018888293317162468
+END period  100
+
+BEGIN period  101
+  1  rainfall  0.020583333333333332
+  1  evaporation  0.0072979682014472575
+END period  101
+
+BEGIN period  102
+  1  rainfall  0.01704301075268817
+  1  evaporation  0.016101315373033612
+END period  102
+
+BEGIN period  103
+  1  rainfall  0.012833333333333332
+  1  evaporation  0.026384354225702608
+END period  103
+
+BEGIN period  104
+  1  rainfall  0.005618279569892472
+  1  evaporation  0.02470959292729693
+END period  104
+
+BEGIN period  105
+  1  rainfall  0.013844086021505374
+  1  evaporation  0.016101315373033612
+END period  105
+
+BEGIN period  106
+  1  rainfall  0.002583333333333333
+  1  evaporation  0.007297968201447257
+END period  106
+
+BEGIN period  107
+  1  rainfall  0.008091397849462365
+  1  evaporation  0.0018888293317162442
+END period  107
+
+BEGIN period  108
+  1  rainfall  0.007388888888888889
+  1  evaporation  0.00036258154404652696
+END period  108
+
+BEGIN period  109
+  1  rainfall  0.008763440860215053
+  1  evaporation  3.967283484717608e-05
+END period  109
+
+BEGIN period  110
+  1  rainfall  0.008763440860215053
+  1  evaporation  2.8987331254057623e-05
+END period  110
+
+BEGIN period  111
+  1  rainfall  0.005238095238095238
+  1  evaporation  0.0003041215112463752
+END period  111
+
+BEGIN period  112
+  1  rainfall  0.01053763440860215
+  1  evaporation  0.001380090979929788
+END period  112
+
+BEGIN period  113
+  1  rainfall  0.006833333333333334
+  1  evaporation  0.00533232935210731
+END period  113
+
+BEGIN period  114
+  1  rainfall  0.0066129032258064515
+  1  evaporation  0.011764578058059697
+END period  114
+
+BEGIN period  115
+  1  rainfall  0.020666666666666667
+  1  evaporation  0.01927797745764504
+END period  115
+
+BEGIN period  116
+  1  rainfall  0.013145161290322581
+  1  evaporation  0.018054297306847593
+END period  116
+
+BEGIN period  117
+  1  rainfall  0.0029301075268817205
+  1  evaporation  0.011764578058059697
+END period  117
+
+BEGIN period  118
+  1  rainfall  0.006472222222222223
+  1  evaporation  0.005332329352107309
+END period  118
+
+BEGIN period  119
+  1  rainfall  0.010618279569892471
+  1  evaporation  0.0013800909799297858
+END period  119
+
+BEGIN period  120
+  1  rainfall  0.005722222222222222
+  1  evaporation  0.00026492362757462716
+END period  120
+
+BEGIN period  121
+  1  rainfall  0.010107526881720428
+  1  evaporation  2.898733125405378e-05
+END period  121
+
+BEGIN period  122
+  1  rainfall  0.012016129032258065
+  1  evaporation  2.3331576496747635e-05
+END period  122
+
+BEGIN period  123
+  1  rainfall  0.01089080459770115
+  1  evaporation  0.0002281933888818831
+END period  123
+
+BEGIN period  124
+  1  rainfall  0.003897849462365592
+  1  evaporation  0.0011108196883835575
+END period  124
+
+BEGIN period  125
+  1  rainfall  0.005222222222222222
+  1  evaporation  0.0042919318475421716
+END period  125
+
+BEGIN period  126
+  1  rainfall  0.016344086021505375
+  1  evaporation  0.009469176396676953
+END period  126
+
+BEGIN period  127
+  1  rainfall  0.017638888888888885
+  1  evaporation  0.015516626964155632
+END period  127
+
+BEGIN period  128
+  1  rainfall  0.008118279569892473
+  1  evaporation  0.014531700590780506
+END period  128
+
+BEGIN period  129
+  1  rainfall  0.0025806451612903226
+  1  evaporation  0.009469176396676953
+END period  129
+
+BEGIN period  130
+  1  rainfall  0.007083333333333334
+  1  evaporation  0.004291931847542171
+END period  130
+
+BEGIN period  131
+  1  rainfall  0.0017473118279569893
+  1  evaporation  0.0011108196883835562
+END period  131
+
+BEGIN period  132
+  1  rainfall  0.004916666666666666
+  1  evaporation  0.00021323404449963198
+END period  132
+
+BEGIN period  133
+  1  rainfall  0.006344086021505377
+  1  evaporation  2.333157649674454e-05
+END period  133
+
+BEGIN period  134
+  1  rainfall  0.007338709677419354
+  1  evaporation  3.0902353659348575e-05
+END period  134
+
+BEGIN period  135
+  1  rainfall  0.0021130952380952377
+  1  evaporation  0.00032421302994684986
+END period  135
+
+BEGIN period  136
+  1  rainfall  0.0110752688172043
+  1  evaporation  0.001471265470080051
+END period  136
+
+BEGIN period  137
+  1  rainfall  0.008444444444444444
+  1  evaporation  0.005684604975281372
+END period  137
+
+BEGIN period  138
+  1  rainfall  0.022822580645161288
+  1  evaporation  0.012541794503841509
+END period  138
+
+BEGIN period  139
+  1  rainfall  0.0035555555555555553
+  1  evaporation  0.020551559990528833
+END period  139
+
+BEGIN period  140
+  1  rainfall  0.02365591397849462
+  1  evaporation  0.019247038492690896
+END period  140
+
+BEGIN period  141
+  1  rainfall  0.010295698924731183
+  1  evaporation  0.012541794503841509
+END period  141
+
+BEGIN period  142
+  1  rainfall  0.004861111111111111
+  1  evaporation  0.005684604975281371
+END period  142
+
+BEGIN period  143
+  1  rainfall  0.00846774193548387
+  1  evaporation  0.0014712654700800491
+END period  143
+
+BEGIN period  144
+  1  rainfall  0.005527777777777777
+  1  evaporation  0.00028242557275370784
+END period  144
+
+BEGIN period  145
+  1  rainfall  0.002069892473118279
+  1  evaporation  3.0902353659344475e-05
+END period  145
+
+BEGIN period  146
+  1  rainfall  0.004811827956989248
+  1  evaporation  8.325862119980447e-05
+END period  146
+
+BEGIN period  147
+  1  rainfall  0.01369047619047619
+  1  evaporation  0.0008735104822742055
+END period  147
+
+BEGIN period  148
+  1  rainfall  0.004811827956989248
+  1  evaporation  0.00396395484331304
+END period  148
+
+BEGIN period  149
+  1  rainfall  0.00986111111111111
+  1  evaporation  0.015315738649709459
+END period  149
+
+BEGIN period  150
+  1  rainfall  0.02397849462365591
+  1  evaporation  0.033790711518998956
+END period  150
+
+BEGIN period  151
+  1  rainfall  0.011583333333333331
+  1  evaporation  0.05537101047961299
+END period  151
+
+BEGIN period  152
+  1  rainfall  0.03013440860215054
+  1  evaporation  0.05185630533990812
+END period  152
+
+BEGIN period  153
+  1  rainfall  0.019435483870967742
+  1  evaporation  0.033790711518998956
+END period  153
+
+BEGIN period  154
+  1  rainfall  0.020444444444444446
+  1  evaporation  0.015315738649709452
+END period  154
+
+BEGIN period  155
+  1  rainfall  0.007204301075268816
+  1  evaporation  0.0039639548433130336
+END period  155
+
+BEGIN period  156
+  1  rainfall  0.021333333333333333
+  1  evaporation  0.0007609246867811058
+END period  156
+
+BEGIN period  157
+  1  rainfall  0.015483870967741935
+  1  evaporation  8.325862119979341e-05
+END period  157
+
+BEGIN period  158
+  1  rainfall  0.01064516129032258
+  1  evaporation  3.1130779791046976e-05
+END period  158
+
+BEGIN period  159
+  1  rainfall  0.010416666666666666
+  1  evaporation  0.00032660956999986204
+END period  159
+
+BEGIN period  160
+  1  rainfall  0.012231182795698924
+  1  evaporation  0.001482140870825785
+END period  160
+
+BEGIN period  161
+  1  rainfall  0.007833333333333335
+  1  evaporation  0.005726624827201103
+END period  161
+
+BEGIN period  162
+  1  rainfall  0.0135752688172043
+  1  evaporation  0.0126345017983942
+END period  162
+
+BEGIN period  163
+  1  rainfall  0.006777777777777777
+  1  evaporation  0.020703474417525368
+END period  163
+
+BEGIN period  164
+  1  rainfall  0.007338709677419354
+  1  evaporation  0.01938931006844207
+END period  164
+
+BEGIN period  165
+  1  rainfall  0.012876344086021504
+  1  evaporation  0.0126345017983942
+END period  165
+
+BEGIN period  166
+  1  rainfall  0.001138888888888889
+  1  evaporation  0.005726624827201102
+END period  166
+
+BEGIN period  167
+  1  rainfall  0.016048387096774194
+  1  evaporation  0.001482140870825783
+END period  167
+
+BEGIN period  168
+  1  rainfall  0.0045
+  1  evaporation  0.00028451322542210965
+END period  168
+
+BEGIN period  169
+  1  rainfall  0.007983870967741936
+  1  evaporation  3.113077979104284e-05
+END period  169
+
+BEGIN period  170
+  1  rainfall  0.008951612903225806
+  1  evaporation  4.5744683864519295e-05
+END period  170
+
+BEGIN period  171
+  1  rainfall  0.009310344827586206
+  1  evaporation  0.00044740373355526045
+END period  171
+
+BEGIN period  172
+  1  rainfall  0.005349462365591398
+  1  evaporation  0.0021779109303939684
+END period  172
+
+BEGIN period  173
+  1  rainfall  0.015444444444444443
+  1  evaporation  0.008414907820791587
+END period  173
+
+BEGIN period  174
+  1  rainfall  0.0064516129032258064
+  1  evaporation  0.01856558988989609
+END period  174
+
+BEGIN period  175
+  1  rainfall  0.014472222222222221
+  1  evaporation  0.030422427529400768
+END period  175
+
+BEGIN period  176
+  1  rainfall  0.013037634408602148
+  1  evaporation  0.028491347322019453
+END period  176
+
+BEGIN period  177
+  1  rainfall  0.02053763440860215
+  1  evaporation  0.01856558988989609
+END period  177
+
+BEGIN period  178
+  1  rainfall  0.006361111111111111
+  1  evaporation  0.008414907820791587
+END period  178
+
+BEGIN period  179
+  1  rainfall  0.009516129032258064
+  1  evaporation  0.0021779109303939653
+END period  179
+
+BEGIN period  180
+  1  rainfall  0.010027777777777778
+  1  evaporation  0.00041807393324442665
+END period  180
+
+BEGIN period  181
+  1  rainfall  0.015618279569892472
+  1  evaporation  4.574468386451322e-05
+END period  181
+
+BEGIN period  182
+  1  rainfall  0.005053763440860214
+  1  evaporation  2.284544688380876e-05
+END period  182
+
+BEGIN period  183
+  1  rainfall  0.012738095238095238
+  1  evaporation  0.00023968373530178517
+END period  183
+
+BEGIN period  184
+  1  rainfall  0.006102150537634408
+  1  evaporation  0.0010876749881000574
+END period  184
+
+BEGIN period  185
+  1  rainfall  0.006333333333333334
+  1  evaporation  0.004202506464388291
+END period  185
+
+BEGIN period  186
+  1  rainfall  0.00771505376344086
+  1  evaporation  0.009271879524894274
+END period  186
+
+BEGIN period  187
+  1  rainfall  0.010138888888888888
+  1  evaporation  0.015193327256514639
+END period  187
+
+BEGIN period  188
+  1  rainfall  0.006532258064516129
+  1  evaporation  0.014228922508702578
+END period  188
+
+BEGIN period  189
+  1  rainfall  0.01325268817204301
+  1  evaporation  0.009271879524894274
+END period  189
+
+BEGIN period  190
+  1  rainfall  0.01311111111111111
+  1  evaporation  0.004202506464388291
+END period  190
+
+BEGIN period  191
+  1  rainfall  0.011505376344086018
+  1  evaporation  0.0010876749881000558
+END period  191
+
+BEGIN period  192
+  1  rainfall  0.0025277777777777772
+  1  evaporation  0.0002087911649740051
+END period  192
+
+BEGIN period  193
+  1  rainfall  0.0012365591397849461
+  1  evaporation  2.2845446883805726e-05
+END period  193
+
+BEGIN period  194
+  1  rainfall  0.010483870967741936
+  1  evaporation  3.105454428692425e-05
+END period  194
+
+BEGIN period  195
+  1  rainfall  0.006845238095238096
+  1  evaporation  0.0003258097427746086
+END period  195
+
+BEGIN period  196
+  1  rainfall  0.005161290322580645
+  1  evaporation  0.0014785112875892997
+END period  196
+
+BEGIN period  197
+  1  rainfall  0.0062499999999999995
+  1  evaporation  0.005712601017532546
+END period  197
+
+BEGIN period  198
+  1  rainfall  0.018413978494623652
+  1  evaporation  0.012603561435820403
+END period  198
+
+BEGIN period  199
+  1  rainfall  0.007638888888888888
+  1  evaporation  0.020652774119623865
+END period  199
+
+BEGIN period  200
+  1  rainfall  0.014059139784946238
+  1  evaporation  0.019341827999647742
+END period  200
+
+BEGIN period  201
+  1  rainfall  0.00618279569892473
+  1  evaporation  0.012603561435820403
+END period  201
+
+BEGIN period  202
+  1  rainfall  0.009111111111111111
+  1  evaporation  0.005712601017532546
+END period  202
+
+BEGIN period  203
+  1  rainfall  0.006021505376344086
+  1  evaporation  0.0014785112875892975
+END period  203
+
+BEGIN period  204
+  1  rainfall  0.00775
+  1  evaporation  0.0002838164870392222
+END period  204
+
+BEGIN period  205
+  1  rainfall  0.013306451612903227
+  1  evaporation  3.105454428692013e-05
+END period  205
+
+BEGIN period  206
+  1  rainfall  0.003655913978494624
+  1  evaporation  2.2610801908853864e-05
+END period  206
+
+BEGIN period  207
+  1  rainfall  0.006755952380952381
+  1  evaporation  0.0002372219500562165
+END period  207
+
+BEGIN period  208
+  1  rainfall  0.004220430107526881
+  1  evaporation  0.0010765035073389312
+END period  208
+
+BEGIN period  209
+  1  rainfall  0.009166666666666667
+  1  evaporation  0.0041593426327022915
+END period  209
+
+BEGIN period  210
+  1  rainfall  0.003978494623655914
+  1  evaporation  0.009176648297859467
+END period  210
+
+BEGIN period  211
+  1  rainfall  0.006388888888888889
+  1  evaporation  0.015037276997934973
+END period  211
+
+BEGIN period  212
+  1  rainfall  0.01368279569892473
+  1  evaporation  0.014082777625537439
+END period  212
+
+BEGIN period  213
+  1  rainfall  0.004973118279569892
+  1  evaporation  0.009176648297859467
+END period  213
+
+BEGIN period  214
+  1  rainfall  0.018472222222222223
+  1  evaporation  0.004159342632702291
+END period  214
+
+BEGIN period  215
+  1  rainfall  0.0018010752688172042
+  1  evaporation  0.0010765035073389295
+END period  215
+
+BEGIN period  216
+  1  rainfall  0.006916666666666666
+  1  evaporation  0.0002066466764934208
+END period  216
+
+BEGIN period  217
+  1  rainfall  0.015456989247311828
+  1  evaporation  2.261080190885086e-05
+END period  217
+
+BEGIN period  218
+  1  rainfall  0.016129032258064516
+  1  evaporation  2.2080854404836265e-05
+END period  218
+
+BEGIN period  219
+  1  rainfall  0.004166666666666667
+  1  evaporation  0.00021596076016335318
+END period  219
+
+BEGIN period  220
+  1  rainfall  0.010456989247311827
+  1  evaporation  0.001051272631004684
+END period  220
+
+BEGIN period  221
+  1  rainfall  0.004833333333333334
+  1  evaporation  0.00406185678255686
+END period  221
+
+BEGIN period  222
+  1  rainfall  0.011344086021505374
+  1  evaporation  0.008961567829669899
+END period  222
+
+BEGIN period  223
+  1  rainfall  0.0019166666666666668
+  1  evaporation  0.014684836273169863
+END period  223
+
+BEGIN period  224
+  1  rainfall  0.007150537634408602
+  1  evaporation  0.01375270826831725
+END period  224
+
+BEGIN period  225
+  1  rainfall  0.01379032258064516
+  1  evaporation  0.008961567829669899
+END period  225
+
+BEGIN period  226
+  1  rainfall  0.009083333333333332
+  1  evaporation  0.00406185678255686
+END period  226
+
+BEGIN period  227
+  1  rainfall  0.0003494623655913978
+  1  evaporation  0.0010512726310046823
+END period  227
+
+BEGIN period  228
+  1  rainfall  0.005138888888888889
+  1  evaporation  0.00020180333255264982
+END period  228
+
+BEGIN period  229
+  1  rainfall  0.008978494623655913
+  1  evaporation  2.2080854404833337e-05
+END period  229
+
+BEGIN period  230
+  1  rainfall  0.005349462365591398
+  1  evaporation  1.6946433857367157e-05
+END period  230
+
+BEGIN period  231
+  1  rainfall  0.007202380952380951
+  1  evaporation  0.0001777940518141979
+END period  231
+
+BEGIN period  232
+  1  rainfall  0.0038172043010752687
+  1  evaporation  0.0008068221356271074
+END period  232
+
+BEGIN period  233
+  1  rainfall  0.005583333333333333
+  1  evaporation  0.0031173606800569097
+END period  233
+
+BEGIN period  234
+  1  rainfall  0.01631720430107527
+  1  evaporation  0.006877750910333776
+END period  234
+
+BEGIN period  235
+  1  rainfall  0.01925
+  1  evaporation  0.01127019824717622
+END period  235
+
+BEGIN period  236
+  1  rainfall  0.007903225806451612
+  1  evaporation  0.010554816256460558
+END period  236
+
+BEGIN period  237
+  1  rainfall  0.00228494623655914
+  1  evaporation  0.006877750910333776
+END period  237
+
+BEGIN period  238
+  1  rainfall  0.0033888888888888883
+  1  evaporation  0.003117360680056909
+END period  238
+
+BEGIN period  239
+  1  rainfall  0.005725806451612903
+  1  evaporation  0.0008068221356271063
+END period  239
+
+BEGIN period  240
+  1  rainfall  0.002472222222222222
+  1  evaporation  0.00015487837402481644
+END period  240
+
+BEGIN period  241
+  1  rainfall  0.003333333333333333
+  1  evaporation  1.6946433857364907e-05
+END period  241
+
