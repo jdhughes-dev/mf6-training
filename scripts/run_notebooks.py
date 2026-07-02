@@ -16,7 +16,12 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
-DEFAULT_NOTEBOOKS = ("examples/notebooks/flopy-intro-gwf-only.ipynb",)
+DEFAULT_NOTEBOOKS = (
+    "examples/notebooks/flopy-intro-gwf-only.ipynb",
+    # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
+    # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
+    "examples/notebooks/modflow-api-C.ipynb",
+)
 
 
 def run_notebook(path: Path) -> None:
