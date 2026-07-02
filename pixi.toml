@@ -31,11 +31,12 @@ pyproj = ">=2.0"
 pyshp = "*"
 git = "*"
 nbconvert = "*"
-# Core MODFLOW 6 stack: flopy to build/post-process models and modflowapi to
-# drive a running MODFLOW 6 through the libmf6 shared library (installed by the
-# get-mf6 task / activation hook).
+# Core MODFLOW 6 stack: flopy to build/post-process models. modflowapi (which
+# drives a running MODFLOW 6 through the libmf6 shared library, installed by the
+# get-mf6 task / activation hook) is pulled from git in [pypi-dependencies]
+# below: the 0.2.0 conda-forge release calls np.arange() on a 1-element array,
+# which NumPy 2.x rejects; the develop branch fixes it with .item().
 flopy = "*"
-modflowapi = "*"
 # Dev tooling for the pre-commit hook: ruff (lint + format), nbstripout
 # (clear notebook outputs), and codespell (spell-check + fix), driven by
 # pre-commit itself. See .pre-commit-config.yaml and the pre-commit-install
@@ -44,6 +45,12 @@ ruff = "*"
 nbstripout = "*"
 codespell = "*"
 pre-commit = "*"
+
+[pypi-dependencies]
+# modflowapi from the develop branch until a NumPy 2-safe release lands on
+# conda-forge (0.2.0 is not - see the note in [dependencies]). Pinned to a
+# specific commit for reproducibility; bump the rev to move forward.
+modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", rev = "1d112bb0ed3b71ee829b4dbc31f09461de2eb857" }
 
 [tasks]
 # Launch JupyterLab in the project directory.
