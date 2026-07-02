@@ -124,25 +124,11 @@ pixi run python -c "import flopy, modflowapi; print(flopy.__version__)"
 pixi run mf6 -v
 ```
 
-## 4. Contributing (pre-commit hook)
+## 4. Contributing
 
-This repo uses a [pre-commit](https://pre-commit.com) hook that, on every
-commit, **clears notebook outputs** (nbstripout) and applies **ruff** lint fixes
-and formatting to Python files *and* notebooks. Install it once per clone:
-
-```bash
-pixi run pre-commit-install
-```
-
-The tools run from the pixi environment, so their versions match `pixi.lock`.
-To run the hooks against every file (not just staged changes):
-
-```bash
-pixi run pre-commit-run
-```
-
-CI runs the same hooks on every push and pull request, so committing with the
-hook installed keeps notebooks clean and code consistently formatted.
+If you plan to commit changes, install the pre-commit hook that clears notebook
+outputs (nbstripout), fixes spelling (codespell), and applies ruff lint fixes
+and formatting. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 
 ## Supported platforms
 
