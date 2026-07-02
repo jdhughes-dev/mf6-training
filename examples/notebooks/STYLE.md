@@ -7,7 +7,7 @@ experience** can follow in a live class and review on their own afterward.
 
 The two reference notebooks are
 [`flopy-intro-gwf-only.ipynb`](flopy-intro-gwf-only.ipynb) (a guided model
-build) and [`modflow-api.ipynb`](modflow-api.ipynb) (a concept walk-through).
+build) and [`modflow-api-A.ipynb`](modflow-api-A.ipynb) (a concept walk-through).
 When in doubt, match them.
 
 ## The core rule
