@@ -86,3 +86,6 @@ jobs:
 
       - name: Verify mp7, triangle, gridgen are on PATH
         run: pixi run check-exes
+
+      - name: Run the flopy-intro-gwf-only notebook end-to-end
+        run: pixi run test-notebooks

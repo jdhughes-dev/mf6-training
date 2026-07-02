@@ -64,6 +64,10 @@ get-mf6 = "python scripts/get_mf6.py"
 get-exes = "python scripts/get_exes.py"
 # Verify mp7, triangle, and gridgen are installed on PATH (run after get-exes).
 check-exes = "python scripts/check_exes.py"
+# Execute notebook(s) end-to-end as a smoke test (fails on any cell error).
+# With no arguments it runs the notebooks listed in scripts/run_notebooks.py;
+# pass notebook paths to run specific ones. Requires mf6 on PATH (get-mf6).
+test-notebooks = "python scripts/run_notebooks.py"
 # Install the git pre-commit hook. This runs automatically on first activation
 # (see scripts/postinstall.*); this task is the manual/explicit way to (re)install
 # it. The hook clears notebook outputs (nbstripout), fixes spelling (codespell),
