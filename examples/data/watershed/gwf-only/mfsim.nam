@@ -8,7 +8,7 @@ BEGIN timing
 END timing
 
 BEGIN models
-  gwf6  gwf.name  gwf
+  gwf6  gwf.nam  gwf
 END models
 
 BEGIN exchanges

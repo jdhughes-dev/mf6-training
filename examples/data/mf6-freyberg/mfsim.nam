@@ -7,7 +7,7 @@ END TIMING
 
 BEGIN MODELS
   #modeltype   namefile       modelname
-	GWF6    freyberg.name     freyberg
+	GWF6    freyberg.nam     freyberg
 END MODELS
 
 BEGIN EXCHANGES

@@ -11,7 +11,7 @@ BEGIN packages
   RCH6  sv.rch  rch_0
   EVT6  sv.evt  evt_0
   RIV6  sv.riv  riv-1
-  WEL6  sv.pwell.well  pwell
+  WEL6  sv.pwell.wel  pwell
   WEL6  sv.prediction.well  prediction
   OC6  sv.oc  oc
   OBS6  sv.gwf.obs  gwf-obs

@@ -10,7 +10,7 @@ BEGIN packages
   STO6  sv.sto  sto
   RCH6  sv.rcha  rch-1
   EVT6  sv.evta  evta_0
-  WEL6  sv.well  well-1
+  WEL6  sv.wel  well-1
   DRN6  sv.drn  drn-1
   SFR6  sv.sfr  sfr-1
   LAK6  sv.lak  lak-1

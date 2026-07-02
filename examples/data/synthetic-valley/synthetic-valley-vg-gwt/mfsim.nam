@@ -7,7 +7,7 @@ BEGIN timing
 END timing
 
 BEGIN models
-  gwt6  sv_gwt.name  sv_gwt
+  gwt6  sv_gwt.nam  sv_gwt
 END models
 
 BEGIN exchanges

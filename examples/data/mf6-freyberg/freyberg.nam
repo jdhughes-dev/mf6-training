@@ -13,6 +13,6 @@ BEGIN PACKAGES
   STO6  freyberg.sto
   CHD6  freyberg.chd
   RIV6  freyberg.riv
-  WEL6  freyberg.well
+  WEL6  freyberg.wel
   RCH6  freyberg.rch
 END PACKAGES

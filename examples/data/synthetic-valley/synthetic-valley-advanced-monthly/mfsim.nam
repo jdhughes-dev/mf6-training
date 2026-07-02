@@ -6,7 +6,7 @@ BEGIN timing
 END timing
 
 BEGIN models
-  gwf6  sv.name  sv
+  gwf6  sv.nam  sv
 END models
 
 BEGIN exchanges
