@@ -4,7 +4,7 @@
 #
 #     pixi run pre-commit-install
 #
-# Thereafter, on every `git commit` the staged files are:
+# On every `git commit` the staged files are:
 #   1. stripped of notebook outputs / execution counts (nbstripout; the class
 #      notebooks under examples/notebooks/),
 #   2. spell-checked and auto-corrected (codespell), then
@@ -13,44 +13,38 @@
 # codespell and ruff run on all Python scripts plus the notebooks under
 # examples/notebooks/; nbstripout runs on those notebooks only.
 #
-# The hooks run the tools from the pixi environment (language: system) rather
-# than letting pre-commit manage its own isolated envs, so the versions match
-# pixi.lock and no extra downloads are needed. Run against everything with:
+# These hooks use pre-commit's OWN managed tool environments (not the pixi env),
+# so `git commit` works from any Git client - VS Code, the CLI, etc. - without
+# needing the pixi environment activated. Tool configuration still comes from
+# ruff.toml and .codespellrc. Versions are pinned below (kept in sync with
+# pixi.lock); bump them with `pixi run pre-commit autoupdate`.
+#
+# Run against everything with:
 #
 #     pixi run pre-commit-run
 repos:
-  - repo: local
+  - repo: https://github.com/kynan/nbstripout
+    rev: "0.9.1"
     hooks:
       - id: nbstripout
-        name: strip notebook outputs
-        entry: nbstripout
-        language: system
-        types: [jupyter]
         # Only strip the class notebooks under examples/notebooks/.
         files: ^examples/notebooks/.*\.ipynb$
 
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.4.2
+    hooks:
       - id: codespell
-        name: codespell (spell-check + fix)
-        # --write-changes auto-corrects typos; codespell still exits non-zero
-        # when it finds/fixes any, so the hook fails and the fix is staged for
-        # re-commit. Config (skips, ignore-words) lives in .codespellrc.
-        entry: codespell --write-changes
-        language: system
+        # --write-changes auto-corrects typos (config in .codespellrc).
+        args: [--write-changes]
         # All Python scripts, plus the notebooks under examples/notebooks/.
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
 
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.15.20
+    hooks:
       - id: ruff-check
-        name: ruff lint (--fix)
-        entry: ruff check --fix --force-exclude
-        language: system
+        args: [--fix]
         # All Python scripts, plus the notebooks under examples/notebooks/.
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
-        require_serial: true
-
       - id: ruff-format
-        name: ruff format
-        entry: ruff format --force-exclude
-        language: system
-        # All Python scripts, plus the notebooks under examples/notebooks/.
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
-        require_serial: true
