@@ -21,15 +21,16 @@ ignore = []
 fixable = ["ALL"]
 unfixable = []
 
-# Teaching materials under examples/notebooks/ intentionally keep "unused" demo
-# variables (e.g. `npf = flopy.mf6.ModflowGwfnpf(...)`, whose creation registers
-# the package as a side effect), unused loop variables, and cells that reference
-# names defined interactively/elsewhere. Relax those rules there so the notebooks
-# lint cleanly, while keeping the full rule set for the project's own scripts/.
+# Teaching materials under examples/notebooks/ are held to the full rule set
+# except a few that don't fit interactive teaching notebooks and can't be fixed
+# without rewriting the lesson code. (Unused *variables* - F841 - are eliminated,
+# not ignored.) The project's own scripts/ keep the full rule set.
 [lint.per-file-ignores]
 "examples/notebooks/**" = [
-    "F841",  # local variable assigned but never used
     "B007",  # loop control variable not used within loop body
+    "B905",  # zip() without an explicit strict= argument
+    "F403",  # `from module import *` (used for brevity in some notebooks)
+    "F405",  # name may be undefined, or defined from a star import
     "F821",  # undefined name (cells that rely on interactive/earlier state)
 ]
 

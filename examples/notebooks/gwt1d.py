@@ -60,7 +60,7 @@ def get_sim(workspace, dx=10.0, dt=20.0, advscheme="upstream"):
     welspd = [[(0, 0, 0), Q, 1.0]]
 
     # Constant concentration on left side of model
-    cncspd = [[(0, 0, 0), 1.0]]
+    _ = [[(0, 0, 0), 1.0]]
 
     # MODFLOW 6
     name = "ex1"
@@ -203,7 +203,7 @@ def get_sim(workspace, dx=10.0, dt=20.0, advscheme="upstream"):
 
     # Transport source-sink mixing package
     sourcerecarray = [("WEL-1", "AUX", "CONCENTRATION")]
-    ssm = flopy.mf6.ModflowGwtssm(
+    _ = flopy.mf6.ModflowGwtssm(
         gwt,
         print_flows=True,
         sources=sourcerecarray,
