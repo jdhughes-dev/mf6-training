@@ -240,4 +240,9 @@ __marimo__/
 
 .figures/
 examples/notebooks/models/
+presentations/
+
+# ex-gwt-prudic2004t2 base-model data read by modflow-api-F.ipynb; stream.csv
+# would otherwise be caught by the global *.csv ignore above
+!examples/data/ex-gwt-prudic2004t2/stream.csv
 

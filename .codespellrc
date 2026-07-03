@@ -8,4 +8,4 @@ skip = .git,.pixi,pixi.lock,*.lock,*.svg,*.png,*.jpg,*.pdf,examples/data
 ignore-regex = [A-Za-z0-9+/=]{50,}
 # Comma-separated, lowercase list of words to treat as correct - MODFLOW domain
 # terms / package acronyms that codespell mistakes for typos (e.g. wel -> well).
-ignore-words-list = nam,wel
+ignore-words-list = nam,wel,delt
