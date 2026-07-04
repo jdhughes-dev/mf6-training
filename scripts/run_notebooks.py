@@ -31,7 +31,7 @@ DEFAULT_NOTEBOOKS = (
     # A 1-D coupled flow-and-transport benchmark.
     "examples/notebooks/gwt1d.ipynb",  # ~12 s
     # Local grid refinement (LGR) with two coupled GWF models.
-    "examples/notebooks/lgr.ipynb",  # ~5 s
+    "examples/notebooks/lgr-flopy.ipynb",  # ~5 s
     # XT3D on an unstructured (DISU) grid.
     "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
     # Quadtree unstructured grid built with the Gridgen executable.
