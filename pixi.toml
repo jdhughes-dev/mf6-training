@@ -71,6 +71,11 @@ h5py = "*"
 # re-solve (pixi install / update) can pull newer commits.
 flopy = { git = "https://github.com/modflowpy/flopy.git", branch = "develop" }
 modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", branch = "develop" }
+# Provides the DFN->TOML toolchain that flopy's `generate_classes` needs. The
+# get-mf6 task runs generate_classes after installing mf6 so flopy's MODFLOW 6
+# input classes stay in sync with the installed mf6 (see scripts/get_mf6.py).
+# The `dfn` extra pulls boltons, pooch, pydantic, tomli, and tomli-w.
+modflow-devtools = { version = "*", extras = ["dfn"] }
 
 [tasks]
 # Launch JupyterLab in the project directory.
