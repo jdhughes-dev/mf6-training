@@ -6,3 +6,17 @@
 # Batch files need CRLF in the working tree to run reliably on Windows.
 # They are still stored as LF in the repository.
 *.bat text eol=crlf
+
+# MODFLOW/MODPATH binary output must never be treated as text. The `text=auto`
+# rule above can misdetect a binary file as text and normalize its bytes on
+# checkout/commit, corrupting it -- this is what mangled the committed
+# ex-gwe-prt-gwf.disv.grb (one stray byte) and broke prt-voronoi. Mark the
+# binary file types explicitly so git stores/checks them out verbatim.
+*.grb binary
+*.hds binary
+*.cbc binary
+*.cbb binary
+*.bud binary
+*.ucn binary
+*.bin binary
+*.nc binary
