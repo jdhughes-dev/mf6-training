@@ -32,6 +32,8 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/gwt1d.ipynb",  # ~12 s
     # Local grid refinement (LGR) with two coupled GWF models.
     "examples/notebooks/lgr-flopy.ipynb",  # ~5 s
+    # Mf6Splitter: diagonal split, load-balanced (pymetis) split, HDF5 node mapping.
+    "examples/notebooks/model-splitting-with-flopy.ipynb",  # ~7 s
     # XT3D on an unstructured (DISU) grid.
     "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
     # Quadtree unstructured grid built with the Gridgen executable.
