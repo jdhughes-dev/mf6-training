@@ -34,6 +34,10 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/lgr.ipynb",  # ~5 s
     # XT3D on an unstructured (DISU) grid.
     "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
+    # Quadtree unstructured grid built with the Gridgen executable.
+    "examples/notebooks/mesh-generation-gridgen.ipynb",  # ~7 s
+    # Triangle + Voronoi unstructured grids built with the Triangle executable.
+    "examples/notebooks/mesh-generation-triangle-voronoi.ipynb",  # ~6 s
 )
 
 

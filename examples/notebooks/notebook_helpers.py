@@ -174,7 +174,10 @@ def string2geom(geostring, conversion=None):
     multiplier = 1.0 if conversion is None else float(conversion)
     res = []
     for line in geostring.split("\n"):
-        parts = line.split(" ")
+        line = line.strip()
+        if not line:
+            continue
+        parts = line.split()
         res.append((float(parts[0]) * multiplier, float(parts[1]) * multiplier))
     return res
 
@@ -273,3 +276,58 @@ def get_simulation_cell_count(simulation):
         ncells += i
         nactive += j
     return ncells, nactive
+
+
+def densify_geometry(line, step, keep_internal_nodes=True):
+    """Return a list of (x, y) points along ``line`` spaced about ``step`` apart.
+
+    Used to seed extra nodes along river geometries before triangulating. When
+    ``keep_internal_nodes`` is True the original vertices are preserved.
+    """
+    import numpy as np
+    import shapely.geometry
+
+    xy = []
+    if keep_internal_nodes:
+        lines_strings = [
+            shapely.geometry.LineString(line[i - 1 : i + 1])
+            for i in range(1, len(line))
+        ]
+    else:
+        lines_strings = [shapely.geometry.LineString(line)]
+
+    for line_string in lines_strings:
+        length_m = line_string.length
+        for distance in np.arange(0, length_m + step, step):
+            pt = line_string.interpolate(distance)
+            if (pt.x, pt.y) not in xy:
+                xy.append((pt.x, pt.y))
+        if keep_internal_nodes:
+            end = line_string.coords[-1]
+            if end not in xy:
+                xy.append(end)
+    return xy
+
+
+def set_idomain(grid, boundary):
+    """Set a grid's idomain (in place) from a boundary polygon, structured OR vertex.
+
+    Unlike ``set_structured_idomain`` this works for VertexGrid
+    (quadtree/triangle/voronoi) as well as StructuredGrid - GridIntersect
+    auto-detects the grid type. Cells intersected by the polygon are active (1),
+    others 0.
+    """
+    import numpy as np
+    from flopy.utils.gridintersect import GridIntersect
+    from shapely.geometry import Polygon
+
+    ix = GridIntersect(grid, rtree=True)
+    result = ix.intersect(Polygon(boundary))
+    idx = np.array([coords for coords in result.cellids], dtype=int)
+    nr = idx.shape[0]
+    if idx.ndim == 1:
+        idx = idx.reshape((nr, 1))
+    idx = tuple(idx[:, i] for i in range(idx.shape[1]))
+    idomain = np.zeros(grid.shape[1:], dtype=int)
+    idomain[idx] = 1
+    grid.idomain = idomain.reshape(grid.shape)
