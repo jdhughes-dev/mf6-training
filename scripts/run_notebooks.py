@@ -16,11 +16,24 @@ import nbformat
 from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
+# Kept to fast (< ~30 s), self-contained notebooks so CI stays quick; slower
+# notebooks (e.g. modflow-api-A/E, gwe-stallman, density-*, advanced-packages-*)
+# are intentionally excluded. Times below are approximate single-run wall times.
 DEFAULT_NOTEBOOKS = (
-    "examples/notebooks/flopy-intro-gwf-only.ipynb",
+    "examples/notebooks/flopy-intro-gwf-only.ipynb",  # ~6 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
     # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
-    "examples/notebooks/modflow-api-C.ipynb",
+    "examples/notebooks/modflow-api-C.ipynb",  # ~11 s
+    # A manual solver loop watching convergence live (modflowapi, synthetic valley).
+    "examples/notebooks/modflow-api-B.ipynb",  # ~21 s
+    # A head-dependent reverse drain built through the API package.
+    "examples/notebooks/modflow-api-D.ipynb",  # ~5 s
+    # A 1-D coupled flow-and-transport benchmark.
+    "examples/notebooks/gwt1d.ipynb",  # ~12 s
+    # Local grid refinement (LGR) with two coupled GWF models.
+    "examples/notebooks/lgr.ipynb",  # ~5 s
+    # XT3D on an unstructured (DISU) grid.
+    "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
 )
 
 

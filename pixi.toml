@@ -31,12 +31,15 @@ pyproj = ">=2.0"
 pyshp = "*"
 git = "*"
 nbconvert = "*"
-# Core MODFLOW 6 stack: flopy to build/post-process models. modflowapi (which
-# drives a running MODFLOW 6 through the libmf6 shared library, installed by the
-# get-mf6 task / activation hook) is pulled from git in [pypi-dependencies]
-# below: the 0.2.0 conda-forge release calls np.arange() on a 1-element array,
-# which NumPy 2.x rejects; the develop branch fixes it with .item().
-flopy = "*"
+# Core MODFLOW 6 stack (flopy to build/post-process models; modflowapi to drive
+# a running MODFLOW 6 through the libmf6 shared library). BOTH are pulled from
+# their develop branches in [pypi-dependencies] below - not the conda flopy -
+# because the fixes we need are not in a conda-forge release yet:
+#   * flopy: Mf6Splitter cannot split GWT advanced-transport packages (SFT/LKT/
+#     UZT/MWT) in the 3.10.0 release - it reads a non-existent .perioddata and
+#     mis-keys the SFR remap table; develop fixes both (used by parallel.ipynb).
+#   * modflowapi: the 0.2.0 release calls np.arange() on a 1-element array, which
+#     NumPy 2.x rejects; develop fixes it with .item().
 # Dev tooling for the pre-commit hook: ruff (lint + format), nbstripout
 # (clear notebook outputs), and codespell (spell-check + fix), driven by
 # pre-commit itself. See .pre-commit-config.yaml and the pre-commit-install
@@ -45,12 +48,24 @@ ruff = "*"
 nbstripout = "*"
 codespell = "*"
 pre-commit = "*"
+xarray = ">=2026.4.0,<2027"
+netcdf4 = ">=1.7.2,<2"
+pyarrow = ">=21.0.0,<25"
+ipython = ">=9.15.0,<10"
+ipywidgets = ">=8.1.8,<9"
+geopandas = ">=1.1.4,<2"
+pyvista = ">=0.44.1,<0.49"
+rasterio = ">=1.4.3,<2"
+rasterstats = ">=0.21.0,<0.22"
 
 [pypi-dependencies]
-# modflowapi from the develop branch until a NumPy 2-safe release lands on
-# conda-forge (0.2.0 is not - see the note in [dependencies]). Pinned to a
-# specific commit for reproducibility; bump the rev to move forward.
-modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", rev = "1d112bb0ed3b71ee829b4dbc31f09461de2eb857" }
+# flopy and modflowapi track their develop branches (not the conda-forge
+# releases) for the fixes noted in [dependencies] above. Tracking the branch
+# rather than a pinned commit keeps them current with the latest upstream
+# changes; the trade-off is that the resolved version is variable, so a
+# re-solve (pixi install / update) can pull newer commits.
+flopy = { git = "https://github.com/modflowpy/flopy.git", branch = "develop" }
+modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", branch = "develop" }
 
 [tasks]
 # Launch JupyterLab in the project directory.
