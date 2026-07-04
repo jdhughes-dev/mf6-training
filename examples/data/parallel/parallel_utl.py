@@ -2,8 +2,11 @@ import pathlib as pl
 
 import flopy
 import numpy as np
-from flopy.utils.gridintersect import GridIntersect
-from shapely.geometry import LineString, Polygon
+
+# generic grid/geometry helpers now live in notebook_helpers.py (importable
+# because the notebook runs from examples/notebooks, which is on sys.path)
+from notebook_helpers import cell_areas
+from shapely.geometry import LineString
 
 # figures
 figwidth = 180  # 90 # mm
@@ -162,7 +165,7 @@ def get_base_dir():
     dir: str
         the working directory
     """
-    dir = pl.Path.cwd().joinpath("base")
+    dir = pl.Path.cwd().joinpath("models", "parallel-base")
     return dir
 
 
@@ -175,154 +178,8 @@ def get_parallel_dir():
     dir: str
         the working directory
     """
-    dir = pl.Path.cwd().joinpath("parallel")
+    dir = pl.Path.cwd().joinpath("models", "parallel-split")
     return dir
-
-
-def string2geom(
-    geostring: str,
-    conversion: float = None,
-) -> list[tuple]:
-    """
-    Convert a multi-line string of vertices to a list of x,y vertices
-
-    Parameters
-    ----------
-    geostring: str
-        multi-line string of x,y vertices
-    conversion: float, options
-        x,y, vertices conversion factor (Default is None)
-
-    Returns
-    -------
-    res: List[tuple]
-        list of x,y vertices
-    """
-    if conversion is None:
-        multiplier = 1.0
-    else:
-        multiplier = float(conversion)
-    res = []
-    for line in geostring.split("\n"):
-        line = line.split(" ")
-        x = float(line[0]) * multiplier
-        y = float(line[1]) * multiplier
-        res.append((x, y))
-    return res
-
-
-def set_structured_idomain(
-    modelgrid: flopy.discretization.StructuredGrid,
-    boundary: list[tuple],
-) -> None:
-    """
-    Set the idomain for a structured grid using a boundary line.
-
-    Parameters
-    ----------
-    modelgrid: flopy.discretization.StructuredGrid
-        flopy modelgrid object
-    boundary: List(tuple)
-        list of x,y tuples defining the boundary of the active model domain.
-
-    Returns
-    -------
-    None
-
-    """
-    if modelgrid.grid_type != "structured":
-        raise ValueError(f"modelgrid must be 'structured' not '{modelgrid.grid_type}'")
-
-    ix = GridIntersect(modelgrid, rtree=True)
-    result = ix.intersect(Polygon(boundary))
-    idx = [coords for coords in result.cellids]
-    idx = np.array(idx, dtype=int)
-    nr = idx.shape[0]
-    if idx.ndim == 1:
-        idx = idx.reshape((nr, 1))
-
-    idx = tuple([idx[:, i] for i in range(idx.shape[1])])
-    idomain = np.zeros(modelgrid.shape[1:], dtype=int)
-    idomain[idx] = 1
-    idomain = idomain.reshape(modelgrid.shape)
-
-    # set modelgrid idomain
-    modelgrid.idomain = idomain
-    return
-
-
-def intersect_segments(
-    modelgrid: flopy.discretization.StructuredGrid | flopy.discretization.VertexGrid,
-    segments: list[list[tuple]],
-) -> tuple[flopy.utils.GridIntersect, list, list]:
-    """
-
-    Parameters
-    ----------
-    modelgrid: flopy.discretization.StructuredGrid
-        flopy modelgrid object
-    segments: list of list of tuples
-        List of segment x,y tuples
-
-    Returns
-    -------
-    ixs: flopy.utils.GridIntersect
-        flopy GridIntersect object
-    cellids: list
-        list of intersected cellids
-    lengths: list
-        list of intersected lengths
-
-    """
-    ixs = flopy.utils.GridIntersect(
-        modelgrid,
-    )
-    cellids = []
-    lengths = []
-    for sg in segments:
-        v = ixs.intersect(LineString(sg), sort_by_cellid=True)
-        cellids += v["cellids"].tolist()
-        lengths += v["lengths"].tolist()
-    return ixs, cellids, lengths
-
-
-def cell_areas(
-    modelgrid: flopy.discretization.StructuredGrid | flopy.discretization.VertexGrid,
-) -> np.ndarray:
-    """
-    Calculate cell areas
-
-    Parameters
-    ----------
-    modelgrid: flopy.discretization.StructuredGrid
-        flopy modelgrid object
-
-    Returns
-    -------
-    areas: numpy.ndarray
-        cell areas
-
-    """
-    if modelgrid.grid_type == "structured":
-        nrow, ncol = modelgrid.nrow, modelgrid.ncol
-        areas = np.zeros((nrow, ncol), dtype=float)
-        for r in range(nrow):
-            for c in range(ncol):
-                cellid = (r, c)
-                vertices = np.array(modelgrid.get_cell_vertices(cellid))
-                area = Polygon(vertices).area
-                areas[cellid] = area
-    elif modelgrid.grid_type == "vertex":
-        areas = np.zeros(modelgrid.ncpl, dtype=float)
-        for idx in range(modelgrid.ncpl):
-            vertices = np.array(modelgrid.get_cell_vertices(idx))
-            area = Polygon(vertices).area
-            areas[idx] = area
-    else:
-        raise ValueError(
-            "modelgrid must be 'structured' or 'vertex' not " + f"{modelgrid.grid_type}"
-        )
-    return areas
 
 
 def build_drain_data(
@@ -531,73 +388,3 @@ def build_sfr_data(
     perioddata = {0: [(s, "INFLOW", inflow) for s in seg_head_rnos]}
 
     return packagedata, connectiondata, perioddata
-
-
-def get_model_cell_count(
-    model: flopy.mf6.ModflowGwf | flopy.mf6.ModflowGwt,
-) -> tuple[int, int]:
-    """
-    Get the total number of cells and number of active cells in a model.
-
-    Parameters
-    ----------
-    model: flopy.mf6.ModflowGwf, flopy.mf6.ModflowGwt
-        flopy mf6 model object
-
-    Returns
-    -------
-    ncells: int
-        Total number of cells in a model
-    nactive: int
-        Total number of active cells in a model
-    """
-    modelgrid = model.modelgrid
-    if modelgrid.grid_type == "structured":
-        nlay, nrow, ncol = modelgrid.nlay, modelgrid.nrow, modelgrid.ncol
-        ncells = nlay * nrow * ncol
-        idomain = modelgrid.idomain
-        if idomain is None:
-            nactive = nlay * nrow * ncol
-        else:
-            nactive = np.count_nonzero(idomain == 1)
-    elif modelgrid.grid_type == "vertex":
-        nlay, ncpl = modelgrid.nlay, modelgrid.ncpl
-        ncells = nlay * ncpl
-        idomain = modelgrid.idomain
-        if idomain is None:
-            nactive = nlay * ncpl
-        else:
-            nactive = np.count_nonzero(idomain == 1)
-    else:
-        raise ValueError(f"modelgrid grid type '{modelgrid.grid_type}' not supported")
-
-    return ncells, nactive
-
-
-def get_simulation_cell_count(
-    simulation: flopy.mf6.MFSimulation,
-) -> tuple[int, int]:
-    """
-    Get the total number of cells and number of active cells in a simulation.
-
-    Parameters
-    ----------
-    simulation: flopy.mf6.MFSimulation
-        flopy mf6 simulation object
-
-    Returns
-    -------
-    ncells: int
-        Total number of cells in a simulation
-    nactive: int
-        Total number of active cells in a simulation
-    """
-    ncells = 0
-    nactive = 0
-    for model_name in simulation.model_names:
-        model = simulation.get_model(model_name)
-        i, j = get_model_cell_count(model)
-        ncells += i
-        nactive += j
-
-    return ncells, nactive

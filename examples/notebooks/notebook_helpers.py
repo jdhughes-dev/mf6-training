@@ -74,3 +74,202 @@ def find_mf6_libraries(env_path=None):
     lib_name = find_in_env(f"libmf6{lib_ext}", env_path=env_path)
     mf6_exe = find_in_env(f"mf6{exe_ext}", env_path=env_path)
     return lib_name, mf6_exe
+
+
+# ---------------------------------------------------------------------------
+# Synthetic-valley advanced-packages notebooks
+# ---------------------------------------------------------------------------
+# The advanced-packages notebooks each add one advanced package (UZF, MAW, SFR,
+# LAK, MVR) to a single shared model under models/. The helpers below let every
+# notebook find-or-create that model the same way and check package
+# dependencies, so the notebooks can be run independently and in any order
+# (subject to the dependencies enforced by require_packages).
+
+IN2FT = 1.0 / 12.0  # inches -> feet unit conversion used by several packages
+
+
+def synthetic_valley_workspaces(sample_frequency, name="sv"):
+    """(base_ws, advanced_ws) paths for the selected sample frequency."""
+    base_ws = pl.Path(
+        f"../data/synthetic-valley/synthetic-valley-base-{sample_frequency}"
+    )
+    advanced_ws = pl.Path(f"models/synthetic-valley-advanced-{sample_frequency}")
+    return base_ws, advanced_ws
+
+
+def load_or_create_advanced_model(sample_frequency, name="sv"):
+    """Return the advanced-packages simulation for the selected frequency.
+
+    If the advanced model already exists under models/ (i.e. an earlier notebook
+    created it), load and return it so this notebook adds to the packages built
+    earlier. Otherwise load the calibrated base model from ../data, repoint it at
+    the models/ workspace, and write it there - creating the base model in
+    models/ - before returning it.
+    """
+    import flopy
+
+    base_ws, advanced_ws = synthetic_valley_workspaces(sample_frequency, name)
+    if (advanced_ws / "mfsim.nam").is_file():
+        sim = flopy.mf6.MFSimulation.load(
+            sim_name=name, sim_ws=advanced_ws, write_headers=False, verbosity_level=0
+        )
+    else:
+        sim = flopy.mf6.MFSimulation.load(
+            sim_name=name, sim_ws=base_ws, write_headers=False, verbosity_level=0
+        )
+        sim.set_sim_path(advanced_ws)
+        sim.write_simulation(silent=True)
+    return sim
+
+
+def drop_packages(gwf, *names):
+    """Remove packages from a model by name if they are present (idempotent)."""
+    for n in names:
+        if gwf.get_package(n) is not None:
+            gwf.remove_package(n)
+
+
+def require_packages(gwf, required, feature):
+    """Raise if any required package is missing from the advanced model.
+
+    Used to enforce build-order dependencies, e.g. the MVR notebook requires the
+    UZF, LAK, and SFR packages to have been built first.
+    """
+    missing = [p for p in required if gwf.get_package(p) is None]
+    if missing:
+        raise RuntimeError(
+            f"The {feature} package requires {', '.join(required)}, but "
+            f"{', '.join(missing)} not found in the advanced model. Build the "
+            f"missing package(s) first (run the matching advanced-packages-* "
+            f"notebook) so models/ contains them, then re-run this notebook."
+        )
+
+
+def load_temporal_data(sample_frequency):
+    """Time-varying forcing (precip, ET, pumping) for the selected frequency."""
+    import pandas as pd
+
+    path = pl.Path(
+        f"../data/synthetic-valley/data/temporal_data_{sample_frequency}.parquet"
+    )
+    return pd.read_parquet(path)
+
+
+def load_spatial_data():
+    """(nc_ds, lake_location, lake_area) from the synthetic-valley truth dataset."""
+    import xarray as xa
+
+    nc_path = pl.Path("../data/synthetic-valley/data/synthetic_valley_truth.nc")
+    nc_ds = xa.open_dataset(nc_path)
+    lake_location = nc_ds["lake_location"].to_numpy()
+    lake_area = float(lake_location.sum()) * 500.0 * 500.0
+    return nc_ds, lake_location, lake_area
+
+
+# ---------------------------------------------------------------------------
+# Generic grid / geometry helpers (shared by e.g. the parallel notebook)
+# ---------------------------------------------------------------------------
+def string2geom(geostring, conversion=None):
+    """Convert a multi-line string of ``"x y"`` vertices to a list of (x, y) tuples."""
+    multiplier = 1.0 if conversion is None else float(conversion)
+    res = []
+    for line in geostring.split("\n"):
+        parts = line.split(" ")
+        res.append((float(parts[0]) * multiplier, float(parts[1]) * multiplier))
+    return res
+
+
+def set_structured_idomain(modelgrid, boundary):
+    """Set a structured grid's idomain (in place) from a boundary polygon.
+
+    Cells intersected by the polygon are marked active (idomain 1), all others
+    inactive (0). ``boundary`` is a list of (x, y) vertices.
+    """
+    import numpy as np
+    from flopy.utils.gridintersect import GridIntersect
+    from shapely.geometry import Polygon
+
+    if modelgrid.grid_type != "structured":
+        raise ValueError(f"modelgrid must be 'structured' not '{modelgrid.grid_type}'")
+
+    ix = GridIntersect(modelgrid, rtree=True)
+    result = ix.intersect(Polygon(boundary))
+    idx = np.array([coords for coords in result.cellids], dtype=int)
+    nr = idx.shape[0]
+    if idx.ndim == 1:
+        idx = idx.reshape((nr, 1))
+    idx = tuple(idx[:, i] for i in range(idx.shape[1]))
+    idomain = np.zeros(modelgrid.shape[1:], dtype=int)
+    idomain[idx] = 1
+    modelgrid.idomain = idomain.reshape(modelgrid.shape)
+
+
+def intersect_segments(modelgrid, segments):
+    """Intersect line segments with a grid.
+
+    Returns ``(GridIntersect, cellids, lengths)`` where ``cellids`` and
+    ``lengths`` are the concatenated intersected cell ids and reach lengths for
+    all segments. ``segments`` is a list of lists of (x, y) tuples.
+    """
+    import flopy
+    from shapely.geometry import LineString
+
+    ixs = flopy.utils.GridIntersect(modelgrid)
+    cellids = []
+    lengths = []
+    for sg in segments:
+        v = ixs.intersect(LineString(sg), sort_by_cellid=True)
+        cellids += v["cellids"].tolist()
+        lengths += v["lengths"].tolist()
+    return ixs, cellids, lengths
+
+
+def cell_areas(modelgrid):
+    """Return per-cell areas for a structured (2-D array) or vertex (1-D) grid."""
+    import numpy as np
+    from shapely.geometry import Polygon
+
+    if modelgrid.grid_type == "structured":
+        nrow, ncol = modelgrid.nrow, modelgrid.ncol
+        areas = np.zeros((nrow, ncol), dtype=float)
+        for r in range(nrow):
+            for c in range(ncol):
+                vertices = np.array(modelgrid.get_cell_vertices((r, c)))
+                areas[r, c] = Polygon(vertices).area
+    elif modelgrid.grid_type == "vertex":
+        areas = np.zeros(modelgrid.ncpl, dtype=float)
+        for idx in range(modelgrid.ncpl):
+            vertices = np.array(modelgrid.get_cell_vertices(idx))
+            areas[idx] = Polygon(vertices).area
+    else:
+        raise ValueError(
+            f"modelgrid must be 'structured' or 'vertex' not {modelgrid.grid_type}"
+        )
+    return areas
+
+
+def get_model_cell_count(model):
+    """Return ``(ncells, nactive)`` for a MODFLOW 6 model."""
+    import numpy as np
+
+    modelgrid = model.modelgrid
+    if modelgrid.grid_type == "structured":
+        ncells = modelgrid.nlay * modelgrid.nrow * modelgrid.ncol
+    elif modelgrid.grid_type == "vertex":
+        ncells = modelgrid.nlay * modelgrid.ncpl
+    else:
+        raise ValueError(f"modelgrid grid type '{modelgrid.grid_type}' not supported")
+    idomain = modelgrid.idomain
+    nactive = ncells if idomain is None else int(np.count_nonzero(idomain == 1))
+    return ncells, nactive
+
+
+def get_simulation_cell_count(simulation):
+    """Return ``(ncells, nactive)`` summed over all models in a simulation."""
+    ncells = 0
+    nactive = 0
+    for model_name in simulation.model_names:
+        i, j = get_model_cell_count(simulation.get_model(model_name))
+        ncells += i
+        nactive += j
+    return ncells, nactive
