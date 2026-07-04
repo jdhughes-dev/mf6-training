@@ -234,6 +234,7 @@ __marimo__/
 *.hds
 *.cbc
 *.bin
+*.grb
 *.lst
 *.list
 *.csv
@@ -245,4 +246,9 @@ presentations/
 # ex-gwt-prudic2004t2 base-model data read by modflow-api-F.ipynb; stream.csv
 # would otherwise be caught by the global *.csv ignore above
 !examples/data/ex-gwt-prudic2004t2/stream.csv
+
+# prt-voronoi loads this pre-built Voronoi grid as input, so it is the one
+# .grb kept in the repo (protected as binary in .gitattributes). All other
+# .grb files are model output and stay ignored above.
+!examples/data/prt_voronoi/ex-gwe-prt-gwf.disv.grb
 
