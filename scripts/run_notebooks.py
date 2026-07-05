@@ -17,8 +17,9 @@ from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
 # Kept to fast (< ~30 s), self-contained notebooks so CI stays quick; slower
-# notebooks (e.g. modflow-api-A/E, gwe-stallman, density-*, advanced-packages-*)
-# are intentionally excluded. Times below are approximate single-run wall times.
+# notebooks (e.g. modflow-api-A/E, gwe-stallman, density-henry-hilleke (~8 min),
+# advanced-packages-*) are intentionally excluded. Times below are approximate
+# single-run wall times.
 DEFAULT_NOTEBOOKS = (
     "examples/notebooks/flopy-intro-gwf-only.ipynb",  # ~6 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
@@ -30,11 +31,13 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/modflow-api-D.ipynb",  # ~5 s
     # A 1-D coupled flow-and-transport benchmark.
     "examples/notebooks/gwt1d.ipynb",  # ~12 s
+    # Variable-density flow: a dense saltwater bubble sinking (coupled GWF-GWT + BUY).
+    "examples/notebooks/density-bubble.ipynb",  # ~15 s
     # Local grid refinement (LGR) with two coupled GWF models.
     "examples/notebooks/lgr-flopy.ipynb",  # ~5 s
     # Mf6Splitter: 5-block manual split, load-balanced (pymetis) split, HDF5 node mapping.
     "examples/notebooks/model-splitting-with-flopy.ipynb",  # ~8 s
-    # XT3D on an unstructured (DISU) grid.
+    # XT3D on an unstructured (DISV) grid with a quadtree-refined interior.
     "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
     # Quadtree unstructured grid built with the Gridgen executable.
     "examples/notebooks/mesh-generation-gridgen.ipynb",  # ~7 s
