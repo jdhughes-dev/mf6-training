@@ -331,3 +331,193 @@ def set_idomain(grid, boundary):
     idomain = np.zeros(grid.shape[1:], dtype=int)
     idomain[idx] = 1
     grid.idomain = idomain.reshape(grid.shape)
+
+
+# ---------------------------------------------------------------------------
+# MODFLOW 6 API notebooks
+# ---------------------------------------------------------------------------
+def plot_convergence(fig, ax, history, max_ticks=25):
+    """Redraw a live outer-iteration convergence plot from a solver-loop history.
+
+    ``history`` is a list of ``(cumulative_iteration, abs_max_head_change,
+    stress_period, time_step)`` tuples appended once per outer iteration by a
+    manual API solver loop. Each time step is given an equal-width x-axis slot so
+    the long initial steady-state solve does not crowd out the transient time
+    steps, and the SP/TS labels are thinned to at most ``max_ticks``. Call this
+    once per time step from inside a ``flopy.plot.styles.USGSPlot()`` context to
+    animate convergence as the model runs.
+    """
+    import flopy
+    import numpy as np
+    from IPython.display import clear_output, display
+
+    ax.clear()
+    if history:
+        # group consecutive iterations into (stress period, time step) blocks
+        blocks, b0 = [], 0
+        for k in range(len(history)):
+            if k == len(history) - 1 or history[k][2:] != history[k + 1][2:]:
+                blocks.append((b0, k))
+                b0 = k + 1
+
+        # spread each block's iterations evenly within its unit-width slot so
+        # every time step gets the same width regardless of iteration count
+        xs, ys = [], []
+        for bi, (i0, i1) in enumerate(blocks):
+            n = i1 - i0 + 1
+            for j, k in enumerate(range(i0, i1 + 1)):
+                xs.append(bi + (j + 0.5) / n if n > 1 else bi + 0.5)
+                yv = history[k][1]
+                ys.append(np.nan if yv == 0.0 else yv)  # skip exact zeros on log axis
+        ax.semilogy(
+            xs, ys, marker="o", ms=4, lw=1.0, color="0.25", mfc="cyan", mec="0.25"
+        )
+
+        # thin the labels/separators so at most ~max_ticks are drawn
+        stride = max(1, -(-len(blocks) // max_ticks))
+        ticks, labels = [], []
+        for bi, (i0, i1) in enumerate(blocks):
+            if bi % stride == 0 or bi == len(blocks) - 1:
+                ticks.append(bi + 0.5)
+                labels.append(f"SP {history[i1][2]}\nTS {history[i1][3]}")
+                if bi > 0:
+                    ax.axvline(bi, color="0.5", lw=0.5)
+        ax.set_xticks(ticks)
+        ax.set_xticklabels(labels)
+
+    flopy.plot.styles.heading(ax=ax, heading="Outer iteration convergence")
+    flopy.plot.styles.xlabel(ax=ax, label="Stress period and time step")
+    flopy.plot.styles.ylabel(ax=ax, label="Maximum head change, ft")
+    flopy.plot.styles.remove_edge_ticks(ax=ax)
+
+    clear_output(wait=True)
+    display(fig)
+
+
+# ---------------------------------------------------------------------------
+# flopy-intro GWF/GWT notebooks
+# ---------------------------------------------------------------------------
+def time_slider_view(make_fig, ntimes, value=None, description="time index", dpi=200):
+    """Drive a time-index slider that always shows exactly one figure, identically
+    in VS Code and JupyterLab. Each frame is rendered to a PNG and pushed into a
+    single ipywidgets.Image; assigning Image.value *replaces* the displayed frame
+    in every frontend, so figures never stack. ``make_fig(time_index)`` must build
+    and return a Matplotlib figure.
+    """
+    import io
+
+    import matplotlib.pyplot as plt
+    from IPython.display import display
+    from ipywidgets import Image, IntSlider
+
+    image = Image(format="png")
+    # scale the rendered PNG to the notebook cell width so it is not clipped or
+    # oversized (e.g. in VS Code) while preserving the figure aspect ratio
+    image.layout.width = "100%"
+    image.layout.height = "auto"
+    slider = IntSlider(
+        min=0,
+        max=ntimes - 1,
+        step=1,
+        value=ntimes - 1 if value is None else value,
+        description=description,
+        continuous_update=False,
+    )
+
+    def update(*_):
+        fig = make_fig(slider.value)
+        buf = io.BytesIO()
+        fig.savefig(buf, format="png", dpi=dpi)
+        plt.close(fig)  # keep the inline backend from also emitting the figure
+        image.value = buf.getvalue()
+
+    slider.observe(update, names="value")
+    display(slider, image)
+    update()
+
+
+def gwf_oc_expected_kstpkper(gwf, sim):
+    """(kstp, kper) pairs (zero-based) the gwf OC is set to save, per record type."""
+    nstp = sim.tdis.perioddata.array["nstp"]
+    saverecord = gwf.oc.saverecord.get_data()  # {kper: recarray} or None
+
+    expected = {}  # rtype -> set of (kstp, kper)
+    current = {}  # rtype -> (ocsetting, ocsetting_data); forward-filled over periods
+    for kper in range(nstp.size):
+        rec = saverecord.get(kper) if saverecord else None
+        if rec is not None:
+            for rtype, setting, data in rec:
+                current[rtype.lower()] = (setting.lower(), data)
+        ns = int(nstp[kper])
+        for rtype, (setting, data) in current.items():
+            if setting == "all":
+                ksteps = range(ns)
+            elif setting == "first":
+                ksteps = [0]
+            elif setting == "last":
+                ksteps = [ns - 1]
+            elif setting == "frequency":
+                freq = int(data[0])
+                ksteps = [k for k in range(ns) if (k + 1) % freq == 0]
+            elif setting == "steps":
+                want = {int(s) for s in data}
+                ksteps = [k for k in range(ns) if (k + 1) in want]
+            else:
+                ksteps = range(ns)
+            expected.setdefault(rtype, set()).update((k, kper) for k in ksteps)
+    return expected
+
+
+def gwf_output_available(gwf, sim, ws):
+    """True only if every output file the gwf OC writes exists and is complete.
+
+    Lets a notebook skip ``sim.run_simulation()`` when the head and budget files
+    already contain every time step the OC package is configured to save.
+    """
+    expected = gwf_oc_expected_kstpkper(gwf, sim)
+    readers = {
+        "head": (gwf.oc.head_filerecord.array, gwf.output.head),
+        "budget": (gwf.oc.budget_filerecord.array, gwf.output.budget),
+    }
+    for rtype, want in expected.items():
+        if not want:
+            continue
+        filerecord, reader = readers.get(rtype, (None, None))
+        if reader is None or filerecord is None:
+            return False
+        # the output file must exist on disk
+        if not (ws / filerecord[0][0]).is_file():
+            return False
+        # ...and contain every requested time step
+        try:
+            have = {(int(k), int(p)) for k, p in reader().get_kstpkper()}
+        except Exception:
+            return False
+        if not want.issubset(have):
+            return False
+    return True
+
+
+def require_gwf_output(
+    gwf, ws, hint="run flopy-intro-gwt-A.ipynb to run the gwf model first"
+):
+    """Raise a clear error if the gwf head or budget output is missing or empty.
+
+    Used by a downstream transport notebook that reads the flow model's saved
+    heads and flows, to fail early (pointing back to the flow notebook) instead
+    of deep inside the transport build.
+    """
+    checks = {
+        "head": (gwf.oc.head_filerecord.array, gwf.output.head),
+        "budget": (gwf.oc.budget_filerecord.array, gwf.output.budget),
+    }
+    for rtype, (filerecord, reader) in checks.items():
+        if filerecord is None:
+            raise FileNotFoundError(f"gwf OC has no {rtype} output configured; {hint}")
+        fpath = ws / filerecord[0][0]
+        if not fpath.is_file() or fpath.stat().st_size == 0:
+            raise FileNotFoundError(
+                f"gwf {rtype} output '{fpath}' is missing or empty; {hint}"
+            )
+        if not reader().get_times():
+            raise ValueError(f"gwf {rtype} output '{fpath}' contains no times; {hint}")
