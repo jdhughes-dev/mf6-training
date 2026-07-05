@@ -64,8 +64,10 @@ short run of cells.
 - **Open** with a short "what this notebook covers" section: the goal in one or
   two sentences, and what the student will be able to do by the end. Keep any
   existing problem description, domain figure, and literature citation.
-- Use `####` subheaders for each major stage — build DIS, build NPF, define
-  boundary conditions, write, run, post-process, plot.
+- Use a subheader for each major stage — build DIS, build NPF, define boundary
+  conditions, write, run, post-process, plot. Any level (`##` or `###`) is fine;
+  what matters is that a notebook picks one level for its stage headers and uses
+  it consistently, under the top-level (`#`) title.
 - **After a results plot, add a one-paragraph "What to look for"** so students
   know how to read it (what the colors/contours/lines mean, what the expected
   or interesting behavior is).
