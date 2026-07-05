@@ -9,7 +9,9 @@ Requires the model executables to be on PATH (mf6 via the get-mf6 task). Run
 inside the pixi env, e.g. `pixi run test-notebooks`.
 """
 
+import os
 import sys
+import time
 from pathlib import Path
 
 import nbformat
@@ -55,19 +57,43 @@ def run_notebook(path: Path) -> None:
 
 def main(argv: list[str]) -> None:
     paths = [Path(p) for p in argv] or [Path(p) for p in DEFAULT_NOTEBOOKS]
+    n = len(paths)
+    in_gha = os.environ.get("GITHUB_ACTIONS") == "true"
+
+    # list every notebook up front so the CI log shows the full set being tested
+    print(f"[run-notebooks] executing {n} notebook{'s' if n != 1 else ''}:", flush=True)
+    for i, path in enumerate(paths, start=1):
+        print(f"[run-notebooks]   {i:2d}/{n}  {path}", flush=True)
+
     failures = []
-    for path in paths:
-        print(f"[run-notebooks] executing {path} ...", flush=True)
+    for i, path in enumerate(paths, start=1):
+        print(f"\n[run-notebooks] === ({i}/{n}) executing {path} ===", flush=True)
+        start = time.perf_counter()
         try:
             run_notebook(path)
         except Exception as exc:  # noqa: BLE001 - report and continue
-            print(f"[run-notebooks] FAILED {path}: {exc}", flush=True)
+            elapsed = time.perf_counter() - start
+            print(
+                f"[run-notebooks] FAILED ({i}/{n}) {path} after {elapsed:.1f} s",
+                flush=True,
+            )
+            if in_gha:
+                # single-line GitHub Actions error annotation (surfaces in the UI)
+                msg = str(exc).replace("\n", " ")[:500]
+                print(f"::error file={path}::notebook failed - {msg}", flush=True)
+            print(exc, flush=True)  # full traceback for the CI log
             failures.append(path)
         else:
-            print(f"[run-notebooks] OK {path}", flush=True)
+            elapsed = time.perf_counter() - start
+            print(f"[run-notebooks] OK ({i}/{n}) {path} in {elapsed:.1f} s", flush=True)
+
+    print("", flush=True)
     if failures:
-        sys.exit("[run-notebooks] failed: " + ", ".join(str(p) for p in failures))
-    print("[run-notebooks] OK: all notebooks executed.")
+        sys.exit(
+            f"[run-notebooks] {len(failures)} of {n} notebook(s) failed: "
+            + ", ".join(str(p) for p in failures)
+        )
+    print(f"[run-notebooks] OK: all {n} notebooks executed successfully.", flush=True)
 
 
 if __name__ == "__main__":
