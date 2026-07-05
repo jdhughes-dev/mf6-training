@@ -28,6 +28,15 @@ from urllib.request import urlretrieve
 NIGHTLY = "20260625"
 MF6_REPO = "https://github.com/MODFLOW-USGS/modflow6.git"
 
+# After installing mf6, flopy's MODFLOW 6 input classes are regenerated from the
+# modflow6 definition (DFN) files so they match the mf6 that will consume them.
+# We prefer the DFNs in the local modflow6 clone (an exact match to the build);
+# MF6_DFN_SUBPATH is where they live inside the clone. If no clone is present we
+# fall back to fetching MF6_DFN_REF ("develop") from GitHub. Both the extended
+# nightly and the from-source build track modflow6 develop.
+MF6_DFN_SUBPATH = Path("doc") / "mf6io" / "mf6ivar" / "dfn"
+MF6_DFN_REF = "develop"
+
 
 def conda_prefix() -> Path:
     prefix = os.environ.get("CONDA_PREFIX")
@@ -71,11 +80,26 @@ def install_windows(prefix: Path, root: Path) -> None:
     shutil.rmtree(extract_dir, ignore_errors=True)
 
 
-def install_unix(prefix: Path, root: Path) -> None:
+def clone_mf6_source(root: Path, shallow: bool = False) -> Path:
+    """Clone the modflow6 repo (once) so its DFN files are available locally.
+
+    Returns the clone directory. On Unix this is the same tree the extended
+    build compiles from; on Windows it is cloned only for its DFN files, so a
+    shallow clone is enough there.
+    """
     src = root / "modflow6"
     if not src.exists():
-        print(f"[get_mf6] cloning {MF6_REPO}")
-        subprocess.check_call(["git", "clone", MF6_REPO, str(src)])
+        cmd = ["git", "clone"]
+        if shallow:
+            cmd += ["--depth", "1"]
+        cmd += [MF6_REPO, str(src)]
+        print(f"[get_mf6] cloning {MF6_REPO}{' (shallow)' if shallow else ''}")
+        subprocess.check_call(cmd)
+    return src
+
+
+def install_unix(prefix: Path, root: Path) -> None:
+    src = clone_mf6_source(root)
 
     env = dict(os.environ)
     env["PKG_CONFIG_PATH"] = str(prefix / "lib" / "pkgconfig")
@@ -108,6 +132,45 @@ def install_unix(prefix: Path, root: Path) -> None:
     subprocess.check_call(["meson", "install", "-C", "builddir"], cwd=src, env=env)
 
 
+def update_flopy_classes(dfnpath: Path) -> None:
+    """Regenerate flopy's MODFLOW 6 input classes from the matching mf6 DFNs.
+
+    Run after mf6 is (re)installed so flopy's ``ModflowGwf...``/``ModflowPrt...``
+    classes match the mf6 that will actually consume their input. Prefers the
+    DFNs in the local modflow6 clone (``dfnpath``) for an exact match; if that
+    path is missing, falls back to fetching ``MF6_DFN_REF`` from GitHub.
+    Requires ``modflow-devtools[dfn]`` (declared in pixi.toml). Best-effort: a
+    failure here (e.g. no network) warns but does not fail the mf6 install, so
+    it is safe to call from the activation hook.
+    """
+    if dfnpath.is_dir():
+        source = ["--dfnpath", str(dfnpath)]
+        print(f"[get_mf6] syncing flopy MODFLOW 6 classes from {dfnpath}")
+    else:
+        source = ["--ref", MF6_DFN_REF]
+        print(
+            f"[get_mf6] {dfnpath} not found; syncing flopy MODFLOW 6 classes "
+            f"from modflow6 '{MF6_DFN_REF}' DFNs"
+        )
+    try:
+        subprocess.check_call(
+            [
+                sys.executable,
+                "-m",
+                "flopy.mf6.utils.generate_classes",
+                *source,
+                "--no-backup",
+                "--no-verbose",
+            ]
+        )
+    except (subprocess.CalledProcessError, OSError) as exc:
+        print(
+            f"[get_mf6] WARNING: could not update flopy classes ({exc}). "
+            "Run `pixi run python -m flopy.mf6.utils.generate_classes "
+            f"--dfnpath {dfnpath}` manually once network/deps are available."
+        )
+
+
 def main() -> None:
     force = "--force" in sys.argv[1:]
     prefix = conda_prefix()
@@ -124,10 +187,16 @@ def main() -> None:
 
     if sys.platform.startswith("win"):
         install_windows(prefix, root)
+        # Windows uses a prebuilt binary, so clone modflow6 only for its DFNs.
+        src = clone_mf6_source(root, shallow=True)
     else:
         install_unix(prefix, root)
+        src = root / "modflow6"
 
     print("[get_mf6] parallel (extended) MODFLOW 6 installed.")
+
+    # keep flopy's MODFLOW 6 input classes in sync with the mf6 just installed
+    update_flopy_classes(src / MF6_DFN_SUBPATH)
 
 
 if __name__ == "__main__":
