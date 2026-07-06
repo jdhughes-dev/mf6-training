@@ -3,7 +3,13 @@ name: CI
 on:
   push:
     branches: [main]
+    # Documentation-only changes don't affect whether the notebooks/models run,
+    # so skip the (expensive) CI matrix when a push touches only Markdown files.
+    paths-ignore:
+      - "**.md"
   pull_request:
+    paths-ignore:
+      - "**.md"
   schedule:
     # nightly at 06:00 UTC - also catches the pinned MODFLOW 6 nightly tag
     # disappearing from the modflow6-nightly-build releases.
