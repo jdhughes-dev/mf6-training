@@ -3,9 +3,9 @@ import pathlib as pl
 import flopy
 import numpy as np
 
-# generic grid/geometry helpers now live in notebook_helpers.py (importable
+# generic grid/geometry helpers now live in mf6_notebook_helpers.py (importable
 # because the notebook runs from examples/notebooks, which is on sys.path)
-from notebook_helpers import cell_areas
+from mf6_notebook_helpers import cell_areas
 from shapely.geometry import LineString
 
 # figures

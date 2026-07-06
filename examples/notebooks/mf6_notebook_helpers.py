@@ -524,7 +524,7 @@ def gwf_output_available(gwf, sim, ws):
 
 
 def require_gwf_output(
-    gwf, ws, hint="run flopy-intro-gwt-A.ipynb to run the gwf model first"
+    gwf, ws, hint="run flopy-intro-gwt-a.ipynb to run the gwf model first"
 ):
     """Raise a clear error if the gwf head or budget output is missing or empty.
 
