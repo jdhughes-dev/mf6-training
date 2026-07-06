@@ -9,6 +9,12 @@ import os
 import pathlib as pl
 import platform
 
+# Time conversions. MODFLOW has no built-in units, but these notebooks run in
+# seconds, so multiply or divide by these to report or interpret a model
+# duration in the more familiar days or years.
+seconds_per_day = 60 * 60 * 24
+seconds_per_year = seconds_per_day * 365.25
+
 
 def find_in_env(filename, env_path=None):
     """Return the path to ``filename`` inside the active pixi/conda environment.
