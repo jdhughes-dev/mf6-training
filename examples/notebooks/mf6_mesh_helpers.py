@@ -14,7 +14,7 @@ import pathlib as pl
 
 import flopy
 import numpy as np
-from notebook_helpers import string2geom
+from mf6_notebook_helpers import string2geom
 from shapely.geometry import LineString
 
 # problem extent and display settings

@@ -19,32 +19,32 @@ from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
 # Kept to fast (< ~30 s), self-contained notebooks so CI stays quick; slower
-# notebooks (e.g. modflow-api-A/E, gwe-stallman, density-henry-hilleke (~8 min),
-# advanced-packages-*) are intentionally excluded. Times below are approximate
+# notebooks (e.g. mf6-api-a/e, mf6-gwe-stallman, mf6-density-henry-hilleke (~8 min),
+# mf6-advanced-packages-*) are intentionally excluded. Times below are approximate
 # single-run wall times.
 DEFAULT_NOTEBOOKS = (
     "examples/notebooks/flopy-intro-gwf-only.ipynb",  # ~6 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
     # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
-    "examples/notebooks/modflow-api-C.ipynb",  # ~11 s
+    "examples/notebooks/mf6-api-c.ipynb",  # ~11 s
     # A manual solver loop watching convergence live (modflowapi, synthetic valley).
-    "examples/notebooks/modflow-api-B.ipynb",  # ~21 s
+    "examples/notebooks/mf6-api-b.ipynb",  # ~21 s
     # A head-dependent reverse drain built through the API package.
-    "examples/notebooks/modflow-api-D.ipynb",  # ~5 s
+    "examples/notebooks/mf6-api-d.ipynb",  # ~5 s
     # A 1-D coupled flow-and-transport benchmark.
-    "examples/notebooks/gwt1d.ipynb",  # ~12 s
+    "examples/notebooks/mf6-gwt1d.ipynb",  # ~12 s
     # Variable-density flow: a dense saltwater bubble sinking (coupled GWF-GWT + BUY).
-    "examples/notebooks/density-bubble.ipynb",  # ~15 s
+    "examples/notebooks/mf6-density-bubble.ipynb",  # ~15 s
     # Local grid refinement (LGR) with two coupled GWF models.
-    "examples/notebooks/lgr-flopy.ipynb",  # ~5 s
+    "examples/notebooks/mf6-lgr-flopy.ipynb",  # ~5 s
     # Mf6Splitter: 5-block manual split, load-balanced (pymetis) split, HDF5 node mapping.
-    "examples/notebooks/model-splitting-with-flopy.ipynb",  # ~8 s
+    "examples/notebooks/mf6-model-splitting-with-flopy.ipynb",  # ~8 s
     # XT3D on an unstructured (DISV) grid with a quadtree-refined interior.
-    "examples/notebooks/xt3d-unstructured.ipynb",  # ~7 s
+    "examples/notebooks/mf6-xt3d-unstructured.ipynb",  # ~7 s
     # Quadtree unstructured grid built with the Gridgen executable.
-    "examples/notebooks/mesh-generation-gridgen.ipynb",  # ~7 s
+    "examples/notebooks/mf6-mesh-generation-gridgen.ipynb",  # ~7 s
     # Triangle + Voronoi unstructured grids built with the Triangle executable.
-    "examples/notebooks/mesh-generation-triangle-voronoi.ipynb",  # ~6 s
+    "examples/notebooks/mf6-mesh-generation-triangle-voronoi.ipynb",  # ~6 s
 )
 
 
