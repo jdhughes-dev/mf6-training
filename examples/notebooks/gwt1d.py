@@ -66,10 +66,19 @@ def get_sim(workspace, dx=10.0, dt=20.0, advscheme="upstream"):
     name = "ex1"
     gwfname = "gwf-" + name
     sim_ws = workspace
-    sim = flopy.mf6.MFSimulation(sim_name=name, sim_ws=sim_ws, exe_name="mf6")
+    sim = flopy.mf6.MFSimulation(
+        sim_name=name,
+        sim_ws=sim_ws,
+        exe_name="mf6",
+    )
 
     # Time discretization
-    flopy.mf6.ModflowTdis(sim, nper=nper, perioddata=tdis_rc, time_units=time_units)
+    flopy.mf6.ModflowTdis(
+        sim,
+        nper=nper,
+        perioddata=tdis_rc,
+        time_units=time_units,
+    )
 
     # Groundwater flow model
     gwf = flopy.mf6.ModflowGwf(
@@ -120,7 +129,10 @@ def get_sim(workspace, dx=10.0, dt=20.0, advscheme="upstream"):
     )
 
     # Initial conditions package for flow model
-    flopy.mf6.ModflowGwfic(gwf, strt=strt)
+    flopy.mf6.ModflowGwfic(
+        gwf,
+        strt=strt,
+    )
 
     # Constant head package
     flopy.mf6.ModflowGwfchd(
@@ -190,10 +202,16 @@ def get_sim(workspace, dx=10.0, dt=20.0, advscheme="upstream"):
     )
 
     # Transport initial concentrations
-    flopy.mf6.ModflowGwtic(gwt, strt=sconc)
+    flopy.mf6.ModflowGwtic(
+        gwt,
+        strt=sconc,
+    )
 
     # Transport advection package
-    flopy.mf6.ModflowGwtadv(gwt, scheme=advscheme)
+    flopy.mf6.ModflowGwtadv(
+        gwt,
+        scheme=advscheme,
+    )
 
     # Transport mass storage package
     flopy.mf6.ModflowGwtmst(

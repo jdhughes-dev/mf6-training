@@ -310,7 +310,9 @@ def build_sfr_data(
     perioddata : dict
         SFR PERIODDATA ``{stress_period: [(rno, setting, value), ...]}``.
     """
-    ixs = flopy.utils.GridIntersect(modelgrid)
+    ixs = flopy.utils.GridIntersect(
+        modelgrid,
+    )
 
     # Intersect each segment separately.
     # sort_by_cellid=False preserves the upstream-to-downstream order

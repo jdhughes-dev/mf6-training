@@ -36,12 +36,21 @@ def build_gwe(base_ws, gwf_ws, gwf_name, mg, name, porosity, time_unit="days"):
     gwe_ws = base_ws / "gwe"
     gwe_ws.mkdir(exist_ok=True, parents=True)
 
-    gwe_sim = flopy.mf6.MFSimulation(sim_name=name, sim_ws=gwe_ws, exe_name="mf6")
+    gwe_sim = flopy.mf6.MFSimulation(
+        sim_name=name,
+        sim_ws=gwe_ws,
+        exe_name="mf6",
+    )
     flopy.mf6.ModflowTdis(
-        gwe_sim, time_units=time_unit, perioddata=[[1.0e6, 1000, 1.003]]
+        gwe_sim,
+        time_units=time_unit,
+        perioddata=[[1.0e6, 1000, 1.003]],
     )
     gwe = flopy.mf6.MFModel(
-        gwe_sim, model_type="gwe6", modelname=name, model_nam_file=f"{name}.name"
+        gwe_sim,
+        model_type="gwe6",
+        modelname=name,
+        model_nam_file=f"{name}.name",
     )
     imsgwe = flopy.mf6.ModflowIms(
         gwe_sim,
@@ -69,9 +78,21 @@ def build_gwe(base_ws, gwf_ws, gwf_name, mg, name, porosity, time_unit="days"):
         top=mg.top[0],
         botm=mg.top_botm[1][0],
     )
-    flopy.mf6.ModflowGweic(gwe, strt=STRT_TEMP)
-    flopy.mf6.ModflowGweadv(gwe, scheme="TVD")
-    flopy.mf6.ModflowGwecnd(gwe, alh=ALH, ath1=ATH1, ktw=KTW, kts=KTS)
+    flopy.mf6.ModflowGweic(
+        gwe,
+        strt=STRT_TEMP,
+    )
+    flopy.mf6.ModflowGweadv(
+        gwe,
+        scheme="TVD",
+    )
+    flopy.mf6.ModflowGwecnd(
+        gwe,
+        alh=ALH,
+        ath1=ATH1,
+        ktw=KTW,
+        kts=KTS,
+    )
     flopy.mf6.ModflowGweest(
         gwe,
         porosity=porosity,

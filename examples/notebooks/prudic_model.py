@@ -235,7 +235,9 @@ def build_prudic_simulation(
     botm, idomain, lakibd = load_grid_data()
 
     sim = flopy.mf6.MFSimulation(
-        sim_name="nitrate-nitrite", sim_ws=workspace, exe_name=str(mf6_exe)
+        sim_name="nitrate-nitrite",
+        sim_ws=workspace,
+        exe_name=str(mf6_exe),
     )
     flopy.mf6.ModflowTdis(
         sim,
@@ -304,7 +306,11 @@ def build_prudic_simulation(
 
 def _build_gwf(sim, botm, idomain, lakibd):
     name = "flow"
-    gwf = flopy.mf6.ModflowGwf(sim, modelname=name, save_flows=True)
+    gwf = flopy.mf6.ModflowGwf(
+        sim,
+        modelname=name,
+        save_flows=True,
+    )
     dis = flopy.mf6.ModflowGwfdis(
         gwf,
         length_units=length_units,
@@ -325,14 +331,21 @@ def _build_gwf(sim, botm, idomain, lakibd):
         k=hk,
         k33=vk,
     )
-    flopy.mf6.ModflowGwfic(gwf, strt=50.0)
+    flopy.mf6.ModflowGwfic(
+        gwf,
+        strt=50.0,
+    )
     flopy.mf6.ModflowGwfoc(
         gwf,
         head_filerecord=f"{name}.hds",
         budget_filerecord=f"{name}.bud",
         saverecord=[("HEAD", "ALL"), ("BUDGET", "ALL")],
     )
-    flopy.mf6.ModflowGwfrcha(gwf, recharge={0: recharge}, pname="RCH-1")
+    flopy.mf6.ModflowGwfrcha(
+        gwf,
+        recharge={0: recharge},
+        pname="RCH-1",
+    )
 
     chdlist = []
     fpath = retrieve("chd.dat")
@@ -341,13 +354,20 @@ def _build_gwf(sim, botm, idomain, lakibd):
         if len(ll) == 4:
             k, i, j, hd = ll
             chdlist.append([(int(k) - 1, int(i) - 1, int(j) - 1), float(hd)])
-    flopy.mf6.ModflowGwfchd(gwf, stress_period_data=chdlist, pname="CHD-1")
+    flopy.mf6.ModflowGwfchd(
+        gwf,
+        stress_period_data=chdlist,
+        pname="CHD-1",
+    )
 
     idomain = dis.idomain.array
     lake_map = np.ones((nlay, nrow, ncol), dtype=np.int32) * -1
     lake_map[0, :, :] = lakibd[:, :] - 1
     idomain, lakepakdata_dict, lakeconnectiondata = flopy.mf6.utils.get_lak_connections(
-        gwf.modelgrid, lake_map, idomain=idomain, bedleak=lakebed_leakance
+        gwf.modelgrid,
+        lake_map,
+        idomain=idomain,
+        bedleak=lakebed_leakance,
     )
     gwf.dis.idomain.set_data(idomain[0], layer=0, multiplier=[1])
     lakpackagedata = [
@@ -418,7 +438,11 @@ def _build_gwt(
     slug_source_conc,
 ):
     """Build one GWT species model. is_source -> the lake supplies this species."""
-    gwt = flopy.mf6.ModflowGwt(sim, modelname=name, save_flows=True)
+    gwt = flopy.mf6.ModflowGwt(
+        sim,
+        modelname=name,
+        save_flows=True,
+    )
     idomain = sim.get_model("flow").dis.idomain.array
 
     flopy.mf6.ModflowGwtdis(
@@ -433,11 +457,28 @@ def _build_gwt(
         botm=botm,
         idomain=idomain,
     )
-    flopy.mf6.ModflowGwtic(gwt, strt=0.0)
-    flopy.mf6.ModflowGwtmst(gwt, porosity=porosity)
-    flopy.mf6.ModflowGwtadv(gwt, scheme="TVD")
-    flopy.mf6.ModflowGwtdsp(gwt, alh=alpha_l, ath1=alpha_th, ath2=alpha_tv)
-    flopy.mf6.ModflowGwtssm(gwt, sources=[[]])
+    flopy.mf6.ModflowGwtic(
+        gwt,
+        strt=0.0,
+    )
+    flopy.mf6.ModflowGwtmst(
+        gwt,
+        porosity=porosity,
+    )
+    flopy.mf6.ModflowGwtadv(
+        gwt,
+        scheme="TVD",
+    )
+    flopy.mf6.ModflowGwtdsp(
+        gwt,
+        alh=alpha_l,
+        ath1=alpha_th,
+        ath2=alpha_tv,
+    )
+    flopy.mf6.ModflowGwtssm(
+        gwt,
+        sources=[[]],
+    )
 
     # SRC package for the reaction terms (used only by the "src_rhs" method). One
     # entry per active cell; the API overwrites the loading rates each time step.
@@ -506,7 +547,10 @@ def _build_gwt(
         pname="SFR-1",
         auxiliary=["aux1", "aux2"],
     )
-    flopy.mf6.modflow.ModflowGwtmvt(gwt, print_flows=True)
+    flopy.mf6.modflow.ModflowGwtmvt(
+        gwt,
+        print_flows=True,
+    )
 
     flopy.mf6.ModflowGwtoc(
         gwt,
