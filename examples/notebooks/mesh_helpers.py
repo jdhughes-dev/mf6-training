@@ -25,7 +25,9 @@ levels = np.arange(10, 110, 10)
 
 # the fine topography every grid samples, and the shared watershed geometry
 data_path = pl.Path("../data/mesh-generation")
-fine_topo = flopy.utils.Raster.load(data_path / "fine_topo.asc")
+fine_topo = flopy.utils.Raster.load(
+    data_path / "fine_topo.asc",
+)
 geometries = json.loads((data_path / "watershed_geometry.json").read_text())
 
 boundary_polygon = string2geom(geometries["boundary"])
@@ -42,7 +44,9 @@ def resample_topo(grid):
 
 def river_intersection(grid, all_intersections=False):
     """Return an array flagged 1 in cells the river segments cross."""
-    ixs = flopy.utils.GridIntersect(grid)
+    ixs = flopy.utils.GridIntersect(
+        grid,
+    )
     cellids = []
     for sg in sgs:
         kw = {}

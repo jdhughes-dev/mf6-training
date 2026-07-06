@@ -111,11 +111,17 @@ def load_or_create_advanced_model(sample_frequency, name="sv"):
     base_ws, advanced_ws = synthetic_valley_workspaces(sample_frequency, name)
     if (advanced_ws / "mfsim.nam").is_file():
         sim = flopy.mf6.MFSimulation.load(
-            sim_name=name, sim_ws=advanced_ws, write_headers=False, verbosity_level=0
+            sim_name=name,
+            sim_ws=advanced_ws,
+            write_headers=False,
+            verbosity_level=0,
         )
     else:
         sim = flopy.mf6.MFSimulation.load(
-            sim_name=name, sim_ws=base_ws, write_headers=False, verbosity_level=0
+            sim_name=name,
+            sim_ws=base_ws,
+            write_headers=False,
+            verbosity_level=0,
         )
         sim.set_sim_path(advanced_ws)
         sim.write_simulation(silent=True)
@@ -217,7 +223,9 @@ def intersect_segments(modelgrid, segments):
     import flopy
     from shapely.geometry import LineString
 
-    ixs = flopy.utils.GridIntersect(modelgrid)
+    ixs = flopy.utils.GridIntersect(
+        modelgrid,
+    )
     cellids = []
     lengths = []
     for sg in segments:
@@ -385,10 +393,21 @@ def plot_convergence(fig, ax, history, max_ticks=25):
         ax.set_xticks(ticks)
         ax.set_xticklabels(labels)
 
-    flopy.plot.styles.heading(ax=ax, heading="Outer iteration convergence")
-    flopy.plot.styles.xlabel(ax=ax, label="Stress period and time step")
-    flopy.plot.styles.ylabel(ax=ax, label="Maximum head change, ft")
-    flopy.plot.styles.remove_edge_ticks(ax=ax)
+    flopy.plot.styles.heading(
+        ax=ax,
+        heading="Outer iteration convergence",
+    )
+    flopy.plot.styles.xlabel(
+        ax=ax,
+        label="Stress period and time step",
+    )
+    flopy.plot.styles.ylabel(
+        ax=ax,
+        label="Maximum head change, ft",
+    )
+    flopy.plot.styles.remove_edge_ticks(
+        ax=ax,
+    )
 
     clear_output(wait=True)
     display(fig)
