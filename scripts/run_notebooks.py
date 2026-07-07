@@ -20,7 +20,7 @@ from nbconvert.preprocessors import ExecutePreprocessor
 # Notebooks executed by default when no paths are passed on the command line.
 # Kept to fast (< ~30 s), self-contained notebooks so CI stays quick; slower
 # notebooks (e.g. mf6-api-a/e, mf6-gwe-stallman, mf6-density-henry-hilleke (~8 min),
-# mf6-advanced-packages-*) are intentionally excluded. Times below are approximate
+# mf6-adv-*) are intentionally excluded. Times below are approximate
 # single-run wall times.
 DEFAULT_NOTEBOOKS = (
     "examples/notebooks/flopy-intro-gwf-only.ipynb",  # ~6 s

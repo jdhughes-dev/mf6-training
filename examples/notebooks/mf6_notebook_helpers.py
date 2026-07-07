@@ -152,7 +152,7 @@ def require_packages(gwf, required, feature):
         raise RuntimeError(
             f"The {feature} package requires {', '.join(required)}, but "
             f"{', '.join(missing)} not found in the advanced model. Build the "
-            f"missing package(s) first (run the matching advanced-packages-* "
+            f"missing package(s) first (run the matching mf6-adv-* "
             f"notebook) so models/ contains them, then re-run this notebook."
         )
 
