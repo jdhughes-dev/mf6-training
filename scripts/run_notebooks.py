@@ -45,6 +45,8 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/mf6-mesh-generation-gridgen.ipynb",  # ~7 s
     # Triangle + Voronoi unstructured grids built with the Triangle executable.
     "examples/notebooks/mf6-mesh-generation-triangle-voronoi.ipynb",  # ~6 s
+    # CSUB land subsidence: no-delay vs delay interbeds (two short runs).
+    "examples/notebooks/mf6-csub.ipynb",  # ~19 s
 )
 
 
