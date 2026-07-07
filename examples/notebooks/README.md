@@ -33,7 +33,7 @@ grid refinement, and running models in parallel.
 
 4. **Where to start.** The `flopy-intro-*` notebooks are the guided introduction
    to building and post-processing a model with FloPy; after those, explore by
-   topic using the tables below. The `mf6-api-*` and `mf6-advanced-packages-*`
+   topic using the tables below. The `mf6-api-*` and `mf6-adv-*`
    notebooks are each meant to be read in order (a → f, and the advanced packages
    build on a shared model), and they check for and explain any prerequisites.
 
@@ -54,7 +54,7 @@ grid refinement, and running models in parallel.
 
    A handful of notebooks are intentionally slow (several minutes each) and are
    left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
-   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-advanced-packages-*`
+   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*`
    series, and `mf6-parallel` — but they still run.
 
 > **Naming.** Notebooks are prefixed `mf6-` (or `flopy-` for the FloPy-basics
@@ -98,12 +98,12 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 
 | Notebook | What it demonstrates |
 |---|---|
-| [`mf6-advanced-packages-uzf`](mf6-advanced-packages-uzf.ipynb) | Unsaturated Zone Flow (UZF): route infiltration through an unsaturated column before it reaches the water table. |
-| [`mf6-advanced-packages-maw`](mf6-advanced-packages-maw.ipynb) | Multi-Aquifer Well (MAW): represent a single well screened across several layers and compute its exchange with each. |
-| [`mf6-advanced-packages-sfr`](mf6-advanced-packages-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
-| [`mf6-advanced-packages-lak`](mf6-advanced-packages-lak.ipynb) | Lake (LAK): simulate lake stage and its exchange with the groundwater system. |
-| [`mf6-advanced-packages-mvr`](mf6-advanced-packages-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
-| [`mf6-advanced-packages-processing`](mf6-advanced-packages-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
+| [`mf6-adv-uzf`](mf6-adv-uzf.ipynb) | Unsaturated Zone Flow (UZF): route infiltration through an unsaturated column before it reaches the water table. |
+| [`mf6-adv-maw`](mf6-adv-maw.ipynb) | Multi-Aquifer Well (MAW): represent a single well screened across several layers and compute its exchange with each. |
+| [`mf6-adv-sfr`](mf6-adv-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
+| [`mf6-adv-lak`](mf6-adv-lak.ipynb) | Lake (LAK): simulate lake stage and its exchange with the groundwater system. |
+| [`mf6-adv-mvr`](mf6-adv-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
+| [`mf6-adv-processing`](mf6-adv-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
 
 ### Land subsidence
 
