@@ -9,9 +9,9 @@ look for in the results) with runnable code, and closes with a short recap.
 
 Between them the notebooks cover building models from scratch with FloPy, driving
 MODFLOW 6 live through its API, the advanced hydrologic packages (UZF, MAW, SFR,
-LAK, MVR), solute and heat transport, variable-density flow, particle tracking,
-the XT3D flow formulation, unstructured-grid generation, local grid refinement,
-and running models in parallel.
+LAK, MVR), solute and heat transport, variable-density flow, land subsidence,
+particle tracking, the XT3D flow formulation, unstructured-grid generation, local
+grid refinement, and running models in parallel.
 
 ## How to use
 
@@ -104,6 +104,12 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 | [`mf6-advanced-packages-lak`](mf6-advanced-packages-lak.ipynb) | Lake (LAK): simulate lake stage and its exchange with the groundwater system. |
 | [`mf6-advanced-packages-mvr`](mf6-advanced-packages-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
 | [`mf6-advanced-packages-processing`](mf6-advanced-packages-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
+
+### Land subsidence
+
+| Notebook | What it demonstrates |
+|---|---|
+| [`mf6-csub`](mf6-csub.ipynb) | Skeletal Storage, Compaction, and Subsidence (CSUB): pumping-induced land subsidence in a layered aquifer system (adapted from `ex-gwf-csub-p04`), run with **no-delay** vs **delay** interbeds and compared by their maximum subsidence at the end of the simulation. |
 
 ### Transport and variable-density flow
 
