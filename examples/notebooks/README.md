@@ -100,8 +100,8 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 |---|---|
 | [`mf6-adv-uzf`](mf6-adv-uzf.ipynb) | Unsaturated Zone Flow (UZF): route infiltration through an unsaturated column before it reaches the water table. |
 | [`mf6-adv-maw`](mf6-adv-maw.ipynb) | Multi-Aquifer Well (MAW): represent a single well screened across several layers and compute its exchange with each. |
-| [`mf6-adv-sfr`](mf6-adv-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
 | [`mf6-adv-lak`](mf6-adv-lak.ipynb) | Lake (LAK): simulate lake stage and its exchange with the groundwater system. |
+| [`mf6-adv-sfr`](mf6-adv-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
 | [`mf6-adv-mvr`](mf6-adv-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
 | [`mf6-adv-processing`](mf6-adv-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
 
