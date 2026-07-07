@@ -10,8 +10,8 @@ look for in the results) with runnable code, and closes with a short recap.
 Between them the notebooks cover building models from scratch with FloPy, driving
 MODFLOW 6 live through its API, the advanced hydrologic packages (UZF, MAW, SFR,
 LAK, MVR), solute and heat transport, variable-density flow, land subsidence,
-particle tracking, the XT3D flow formulation, unstructured-grid generation, local
-grid refinement, and running models in parallel.
+overland flow, particle tracking, the XT3D flow formulation, unstructured-grid
+generation, local grid refinement, and running models in parallel.
 
 ## How to use
 
@@ -110,6 +110,14 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 | Notebook | What it demonstrates |
 |---|---|
 | [`mf6-csub`](mf6-csub.ipynb) | Skeletal Storage, Compaction, and Subsidence (CSUB): pumping-induced land subsidence in a layered aquifer system (adapted from `ex-gwf-csub-p04`), run with **no-delay** vs **delay** interbeds and compared by their maximum subsidence at the end of the simulation. |
+
+### Overland flow
+
+The overland-flow (OLF) model is a distinct MODFLOW 6 model type — a sibling of GWF, GWT, GWE, and PRT — that routes water over the land surface.
+
+| Notebook | What it demonstrates |
+|---|---|
+| [`mf6-olf`](mf6-olf.ipynb) | Overland flow with the OLF model and its Diffusive Wave (DFW) package on a 2-D grid (adapted from the `test_olf_dis` example): steady sheet flow across a plane and around an inactive block, run for several Manning's `n` values to show that discharge scales as 1/`n` while the fixed-boundary stage does not. Plotting is in the paired `mf6_olf.py`. |
 
 ### Transport and variable-density flow
 

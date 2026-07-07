@@ -47,6 +47,8 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/mf6-mesh-generation-triangle-voronoi.ipynb",  # ~6 s
     # CSUB land subsidence: no-delay vs delay interbeds (two short runs).
     "examples/notebooks/mf6-csub.ipynb",  # ~19 s
+    # OLF overland flow: steady sheet flow across a plane for several Manning's n.
+    "examples/notebooks/mf6-olf.ipynb",  # ~7 s
 )
 
 
