@@ -208,8 +208,8 @@ def set_structured_idomain(modelgrid, boundary):
         raise ValueError(f"modelgrid must be 'structured' not '{modelgrid.grid_type}'")
 
     ix = GridIntersect(modelgrid, rtree=True)
-    result = ix.intersect(Polygon(boundary))
-    idx = np.array([coords for coords in result.cellids], dtype=int)
+    result = ix.intersect(Polygon(boundary), geo_dataframe=True)
+    idx = np.array([coords for coords in result["cellids"]], dtype=int)
     nr = idx.shape[0]
     if idx.ndim == 1:
         idx = idx.reshape((nr, 1))
@@ -235,7 +235,7 @@ def intersect_segments(modelgrid, segments):
     cellids = []
     lengths = []
     for sg in segments:
-        v = ixs.intersect(LineString(sg), sort_by_cellid=True)
+        v = ixs.intersect(LineString(sg), sort_by_cellid=True, geo_dataframe=True)
         cellids += v["cellids"].tolist()
         lengths += v["lengths"].tolist()
     return ixs, cellids, lengths
@@ -336,8 +336,8 @@ def set_idomain(grid, boundary):
     from shapely.geometry import Polygon
 
     ix = GridIntersect(grid, rtree=True)
-    result = ix.intersect(Polygon(boundary))
-    idx = np.array([coords for coords in result.cellids], dtype=int)
+    result = ix.intersect(Polygon(boundary), geo_dataframe=True)
+    idx = np.array([coords for coords in result["cellids"]], dtype=int)
     nr = idx.shape[0]
     if idx.ndim == 1:
         idx = idx.reshape((nr, 1))
