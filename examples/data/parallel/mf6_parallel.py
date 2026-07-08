@@ -320,7 +320,7 @@ def build_sfr_data(
     seg_cellids = []
     seg_lengths = []
     for sg in segments:
-        v = ixs.intersect(LineString(sg), sort_by_cellid=False)
+        v = ixs.intersect(LineString(sg), sort_by_cellid=False, geo_dataframe=True)
         seg_cellids.append(v["cellids"].tolist())
         seg_lengths.append(v["lengths"].tolist())
 

@@ -52,7 +52,7 @@ def river_intersection(grid, all_intersections=False):
         kw = {}
         if all_intersections:
             kw = dict(return_all_intersections=True)
-        v = ixs.intersect(LineString(sg), sort_by_cellid=True, **kw)
+        v = ixs.intersect(LineString(sg), sort_by_cellid=True, geo_dataframe=True, **kw)
         cellids += v["cellids"].tolist()
     arr = np.zeros(grid.shape[1:])
     for loc in cellids:
