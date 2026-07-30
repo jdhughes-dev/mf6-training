@@ -21,12 +21,17 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from urllib.error import URLError
 from urllib.request import urlretrieve
 
-# Nightly tag that ships the win64ext.zip (extended) asset. Update from
-# https://github.com/MODFLOW-USGS/modflow6-nightly-build/releases as needed.
-NIGHTLY = "20260625"
-MF6_REPO = "https://github.com/MODFLOW-USGS/modflow6.git"
+# Source of the win64ext.zip (extended) asset. The newest nightly is resolved at
+# download time through the /releases/latest redirect, which needs no API call
+# and so is not subject to the GitHub API rate limit. NIGHTLY is only a fallback
+# for when that request fails; upstream deletes nightly releases after about a
+# month, so a pinned tag goes stale on its own.
+NIGHTLY_REPO = "https://github.com/MODFLOW-ORG/modflow6-nightly-build"
+NIGHTLY = "20260730"
+MF6_REPO = "https://github.com/MODFLOW-ORG/modflow6.git"
 
 # After installing mf6, flopy's MODFLOW 6 input classes are regenerated from the
 # modflow6 definition (DFN) files so they match the mf6 that will consume them.
@@ -58,15 +63,29 @@ def mf6_in_env(prefix: Path) -> bool:
     return any((prefix / d / exe).exists() for d in ("bin", "Library/bin"))
 
 
-def install_windows(prefix: Path, root: Path) -> None:
-    url = (
-        f"https://github.com/MODFLOW-USGS/modflow6-nightly-build/releases/"
-        f"download/{NIGHTLY}/win64ext.zip"
+def download_win64ext(dest: Path) -> None:
+    """Download the extended nightly zip: newest release, then the pinned tag."""
+    urls = (
+        f"{NIGHTLY_REPO}/releases/latest/download/win64ext.zip",
+        f"{NIGHTLY_REPO}/releases/download/{NIGHTLY}/win64ext.zip",
     )
+    for url in urls:
+        print(f"[get_mf6] downloading {url}")
+        try:
+            urlretrieve(url, dest)
+            return
+        except URLError as err:
+            print(f"[get_mf6] download failed: {err}")
+    sys.exit(
+        f"[get_mf6] could not download win64ext.zip from the newest nightly or "
+        f"the pinned tag {NIGHTLY} - update NIGHTLY in scripts/get_mf6.py."
+    )
+
+
+def install_windows(prefix: Path, root: Path) -> None:
     zip_path = root / "win64ext.zip"
     extract_dir = root / "win64ext"
-    print(f"[get_mf6] downloading {url}")
-    urlretrieve(url, zip_path)
+    download_win64ext(zip_path)
     if extract_dir.exists():
         shutil.rmtree(extract_dir)
     shutil.unpack_archive(str(zip_path), str(extract_dir))
