@@ -168,11 +168,13 @@ arm64 hosted runners available for public repositories.)
 
 ## Notes
 
-- The Windows MODFLOW 6 download is pinned to a specific
-  [nightly build](https://github.com/MODFLOW-USGS/modflow6-nightly-build/releases)
-  tag. Nightly releases are eventually deleted upstream; if `pixi run get-mf6`
-  fails to download on Windows, update `NIGHTLY` in `scripts/get_mf6.py` to a
-  current tag. (The nightly CI run flags this automatically.)
+- The Windows MODFLOW 6 download resolves the newest
+  [nightly build](https://github.com/MODFLOW-ORG/modflow6-nightly-build/releases)
+  at download time, falling back to the `NIGHTLY` tag pinned in
+  `scripts/get_mf6.py` if that request fails. Upstream deletes nightly releases
+  after about a month, so the pinned tag goes stale on its own; if both fail,
+  update `NIGHTLY` to a current tag. (The nightly CI run flags this
+  automatically.)
 - On the platforms USGS ships no prebuilt binaries for - **Intel macs (osx-64)**
   and **linux-aarch64** - the mp7 / triangle / gridgen executables are built from
   source (cloned from the [MODFLOW-ORG](https://github.com/MODFLOW-ORG) GitHub
