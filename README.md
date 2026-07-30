@@ -66,6 +66,16 @@ Verify with (should report 0.71.2 or newer):
 pixi --version
 ```
 
+If you already have an older pixi, update it in place:
+
+```bash
+pixi self-update
+```
+
+An older pixi cannot read `pixi.toml` (the per-platform `platforms` tables need
+0.71.0) or `pixi.lock` (v7, 0.68.0), and stops with a `requires pixi >=0.71`
+error.
+
 ## 2. Install the environment
 
 Clone the repository and install the locked environment from `pixi.lock`:

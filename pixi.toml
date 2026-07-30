@@ -2,6 +2,10 @@
 name = "mf6-training"
 version = "0.1.0"
 channels = ["conda-forge"]
+# Minimum pixi: the per-platform `platforms` tables below need 0.71.0, and
+# pixi.lock is v7 (0.68.0). Without this floor an older pixi stops on a bare
+# TOML parse error ("expected a string, found table").
+requires-pixi = ">=0.71"
 # Per-platform virtual-package requirements (replaces the deprecated
 # [system-requirements] table):
 #  - linux-64 pins a lower __linux (kernel) version for the openmpi/petsc stack
