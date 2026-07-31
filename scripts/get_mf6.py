@@ -158,9 +158,9 @@ def update_flopy_classes(dfnpath: Path) -> None:
     classes match the mf6 that will actually consume their input. Prefers the
     DFNs in the local modflow6 clone (``dfnpath``) for an exact match; if that
     path is missing, falls back to fetching ``MF6_DFN_REF`` from GitHub.
-    Requires ``modflow-devtools[dfn]`` (declared in pixi.toml). Best-effort: a
-    failure here (e.g. no network) warns but does not fail the mf6 install, so
-    it is safe to call from the activation hook.
+    Requires ``modflow-devtools[dfn]`` (declared in pixi.toml). A failure here is
+    fatal: flopy would keep the classes it shipped with, which silently lack the
+    packages the installed mf6 supports.
     """
     if dfnpath.is_dir():
         source = ["--dfnpath", str(dfnpath)]
@@ -183,10 +183,12 @@ def update_flopy_classes(dfnpath: Path) -> None:
             ]
         )
     except (subprocess.CalledProcessError, OSError) as exc:
-        print(
-            f"[get_mf6] WARNING: could not update flopy classes ({exc}). "
-            "Run `pixi run python -m flopy.mf6.utils.generate_classes "
-            f"--dfnpath {dfnpath}` manually once network/deps are available."
+        sys.exit(
+            f"[get_mf6] could not update flopy classes ({exc}). flopy would keep "
+            "the classes it shipped with, which silently lack the packages the "
+            "installed mf6 supports. Retry with `pixi run get-mf6 --force` once "
+            "the network and dependencies are available - a plain "
+            "`pixi run get-mf6` returns early because mf6 is already installed."
         )
 
 

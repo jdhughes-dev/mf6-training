@@ -14,7 +14,7 @@ REM and never fail activation. Set MF6_SKIP_AUTOINSTALL to disable (CI runs the
 REM get-mf6 / get-exes / pre-commit-install tasks explicitly instead).
 if defined MF6_SKIP_AUTOINSTALL goto :eof
 if not exist "%CONDA_PREFIX%\bin\mf6.exe" (
-  python "%PIXI_PROJECT_ROOT%\scripts\get_mf6.py" || echo [get_mf6] WARNING: MODFLOW 6 setup failed; run "pixi run get-mf6" to retry. 1>&2
+  python "%PIXI_PROJECT_ROOT%\scripts\get_mf6.py" || echo [get_mf6] WARNING: MODFLOW 6 setup failed; run "pixi run get-mf6 --force" to retry. 1>&2
 )
 if not exist "%CONDA_PREFIX%\Scripts\mp7.exe" (
   python "%PIXI_PROJECT_ROOT%\scripts\get_exes.py" || echo [get-exes] WARNING: could not install mp7/gridgen/triangle; run "pixi run get-exes" to retry. 1>&2
