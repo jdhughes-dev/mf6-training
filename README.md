@@ -80,6 +80,18 @@ pixi install
 exact versions pinned in `pixi.lock`. Nothing is installed globally and your
 system Python is untouched.
 
+Everything below happens automatically on first use, but you can do it all up
+front with:
+
+```bash
+pixi run install
+```
+
+That runs `get-mf6`, `get-exes`, and `pre-commit-install` in order. Note it is
+`pixi run install` (a task in this repo), not `pixi install` (the pixi command
+above that creates the environment). Each step is idempotent, so it is safe to
+re-run at any time.
+
 ### Parallel MODFLOW 6
 
 A parallel (extended) MODFLOW 6 is **installed automatically the first time you

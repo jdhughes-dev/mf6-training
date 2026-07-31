@@ -82,6 +82,10 @@ modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", branch = "
 modflow-devtools = { version = "*", extras = ["dfn"] }
 
 [tasks]
+# Complete the setup once `pixi install` has created the environment: MODFLOW 6,
+# the MODFLOW-family executables, and the git pre-commit hook. The steps run in
+# order and stop at the first failure; each is idempotent, so re-running is safe.
+install = { depends-on = ["get-mf6", "get-exes", "pre-commit-install"] }
 # Launch JupyterLab in the project directory.
 jupyter = "jupyter lab"
 # Open the project in VS Code (requires the `code` CLI on PATH).
