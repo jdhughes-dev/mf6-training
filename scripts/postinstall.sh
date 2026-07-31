@@ -23,7 +23,7 @@ fi
 if [ -z "${MF6_SKIP_AUTOINSTALL:-}" ]; then
   if [ ! -x "${CONDA_PREFIX}/bin/mf6" ]; then
     python "${PIXI_PROJECT_ROOT}/scripts/get_mf6.py" || \
-      echo "[get_mf6] WARNING: MODFLOW 6 setup failed; run 'pixi run get-mf6' to retry." >&2
+      echo "[get_mf6] WARNING: MODFLOW 6 setup failed; run 'pixi run get-mf6 --force' to retry." >&2
   fi
   if [ ! -x "${CONDA_PREFIX}/bin/mp7" ]; then
     python "${PIXI_PROJECT_ROOT}/scripts/get_exes.py" || \
