@@ -6,9 +6,10 @@ on:
     - cron: "0 5 * * 1"
   workflow_dispatch:
 
+# The branch and the pull request are created with the App token below, so the
+# GITHUB_TOKEN only has to check the repository out.
 permissions:
-  contents: write
-  pull-requests: write
+  contents: read
 
 jobs:
   update-lockfile:
@@ -27,13 +28,23 @@ jobs:
           set -o pipefail
           pixi update --json | pixi exec pixi-diff-to-markdown >> diff.md
 
+      # Mint a short-lived installation token for the GitHub App that owns the
+      # lockfile PR. The default GITHUB_TOKEN cannot be used: a PR it opens does
+      # not trigger the CI workflow, so the updated lockfile would go unverified.
+      # An App token has no expiry to renew (unlike a PAT) and is scoped to this
+      # repository. The App needs contents + pull-requests write, and its ID and
+      # private key are stored as repo secrets.
+      - name: Create a GitHub App token
+        id: app-token
+        uses: actions/create-github-app-token@v3
+        with:
+          app-id: ${{ secrets.PIXI_UPDATE_APP_ID }}
+          private-key: ${{ secrets.PIXI_UPDATE_APP_KEY }}
+
       - name: Open pull request
         uses: peter-evans/create-pull-request@v8
         with:
-          # PAT (or GitHub App token) with contents + pull-requests write, stored
-          # as the PIXI_UPDATE_TOKEN repo secret. Using a PAT (rather than the
-          # default GITHUB_TOKEN) lets the lockfile PR trigger the CI workflow.
-          token: ${{ secrets.PIXI_UPDATE_TOKEN }}
+          token: ${{ steps.app-token.outputs.token }}
           commit-message: "ci: update pixi lockfile"
           title: "Update pixi lockfile"
           body-path: diff.md
