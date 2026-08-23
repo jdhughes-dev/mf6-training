@@ -89,7 +89,7 @@ install = { depends-on = ["get-mf6", "get-exes", "pre-commit-install"] }
 # Launch JupyterLab in the project directory.
 jupyter = "jupyter lab"
 # Open the project in VS Code (requires the `code` CLI on PATH).
-vscode = "code ."
+code = "code ."
 # Build/download the parallel (extended) MODFLOW 6 for the current platform.
 # Idempotent: does nothing if `mf6` is already on PATH. Pass --force to rebuild.
 get-mf6 = "python scripts/get_mf6.py"
