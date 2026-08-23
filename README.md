@@ -130,7 +130,7 @@ generation, local grid refinement, and parallel runs.
 Open the project in VS Code:
 
 ```bash
-pixi run vscode
+pixi run code
 ```
 
 Drop into a shell with the environment activated (so `python`, `mf6`,
