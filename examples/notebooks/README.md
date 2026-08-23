@@ -123,7 +123,7 @@ The overland-flow (OLF) model is a distinct MODFLOW 6 model type — a sibling o
 
 | Notebook | What it demonstrates |
 |---|---|
-| [`mf6-gwt1d`](mf6-gwt1d.ipynb) | One-dimensional solute transport (GWT) in a steady flow field; compare advection schemes, cell size, and time step against an analytical solution to study numerical dispersion. |
+| [`mf6-gwt1d`](mf6-gwt1d.ipynb) | One-dimensional solute transport (GWT) in a steady flow field; compare advection schemes, cell size, and time step against an analytical solution to study numerical dispersion, with the exercises driven by notebook controls. |
 | [`mf6-density-bubble`](mf6-density-bubble.ipynb) | Variable-density flow (BUY): a dense saltwater bubble sinking through fresh water, coupling GWF and GWT. |
 | [`mf6-density-henry-hilleke`](mf6-density-henry-hilleke.ipynb) | Coupled variable-density flow with heat (GWF + GWT + GWE + PRT): a Henry-type saltwater intrusion in which temperature also affects fluid density. |
 
