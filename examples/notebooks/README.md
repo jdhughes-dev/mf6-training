@@ -34,9 +34,12 @@ running models in parallel.
 
 4. **Where to start.** The `flopy-intro-*` notebooks are the guided introduction
    to building and post-processing a model with FloPy; after those, explore by
-   topic using the tables below. The `mf6-api-*` and `mf6-adv-*`
-   notebooks are each meant to be read in order (a → f, and the advanced packages
-   build on a shared model), and they check for and explain any prerequisites.
+   topic using the tables below. The lettered notebooks are meant to be read in
+   order — `flopy-intro-gwf-only-b` post-processes the model
+   `flopy-intro-gwf-only-a` runs, `flopy-intro-gwt-b` adds transport to the flow
+   model from `flopy-intro-gwt-a`, and the `mf6-api-*` (a → f) and `mf6-adv-*`
+   notebooks build on a shared model. Each checks for and explains any
+   prerequisites.
 
 5. **Paired helper modules.** A few notebooks keep their bulkier setup in a
    same-named Python module (for example `mf6-gwt1d.ipynb` ↔ `mf6_gwt1d.py`,
@@ -62,13 +65,63 @@ running models in parallel.
 > introductions). A notebook's paired helper module shares its name with hyphens
 > replaced by underscores (Python modules cannot contain hyphens).
 
+## Student notebooks
+
+For a longer, hands-on session, the notebooks can be handed out with the code
+removed for students to write themselves:
+
+```shell
+pixi run student-notebooks
+```
+
+This writes a copy of every marked notebook to
+[`../notebooks-students/`](../notebooks-students) with the prose,
+the figures, and the scaffolding intact and the code the student is meant to
+write replaced by a prompt and a `# your code here` placeholder, along with a
+README saying the directory is generated. Pass notebook paths to convert only
+some of them.
+
+That directory sits beside this one rather than inside it so the relative paths
+in the notebooks still resolve — several read `../data/...`, which would need a
+different number of levels from a nested directory. Any paired helper module a
+generated notebook imports is copied along with it, since the notebooks import
+those by name from their own directory.
+
+Which code is removed comes from markers in the notebook itself: a line
+
+```python
+# exercise: create the DIS package (3 layers, 21 rows, 20 columns)
+```
+
+marks the start of a solution, which runs to a `# end exercise` line or the end
+of the cell. The marker line stays, so the text after the colon is the
+instruction the student sees; the end marker is for cells where only part of the
+code is the exercise and the rest — a fiddly legend, say — should be handed over
+intact. Add markers to any notebook to make it available as a student notebook;
+`flopy-intro-gwf-only-a` and `flopy-intro-gwf-only-b` are the worked examples of
+the size and difficulty to aim for.
+
+The generated directory is committed, so students can clone the repository and
+start straight away without running anything. To keep it from drifting, a
+pre-commit hook rebuilds it whenever a notebook changes; if that changes any
+generated file the commit stops so you can stage the result. The same hook fails
+on a marker that would leave a cell unparsable, which happens when the code after
+an exercise sits inside a block the solution opened.
+
+Rebuilding skips any student notebook with uncommitted changes, since that is
+what a student part-way through one looks like, and says which it skipped. The
+cost is that such a notebook stays stale until those changes are committed or
+discarded; the benefit is that nobody's work is thrown away by someone else's
+commit.
+
 ## The notebooks
 
 ### Getting started with FloPy
 
 | Notebook | What it demonstrates |
 |---|---|
-| [`flopy-intro-gwf-only`](flopy-intro-gwf-only.ipynb) | Build a groundwater flow (GWF) model from scratch with FloPy — DIS, NPF, IC, RCH, WEL, RIV, OC — then write it, run MODFLOW 6, and post-process and plot the heads. The guided starting point. |
+| [`flopy-intro-gwf-only-a`](flopy-intro-gwf-only-a.ipynb) | Build a groundwater flow (GWF) model from scratch with FloPy — DIS, NPF, IC, RCH, WEL, RIV, OC — then write it and run MODFLOW 6. The guided starting point. |
+| [`flopy-intro-gwf-only-b`](flopy-intro-gwf-only-b.ipynb) | Load the model `flopy-intro-gwf-only-a` ran, read its heads and cell-by-cell flows, and plot them in map view and cross section. |
 | [`flopy-intro-gwt-a`](flopy-intro-gwt-a.ipynb) | Load, run, and inspect an existing GWF model: view hydraulic conductivity, recharge, and the simulated heads through time. A walk-through of how a MODFLOW 6 flow model is assembled. |
 | [`flopy-intro-gwt-b`](flopy-intro-gwt-b.ipynb) | Add solute transport (GWT) on top of that flow model, coupled one-way through the Flow Model Interface (FMI), and plot concentrations through time. |
 

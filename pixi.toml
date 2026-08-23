@@ -112,6 +112,15 @@ get-mf6 = "python scripts/get_mf6.py"
 get-exes = "python scripts/get_exes.py"
 # Verify mp7, triangle, and gridgen are installed on PATH (run after get-exes).
 check-exes = "python scripts/check_exes.py"
+# Generate the hands-on student copies of the notebooks: the same prose and
+# figures with the code marked "# exercise:" removed for students to write.
+# With no arguments it converts every marked notebook in examples/notebooks;
+# pass notebook paths to convert specific ones. Output goes to
+# examples/notebooks-students/, which is committed so students can clone and
+# start without running anything. That sits beside examples/notebooks/ rather
+# than inside it so the ../data/... paths in the notebooks still resolve. A
+# pre-commit hook runs this same script so the committed copies cannot drift.
+student-notebooks = "python scripts/make_student_notebooks.py"
 # Execute notebook(s) end-to-end as a smoke test (fails on any cell error).
 # With no arguments it runs the notebooks listed in scripts/run_notebooks.py;
 # pass notebook paths to run specific ones. Requires mf6 on PATH (get-mf6).
