@@ -52,11 +52,32 @@ DEFAULT_NOTEBOOKS = (
 )
 
 
+def widget_errors(nb) -> list[str]:
+    """Errors raised inside an ipywidgets Output widget.
+
+    The widget-driven notebooks display their figures through
+    ipywidgets.interactive_output, which runs its callback inside an Output
+    widget. That widget captures a traceback instead of letting the cell fail,
+    so the exception never reaches ExecutePreprocessor. Read it back out of the
+    stored widget state, which nbclient saves in the notebook metadata.
+    """
+    errors = []
+    for blob in nb.get("metadata", {}).get("widgets", {}).values():
+        for model in blob.get("state", {}).values():
+            for output in model.get("state", {}).get("outputs", None) or []:
+                if output.get("output_type") == "error":
+                    errors.append(f"{output.get('ename')}: {output.get('evalue')}")
+    return errors
+
+
 def run_notebook(path: Path) -> None:
     nb = nbformat.read(path, as_version=4)
     ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
     # resources.metadata.path sets the cwd for the kernel while executing.
     ep.preprocess(nb, {"metadata": {"path": str(path.parent)}})
+    errors = widget_errors(nb)
+    if errors:
+        raise RuntimeError("error in a notebook control callback: " + "; ".join(errors))
 
 
 def main(argv: list[str]) -> None:

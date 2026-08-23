@@ -1,7 +1,5 @@
 import flopy
-import ipywidgets as widgets
 import numpy as np
-import traitlets
 
 # advection schemes supported by the ADV package, and the cell sizes and time
 # step lengths offered by the notebook controls (each divides the 1000 m domain
@@ -9,34 +7,6 @@ import traitlets
 ADVECTION_SCHEMES = ("upstream", "central", "tvd", "utvd")
 CELL_SIZES = (1.0, 5.0, 10.0, 20.0, 50.0)
 TIME_STEPS = (1.0, 5.0, 10.0, 20.0, 50.0)
-
-
-class CheckboxRow(widgets.HBox):
-    """Labeled row of check boxes whose value is the tuple of checked options."""
-
-    value = traitlets.Tuple()
-
-    def __init__(self, options, selected=(), description=""):
-        self._options = tuple(options)
-        self._boxes = []
-        for option in self._options:
-            box = widgets.Checkbox(
-                value=option in selected,
-                description=f"{option:g}" if isinstance(option, float) else str(option),
-                indent=False,
-                layout=widgets.Layout(width="auto"),
-            )
-            box.observe(self._sync, names="value")
-            self._boxes.append(box)
-        super().__init__([widgets.Label(description), *self._boxes])
-        self._sync()
-
-    def _sync(self, *_):
-        checked = []
-        for option, box in zip(self._options, self._boxes):
-            if box.value:
-                checked.append(option)
-        self.value = tuple(checked)
 
 
 def block_wave_constant(x, t, v):
