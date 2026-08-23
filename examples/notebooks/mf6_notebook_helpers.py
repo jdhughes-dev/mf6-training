@@ -9,6 +9,9 @@ import os
 import pathlib as pl
 import platform
 
+import traitlets
+from ipywidgets import Checkbox, HBox, Label, Layout
+
 # Time conversions. MODFLOW has no built-in units, but these notebooks run in
 # seconds, so multiply or divide by these to report or interpret a model
 # duration in the more familiar days or years.
@@ -546,3 +549,34 @@ def require_gwf_output(
             )
         if not reader().get_times():
             raise ValueError(f"gwf {rtype} output '{fpath}' contains no times; {hint}")
+
+
+# ---------------------------------------------------------------------------
+# Notebook controls
+# ---------------------------------------------------------------------------
+class CheckboxRow(HBox):
+    """Labeled row of check boxes whose value is the tuple of checked options."""
+
+    value = traitlets.Tuple()
+
+    def __init__(self, options, selected=(), description=""):
+        self._options = tuple(options)
+        self._boxes = []
+        for option in self._options:
+            box = Checkbox(
+                value=option in selected,
+                description=f"{option:g}" if isinstance(option, float) else str(option),
+                indent=False,
+                layout=Layout(width="auto"),
+            )
+            box.observe(self._sync, names="value")
+            self._boxes.append(box)
+        super().__init__([Label(description), *self._boxes])
+        self._sync()
+
+    def _sync(self, *_):
+        checked = []
+        for option, box in zip(self._options, self._boxes):
+            if box.value:
+                checked.append(option)
+        self.value = tuple(checked)
