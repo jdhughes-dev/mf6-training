@@ -80,6 +80,14 @@ modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", branch = "
 # input classes stay in sync with the installed mf6 (see scripts/get_mf6.py).
 # The `dfn` extra pulls boltons, pooch, pydantic, tomli, and tomli-w.
 modflow-devtools = { version = "*", extras = ["dfn"] }
+# Adjoint-state sensitivity analysis for MODFLOW 6 (Hayek and others, 2025),
+# used by the mf6-adj-* notebooks. Tracks the repository rather than the 1.2.0
+# release because the notebooks need the lak6 performance measure and the check
+# that rejects packages adding equations to the solution matrix; switch to the
+# released version once those ship. Installed from git rather than conda-forge
+# so it resolves against the flopy/modflowapi develop builds above instead of
+# pulling their conda-forge releases alongside them.
+mf6adj = { git = "https://github.com/INTERA-Inc/mf6adj.git", branch = "main" }
 
 [tasks]
 # Complete the setup once `pixi install` has created the environment: MODFLOW 6,

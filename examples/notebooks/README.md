@@ -9,9 +9,10 @@ look for in the results) with runnable code, and closes with a short recap.
 
 Between them the notebooks cover building models from scratch with FloPy, driving
 MODFLOW 6 live through its API, the advanced hydrologic packages (UZF, MAW, SFR,
-LAK, MVR), solute and heat transport, variable-density flow, land subsidence,
-overland flow, particle tracking, the XT3D flow formulation, unstructured-grid
-generation, local grid refinement, and running models in parallel.
+LAK, MVR), adjoint-state sensitivity analysis, solute and heat transport,
+variable-density flow, land subsidence, overland flow, particle tracking, the
+XT3D flow formulation, unstructured-grid generation, local grid refinement, and
+running models in parallel.
 
 ## How to use
 
@@ -54,8 +55,8 @@ generation, local grid refinement, and running models in parallel.
 
    A handful of notebooks are intentionally slow (several minutes each) and are
    left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
-   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*`
-   series, and `mf6-parallel` — but they still run.
+   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
+   `mf6-adj-*` series, and `mf6-parallel` — but they still run.
 
 > **Naming.** Notebooks are prefixed `mf6-` (or `flopy-` for the FloPy-basics
 > introductions). A notebook's paired helper module shares its name with hyphens
@@ -104,6 +105,16 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 | [`mf6-adv-sfr`](mf6-adv-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
 | [`mf6-adv-mvr`](mf6-adv-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
 | [`mf6-adv-processing`](mf6-adv-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
+
+### Adjoint sensitivity analysis
+
+Adjoint-state sensitivity analysis with [mf6adj](https://github.com/INTERA-Inc/mf6adj): one backward
+solve per performance measure returns the sensitivity of that measure to every parameter in every cell.
+
+| Notebook | What it demonstrates |
+|---|---|
+| [`mf6-adj-capture`](mf6-adj-capture.ipynb) | Streamflow and lake capture: define a performance measure on the SFR and LAK exchange, read the capture fraction from the sensitivity to a well rate, map where hydraulic conductivity controls capture, and check the result against a two-run difference. |
+| [`mf6-adj-drawdown`](mf6-adj-drawdown.ipynb) | Rebuild the drawdown history at an observation well by superposing each well's adjoint sensitivity, split it into the share each well contributes, and use reciprocity to map the reconstructed drawdown against the simulated drawdown. |
 
 ### Land subsidence
 
