@@ -240,7 +240,9 @@ __marimo__/
 *.csv
 
 .figures/
-examples/notebooks/models/
+# Model workspaces the notebooks write. Unanchored so it also catches a
+# models/ left at the repository root by running notebook code from there.
+models/
 presentations/
 
 # ex-gwt-prudic2004t2 base-model data read by modflow-api-F.ipynb; stream.csv
