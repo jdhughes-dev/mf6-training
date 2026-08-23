@@ -478,6 +478,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zlib-ng-2.3.3-h8bce59a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstandard-0.25.0-py311h62e9434_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-h3eecb57_6.conda
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -485,6 +486,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/5c/fa/6d7708d2cfc1a832acb6aeb0cd16e801902df8a0f583bb3b4b527fde022e/pydantic_core-2.46.4-cp311-cp311-macosx_10_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a7/c3/fc7e8ea645a8b0da48fa35ceb79ac1734934447626441165805f45c8544b/bmipy-2.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c6/78/397db326746f0a342855b81216ae1f0a32965deccfd7c830a2dbc66d2483/pytokens-0.4.1-py3-none-any.whl
@@ -961,6 +963,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xarray-2026.4.0-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -969,6 +972,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/80/50/540cd3aeefc041beb111125c4bff779831a2111fc6b15a9138cda277d32c/pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
+      - pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a7/c3/fc7e8ea645a8b0da48fa35ceb79ac1734934447626441165805f45c8544b/bmipy-2.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
@@ -1435,6 +1439,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xarray-2026.4.0-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -1443,6 +1448,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/94/51/f975cae76d44274cc2868dc9040ac5d58d464784610234455b4e7b19c6ef/black-26.5.1-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a7/c3/fc7e8ea645a8b0da48fa35ceb79ac1734934447626441165805f45c8544b/bmipy-2.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
@@ -1892,6 +1898,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-ng-2.3.3-hed4e4f5_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstandard-0.25.0-py311h5bb9006_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -1899,6 +1906,7 @@ environments:
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/83/ea/5ad117b9ee3ecd933c712bcbae610006e5b7cc9f41c526cd7ed3b6c4124c/black-26.5.1-cp311-cp311-macosx_11_0_arm64.whl
+      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a7/c3/fc7e8ea645a8b0da48fa35ceb79ac1734934447626441165805f45c8544b/bmipy-2.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ae/6f/aa064a3e74b5745afbdf250594f38e7ead05e2d651bcb35994b9417a0d4d/pydantic_core-2.46.4-cp311-cp311-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
@@ -2305,11 +2313,13 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-1.3.2-hfd05255_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-ng-2.3.3-h0261ad2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/79/7b/2c79738432f5c924bef5071f933bcc9efd0473bac3b4aa584a6f7c1c8df8/mypy_extensions-1.1.0-py3-none-any.whl
+      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/a1/5b/0b39b3a5917f0657ac014ad2edb58c139553a478adfe7f817abf1622ff6e/black-26.5.1-cp311-cp311-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/a7/c3/fc7e8ea645a8b0da48fa35ceb79ac1734934447626441165805f45c8544b/bmipy-2.0.1-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/aa/e6/c505f83dfeda9a2e5c995cfd872949e4d05e12f7feb3dca72f633daefa94/pydantic_core-2.46.4-cp311-cp311-win_amd64.whl
@@ -2983,7 +2993,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/debugpy?source=compressed-mapping
+  - pkg:pypi/debugpy?source=hash-mapping
   run_exports: {}
   size: 2730876
   timestamp: 1780390154098
@@ -5496,7 +5506,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/msgpack?source=compressed-mapping
+  - pkg:pypi/msgpack?source=hash-mapping
   run_exports: {}
   size: 112975
   timestamp: 1782460776305
@@ -5687,7 +5697,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/numpy?source=compressed-mapping
+  - pkg:pypi/numpy?source=hash-mapping
   run_exports:
     weak:
     - numpy >=1.23,<3
@@ -5969,7 +5979,7 @@ packages:
   - zlib-ng >=2.3.3,<2.4.0a0
   license: HPND
   purls:
-  - pkg:pypi/pillow?source=compressed-mapping
+  - pkg:pypi/pillow?source=hash-mapping
   run_exports: {}
   size: 1081155
   timestamp: 1782912080163
@@ -6051,7 +6061,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/propcache?source=compressed-mapping
+  - pkg:pypi/propcache?source=hash-mapping
   run_exports: {}
   size: 51401
   timestamp: 1780037772959
@@ -6459,7 +6469,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/rpds-py?source=compressed-mapping
+  - pkg:pypi/rpds-py?source=hash-mapping
   run_exports: {}
   size: 299898
   timestamp: 1782831307838
@@ -6476,7 +6486,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/ruff?source=compressed-mapping
+  - pkg:pypi/ruff?source=hash-mapping
   run_exports: {}
   size: 9342178
   timestamp: 1782428525856
@@ -6752,7 +6762,7 @@ packages:
   license: Apache-2.0
   license_family: Apache
   purls:
-  - pkg:pypi/tornado?source=compressed-mapping
+  - pkg:pypi/tornado?source=hash-mapping
   run_exports: {}
   size: 881976
   timestamp: 1781006805257
@@ -10797,7 +10807,7 @@ packages:
   - libtiff >=4.7.1,<4.8.0a0
   license: HPND
   purls:
-  - pkg:pypi/pillow?source=compressed-mapping
+  - pkg:pypi/pillow?source=hash-mapping
   run_exports: {}
   size: 1051824
   timestamp: 1782912107475
@@ -12240,7 +12250,7 @@ packages:
   license: PSF-2.0
   license_family: PSF
   purls:
-  - pkg:pypi/aiohappyeyeballs?source=compressed-mapping
+  - pkg:pypi/aiohappyeyeballs?source=hash-mapping
   run_exports: {}
   size: 24690
   timestamp: 1782986823268
@@ -12274,7 +12284,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/anyio?source=compressed-mapping
+  - pkg:pypi/anyio?source=hash-mapping
   run_exports: {}
   size: 161308
   timestamp: 1782357087265
@@ -12402,7 +12412,7 @@ packages:
   - tinycss2 >=1.1.0,<1.5
   license: Apache-2.0 AND MIT
   purls:
-  - pkg:pypi/bleach?source=compressed-mapping
+  - pkg:pypi/bleach?source=hash-mapping
   run_exports: {}
   size: 142246
   timestamp: 1780675823953
@@ -12481,7 +12491,7 @@ packages:
   - python >=3.10
   license: ISC
   purls:
-  - pkg:pypi/certifi?source=compressed-mapping
+  - pkg:pypi/certifi?source=hash-mapping
   run_exports: {}
   size: 133877
   timestamp: 1781719949728
@@ -12520,7 +12530,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/click?source=compressed-mapping
+  - pkg:pypi/click?source=hash-mapping
   run_exports: {}
   size: 106227
   timestamp: 1783085395110
@@ -12534,7 +12544,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/click?source=compressed-mapping
+  - pkg:pypi/click?source=hash-mapping
   run_exports: {}
   size: 107155
   timestamp: 1783085363526
@@ -12641,7 +12651,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/cyclopts?source=compressed-mapping
+  - pkg:pypi/cyclopts?source=hash-mapping
   run_exports: {}
   size: 183102
   timestamp: 1782763319294
@@ -12653,7 +12663,7 @@ packages:
   license: BSD-2-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/decorator?source=compressed-mapping
+  - pkg:pypi/decorator?source=hash-mapping
   run_exports: {}
   size: 16102
   timestamp: 1779115228886
@@ -12678,7 +12688,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/distlib?source=compressed-mapping
+  - pkg:pypi/distlib?source=hash-mapping
   run_exports: {}
   size: 303705
   timestamp: 1781320269259
@@ -12690,7 +12700,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/docstring-parser?source=compressed-mapping
+  - pkg:pypi/docstring-parser?source=hash-mapping
   run_exports: {}
   size: 23903
   timestamp: 1778609891474
@@ -12725,7 +12735,7 @@ packages:
   - python >=3.10
   license: Unlicense
   purls:
-  - pkg:pypi/filelock?source=compressed-mapping
+  - pkg:pypi/filelock?source=hash-mapping
   run_exports: {}
   size: 36989
   timestamp: 1781381078337
@@ -12834,8 +12844,7 @@ packages:
   - xyzservices
   license: BSD-3-Clause
   license_family: BSD
-  purls:
-  - pkg:pypi/geopandas?source=compressed-mapping
+  purls: []
   run_exports: {}
   size: 8267
   timestamp: 1782507446937
@@ -12851,7 +12860,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/geopandas?source=compressed-mapping
+  - pkg:pypi/geopandas?source=hash-mapping
   run_exports: {}
   size: 255909
   timestamp: 1782507445933
@@ -12892,7 +12901,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/hpack?source=compressed-mapping
+  - pkg:pypi/hpack?source=hash-mapping
   run_exports: {}
   size: 32884
   timestamp: 1782283986153
@@ -12964,7 +12973,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/idna?source=compressed-mapping
+  - pkg:pypi/idna?source=hash-mapping
   run_exports: {}
   size: 163869
   timestamp: 1781620148226
@@ -12978,7 +12987,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/importlib-metadata?source=compressed-mapping
+  - pkg:pypi/importlib-metadata?source=hash-mapping
   run_exports: {}
   size: 34766
   timestamp: 1779714582554
@@ -13035,7 +13044,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/ipykernel?source=compressed-mapping
+  - pkg:pypi/ipykernel?source=hash-mapping
   run_exports: {}
   size: 138046
   timestamp: 1781101760172
@@ -13063,7 +13072,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/ipykernel?source=compressed-mapping
+  - pkg:pypi/ipykernel?source=hash-mapping
   run_exports: {}
   size: 138635
   timestamp: 1781101665847
@@ -13088,7 +13097,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/ipython?source=compressed-mapping
+  - pkg:pypi/ipython?source=hash-mapping
   run_exports: {}
   size: 658801
   timestamp: 1782482716877
@@ -13169,7 +13178,7 @@ packages:
   - python
   license: Apache-2.0 AND MIT
   purls:
-  - pkg:pypi/jedi?source=compressed-mapping
+  - pkg:pypi/jedi?source=hash-mapping
   run_exports: {}
   size: 2715215
   timestamp: 1782251948616
@@ -13208,7 +13217,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/json5?source=compressed-mapping
+  - pkg:pypi/json5?source=hash-mapping
   run_exports: {}
   size: 39373
   timestamp: 1781926894833
@@ -13341,7 +13350,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/jupyter-client?source=compressed-mapping
+  - pkg:pypi/jupyter-client?source=hash-mapping
   run_exports: {}
   size: 117954
   timestamp: 1781019994076
@@ -13451,7 +13460,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/jupyter-server?source=compressed-mapping
+  - pkg:pypi/jupyter-server?source=hash-mapping
   run_exports: {}
   size: 363068
   timestamp: 1781713810089
@@ -13491,7 +13500,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/jupyterlab?source=compressed-mapping
+  - pkg:pypi/jupyterlab?source=hash-mapping
   run_exports: {}
   size: 13793940
   timestamp: 1782739437310
@@ -13782,7 +13791,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/mistune?source=compressed-mapping
+  - pkg:pypi/mistune?source=hash-mapping
   run_exports: {}
   size: 86960
   timestamp: 1782218255079
@@ -13807,7 +13816,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/narwhals?source=compressed-mapping
+  - pkg:pypi/narwhals?source=hash-mapping
   run_exports: {}
   size: 288381
   timestamp: 1782924928916
@@ -13823,7 +13832,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/nbclient?source=compressed-mapping
+  - pkg:pypi/nbclient?source=hash-mapping
   run_exports: {}
   size: 29138
   timestamp: 1780661039538
@@ -13970,7 +13979,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/notebook?source=compressed-mapping
+  - pkg:pypi/notebook?source=hash-mapping
   run_exports: {}
   size: 4629848
   timestamp: 1781800954960
@@ -14059,7 +14068,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/platformdirs?source=compressed-mapping
+  - pkg:pypi/platformdirs?source=hash-mapping
   run_exports: {}
   size: 26308
   timestamp: 1779972894916
@@ -14165,7 +14174,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/pycparser?source=compressed-mapping
+  - pkg:pypi/pycparser?source=hash-mapping
   run_exports: {}
   size: 55886
   timestamp: 1779293633166
@@ -14203,7 +14212,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/pyshp?source=compressed-mapping
+  - pkg:pypi/pyshp?source=hash-mapping
   run_exports: {}
   size: 510534
   timestamp: 1782820117625
@@ -14259,7 +14268,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/python-discovery?source=compressed-mapping
+  - pkg:pypi/python-discovery?source=hash-mapping
   run_exports: {}
   size: 35514
   timestamp: 1781257630962
@@ -14372,7 +14381,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/pyvista?source=compressed-mapping
+  - pkg:pypi/pyvista?source=hash-mapping
   run_exports: {}
   size: 2257673
   timestamp: 1779084349530
@@ -14429,7 +14438,7 @@ packages:
   license: Apache-2.0
   license_family: APACHE
   purls:
-  - pkg:pypi/requests?source=compressed-mapping
+  - pkg:pypi/requests?source=hash-mapping
   run_exports: {}
   size: 68709
   timestamp: 1778851103479
@@ -14498,7 +14507,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/rich-rst?source=compressed-mapping
+  - pkg:pypi/rich-rst?source=hash-mapping
   run_exports: {}
   size: 212317
   timestamp: 1782458366856
@@ -14630,7 +14639,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/soupsieve?source=compressed-mapping
+  - pkg:pypi/soupsieve?source=hash-mapping
   run_exports: {}
   size: 38802
   timestamp: 1779635534390
@@ -14865,7 +14874,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/virtualenv?source=compressed-mapping
+  - pkg:pypi/virtualenv?source=hash-mapping
   run_exports: {}
   size: 3111990
   timestamp: 1781651033074
@@ -14877,7 +14886,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/wcwidth?source=compressed-mapping
+  - pkg:pypi/wcwidth?source=hash-mapping
   run_exports: {}
   size: 132415
   timestamp: 1782771807703
@@ -14963,7 +14972,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/wslink?source=compressed-mapping
+  - pkg:pypi/wslink?source=hash-mapping
   run_exports: {}
   size: 36803
   timestamp: 1778826669944
@@ -15027,7 +15036,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/zipp?source=compressed-mapping
+  - pkg:pypi/zipp?source=hash-mapping
   run_exports: {}
   size: 24190
   timestamp: 1779159948016
@@ -20238,7 +20247,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/debugpy?source=compressed-mapping
+  - pkg:pypi/debugpy?source=hash-mapping
   run_exports: {}
   size: 2675614
   timestamp: 1780390235468
@@ -23108,7 +23117,7 @@ packages:
   - libwebp-base >=1.6.0,<2.0a0
   license: HPND
   purls:
-  - pkg:pypi/pillow?source=compressed-mapping
+  - pkg:pypi/pillow?source=hash-mapping
   run_exports: {}
   size: 993213
   timestamp: 1782912213683
@@ -23547,7 +23556,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/rpds-py?source=compressed-mapping
+  - pkg:pypi/rpds-py?source=hash-mapping
   run_exports: {}
   size: 286691
   timestamp: 1782831311985
@@ -23563,7 +23572,7 @@ packages:
   license: MIT
   license_family: MIT
   purls:
-  - pkg:pypi/ruff?source=compressed-mapping
+  - pkg:pypi/ruff?source=hash-mapping
   run_exports: {}
   size: 8539333
   timestamp: 1782428897543
@@ -26879,7 +26888,7 @@ packages:
   license: PSF-2.0
   license_family: PSF
   purls:
-  - pkg:pypi/matplotlib?source=compressed-mapping
+  - pkg:pypi/matplotlib?source=hash-mapping
   run_exports: {}
   size: 8677625
   timestamp: 1782829739528
@@ -27268,7 +27277,7 @@ packages:
   - libxcb >=1.17.0,<2.0a0
   license: HPND
   purls:
-  - pkg:pypi/pillow?source=compressed-mapping
+  - pkg:pypi/pillow?source=hash-mapping
   run_exports: {}
   size: 965494
   timestamp: 1782912129930
@@ -27771,7 +27780,7 @@ packages:
   license: BSD-3-Clause
   license_family: BSD
   purls:
-  - pkg:pypi/scipy?source=compressed-mapping
+  - pkg:pypi/scipy?source=hash-mapping
   run_exports: {}
   size: 15241561
   timestamp: 1779876161272
@@ -27966,7 +27975,7 @@ packages:
   license: Apache-2.0
   license_family: Apache
   purls:
-  - pkg:pypi/tornado?source=compressed-mapping
+  - pkg:pypi/tornado?source=hash-mapping
   run_exports: {}
   size: 885527
   timestamp: 1781006887264
@@ -28362,6 +28371,88 @@ packages:
     - zstd >=1.5.7,<1.6.0a0
   size: 388453
   timestamp: 1764777142545
+- pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#9fa0ce4c80ed7c6fdd138460d1009ee9108f8846
+  name: mf6adj
+  version: 1.3.0.dev0
+  requires_dist:
+  - flopy>=3.10.0
+  - geopandas>=1.0.0
+  - h5py>=3.0.0
+  - matplotlib>=3.5.0
+  - modflowapi>=0.2.0
+  - numpy>=2.0
+  - pandas>=2.0.0
+  - pyemu>=1.4.0
+  - scipy>=1.7.0
+  - xmipy>=1.4.0
+  - boltons ; extra == 'dev'
+  - codespell[toml]>=2.2.2 ; extra == 'dev'
+  - filelock ; extra == 'dev'
+  - flaky ; extra == 'dev'
+  - ipykernel ; extra == 'dev'
+  - jupyter ; extra == 'dev'
+  - jupyter-client>=8.4.0 ; extra == 'dev'
+  - modflow-devtools>=1.9.1 ; extra == 'dev'
+  - myst-parser ; extra == 'dev'
+  - nbconvert ; extra == 'dev'
+  - nbmake ; extra == 'dev'
+  - nbsphinx ; extra == 'dev'
+  - pytest-cov ; extra == 'dev'
+  - pytest-dotenv ; extra == 'dev'
+  - pytest-order ; extra == 'dev'
+  - pytest-xdist ; extra == 'dev'
+  - pytest>=9.0.2 ; extra == 'dev'
+  - pyyaml ; extra == 'dev'
+  - rtds-action ; extra == 'dev'
+  - ruff ; extra == 'dev'
+  - shapely ; extra == 'dev'
+  - sphinx-rtd-theme>=1 ; extra == 'dev'
+  - sphinx>=7.1.2 ; extra == 'dev'
+  - tomli-w ; extra == 'dev'
+  - boltons ; extra == 'doc'
+  - codespell[toml]>=2.2.2 ; extra == 'doc'
+  - filelock ; extra == 'doc'
+  - flaky ; extra == 'doc'
+  - ipykernel ; extra == 'doc'
+  - jupyter ; extra == 'doc'
+  - jupyter-client>=8.4.0 ; extra == 'doc'
+  - modflow-devtools>=1.9.1 ; extra == 'doc'
+  - myst-parser ; extra == 'doc'
+  - nbconvert ; extra == 'doc'
+  - nbmake ; extra == 'doc'
+  - nbsphinx ; extra == 'doc'
+  - pytest-cov ; extra == 'doc'
+  - pytest-dotenv ; extra == 'doc'
+  - pytest-order ; extra == 'doc'
+  - pytest-xdist ; extra == 'doc'
+  - pytest>=9.0.2 ; extra == 'doc'
+  - pyyaml ; extra == 'doc'
+  - rtds-action ; extra == 'doc'
+  - ruff ; extra == 'doc'
+  - shapely ; extra == 'doc'
+  - sphinx-rtd-theme>=1 ; extra == 'doc'
+  - sphinx>=7.1.2 ; extra == 'doc'
+  - tomli-w ; extra == 'doc'
+  - codespell[toml]>=2.2.2 ; extra == 'lint'
+  - ruff ; extra == 'lint'
+  - boltons ; extra == 'test'
+  - codespell[toml]>=2.2.2 ; extra == 'test'
+  - filelock ; extra == 'test'
+  - flaky ; extra == 'test'
+  - ipykernel ; extra == 'test'
+  - jupyter ; extra == 'test'
+  - jupyter-client>=8.4.0 ; extra == 'test'
+  - modflow-devtools>=1.9.1 ; extra == 'test'
+  - nbmake ; extra == 'test'
+  - pytest-cov ; extra == 'test'
+  - pytest-dotenv ; extra == 'test'
+  - pytest-order ; extra == 'test'
+  - pytest-xdist ; extra == 'test'
+  - pytest>=9.0.2 ; extra == 'test'
+  - ruff ; extra == 'test'
+  - shapely ; extra == 'test'
+  - tomli-w ; extra == 'test'
+  requires_python: '>=3.10'
 - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
   name: modflowapi
   version: 0.3.0.dev0
@@ -28701,6 +28792,37 @@ packages:
   - uvloop>=0.15.2 ; sys_platform != 'win32' and extra == 'uvloop'
   - winloop>=0.5.0 ; sys_platform == 'win32' and extra == 'uvloop'
   requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
+  name: pyemu
+  version: 1.7.0
+  sha256: e4627266174cb00beccfa020cb76f5b682eaa2b8281c716e3977fef911f4a9ed
+  requires_dist:
+  - numpy>2.3.4 ; python_full_version >= '3.14' and sys_platform == 'linux'
+  - numpy>=2.2.6,<2.3.2 ; python_full_version < '3.14' and sys_platform == 'linux'
+  - numpy>=2.2.6 ; sys_platform != 'linux'
+  - pandas>=2.3.3,<3
+  - mkdocs>=1.6.1 ; extra == 'docs'
+  - mkdocs-autoapi>=0.4.1 ; extra == 'docs'
+  - mkdocs-material>=9.7.1 ; extra == 'docs'
+  - mkdocstrings-python>=2.0.1 ; extra == 'docs'
+  - pyemu[optional] ; extra == 'docs'
+  - flopy>=3.9.5 ; extra == 'optional'
+  - jinja2>=3.1.6 ; extra == 'optional'
+  - matplotlib>=3.10.7 ; extra == 'optional'
+  - pypestutils>=0.3.0 ; extra == 'optional'
+  - pyshp>=3.0.2.post1 ; extra == 'optional'
+  - scikit-learn>=1.7.2 ; extra == 'optional'
+  - scipy>=1.15.3 ; extra == 'optional'
+  - shapely>=2.1.2 ; extra == 'optional'
+  - flaky>=3.8.1 ; extra == 'tests'
+  - modflow-devtools>=1.8.0 ; extra == 'tests'
+  - nbval>=0.11.0 ; extra == 'tests'
+  - pytest>=8.4.2 ; extra == 'tests'
+  - pytest-cov>=7.0.0 ; extra == 'tests'
+  - pytest-timeout>=2.4.0 ; extra == 'tests'
+  - pytest-xdist>=3.8.0 ; extra == 'tests'
+  - tensorflow>=2.20.0 ; python_full_version < '3.14' and extra == 'tf'
+  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/94/51/f975cae76d44274cc2868dc9040ac5d58d464784610234455b4e7b19c6ef/black-26.5.1-py3-none-any.whl
   name: black
   version: 26.5.1
@@ -28720,6 +28842,32 @@ packages:
   - tokenize-rt>=3.2.0 ; extra == 'jupyter'
   - uvloop>=0.15.2 ; sys_platform != 'win32' and extra == 'uvloop'
   - winloop>=0.5.0 ; sys_platform == 'win32' and extra == 'uvloop'
+  requires_python: '>=3.10'
+- pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
+  name: pyemu
+  version: 1.4.0
+  sha256: 8714437d4227e7383ca77f9a050b14e92bfdaecf7b2311cdaabab35deeb285d9
+  requires_dist:
+  - numpy
+  - pandas
+  - flopy ; extra == 'optional'
+  - matplotlib ; extra == 'optional'
+  - pyshp ; extra == 'optional'
+  - scipy ; extra == 'optional'
+  - shapely ; extra == 'optional'
+  - jinja2 ; extra == 'optional'
+  - pypestutils ; extra == 'optional'
+  - coveralls ; extra == 'test'
+  - pytest ; extra == 'test'
+  - pytest-cov ; extra == 'test'
+  - pytest-xdist ; extra == 'test'
+  - flaky ; extra == 'test'
+  - nbmake ; extra == 'test'
+  - modflow-devtools ; extra == 'test'
+  - pyemu[optional] ; extra == 'docs'
+  - sphinx<7.2 ; extra == 'docs'
+  - sphinx-autoapi ; extra == 'docs'
+  - sphinx-rtd-theme>=1.3.0rc1 ; extra == 'docs'
   requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/a1/5b/0b39b3a5917f0657ac014ad2edb58c139553a478adfe7f817abf1622ff6e/black-26.5.1-cp311-cp311-win_amd64.whl
   name: black
