@@ -78,11 +78,28 @@ def widget_errors(nb) -> list[str]:
 # take, turning a bounded failure into an unbounded one.
 WATCHDOG_SECONDS = 120
 
+# The kernel replaces sys.stderr with a stream that has no file descriptor, which
+# faulthandler requires, so write to the interpreter's own stderr instead. Never
+# let the watchdog fail the notebook: it is only a diagnostic.
 WATCHDOG_SOURCE = f"""\
 import faulthandler as _fh, sys as _sys
-_fh.enable()
-_fh.dump_traceback_later({WATCHDOG_SECONDS}, repeat=True, exit=False, file=_sys.stderr)
+try:
+    _fh.enable(file=_sys.__stderr__)
+    _fh.dump_traceback_later(
+        {WATCHDOG_SECONDS}, repeat=True, exit=False, file=_sys.__stderr__
+    )
+except Exception as _exc:
+    print(f"stack watchdog unavailable: {{_exc!r}}")
 """
+
+
+def watchdog_note(nb) -> str:
+    """The watchdog's own message when it could not arm, empty otherwise."""
+    for output in nb.cells[0].get("outputs", []) or []:
+        text = output.get("text", "")
+        if "stack watchdog unavailable" in text:
+            return text.strip()
+    return ""
 
 
 def run_notebook(path: Path) -> None:
@@ -92,6 +109,9 @@ def run_notebook(path: Path) -> None:
     ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
     # resources.metadata.path sets the cwd for the kernel while executing.
     ep.preprocess(nb, {"metadata": {"path": str(path.parent)}})
+    note = watchdog_note(nb)
+    if note:
+        print(f"[run-notebooks] {note}", flush=True)
     errors = widget_errors(nb)
     if errors:
         raise RuntimeError("error in a notebook control callback: " + "; ".join(errors))
