@@ -70,8 +70,25 @@ def widget_errors(nb) -> list[str]:
     return errors
 
 
+# A cell that blocks fails on the execution timeout with nothing to say where it
+# stopped, so have the kernel dump every thread's stack while it is still stuck.
+# The timer runs for the whole notebook, well above the slowest one here, so it
+# only fires on a hang. Interrupting the kernel on timeout would report the same
+# thing, but nbclient then waits without a deadline when the interrupt does not
+# take, turning a bounded failure into an unbounded one.
+WATCHDOG_SECONDS = 120
+
+WATCHDOG_SOURCE = f"""\
+import faulthandler as _fh, sys as _sys
+_fh.enable()
+_fh.dump_traceback_later({WATCHDOG_SECONDS}, repeat=True, exit=False, file=_sys.stderr)
+"""
+
+
 def run_notebook(path: Path) -> None:
     nb = nbformat.read(path, as_version=4)
+    # the executed copy is discarded, so the added cell never reaches the repository
+    nb.cells.insert(0, nbformat.v4.new_code_cell(WATCHDOG_SOURCE))
     ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
     # resources.metadata.path sets the cwd for the kernel while executing.
     ep.preprocess(nb, {"metadata": {"path": str(path.parent)}})
