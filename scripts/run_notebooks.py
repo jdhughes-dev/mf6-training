@@ -23,7 +23,9 @@ from nbconvert.preprocessors import ExecutePreprocessor
 # mf6-adv-*) are intentionally excluded. Times below are approximate
 # single-run wall times.
 DEFAULT_NOTEBOOKS = (
-    "examples/notebooks/flopy-intro-gwf-only.ipynb",  # ~6 s
+    "examples/notebooks/flopy-intro-gwf-only-a.ipynb",  # ~6 s
+    # b loads and post-processes the model a runs, so it must follow a here.
+    "examples/notebooks/flopy-intro-gwf-only-b.ipynb",  # ~4 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
     # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
     "examples/notebooks/mf6-api-c.ipynb",  # ~11 s

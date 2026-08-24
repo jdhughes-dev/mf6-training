@@ -8,10 +8,13 @@
 #   1. stripped of notebook outputs / execution counts (nbstripout; the class
 #      notebooks under examples/notebooks/),
 #   2. spell-checked and auto-corrected (codespell), then
-#   3. lint-fixed and formatted with ruff.
+#   3. lint-fixed and formatted with ruff, then
+#   4. used to rebuild the student notebooks under examples/notebooks-students/
+#      (see scripts/make_student_notebooks.py).
 #
 # codespell and ruff run on all Python scripts plus the notebooks under
-# examples/notebooks/; nbstripout runs on those notebooks only.
+# examples/notebooks/; nbstripout runs on those notebooks only. None of them
+# touch examples/notebooks-students/, which is generated.
 #
 # These hooks use pre-commit's OWN managed tool environments (not the pixi env),
 # so `git commit` works from any Git client - VS Code, the CLI, etc. - without
@@ -27,8 +30,9 @@ repos:
     rev: "0.9.1"
     hooks:
       - id: nbstripout
-        # Only strip the class notebooks under examples/notebooks/.
-        files: ^examples/notebooks/.*\.ipynb$
+        # The notebooks under examples/notebooks/, plus the student copies,
+        # which pick up outputs as soon as anyone runs them.
+        files: ^examples/notebooks(-students)?/.*\.ipynb$
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.2
@@ -38,6 +42,8 @@ repos:
         args: [--write-changes]
         # All Python scripts, plus the notebooks under examples/notebooks/.
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
+        # examples/notebooks-students/ is generated; fix its source instead.
+        exclude: ^examples/notebooks-students/
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
     rev: v0.15.20
@@ -46,5 +52,24 @@ repos:
         args: [--fix]
         # All Python scripts, plus the notebooks under examples/notebooks/.
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
+        # examples/notebooks-students/ is generated; fix its source instead.
+        exclude: ^examples/notebooks-students/
       - id: ruff-format
         files: (\.pyi?$|^examples/notebooks/.*\.ipynb$)
+        exclude: ^examples/notebooks-students/
+
+  # Rebuild examples/notebooks-students/ whenever a notebook changes, so the
+  # committed student copies cannot drift from the complete notebooks they are
+  # generated from. It also fails on a "# exercise:" marker that would leave a
+  # cell unparsable, so a broken marker is caught here rather than by a student.
+  # It regenerates the whole directory rather than just the staged notebooks,
+  # since the README lists every notebook in it. The script is standard library
+  # only, so pre-commit's own Python environment can run it.
+  - repo: local
+    hooks:
+      - id: student-notebooks
+        name: student notebooks
+        entry: python scripts/make_student_notebooks.py
+        language: python
+        files: ^examples/notebooks/.*\.(ipynb|py)$
+        pass_filenames: false
