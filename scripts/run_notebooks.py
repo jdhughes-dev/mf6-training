@@ -72,11 +72,48 @@ def widget_errors(nb) -> list[str]:
     return errors
 
 
+# A cell that blocks fails on the execution timeout with nothing to say where it
+# stopped, so have the kernel dump every thread's stack while it is still stuck.
+# The timer runs for the whole notebook, well above the slowest one here, so it
+# only fires on a hang. Interrupting the kernel on timeout would report the same
+# thing, but nbclient then waits without a deadline when the interrupt does not
+# take, turning a bounded failure into an unbounded one.
+WATCHDOG_SECONDS = 120
+
+# The kernel replaces sys.stderr with a stream that has no file descriptor, which
+# faulthandler requires, so write to the interpreter's own stderr instead. Never
+# let the watchdog fail the notebook: it is only a diagnostic.
+WATCHDOG_SOURCE = f"""\
+import faulthandler as _fh, sys as _sys
+try:
+    _fh.enable(file=_sys.__stderr__)
+    _fh.dump_traceback_later(
+        {WATCHDOG_SECONDS}, repeat=True, exit=False, file=_sys.__stderr__
+    )
+except Exception as _exc:
+    print(f"stack watchdog unavailable: {{_exc!r}}")
+"""
+
+
+def watchdog_note(nb) -> str:
+    """The watchdog's own message when it could not arm, empty otherwise."""
+    for output in nb.cells[0].get("outputs", []) or []:
+        text = output.get("text", "")
+        if "stack watchdog unavailable" in text:
+            return text.strip()
+    return ""
+
+
 def run_notebook(path: Path) -> None:
     nb = nbformat.read(path, as_version=4)
+    # the executed copy is discarded, so the added cell never reaches the repository
+    nb.cells.insert(0, nbformat.v4.new_code_cell(WATCHDOG_SOURCE))
     ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
     # resources.metadata.path sets the cwd for the kernel while executing.
     ep.preprocess(nb, {"metadata": {"path": str(path.parent)}})
+    note = watchdog_note(nb)
+    if note:
+        print(f"[run-notebooks] {note}", flush=True)
     errors = widget_errors(nb)
     if errors:
         raise RuntimeError("error in a notebook control callback: " + "; ".join(errors))
