@@ -90,6 +90,9 @@ modflow-devtools = { version = "*", extras = ["dfn"] }
 # ship. Installed from git rather than conda-forge
 # so it resolves against the flopy/modflowapi develop builds above instead of
 # pulling their conda-forge releases alongside them.
+# main is the development branch; mf6adj has no separate develop branch. The
+# spec tracks that branch, but pixi.lock still pins one commit from it, so a new
+# upstream commit is only picked up by `pixi run update-mf6adj`.
 mf6adj = { git = "https://github.com/INTERA-Inc/mf6adj.git", branch = "main" }
 
 [tasks]
@@ -115,6 +118,14 @@ get-mf6 = "python scripts/get_mf6.py"
 get-exes = "python scripts/get_exes.py"
 # Verify mp7, triangle, and gridgen are installed on PATH (run after get-exes).
 check-exes = "python scripts/check_exes.py"
+# Re-lock mf6adj at the tip of its development branch and install it. The
+# dependency tracks that branch, but the lock file pins one commit from it so
+# everyone builds the same environment; this is how that pin is moved. It
+# rewrites pixi.lock, so commit the result. The mf6-adj-* notebooks are the ones
+# affected, and none of them are in the CI notebook set, so run them by hand
+# afterwards:
+#   pixi run test-notebooks examples/notebooks/mf6-adj-theis.ipynb
+update-mf6adj = "pixi update mf6adj"
 # Generate the hands-on student copies of the notebooks: the same prose and
 # figures with the code marked "# exercise:" removed for students to write.
 # With no arguments it converts every marked notebook in examples/notebooks;
