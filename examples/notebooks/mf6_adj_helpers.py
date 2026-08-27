@@ -279,6 +279,16 @@ THEIS_WELLS = {
     "B": (-2000.0, 2000.0, -1200.0, 3),
     "C": (3000.0, -1000.0, -1600.0, 6),
 }
+# An alternative pumping schedule, used to show that the sensitivities do not
+# depend on the rates they were computed with: A pumps half as much again, B is
+# never switched on, and C starts five periods earlier at half its rate. Each
+# entry is (rate in m3/d, zero-based stress period the well starts in).
+THEIS_ALT_SCHEDULE = {
+    "A": (-3000.0, 0),
+    "B": (0.0, 0),
+    "C": (-800.0, 2),
+}
+
 # observation points, also in metres from the centre
 THEIS_OBS = {
     "OBS1": (1500.0, 0.0),
@@ -293,19 +303,26 @@ def theis_cell(x, y):
     return int((THEIS_HALF - y) // THEIS_DX), int((x + THEIS_HALF) // THEIS_DX)
 
 
-def theis_rates():
-    """Each well's rate in every stress period, as a name -> array mapping."""
+def theis_rates(schedule=None):
+    """Each well's rate in every stress period, as a name -> array mapping.
+
+    ``schedule`` maps a well name to ``(rate, start period)`` and defaults to
+    the rates in THEIS_WELLS; pass THEIS_ALT_SCHEDULE for the alternative.
+    """
+    if schedule is None:
+        schedule = {name: (q, start) for name, (_, _, q, start) in THEIS_WELLS.items()}
     return {
         name: np.array([(q if kper >= start else 0.0) for kper in range(THEIS_NPER)])
-        for name, (_, _, q, start) in THEIS_WELLS.items()
+        for name, (q, start) in schedule.items()
     }
 
 
-def theis_simulation(ws, exe_name, pumping=True):
-    """Build the idealised confined aquifer, with the wells on or off.
+def theis_simulation(ws, exe_name, schedule=None):
+    """Build the idealised confined aquifer.
 
-    The workspace is emptied first, so a rerun does not leave stale adjoint
-    solution files for mf6adj to warn about.
+    ``schedule`` is passed to :func:`theis_rates`, so the same aquifer can be
+    rebuilt with any set of pumping rates. The workspace is emptied first, so a
+    rerun does not leave stale adjoint solution files for mf6adj to warn about.
     """
     ws = pl.Path(ws)
     if ws.exists():
@@ -345,11 +362,11 @@ def theis_simulation(ws, exe_name, pumping=True):
     flopy.mf6.ModflowGwfnpf(gwf, icelltype=0, k=THEIS_K, save_specific_discharge=True)
     flopy.mf6.ModflowGwfsto(gwf, iconvert=0, ss=THEIS_SS, sy=0.0, transient={0: True})
 
-    rates = theis_rates()
+    rates = theis_rates(schedule)
     spd = {}
     for kper in range(THEIS_NPER):
         spd[kper] = [
-            [(0, *theis_cell(x, y)), (rates[name][kper] if pumping else 0.0)]
+            [(0, *theis_cell(x, y)), float(rates[name][kper])]
             for name, (x, y, _, _) in THEIS_WELLS.items()
         ]
     flopy.mf6.ModflowGwfwel(gwf, stress_period_data=spd, pname="wel6")
@@ -373,17 +390,23 @@ def theis_simulation(ws, exe_name, pumping=True):
     return sim
 
 
-def theis_analytical(x, y):
+def theis_analytical(x, y, schedule=None):
     """Theis drawdown at (x, y) at the end of every stress period.
 
     Superposes the wells in space and their start times in time, which is the
-    same principle the adjoint superposition uses.
+    same principle the adjoint superposition uses. ``schedule`` is as in
+    :func:`theis_rates`.
     """
     from scipy.special import exp1
 
+    if schedule is None:
+        schedule = {name: (q, start) for name, (_, _, q, start) in THEIS_WELLS.items()}
     tend = np.arange(1, THEIS_NPER + 1) * THEIS_PERLEN
     s = np.zeros(THEIS_NPER)
-    for _, (xw, yw, q, start) in THEIS_WELLS.items():
+    for name, (xw, yw, _, _) in THEIS_WELLS.items():
+        q, start = schedule[name]
+        if q == 0.0:
+            continue
         r = float(np.hypot(xw - x, yw - y))
         elapsed = tend - start * THEIS_PERLEN
         live = elapsed > 0.0
