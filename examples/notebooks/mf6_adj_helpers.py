@@ -174,6 +174,10 @@ def package_cells(gwf, package):
 def period_sensitivity(ws, measure, parameter):
     """Return per-stress-period sensitivity arrays for one measure.
 
+    mf6adj writes one solution per time step. A stress period with several time
+    steps therefore contributes several, and the sensitivity to a stress applied
+    over the whole period is their sum.
+
     Returns
     -------
     dict
@@ -186,7 +190,8 @@ def period_sensitivity(ws, measure, parameter):
             if not key.startswith("solution_"):
                 continue
             kper = int(key.split("kper:")[1].split("_")[0])
-            out[kper] = hf[key][parameter][:]
+            arr = hf[key][parameter][:]
+            out[kper] = arr if kper not in out else out[kper] + arr
     return out
 
 
@@ -240,3 +245,199 @@ def well_rates(gwf, nper, packages=("pwell", "prediction")):
             if series[kper] == 0.0 and series[kper - 1] != 0.0:
                 series[kper] = series[kper - 1]
     return rates
+
+
+# ---------------------------------------------------------------------------
+# Idealised confined aquifer, for verifying against the Theis solution
+# ---------------------------------------------------------------------------
+# The Theis solution assumes a confined aquifer that is homogeneous, isotropic,
+# of uniform thickness and infinite extent, pumped by fully penetrating wells,
+# with drawdown tending to zero at infinity. THEIS_* below set up a model that
+# meets those assumptions, so the simulated, superposed, and analytical
+# drawdowns can be compared without anything else getting in the way.
+
+THEIS_DX = 500.0  # cell size (m)
+THEIS_HALF = 15000.0  # half the domain width (m)
+THEIS_THICK = 50.0  # aquifer thickness (m)
+THEIS_K = 10.0  # hydraulic conductivity (m/d)
+THEIS_SS = 4.0e-5  # specific storage (1/m)
+THEIS_NPER = 10  # stress periods
+THEIS_PERLEN = 10.0  # stress period length (d)
+# Time steps are uniform. mf6adj reports one sensitivity per time step and the
+# sensitivity to a rate held over a period is their sum, which holds when the
+# steps are equal; with a time-step multiplier the superposition below does not
+# reproduce the simulated drawdown.
+THEIS_NSTP = 5
+
+THEIS_T = THEIS_K * THEIS_THICK  # transmissivity (m2/d)
+THEIS_S = THEIS_SS * THEIS_THICK  # storativity
+
+# name -> (x, y, rate in m3/d, zero-based stress period the well starts in),
+# with x and y measured in metres from the centre of the domain
+THEIS_WELLS = {
+    "A": (0.0, 0.0, -2000.0, 0),
+    "B": (-2000.0, 2000.0, -1200.0, 3),
+    "C": (3000.0, -1000.0, -1600.0, 6),
+}
+# An alternative pumping schedule, used to show that the sensitivities do not
+# depend on the rates they were computed with: A pumps half as much again, B is
+# never switched on, and C starts five periods earlier at half its rate. Each
+# entry is (rate in m3/d, zero-based stress period the well starts in).
+THEIS_ALT_SCHEDULE = {
+    "A": (-3000.0, 0),
+    "B": (0.0, 0),
+    "C": (-800.0, 2),
+}
+
+# observation points, also in metres from the centre
+THEIS_OBS = {
+    "OBS1": (1500.0, 0.0),
+    "OBS2": (-1000.0, -1500.0),
+    "OBS3": (2000.0, 2000.0),
+    "OBS4": (0.0, -4000.0),
+}
+
+
+def theis_cell(x, y):
+    """Zero-based (row, column) of the point (x, y) metres from the centre."""
+    return int((THEIS_HALF - y) // THEIS_DX), int((x + THEIS_HALF) // THEIS_DX)
+
+
+def theis_rates(schedule=None):
+    """Each well's rate in every stress period, as a name -> array mapping.
+
+    ``schedule`` maps a well name to ``(rate, start period)`` and defaults to
+    the rates in THEIS_WELLS; pass THEIS_ALT_SCHEDULE for the alternative.
+    """
+    if schedule is None:
+        schedule = {name: (q, start) for name, (_, _, q, start) in THEIS_WELLS.items()}
+    return {
+        name: np.array([(q if kper >= start else 0.0) for kper in range(THEIS_NPER)])
+        for name, (q, start) in schedule.items()
+    }
+
+
+def theis_simulation(ws, exe_name, schedule=None):
+    """Build the idealised confined aquifer.
+
+    ``schedule`` is passed to :func:`theis_rates`, so the same aquifer can be
+    rebuilt with any set of pumping rates. The workspace is emptied first, so a
+    rerun does not leave stale adjoint solution files for mf6adj to warn about.
+    """
+    ws = pl.Path(ws)
+    if ws.exists():
+        shutil.rmtree(ws)
+    n = int(2 * THEIS_HALF / THEIS_DX)
+    sim = flopy.mf6.MFSimulation(
+        sim_name="theis", sim_ws=str(ws), exe_name=str(exe_name)
+    )
+    flopy.mf6.ModflowTdis(
+        sim,
+        nper=THEIS_NPER,
+        perioddata=[(THEIS_PERLEN, THEIS_NSTP, 1.0)] * THEIS_NPER,
+        time_units="days",
+    )
+    flopy.mf6.ModflowIms(
+        sim,
+        complexity="simple",
+        outer_dvclose=1.0e-9,
+        inner_dvclose=1.0e-10,
+        linear_acceleration="bicgstab",
+    )
+    gwf = flopy.mf6.ModflowGwf(sim, modelname="theis", save_flows=True)
+    flopy.mf6.ModflowGwfdis(
+        gwf,
+        nlay=1,
+        nrow=n,
+        ncol=n,
+        delr=THEIS_DX,
+        delc=THEIS_DX,
+        top=0.0,
+        botm=-THEIS_THICK,
+        length_units="meters",
+        xorigin=-THEIS_HALF,
+        yorigin=-THEIS_HALF,
+    )
+    flopy.mf6.ModflowGwfic(gwf, strt=0.0)
+    flopy.mf6.ModflowGwfnpf(gwf, icelltype=0, k=THEIS_K, save_specific_discharge=True)
+    flopy.mf6.ModflowGwfsto(gwf, iconvert=0, ss=THEIS_SS, sy=0.0, transient={0: True})
+
+    rates = theis_rates(schedule)
+    spd = {}
+    for kper in range(THEIS_NPER):
+        spd[kper] = [
+            [(0, *theis_cell(x, y)), float(rates[name][kper])]
+            for name, (x, y, _, _) in THEIS_WELLS.items()
+        ]
+    flopy.mf6.ModflowGwfwel(gwf, stress_period_data=spd, pname="wel6")
+
+    # Theis has drawdown going to zero at infinity; a constant head far enough
+    # away from the wells is the same condition, and the edge of this domain is
+    # twice the radius of influence away
+    edge = [
+        [(0, i, j), 0.0]
+        for i in range(n)
+        for j in range(n)
+        if i in (0, n - 1) or j in (0, n - 1)
+    ]
+    flopy.mf6.ModflowGwfchd(gwf, stress_period_data={0: edge})
+    flopy.mf6.ModflowGwfoc(
+        gwf,
+        head_filerecord="theis.hds",
+        budget_filerecord="theis.cbc",
+        saverecord=[("HEAD", "ALL"), ("BUDGET", "ALL")],
+    )
+    return sim
+
+
+def theis_analytical(x, y, schedule=None):
+    """Theis drawdown at (x, y) at the end of every stress period.
+
+    Superposes the wells in space and their start times in time, which is the
+    same principle the adjoint superposition uses. ``schedule`` is as in
+    :func:`theis_rates`.
+    """
+    from scipy.special import exp1
+
+    if schedule is None:
+        schedule = {name: (q, start) for name, (_, _, q, start) in THEIS_WELLS.items()}
+    tend = np.arange(1, THEIS_NPER + 1) * THEIS_PERLEN
+    s = np.zeros(THEIS_NPER)
+    for name, (xw, yw, _, _) in THEIS_WELLS.items():
+        q, start = schedule[name]
+        if q == 0.0:
+            continue
+        r = float(np.hypot(xw - x, yw - y))
+        elapsed = tend - start * THEIS_PERLEN
+        live = elapsed > 0.0
+        u = r * r * THEIS_S / (4.0 * THEIS_T * elapsed[live])
+        s[live] += -q / (4.0 * np.pi * THEIS_T) * exp1(u)
+    return s
+
+
+def theis_period_heads(ws):
+    """Simulated head at the end of each stress period, as (nper, nrow, ncol)."""
+    hobj = flopy.utils.HeadFile(pl.Path(ws) / "theis.hds")
+    times = np.array(hobj.get_times())
+    idx = [
+        int(np.argmin(np.abs(times - (n + 1) * THEIS_PERLEN)))
+        for n in range(THEIS_NPER)
+    ]
+    return hobj.get_alldata()[idx][:, 0]
+
+
+def theis_boundary_share(ws):
+    """Water drawn from the perimeter as a fraction of what the wells pump.
+
+    Drawdown at the perimeter is zero by construction, since it is held at the
+    starting head, so it says nothing about whether the domain is wide enough.
+    What does is how much water the boundary supplies: if the wells are still
+    drawing almost everything from storage, the aquifer is behaving as though it
+    were infinite.
+    """
+    budget = flopy.utils.Mf6ListBudget(str(pl.Path(ws) / "theis.lst"))
+    incremental, _ = budget.get_dataframes(start_datetime=None)
+    last = incremental.iloc[-1]
+    chd = sum(last[c] for c in incremental.columns if c.upper().startswith("CHD_IN"))
+    wel = sum(last[c] for c in incremental.columns if c.upper().startswith("WEL_OUT"))
+    return float(chd), float(wel), (float(chd) / float(wel) if wel else float("nan"))

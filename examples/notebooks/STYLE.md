@@ -59,6 +59,54 @@ short run of cells.
   ```
 - Bold a key term (`**like this**`) the first time you define it.
 
+## Technical terms
+
+The acronym and Python-idiom rules above apply just as much to the hydrology and
+the numerics. A student who has not built a model before does not know what
+transmissivity, a confined aquifer, or a fully penetrating well is, and a term
+used before it is explained is a term the reader has to skip past.
+
+- **Name the idea before you name the term.** Say what the thing does in a
+  sentence of plain words, then give it its name. Do not open with the name and
+  expect the definition to arrive later. Keep the real term — students will meet
+  it in the literature — but put it second.
+
+  Before:
+
+  > Use **reciprocity**: put the performance measure at each *well* rather than
+  > at each observation point, and one backward solve returns that well's
+  > response everywhere.
+
+  After:
+
+  > A pumping well and an observation point can be exchanged. The drawdown you
+  > would measure at B while pumping at A is the same as the drawdown you would
+  > measure at A if you pumped the same way at B instead. Groundwater flow is
+  > symmetric in that sense, and the symmetry has a name: **reciprocity**.
+
+- **Prefer the physical story to the formal statement.** "The lake surface is
+  free to rise and fall, so pumping lowers the heads beneath it, the lake gives
+  up water, its surface drops, and that drop in turn slows the leakage" beats
+  "the stage is a dependent variable, so the sensitivity is a total derivative
+  rather than a partial one". Where the formal wording is worth having, put it
+  after the picture, not instead of it.
+
+- **Define a term where the notebook first leans on it**, not where it is most
+  convenient. If the code prints `T` and `S`, the markdown above it says what
+  transmissivity and storativity are.
+
+- **One name per concept.** "Backward sweep" and "backward solve" for the same
+  operation make a reader wonder what the difference is. Pick one and keep it.
+
+- **Every notebook stands on its own.** A notebook may point at another for a
+  fuller treatment, but it must not depend on that other notebook for a term it
+  uses. Definitions travel with the notebook that needs them, even when that
+  means saying the same thing in two places.
+
+- **Re-read the back-references whenever a notebook moves.** "Again", "as
+  before", and "as we saw above" silently break when sections are reordered or a
+  notebook is split, and they leave a term looking defined when it never was.
+
 ## Structure of a notebook
 
 - **Open** with a short "what this notebook covers" section: the goal in one or

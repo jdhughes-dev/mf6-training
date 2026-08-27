@@ -82,8 +82,10 @@ modflowapi = { git = "https://github.com/MODFLOW-ORG/modflowapi.git", branch = "
 modflow-devtools = { version = "*", extras = ["dfn"] }
 # Adjoint-state sensitivity analysis for MODFLOW 6 (Hayek and others, 2025),
 # used by the mf6-adj-* notebooks. Tracks the repository rather than the 1.2.0
-# release because the notebooks need the lak6 performance measure and the check
-# that rejects packages adding equations to the solution matrix; switch to the
+# release because the notebooks need the lak6 performance measure, the lake
+# water balance solved with the flow equations (so a lake sensitivity is a total
+# derivative rather than one holding the stage fixed), and the check that
+# rejects packages adding equations to the solution matrix; switch to the
 # released version once those ship. Installed from git rather than conda-forge
 # so it resolves against the flopy/modflowapi develop builds above instead of
 # pulling their conda-forge releases alongside them.
