@@ -478,7 +478,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zlib-ng-2.3.3-h8bce59a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstandard-0.25.0-py311h62e9434_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-h3eecb57_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -963,7 +963,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xarray-2026.4.0-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -1439,7 +1439,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xarray-2026.4.0-pyhc364b38_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -1898,7 +1898,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-ng-2.3.3-hed4e4f5_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstandard-0.25.0-py311h5bb9006_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -2313,7 +2313,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-1.3.2-hfd05255_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-ng-2.3.3-h0261ad2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
       - pypi: git+https://github.com/MODFLOW-ORG/modflowapi.git?branch=develop#1d112bb0ed3b71ee829b4dbc31f09461de2eb857
       - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
@@ -28371,7 +28371,7 @@ packages:
     - zstd >=1.5.7,<1.6.0a0
   size: 388453
   timestamp: 1764777142545
-- pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#d268fe39a74013717d76f9232b1ae1604e90880e
+- pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#964e96e5f55eb940c8b8a0d8401e3afa95425552
   name: mf6adj
   version: 1.3.0.dev0
   requires_dist:
