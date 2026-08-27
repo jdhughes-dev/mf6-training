@@ -168,7 +168,7 @@ solve per performance measure returns the sensitivity of that measure to every p
 |---|---|
 | [`mf6-adj-capture`](mf6-adj-capture.ipynb) | Streamflow and lake capture: define a performance measure on the SFR and LAK exchange, read the capture fraction from the sensitivity to a well rate, map where hydraulic conductivity controls capture, and check the result against a two-run difference. |
 | [`mf6-adj-theis`](mf6-adj-theis.ipynb) | Verify the method: on an idealised confined aquifer that meets the Theis assumptions, compare the drawdown at several observation wells from two MODFLOW 6 runs, from superposed adjoint sensitivities, and from the Theis equation. |
-| [`mf6-adj-drawdown3d`](mf6-adj-drawdown3d.ipynb) | Take the same superposition to a layered three-dimensional model with no analytical solution: rebuild the drawdown history at an observation well, split it into the share each well contributes, and use reciprocity to map it against the simulated drawdown. |
+| [`mf6-adj-drawdown3d`](mf6-adj-drawdown3d.ipynb) | Take the same superposition to a water-table aquifer over a confined one, pumped by a well in each: rebuild the drawdown in both layers, price any pumping rates from drop-down multipliers without rerunning the model, and see why the reconstruction is no longer exact once a water table is involved. |
 
 ### Land subsidence
 

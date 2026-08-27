@@ -441,3 +441,181 @@ def theis_boundary_share(ws):
     chd = sum(last[c] for c in incremental.columns if c.upper().startswith("CHD_IN"))
     wel = sum(last[c] for c in incremental.columns if c.upper().startswith("WEL_OUT"))
     return float(chd), float(wel), (float(chd) / float(wel) if wel else float("nan"))
+
+
+# ---------------------------------------------------------------------------
+# Water-table model: an unconfined layer over a confined aquifer
+# ---------------------------------------------------------------------------
+# The same three-layer system as flopy-intro-gwf-only-a - a water-table layer,
+# a thin confining unit, and a confined aquifer - refined and run transiently
+# with two wells pumping the lower aquifer. Layer 1 is convertible, so its
+# transmissivity follows the water table and the model is not linear in the
+# pumping rates; that is the point of the notebook that uses it.
+
+WT_REFINE = 2  # cells per cell of the flopy-intro grid
+WT_NROW, WT_NCOL = 21 * WT_REFINE, 20 * WT_REFINE
+WT_DELR = 10000.0 / WT_NCOL  # ft
+WT_DELC = 10500.0 / WT_NROW  # ft
+WT_TOP = 400.0  # land surface (ft)
+WT_BOTM = [220.0, 200.0, 0.0]  # layer bottoms (ft)
+WT_K = [50.0, 0.01, 200.0]  # horizontal conductivity (ft/d)
+WT_K33 = [10.0, 0.01, 20.0]  # vertical conductivity (ft/d)
+WT_ICELLTYPE = [1, 0, 0]  # layer 1 is convertible: a water table
+WT_SY = 0.20  # specific yield of the water-table layer
+WT_SS = 1.0e-5  # specific storage (1/ft)
+WT_STRT = 320.0  # starting head (ft)
+WT_RECHARGE = 0.005  # ft/d
+WT_RIV_STAGE, WT_RIV_BOT = 320.0, 318.0
+WT_RIV_COND = 1.0e5 / WT_REFINE  # per cell, so the total matches the coarse grid
+WT_NPER, WT_PERLEN, WT_NSTP = 9, 365.0, 3  # steady spin-up, then eight years
+
+# name -> (layer, row, column, rate in ft3/d, zero-based period the well starts)
+WT_WELLS = {
+    "shallow": (0, 5 * WT_REFINE, 6 * WT_REFINE, -2.0e4, 1),
+    "deep": (2, 15 * WT_REFINE, 12 * WT_REFINE, -6.0e4, 4),
+}
+# Observation wells, placed to suit the cone each aquifer makes. The water table
+# has the lower transmissivity, so its cone is steep and an observation well has
+# to be near the pumping to see it - this one is 500 ft away. The confined
+# aquifer's cone is broad and flat, so a well 2,000 ft out still sees most of the
+# drawdown. Each is read in both layers, so the confining unit's effect shows.
+# WT_REFINE cells is 500 ft whatever the refinement.
+WT_OBS = {
+    "500 ft from the shallow well": (5 * WT_REFINE, 7 * WT_REFINE),
+    "midway between the wells": (10 * WT_REFINE, 9 * WT_REFINE),
+    "2,000 ft from the deep well": (15 * WT_REFINE, 16 * WT_REFINE),
+}
+
+
+def wt_rates(multipliers=None):
+    """Each well's rate in every stress period, scaled by an optional multiplier.
+
+    A multiplier for a well that does not exist is an error rather than a
+    silently ignored key, since that would otherwise leave the well pumping at
+    its full rate.
+    """
+    multipliers = multipliers or {}
+    unknown = set(multipliers) - set(WT_WELLS)
+    if unknown:
+        raise KeyError(
+            f"no such well: {', '.join(sorted(unknown))}; "
+            f"the wells are {', '.join(WT_WELLS)}"
+        )
+    return {
+        name: np.array([(q if kper >= start else 0.0) for kper in range(WT_NPER)])
+        * float(multipliers.get(name, 1.0))
+        for name, (_, _, _, q, start) in WT_WELLS.items()
+    }
+
+
+def wt_simulation(ws, exe_name, rates=None):
+    """Build the water-table simulation. ``rates`` defaults to wt_rates()."""
+    ws = pl.Path(ws)
+    if ws.exists():
+        shutil.rmtree(ws)
+    sim = flopy.mf6.MFSimulation(sim_name="wt", sim_ws=str(ws), exe_name=str(exe_name))
+    perioddata = [(1.0, 1, 1.0)] + [(WT_PERLEN, WT_NSTP, 1.0)] * (WT_NPER - 1)
+    flopy.mf6.ModflowTdis(sim, nper=WT_NPER, perioddata=perioddata, time_units="days")
+    flopy.mf6.ModflowIms(
+        sim,
+        complexity="moderate",
+        outer_maximum=200,
+        inner_maximum=200,
+        outer_dvclose=1.0e-8,
+        inner_dvclose=1.0e-9,
+        linear_acceleration="bicgstab",
+    )
+    gwf = flopy.mf6.ModflowGwf(sim, modelname="wt", save_flows=True)
+    flopy.mf6.ModflowGwfdis(
+        gwf,
+        nlay=3,
+        nrow=WT_NROW,
+        ncol=WT_NCOL,
+        delr=WT_DELR,
+        delc=WT_DELC,
+        top=WT_TOP,
+        botm=WT_BOTM,
+        length_units="feet",
+    )
+    flopy.mf6.ModflowGwfic(gwf, strt=WT_STRT)
+    flopy.mf6.ModflowGwfnpf(
+        gwf,
+        k=WT_K,
+        k33=WT_K33,
+        icelltype=WT_ICELLTYPE,
+        save_specific_discharge=True,
+    )
+    flopy.mf6.ModflowGwfsto(
+        gwf,
+        iconvert=WT_ICELLTYPE,
+        ss=WT_SS,
+        sy=WT_SY,
+        steady_state={0: True},
+        transient={kper: True for kper in range(1, WT_NPER)},
+    )
+    flopy.mf6.ModflowGwfrcha(gwf, recharge=WT_RECHARGE)
+    riv = [
+        [(0, i, WT_NCOL - 1), WT_RIV_STAGE, WT_RIV_COND, WT_RIV_BOT]
+        for i in range(WT_NROW)
+    ]
+    flopy.mf6.ModflowGwfriv(gwf, stress_period_data={0: riv})
+
+    if rates is None:
+        rates = wt_rates()
+    spd = {
+        kper: [
+            [(k, i, j), float(rates[name][kper])]
+            for name, (k, i, j, _, _) in WT_WELLS.items()
+        ]
+        for kper in range(WT_NPER)
+    }
+    flopy.mf6.ModflowGwfwel(gwf, stress_period_data=spd, pname="wel6")
+    flopy.mf6.ModflowGwfoc(
+        gwf,
+        head_filerecord="wt.hds",
+        budget_filerecord="wt.cbc",
+        saverecord=[("HEAD", "ALL"), ("BUDGET", "ALL")],
+    )
+    return sim
+
+
+def wt_period_heads(ws):
+    """Head at the end of each stress period, as (nper, nlay, nrow, ncol)."""
+    hobj = flopy.utils.HeadFile(pl.Path(ws) / "wt.hds")
+    ends = [0] + [1 + WT_NSTP * kper - 1 for kper in range(1, WT_NPER)]
+    return hobj.get_alldata()[ends]
+
+
+def wt_kernels(ws):
+    """Per-period sensitivity of each well's head, for every well and period.
+
+    Keyed by ``(well, measure period)``. Reading one of these at a cell gives
+    that cell's drawdown response to the well, by reciprocity.
+    """
+    return {
+        (name, kper): period_sensitivity(ws, f"{name}{kper:02d}", "wel6_q")
+        for name in WT_WELLS
+        for kper in range(WT_NPER)
+    }
+
+
+def wt_superpose(kernels, rates, cells):
+    """Predicted drawdown history at ``cells``, a name -> (lay, row, col) map."""
+    out = {name: np.zeros(WT_NPER) for name in cells}
+    for well in WT_WELLS:
+        for target in range(WT_NPER):
+            for kper, sens in kernels[(well, target)].items():
+                for name, cell in cells.items():
+                    out[name][target] += -sens[cell] * rates[well][kper]
+    return out
+
+
+def wt_drawdown_map(kernels, rates, layer, kper=None):
+    """Predicted drawdown over the whole grid for one layer and period."""
+    if kper is None:
+        kper = WT_NPER - 1
+    total = np.zeros((3, WT_NROW, WT_NCOL))
+    for well in WT_WELLS:
+        for period, sens in kernels[(well, kper)].items():
+            total += -sens.reshape(total.shape) * rates[well][period]
+    return total[layer]
