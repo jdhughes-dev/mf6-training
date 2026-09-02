@@ -15,6 +15,7 @@ import time
 from pathlib import Path
 
 import nbformat
+from nbclient.exceptions import CellTimeoutError
 from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
@@ -78,13 +79,18 @@ def widget_errors(nb) -> list[str]:
 # only fires on a hang. Interrupting the kernel on timeout would report the same
 # thing, but nbclient then waits without a deadline when the interrupt does not
 # take, turning a bounded failure into an unbounded one.
-WATCHDOG_SECONDS = 120
+WATCHDOG_SECONDS = 60
+
+# The slowest notebook here takes about thirty seconds, so a hang costs ten
+# minutes of the run for nothing. Keep enough headroom for a slow runner and no
+# more.
+EXECUTE_TIMEOUT = 180
 
 # The kernel replaces sys.stderr with a stream that has no file descriptor, which
 # faulthandler requires, so write to the interpreter's own stderr instead. Never
 # let the watchdog fail the notebook: it is only a diagnostic.
 WATCHDOG_SOURCE = f"""\
-import faulthandler as _fh, sys as _sys
+import faulthandler as _fh, sys as _sys, time as _time
 try:
     _fh.enable(file=_sys.__stderr__)
     _fh.dump_traceback_later(
@@ -92,6 +98,36 @@ try:
     )
 except Exception as _exc:
     print(f"stack watchdog unavailable: {{_exc!r}}")
+
+# A stack dump says what the kernel is doing but not which cell it believes it
+# is on, which is what separates a cell still running from one that finished
+# without its reply reaching the client. Mark both ends of every cell: a start
+# with no end is a cell still running, and a start with an end is a cell the
+# kernel considers done, leaving the client waiting on a message that never
+# arrived.
+try:
+    _marks = {{"n": 0, "t": 0.0}}
+
+    def _cell_start(*_args):
+        _marks["n"] += 1
+        _marks["t"] = _time.monotonic()
+        print(f"[cell] start {{_marks['n']}}", file=_sys.__stderr__, flush=True)
+
+    def _cell_end(*_args):
+        # the cell this was registered from has no start, so it has no end
+        if _marks["n"]:
+            _elapsed = _time.monotonic() - _marks["t"]
+            print(
+                f"[cell] end {{_marks['n']}} after {{_elapsed:.1f}}s",
+                file=_sys.__stderr__,
+                flush=True,
+            )
+
+    _events = get_ipython().events
+    _events.register("pre_run_cell", _cell_start)
+    _events.register("post_run_cell", _cell_end)
+except Exception as _exc:
+    print(f"cell markers unavailable: {{_exc!r}}")
 """
 
 
@@ -104,11 +140,12 @@ def watchdog_note(nb) -> str:
     return ""
 
 
-def run_notebook(path: Path) -> None:
+def execute_notebook(path: Path) -> None:
+    """Execute one notebook, watchdog and cell marks included."""
     nb = nbformat.read(path, as_version=4)
     # the executed copy is discarded, so the added cell never reaches the repository
     nb.cells.insert(0, nbformat.v4.new_code_cell(WATCHDOG_SOURCE))
-    ep = ExecutePreprocessor(timeout=600, kernel_name="python3")
+    ep = ExecutePreprocessor(timeout=EXECUTE_TIMEOUT, kernel_name="python3")
     # resources.metadata.path sets the cwd for the kernel while executing.
     ep.preprocess(nb, {"metadata": {"path": str(path.parent)}})
     note = watchdog_note(nb)
@@ -117,6 +154,28 @@ def run_notebook(path: Path) -> None:
     errors = widget_errors(nb)
     if errors:
         raise RuntimeError("error in a notebook control callback: " + "; ".join(errors))
+
+
+def run_notebook(path: Path) -> None:
+    """Execute a notebook, giving a timed-out one a second attempt.
+
+    A timeout here has not been a cell that runs long. The cell marks show the
+    cell before it finishing and no start for the one the client is waiting on,
+    so the kernel never received the request rather than taking too long to
+    answer it. That is a lost message rather than anything the notebook does,
+    and it is worth one more attempt before the run is called a failure. Only a
+    timeout is retried: a notebook that raises is broken and says so the first
+    time.
+    """
+    try:
+        execute_notebook(path)
+    except CellTimeoutError:
+        print(
+            f"[run-notebooks] {path.name} timed out with the kernel idle; "
+            "retrying once",
+            flush=True,
+        )
+        execute_notebook(path)
 
 
 def main(argv: list[str]) -> None:
