@@ -15,6 +15,7 @@ import time
 from pathlib import Path
 
 import nbformat
+from nbclient.exceptions import CellTimeoutError
 from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
@@ -139,7 +140,8 @@ def watchdog_note(nb) -> str:
     return ""
 
 
-def run_notebook(path: Path) -> None:
+def execute_notebook(path: Path) -> None:
+    """Execute one notebook, watchdog and cell marks included."""
     nb = nbformat.read(path, as_version=4)
     # the executed copy is discarded, so the added cell never reaches the repository
     nb.cells.insert(0, nbformat.v4.new_code_cell(WATCHDOG_SOURCE))
@@ -152,6 +154,28 @@ def run_notebook(path: Path) -> None:
     errors = widget_errors(nb)
     if errors:
         raise RuntimeError("error in a notebook control callback: " + "; ".join(errors))
+
+
+def run_notebook(path: Path) -> None:
+    """Execute a notebook, giving a timed-out one a second attempt.
+
+    A timeout here has not been a cell that runs long. The cell marks show the
+    cell before it finishing and no start for the one the client is waiting on,
+    so the kernel never received the request rather than taking too long to
+    answer it. That is a lost message rather than anything the notebook does,
+    and it is worth one more attempt before the run is called a failure. Only a
+    timeout is retried: a notebook that raises is broken and says so the first
+    time.
+    """
+    try:
+        execute_notebook(path)
+    except CellTimeoutError:
+        print(
+            f"[run-notebooks] {path.name} timed out with the kernel idle; "
+            "retrying once",
+            flush=True,
+        )
+        execute_notebook(path)
 
 
 def main(argv: list[str]) -> None:
