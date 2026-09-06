@@ -7,8 +7,11 @@ conda-forge does not ship a parallel-enabled mf6, so we provide it ourselves:
               the binaries into the environment.
   * Unix    : build from source with PETSc/MPI via Meson (-Dextended=true).
 
-The script is idempotent: if an ``mf6`` executable is already on PATH it does
-nothing. Pass ``--force`` to rebuild/reinstall anyway.
+The script is idempotent: an ``mf6`` already installed in the environment is
+left alone, and flopy's MODFLOW 6 input classes are regenerated only when they
+no longer match it. Pass ``--force`` to rebuild/reinstall and resync anyway, and
+``--quiet`` (used by the activation hook) to say nothing when there is nothing
+to do.
 
 It is meant to be run inside the pixi environment (so CONDA_PREFIX, the compilers
 and meson are available), either via ``pixi run get-mf6`` or automatically from
@@ -20,6 +23,7 @@ import os
 import shutil
 import subprocess
 import sys
+import sysconfig
 from pathlib import Path
 from urllib.error import URLError
 from urllib.request import urlretrieve
@@ -33,14 +37,21 @@ NIGHTLY_REPO = "https://github.com/MODFLOW-ORG/modflow6-nightly-build"
 NIGHTLY = "20260730"
 MF6_REPO = "https://github.com/MODFLOW-ORG/modflow6.git"
 
-# After installing mf6, flopy's MODFLOW 6 input classes are regenerated from the
-# modflow6 definition (DFN) files so they match the mf6 that will consume them.
-# We prefer the DFNs in the local modflow6 clone (an exact match to the build);
-# MF6_DFN_SUBPATH is where they live inside the clone. If no clone is present we
-# fall back to fetching MF6_DFN_REF ("develop") from GitHub. Both the extended
-# nightly and the from-source build track modflow6 develop.
+# flopy's MODFLOW 6 input classes are generated from the modflow6 definition
+# (DFN) files of the commit the installed mf6 was built from, so they match the
+# mf6 that will consume them. `mf6 -v` reports that commit as `<version>+<sha>`
+# for both the extended nightly and the from-source build. The local clone
+# supplies the DFNs while it sits on that commit (exact, and no network);
+# otherwise they are fetched from GitHub at that commit. MF6_DFN_REF is the
+# fallback for a build that reports no commit.
 MF6_DFN_SUBPATH = Path("doc") / "mf6io" / "mf6ivar" / "dfn"
 MF6_DFN_REF = "develop"
+
+# Records the modflow6 commit flopy's classes were generated from. It lives in
+# the flopy package so that reinstalling flopy - which puts back the classes
+# flopy ships, which lack the packages the installed mf6 supports - takes the
+# stamp with it and the next run regenerates.
+STAMP_NAME = ".mf6-dfn-sync"
 
 
 def conda_prefix() -> Path:
@@ -57,10 +68,41 @@ def project_root() -> Path:
     return Path(os.environ.get("PIXI_PROJECT_ROOT", os.getcwd()))
 
 
-def mf6_in_env(prefix: Path) -> bool:
-    """True if mf6 is installed in THIS env (not merely somewhere on PATH)."""
+def mf6_path(prefix: Path) -> Path | None:
+    """Path to the mf6 installed in THIS env (not merely somewhere on PATH)."""
     exe = "mf6.exe" if sys.platform.startswith("win") else "mf6"
-    return any((prefix / d / exe).exists() for d in ("bin", "Library/bin"))
+    for d in ("bin", "Library/bin"):
+        path = prefix / d / exe
+        if path.exists():
+            return path
+    return None
+
+
+def mf6_commit(exe: Path) -> str | None:
+    """The modflow6 commit the installed mf6 was built from, from ``mf6 -v``."""
+    try:
+        out = subprocess.check_output([str(exe), "-v"], text=True)
+    except (subprocess.CalledProcessError, OSError):
+        return None
+    # a development build reports `mf6: <version>+<sha>`; a release build has no sha
+    _, _, sha = out.strip().partition("+")
+    return sha or None
+
+
+def clone_commit(clone: Path) -> str:
+    """HEAD of the modflow6 clone, or an empty string if there is no clone."""
+    try:
+        out = subprocess.check_output(
+            ["git", "-C", str(clone), "rev-parse", "HEAD"], text=True
+        )
+    except (subprocess.CalledProcessError, OSError):
+        return ""
+    return out.strip()
+
+
+def stamp_path() -> Path:
+    """The DFN sync stamp inside the installed flopy package."""
+    return Path(sysconfig.get_paths()["purelib"]) / "flopy" / STAMP_NAME
 
 
 def download_win64ext(dest: Path) -> None:
@@ -99,21 +141,12 @@ def install_windows(prefix: Path, root: Path) -> None:
     shutil.rmtree(extract_dir, ignore_errors=True)
 
 
-def clone_mf6_source(root: Path, shallow: bool = False) -> Path:
-    """Clone the modflow6 repo (once) so its DFN files are available locally.
-
-    Returns the clone directory. On Unix this is the same tree the extended
-    build compiles from; on Windows it is cloned only for its DFN files, so a
-    shallow clone is enough there.
-    """
+def clone_mf6_source(root: Path) -> Path:
+    """Clone the modflow6 repo (once); the extended build compiles from it."""
     src = root / "modflow6"
     if not src.exists():
-        cmd = ["git", "clone"]
-        if shallow:
-            cmd += ["--depth", "1"]
-        cmd += [MF6_REPO, str(src)]
-        print(f"[get_mf6] cloning {MF6_REPO}{' (shallow)' if shallow else ''}")
-        subprocess.check_call(cmd)
+        print(f"[get_mf6] cloning {MF6_REPO}")
+        subprocess.check_call(["git", "clone", MF6_REPO, str(src)])
     return src
 
 
@@ -151,26 +184,33 @@ def install_unix(prefix: Path, root: Path) -> None:
     subprocess.check_call(["meson", "install", "-C", "builddir"], cwd=src, env=env)
 
 
-def update_flopy_classes(dfnpath: Path) -> None:
-    """Regenerate flopy's MODFLOW 6 input classes from the matching mf6 DFNs.
+def update_flopy_classes(
+    root: Path, commit: str | None, force: bool = False, quiet: bool = False
+) -> None:
+    """Regenerate flopy's MODFLOW 6 input classes from the DFNs of the installed mf6.
 
-    Run after mf6 is (re)installed so flopy's ``ModflowGwf...``/``ModflowPrt...``
-    classes match the mf6 that will actually consume their input. Prefers the
-    DFNs in the local modflow6 clone (``dfnpath``) for an exact match; if that
-    path is missing, falls back to fetching ``MF6_DFN_REF`` from GitHub.
-    Requires ``modflow-devtools[dfn]`` (declared in pixi.toml). A failure here is
-    fatal: flopy would keep the classes it shipped with, which silently lack the
-    packages the installed mf6 supports.
+    ``commit`` is the modflow6 commit ``mf6 -v`` reports. Returns early when the
+    classes already record it. Requires ``modflow-devtools[dfn]`` (declared in
+    pixi.toml). A failure here is fatal: flopy would keep the classes it shipped
+    with, which silently lack the packages the installed mf6 supports.
     """
-    if dfnpath.is_dir():
+    stamp = stamp_path()
+    want = commit or MF6_DFN_REF
+    if not force and stamp.is_file() and stamp.read_text().strip() == want:
+        if not quiet:
+            print(f"[get_mf6] flopy MODFLOW 6 classes already match modflow6 {want}")
+        return
+
+    clone = root / "modflow6"
+    dfnpath = clone / MF6_DFN_SUBPATH
+    # the clone is an exact DFN source (and needs no network) only while it sits
+    # on the commit the installed mf6 was built from
+    if dfnpath.is_dir() and (commit is None or clone_commit(clone).startswith(commit)):
         source = ["--dfnpath", str(dfnpath)]
         print(f"[get_mf6] syncing flopy MODFLOW 6 classes from {dfnpath}")
     else:
-        source = ["--ref", MF6_DFN_REF]
-        print(
-            f"[get_mf6] {dfnpath} not found; syncing flopy MODFLOW 6 classes "
-            f"from modflow6 '{MF6_DFN_REF}' DFNs"
-        )
+        source = ["--ref", want]
+        print(f"[get_mf6] syncing flopy MODFLOW 6 classes from modflow6 {want}")
     try:
         subprocess.check_call(
             [
@@ -186,38 +226,38 @@ def update_flopy_classes(dfnpath: Path) -> None:
         sys.exit(
             f"[get_mf6] could not update flopy classes ({exc}). flopy would keep "
             "the classes it shipped with, which silently lack the packages the "
-            "installed mf6 supports. Retry with `pixi run get-mf6 --force` once "
-            "the network and dependencies are available - a plain "
-            "`pixi run get-mf6` returns early because mf6 is already installed."
+            "installed mf6 supports. Retry with `pixi run get-mf6` once the "
+            "network and dependencies are available."
         )
+    stamp.write_text(f"{want}\n")
 
 
 def main() -> None:
-    force = "--force" in sys.argv[1:]
+    args = sys.argv[1:]
+    force = "--force" in args
+    quiet = "--quiet" in args
     prefix = conda_prefix()
     root = project_root()
-
-    if not force and mf6_in_env(prefix):
-        print(
-            "[get_mf6] mf6 already installed in this environment; nothing to do "
-            "(use --force to reinstall)."
-        )
-        return
-
     os.chdir(root)
 
-    if sys.platform.startswith("win"):
-        install_windows(prefix, root)
-        # Windows uses a prebuilt binary, so clone modflow6 only for its DFNs.
-        src = clone_mf6_source(root, shallow=True)
-    else:
-        install_unix(prefix, root)
-        src = root / "modflow6"
+    if force or mf6_path(prefix) is None:
+        if sys.platform.startswith("win"):
+            install_windows(prefix, root)
+        else:
+            install_unix(prefix, root)
+        print("[get_mf6] parallel (extended) MODFLOW 6 installed.")
+    elif not quiet:
+        print(
+            "[get_mf6] mf6 already installed in this environment "
+            "(use --force to reinstall)."
+        )
 
-    print("[get_mf6] parallel (extended) MODFLOW 6 installed.")
+    exe = mf6_path(prefix)
+    if exe is None:
+        sys.exit("[get_mf6] mf6 was not installed into the environment.")
 
-    # keep flopy's MODFLOW 6 input classes in sync with the mf6 just installed
-    update_flopy_classes(src / MF6_DFN_SUBPATH)
+    # keep flopy's MODFLOW 6 input classes in sync with the installed mf6
+    update_flopy_classes(root, mf6_commit(exe), force=force, quiet=quiet)
 
 
 if __name__ == "__main__":
