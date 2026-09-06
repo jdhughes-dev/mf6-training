@@ -21,10 +21,11 @@ fi
 # activation. Set MF6_SKIP_AUTOINSTALL to disable (CI does this and runs the
 # `get-mf6` / `get-exes` / `pre-commit-install` tasks explicitly instead).
 if [ -z "${MF6_SKIP_AUTOINSTALL:-}" ]; then
-  if [ ! -x "${CONDA_PREFIX}/bin/mf6" ]; then
-    python "${PIXI_PROJECT_ROOT}/scripts/get_mf6.py" || \
-      echo "[get_mf6] WARNING: MODFLOW 6 setup failed; run 'pixi run get-mf6 --force' to retry." >&2
-  fi
+  # get_mf6.py is run on every activation rather than only when mf6 is missing:
+  # it also resyncs flopy's MODFLOW 6 classes, which a flopy reinstall replaces
+  # with the ones flopy ships. It is silent and quick when both are in order.
+  python "${PIXI_PROJECT_ROOT}/scripts/get_mf6.py" --quiet || \
+    echo "[get_mf6] WARNING: MODFLOW 6 setup failed; run 'pixi run get-mf6 --force' to retry." >&2
   if [ ! -x "${CONDA_PREFIX}/bin/mp7" ]; then
     python "${PIXI_PROJECT_ROOT}/scripts/get_exes.py" || \
       echo "[get-exes] WARNING: could not install mp7/gridgen/triangle; run 'pixi run get-exes' to retry." >&2

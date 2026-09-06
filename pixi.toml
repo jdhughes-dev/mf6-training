@@ -80,8 +80,8 @@ h5py = "*"
 # newer commits.
 flopy = { git = "https://github.com/modflowpy/flopy.git", branch = "develop" }
 # Provides the DFN->TOML toolchain that flopy's `generate_classes` needs. The
-# get-mf6 task runs generate_classes after installing mf6 so flopy's MODFLOW 6
-# input classes stay in sync with the installed mf6 (see scripts/get_mf6.py).
+# get-mf6 task runs generate_classes so flopy's MODFLOW 6 input classes stay in
+# sync with the modflow6 commit the installed mf6 reports (scripts/get_mf6.py).
 # The `dfn` extra pulls boltons, pooch, pydantic, tomli, and tomli-w.
 modflow-devtools = { version = "*", extras = ["dfn"] }
 # Adjoint-state sensitivity analysis for MODFLOW 6 (Hayek and others, 2025),
@@ -108,8 +108,12 @@ install = { depends-on = ["get-mf6", "get-exes", "pre-commit-install"] }
 jupyter = "jupyter lab"
 # Open the project in VS Code (requires the `code` CLI on PATH).
 code = "code ."
-# Build/download the parallel (extended) MODFLOW 6 for the current platform.
-# Idempotent: does nothing if `mf6` is already on PATH. Pass --force to rebuild.
+# Build/download the parallel (extended) MODFLOW 6 for the current platform and
+# resync flopy's MODFLOW 6 input classes with it. Idempotent: an mf6 already in
+# the environment is left alone, and the classes are regenerated only when they
+# no longer match the modflow6 commit it reports. Pass --force to rebuild and
+# resync anyway. The activation hook runs this on every activation, so a flopy
+# reinstall - which puts back the classes flopy ships - is picked up there too.
 get-mf6 = "python scripts/get_mf6.py"
 # Install the MODFLOW-family executables the notebooks need but that aren't
 # provided by mf6: mp7 (MODPATH 7) for particle tracking, plus gridgen/triangle
