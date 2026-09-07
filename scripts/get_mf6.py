@@ -20,6 +20,7 @@ the activation hook in pixi.toml.
 
 import glob
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -53,6 +54,10 @@ MF6_DFN_REF = "develop"
 # stamp with it and the next run regenerates.
 STAMP_NAME = ".mf6-dfn-sync"
 
+# Ceiling on the class generation, which fetches the DFNs when they are not
+# already on disk. Generous next to the ~2 s local / ~2 min network runs.
+GENERATE_TIMEOUT = 900
+
 
 def conda_prefix() -> Path:
     prefix = os.environ.get("CONDA_PREFIX")
@@ -84,9 +89,11 @@ def mf6_commit(exe: Path) -> str | None:
         out = subprocess.check_output([str(exe), "-v"], text=True)
     except (subprocess.CalledProcessError, OSError):
         return None
-    # a development build reports `mf6: <version>+<sha>`; a release build has no sha
-    _, _, sha = out.strip().partition("+")
-    return sha or None
+    # a development build reports `mf6: <version>+<sha>`; a release build has no
+    # `+` part, and the nightly appends `.dirty` to the sha, which is not a ref
+    _, _, build = out.strip().partition("+")
+    sha = re.match(r"[0-9a-f]{7,40}", build)
+    return sha.group() if sha else None
 
 
 def clone_commit(clone: Path) -> str:
@@ -218,11 +225,13 @@ def update_flopy_classes(
                 "-m",
                 "flopy.mf6.utils.generate_classes",
                 *source,
-                "--no-backup",
                 "--no-verbose",
-            ]
+            ],
+            # a ref GitHub does not know leaves modflow-devtools retrying the
+            # download; without this the job hangs instead of failing
+            timeout=GENERATE_TIMEOUT,
         )
-    except (subprocess.CalledProcessError, OSError) as exc:
+    except (subprocess.CalledProcessError, subprocess.TimeoutExpired, OSError) as exc:
         sys.exit(
             f"[get_mf6] could not update flopy classes ({exc}). flopy would keep "
             "the classes it shipped with, which silently lack the packages the "
