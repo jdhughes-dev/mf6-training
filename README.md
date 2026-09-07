@@ -102,6 +102,12 @@ activate the environment** (the first `pixi run …` or `pixi shell`):
 - **Linux / macOS** — MODFLOW 6 is built from source with PETSc/MPI (this first
   build takes a few minutes; later activations are instant).
 
+Every activation also checks that flopy's MODFLOW 6 input classes still match
+the modflow6 commit the installed `mf6` reports (`mf6 -v`), regenerating them
+from that commit's definition files when they do not. Reinstalling flopy puts
+back the classes flopy ships, which lack the packages the installed `mf6`
+supports, so this is what keeps the two in step.
+
 You can also trigger it explicitly (idempotent; `--force` rebuilds):
 
 ```bash
