@@ -429,7 +429,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/meson-1.11.1-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.3.2-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.1.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/narwhals-2.23.0-pyhcf101f3_0.conda
@@ -511,12 +511,11 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xmipy-1.5.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
-      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
+      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/80/50/540cd3aeefc041beb111125c4bff779831a2111fc6b15a9138cda277d32c/pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl
-      - pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl
@@ -905,7 +904,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/meson-1.11.1-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.3.2-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.1.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/narwhals-2.23.0-pyhcf101f3_0.conda
@@ -987,12 +986,11 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/xmipy-1.5.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/xyzservices-2026.3.0-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/zipp-4.1.0-pyhcf101f3_0.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
-      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
+      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/43/3a/41114a9f7569b84b4d84e7a018c57c56347dac30c0d4a872946ec4e36c46/pydantic_core-2.46.4-cp311-cp311-manylinux_2_17_aarch64.manylinux2014_aarch64.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl
@@ -1086,7 +1084,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.2.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/meson-1.11.1-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.3.2-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.1.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/narwhals-2.23.0-pyhcf101f3_0.conda
@@ -1446,12 +1444,11 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zlib-ng-2.3.3-h8bce59a_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstandard-0.25.0-py311h62e9434_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-64/zstd-1.5.7-h3eecb57_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
-      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
+      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/5c/fa/6d7708d2cfc1a832acb6aeb0cd16e801902df8a0f583bb3b4b527fde022e/pydantic_core-2.46.4-cp311-cp311-macosx_10_12_x86_64.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/dc/9b/47798a6c91d8bdb567fe2698fe81e0c6b7cb7ef4d13da4114b41d239f65d/typing_inspection-0.4.2-py3-none-any.whl
@@ -1545,7 +1542,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.2.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/meson-1.11.1-pyhcf101f3_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.3.2-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.1.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/narwhals-2.23.0-pyhcf101f3_0.conda
@@ -1905,11 +1902,10 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zlib-ng-2.3.3-hed4e4f5_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstandard-0.25.0-py311h5bb9006_1.conda
       - conda: https://conda.anaconda.org/conda-forge/osx-arm64/zstd-1.5.7-hbf9d68e_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
-      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
+      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/ae/6f/aa064a3e74b5745afbdf250594f38e7ead05e2d651bcb35994b9417a0d4d/pydantic_core-2.46.4-cp311-cp311-macosx_11_0_arm64.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
@@ -2007,7 +2003,7 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/noarch/matplotlib-inline-0.2.2-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mdurl-0.1.2-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mistune-3.3.2-pyhcf101f3_0.conda
-      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
+      - conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/mypy_extensions-1.1.0-pyha770c72_0.conda
       - conda: https://conda.anaconda.org/conda-forge/noarch/narwhals-2.23.0-pyhcf101f3_0.conda
@@ -2320,11 +2316,10 @@ environments:
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-1.3.2-hfd05255_2.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zlib-ng-2.3.3-h0261ad2_1.conda
       - conda: https://conda.anaconda.org/conda-forge/win-64/zstd-1.5.7-h534d264_6.conda
-      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
-      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+      - pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
+      - pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
       - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/78/b6/6307fbef88d9b5ee7421e68d78a9f162e0da4900bc5f5793f6d3d0e34fb8/annotated_types-0.7.0-py3-none-any.whl
-      - pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/aa/e6/c505f83dfeda9a2e5c995cfd872949e4d05e12f7feb3dca72f633daefa94/pydantic_core-2.46.4-cp311-cp311-win_amd64.whl
       - pypi: https://files.pythonhosted.org/packages/b0/8c/b3f7ac4340e793a003399abed24edbb4f5b6b9c843901193d3b45483c9f9/modflow_devtools-1.9.2-py3-none-any.whl
       - pypi: https://files.pythonhosted.org/packages/c7/18/c86eb8e0202e32dd3df50d43d7ff9854f8e0603945ff398974c1d91ac1ef/tomli_w-1.2.0-py3-none-any.whl
@@ -13859,20 +13854,20 @@ packages:
   run_exports: {}
   size: 86960
   timestamp: 1782218255079
-- conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.0-pyhd8ed1ab_0.conda
-  sha256: c6810174a77ae410778d3b7f29f517b1d8b88afc6b95aabd18b1052834d02af6
-  md5: 23bf2496ac1fd83348915c66ce6841ba
+- conda: https://conda.anaconda.org/conda-forge/noarch/modflowapi-1.0.1-pyhd8ed1ab_0.conda
+  sha256: d46f09791c6c345f40b44fe721afab1b27458ab579682d97157188e7da6b3d87
+  md5: cf540e2f6955e9198ccb28f4c827b97b
   depends:
   - numpy >=1.23
-  - pandas >=1.5
+  - pandas >=2.2.2
   - python >=3.11
   - xmipy >=1.5.0
   license: CC0-1.0
   purls:
   - pkg:pypi/modflowapi?source=hash-mapping
   run_exports: {}
-  size: 32054
-  timestamp: 1788653780026
+  size: 32199
+  timestamp: 1788718595576
 - conda: https://conda.anaconda.org/conda-forge/noarch/munkres-1.1.4-pyhd8ed1ab_1.conda
   sha256: d09c47c2cf456de5c09fa66d2c3c5035aa1fa228a1983a433c47b876aa16ce90
   md5: 37293a85a0f4f77bbd9cf7aaefc62609
@@ -28531,7 +28526,7 @@ packages:
     - zstd >=1.5.7,<1.6.0a0
   size: 388453
   timestamp: 1764777142545
-- pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#7c4ae2c5c46b9d6d92296724341707450962242c
+- pypi: git+https://github.com/INTERA-Inc/mf6adj.git?branch=main#cc93475e2ec0dee1483b020dd7e5205a6d6f4b8c
   name: mf6adj
   version: 1.3.0.dev0
   requires_dist:
@@ -28539,12 +28534,11 @@ packages:
   - geopandas>=1.0.0
   - h5py>=3.0.0
   - matplotlib>=3.5.0
-  - modflowapi>=0.2.0
+  - modflowapi>=1.0.0,<2
   - numpy>=2.0
-  - pandas>=2.0.0
-  - pyemu>=1.4.0
+  - pandas>=2.0.0,<3
   - scipy>=1.7.0
-  - xmipy>=1.4.0
+  - xmipy>=1.5.0
   - boltons ; extra == 'dev'
   - codespell[toml]>=2.2.2 ; extra == 'dev'
   - filelock ; extra == 'dev'
@@ -28612,10 +28606,10 @@ packages:
   - ruff ; extra == 'test'
   - shapely ; extra == 'test'
   - tomli-w ; extra == 'test'
-  requires_python: '>=3.10'
-- pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#7c717126d81259eb9ae6196f420e56aa56744a86
+  requires_python: '>=3.11'
+- pypi: git+https://github.com/modflowpy/flopy.git?branch=develop#18dc192cac9ed731dc84f40bc898e0f4d9f87e20
   name: flopy
-  version: 3.11.0.dev0
+  version: 3.12.0.dev0
   requires_dist:
   - matplotlib>=1.4.0
   - numpy>=1.20.3,<3.0
@@ -28625,91 +28619,6 @@ packages:
   - modflow-devtools>=1.7.0,!=1.9.0,<2 ; extra == 'codegen'
   - tomli ; extra == 'codegen'
   - tomli-w ; extra == 'codegen'
-  - affine ; extra == 'dev'
-  - boltons ; extra == 'dev'
-  - cffconvert ; extra == 'dev'
-  - codespell[toml]>=2.2.2 ; extra == 'dev'
-  - coverage!=7.6.5 ; extra == 'dev'
-  - descartes ; extra == 'dev'
-  - filelock ; extra == 'dev'
-  - fiona ; extra == 'dev'
-  - flaky ; extra == 'dev'
-  - geojson ; extra == 'dev'
-  - geopandas ; extra == 'dev'
-  - gitpython ; extra == 'dev'
-  - h5py ; extra == 'dev'
-  - imageio ; extra == 'dev'
-  - ipython[kernel] ; extra == 'dev'
-  - jinja2>=3.0 ; extra == 'dev'
-  - jupyter ; extra == 'dev'
-  - jupyter-client>=8.4.0 ; extra == 'dev'
-  - jupytext ; extra == 'dev'
-  - modflow-devtools>=1.7.0,!=1.9.0,<2 ; extra == 'dev'
-  - myst-parser ; extra == 'dev'
-  - nbconvert<7.14.0 ; extra == 'dev'
-  - nbsphinx ; extra == 'dev'
-  - netcdf4 ; extra == 'dev'
-  - pooch ; extra == 'dev'
-  - pymetis ; sys_platform != 'win32' and extra == 'dev'
-  - pyproj ; extra == 'dev'
-  - pyshp ; extra == 'dev'
-  - pytest!=8.1.0 ; extra == 'dev'
-  - pytest-benchmark ; extra == 'dev'
-  - pytest-cov ; extra == 'dev'
-  - pytest-dotenv ; extra == 'dev'
-  - pytest-xdist ; extra == 'dev'
-  - pyvista ; extra == 'dev'
-  - pyyaml ; extra == 'dev'
-  - pyzmq>=25.1.2 ; extra == 'dev'
-  - rasterio ; extra == 'dev'
-  - rasterstats ; extra == 'dev'
-  - rtds-action ; extra == 'dev'
-  - ruff ; extra == 'dev'
-  - scikit-learn ; extra == 'dev'
-  - scipy ; extra == 'dev'
-  - shapely>=2.0 ; extra == 'dev'
-  - sphinx-rtd-theme>=1 ; extra == 'dev'
-  - sphinx==7.1.2 ; extra == 'dev'
-  - syrupy<5.0.0 ; extra == 'dev'
-  - tach ; extra == 'dev'
-  - tomli ; extra == 'dev'
-  - tomli-w ; extra == 'dev'
-  - virtualenv ; extra == 'dev'
-  - vtk>=9.4.0 ; extra == 'dev'
-  - xmipy ; extra == 'dev'
-  - affine ; extra == 'doc'
-  - descartes ; extra == 'doc'
-  - fiona ; extra == 'doc'
-  - geojson ; extra == 'doc'
-  - geopandas ; extra == 'doc'
-  - gitpython ; extra == 'doc'
-  - h5py ; extra == 'doc'
-  - imageio ; extra == 'doc'
-  - ipython[kernel] ; extra == 'doc'
-  - jupytext ; extra == 'doc'
-  - myst-parser ; extra == 'doc'
-  - nbconvert<7.14.0 ; extra == 'doc'
-  - nbsphinx ; extra == 'doc'
-  - netcdf4 ; extra == 'doc'
-  - pooch ; extra == 'doc'
-  - pymetis ; sys_platform != 'win32' and extra == 'doc'
-  - pyproj ; extra == 'doc'
-  - pyshp ; extra == 'doc'
-  - pyvista ; extra == 'doc'
-  - pyyaml ; extra == 'doc'
-  - rasterio ; extra == 'doc'
-  - rasterstats ; extra == 'doc'
-  - rtds-action ; extra == 'doc'
-  - scikit-learn ; extra == 'doc'
-  - scipy ; extra == 'doc'
-  - shapely>=2.0 ; extra == 'doc'
-  - sphinx-rtd-theme>=1 ; extra == 'doc'
-  - sphinx==7.1.2 ; extra == 'doc'
-  - vtk>=9.4.0 ; extra == 'doc'
-  - xmipy ; extra == 'doc'
-  - cffconvert ; extra == 'lint'
-  - codespell[toml]>=2.2.2 ; extra == 'lint'
-  - ruff ; extra == 'lint'
   - affine ; extra == 'optional'
   - descartes ; extra == 'optional'
   - fiona ; extra == 'optional'
@@ -28731,28 +28640,7 @@ packages:
   - shapely>=2.0 ; extra == 'optional'
   - vtk>=9.4.0 ; extra == 'optional'
   - xmipy ; extra == 'optional'
-  - boltons ; extra == 'test'
-  - cffconvert ; extra == 'test'
-  - codespell[toml]>=2.2.2 ; extra == 'test'
-  - coverage!=7.6.5 ; extra == 'test'
-  - filelock ; extra == 'test'
-  - flaky ; extra == 'test'
-  - jupyter ; extra == 'test'
-  - jupyter-client>=8.4.0 ; extra == 'test'
-  - jupytext ; extra == 'test'
-  - modflow-devtools>=1.7.0,!=1.9.0,<2 ; extra == 'test'
-  - pytest!=8.1.0 ; extra == 'test'
-  - pytest-benchmark ; extra == 'test'
-  - pytest-cov ; extra == 'test'
-  - pytest-dotenv ; extra == 'test'
-  - pytest-xdist ; extra == 'test'
-  - pyzmq>=25.1.2 ; extra == 'test'
-  - ruff ; extra == 'test'
-  - syrupy<5.0.0 ; extra == 'test'
-  - tomli ; extra == 'test'
-  - tomli-w ; extra == 'test'
-  - virtualenv ; extra == 'test'
-  requires_python: '>=3.10'
+  requires_python: '>=3.11'
 - pypi: https://files.pythonhosted.org/packages/00/01/4001033457f25ecdc2b1ffd513ca0b76200b9ea009dd64f6c1aad2dde133/boltons-26.0.0-py3-none-any.whl
   name: boltons
   version: 26.0.0
@@ -28786,63 +28674,6 @@ packages:
   requires_dist:
   - typing-extensions>=4.14.1
   requires_python: '>=3.9'
-- pypi: https://files.pythonhosted.org/packages/88/9c/95a6c30cd1924fa2de35d51ab36f17f3264d6b25693f4e43ecf4c8ea0b8c/pyemu-1.7.0-py3-none-any.whl
-  name: pyemu
-  version: 1.7.0
-  sha256: e4627266174cb00beccfa020cb76f5b682eaa2b8281c716e3977fef911f4a9ed
-  requires_dist:
-  - numpy>2.3.4 ; python_full_version >= '3.14' and sys_platform == 'linux'
-  - numpy>=2.2.6,<2.3.2 ; python_full_version < '3.14' and sys_platform == 'linux'
-  - numpy>=2.2.6 ; sys_platform != 'linux'
-  - pandas>=2.3.3,<3
-  - mkdocs>=1.6.1 ; extra == 'docs'
-  - mkdocs-autoapi>=0.4.1 ; extra == 'docs'
-  - mkdocs-material>=9.7.1 ; extra == 'docs'
-  - mkdocstrings-python>=2.0.1 ; extra == 'docs'
-  - pyemu[optional] ; extra == 'docs'
-  - flopy>=3.9.5 ; extra == 'optional'
-  - jinja2>=3.1.6 ; extra == 'optional'
-  - matplotlib>=3.10.7 ; extra == 'optional'
-  - pypestutils>=0.3.0 ; extra == 'optional'
-  - pyshp>=3.0.2.post1 ; extra == 'optional'
-  - scikit-learn>=1.7.2 ; extra == 'optional'
-  - scipy>=1.15.3 ; extra == 'optional'
-  - shapely>=2.1.2 ; extra == 'optional'
-  - flaky>=3.8.1 ; extra == 'tests'
-  - modflow-devtools>=1.8.0 ; extra == 'tests'
-  - nbval>=0.11.0 ; extra == 'tests'
-  - pytest>=8.4.2 ; extra == 'tests'
-  - pytest-cov>=7.0.0 ; extra == 'tests'
-  - pytest-timeout>=2.4.0 ; extra == 'tests'
-  - pytest-xdist>=3.8.0 ; extra == 'tests'
-  - tensorflow>=2.20.0 ; python_full_version < '3.14' and extra == 'tf'
-  requires_python: '>=3.10'
-- pypi: https://files.pythonhosted.org/packages/9f/ae/c8c413ddd269c369acd16fae7acd0ed8a93bda16abb4c943723735c95424/pyemu-1.4.0-py3-none-any.whl
-  name: pyemu
-  version: 1.4.0
-  sha256: 8714437d4227e7383ca77f9a050b14e92bfdaecf7b2311cdaabab35deeb285d9
-  requires_dist:
-  - numpy
-  - pandas
-  - flopy ; extra == 'optional'
-  - matplotlib ; extra == 'optional'
-  - pyshp ; extra == 'optional'
-  - scipy ; extra == 'optional'
-  - shapely ; extra == 'optional'
-  - jinja2 ; extra == 'optional'
-  - pypestutils ; extra == 'optional'
-  - coveralls ; extra == 'test'
-  - pytest ; extra == 'test'
-  - pytest-cov ; extra == 'test'
-  - pytest-xdist ; extra == 'test'
-  - flaky ; extra == 'test'
-  - nbmake ; extra == 'test'
-  - modflow-devtools ; extra == 'test'
-  - pyemu[optional] ; extra == 'docs'
-  - sphinx<7.2 ; extra == 'docs'
-  - sphinx-autoapi ; extra == 'docs'
-  - sphinx-rtd-theme>=1.3.0rc1 ; extra == 'docs'
-  requires_python: '>=3.10'
 - pypi: https://files.pythonhosted.org/packages/aa/e6/c505f83dfeda9a2e5c995cfd872949e4d05e12f7feb3dca72f633daefa94/pydantic_core-2.46.4-cp311-cp311-win_amd64.whl
   name: pydantic-core
   version: 2.46.4

@@ -48,10 +48,11 @@ MF6_REPO = "https://github.com/MODFLOW-ORG/modflow6.git"
 MF6_DFN_SUBPATH = Path("doc") / "mf6io" / "mf6ivar" / "dfn"
 MF6_DFN_REF = "develop"
 
-# Records the modflow6 commit flopy's classes were generated from. It lives in
-# the flopy package so that reinstalling flopy - which puts back the classes
-# flopy ships, which lack the packages the installed mf6 supports - takes the
-# stamp with it and the next run regenerates.
+# Records what flopy's generated classes were last synced to: the modflow6
+# commit, and the flopy install it was applied to. Reinstalling flopy puts back
+# the classes flopy ships, which lack the packages the installed mf6 supports,
+# but it only removes the files it tracks - this stamp is not one of them, so
+# the flopy half of the fingerprint is what catches a reinstall.
 STAMP_NAME = ".mf6-dfn-sync"
 
 # Ceiling on the class generation, which fetches the DFNs when they are not
@@ -110,6 +111,18 @@ def clone_commit(clone: Path) -> str:
 def stamp_path() -> Path:
     """The DFN sync stamp inside the installed flopy package."""
     return Path(sysconfig.get_paths()["purelib"]) / "flopy" / STAMP_NAME
+
+
+def sync_fingerprint(ref: str) -> str:
+    """What the stamp records: the DFN source and the flopy install using it.
+
+    flopy's RECORD is rewritten by every install, so its timestamp moves even
+    when the version does not - which is what a re-solve of the develop branch
+    looks like.
+    """
+    purelib = Path(sysconfig.get_paths()["purelib"])
+    record = next(iter(purelib.glob("flopy-*.dist-info/RECORD")), None)
+    return f"{ref} {record.stat().st_mtime_ns if record else 0}"
 
 
 def download_win64ext(dest: Path) -> None:
@@ -202,10 +215,11 @@ def update_flopy_classes(
     with, which silently lack the packages the installed mf6 supports.
     """
     stamp = stamp_path()
-    want = commit or MF6_DFN_REF
+    ref = commit or MF6_DFN_REF
+    want = sync_fingerprint(ref)
     if not force and stamp.is_file() and stamp.read_text().strip() == want:
         if not quiet:
-            print(f"[get_mf6] flopy MODFLOW 6 classes already match modflow6 {want}")
+            print(f"[get_mf6] flopy MODFLOW 6 classes already match modflow6 {ref}")
         return
 
     clone = root / "modflow6"
@@ -216,8 +230,8 @@ def update_flopy_classes(
         source = ["--dfnpath", str(dfnpath)]
         print(f"[get_mf6] syncing flopy MODFLOW 6 classes from {dfnpath}")
     else:
-        source = ["--ref", want]
-        print(f"[get_mf6] syncing flopy MODFLOW 6 classes from modflow6 {want}")
+        source = ["--ref", ref]
+        print(f"[get_mf6] syncing flopy MODFLOW 6 classes from modflow6 {ref}")
     try:
         subprocess.check_call(
             [
@@ -238,7 +252,8 @@ def update_flopy_classes(
             "installed mf6 supports. Retry with `pixi run get-mf6` once the "
             "network and dependencies are available."
         )
-    stamp.write_text(f"{want}\n")
+    # re-fingerprint: generation rewrites files flopy's RECORD tracks
+    stamp.write_text(f"{sync_fingerprint(ref)}\n")
 
 
 def main() -> None:

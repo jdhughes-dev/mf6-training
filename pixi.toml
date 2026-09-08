@@ -22,9 +22,9 @@ platforms = [
 
 [dependencies]
 python = "3.11.*"
-# pandas stays below 3: pyemu (pulled in by mf6adj) caps it at <3 through 1.7.0,
-# its newest release, so a pandas 3 environment silently drops pyemu back to
-# 1.4.0. Lift the ceiling once pyemu supports pandas 3.
+# pandas stays below 3: mf6adj caps it at <3. The cap has to be repeated here
+# because conda is solved first - conda alone would take pandas 3 and the pypi
+# solve would then have nowhere to go. Lift it once mf6adj supports pandas 3.
 pandas = ">=2.0,<3.0"
 numpy = "*"
 matplotlib = "*"
