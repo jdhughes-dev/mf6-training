@@ -22,10 +22,11 @@ platforms = [
 
 [dependencies]
 python = "3.11.*"
-# pandas stays below 3: mf6adj caps it at <3. The cap has to be repeated here
-# because conda is solved first - conda alone would take pandas 3 and the pypi
-# solve would then have nowhere to go. Lift it once mf6adj supports pandas 3.
-pandas = ">=2.0,<3.0"
+# pandas is no longer capped: with flopy, modflowapi and mf6adj all coming from
+# conda-forge, nothing in the stack holds it below 3 any more - the cap used to
+# come from pyemu, then from the mf6adj git branch. The floor only keeps a 1.x
+# resolve out.
+pandas = ">=2.0"
 numpy = "*"
 matplotlib = "*"
 jupyter = "*"
@@ -38,17 +39,24 @@ pyproj = ">=2.0"
 pyshp = "*"
 git = "*"
 nbconvert = "*"
-# Core MODFLOW 6 stack (flopy to build/post-process models; modflowapi to drive
-# a running MODFLOW 6 through the libmf6 shared library).
-#   * flopy comes from its develop branch in [pypi-dependencies] below - not the
-#     conda flopy - because Mf6Splitter cannot split GWT advanced-transport
-#     packages (SFT/LKT/UZT/MWT) in the 3.10.0 release: it reads a non-existent
-#     .perioddata and mis-keys the SFR remap table. develop fixes both (used by
-#     parallel.ipynb).
-#   * modflowapi comes from conda-forge. The develop branch was needed only
-#     because the 0.2.0 release called np.arange() on a 1-element array, which
-#     NumPy 2.x rejects; the 1.0.0 release carries that fix.
-modflowapi = ">=1.0.0"
+# Core MODFLOW 6 stack, all from conda-forge releases: flopy builds and
+# post-processes models, modflowapi drives a running MODFLOW 6 through the
+# libmf6 shared library, and mf6adj (Hayek and others, 2025) is the adjoint-
+# state sensitivity analysis behind the mf6-adj-* notebooks. flopy and mf6adj
+# tracked their git branches while the fixes and features the notebooks need
+# were unreleased; they have shipped, so the releases are what we use.
+flopy = ">=3.11.0"
+modflowapi = ">=1.0.1"
+mf6adj = ">=1.3.0"
+# The DFN->TOML toolchain flopy's `generate_classes` needs; the get-mf6 task
+# runs it so flopy's MODFLOW 6 input classes stay in sync with the modflow6
+# commit the installed mf6 reports (scripts/get_mf6.py). conda packages carry no
+# extras, so the packages the wheel's `dfn` extra would pull are named here.
+modflow-devtools = ">=1.9.2"
+boltons = "*"
+pooch = "*"
+pydantic = "*"
+tomli-w = "*"
 # Dev tooling for the pre-commit hook: ruff (lint + format), nbstripout
 # (clear notebook outputs), and codespell (spell-check + fix), driven by
 # pre-commit itself. See .pre-commit-config.yaml and the pre-commit-install
@@ -63,7 +71,10 @@ pyarrow = ">=21.0.0,<25"
 ipython = ">=9.15.0,<10"
 ipywidgets = ">=8.1.8,<9"
 geopandas = ">=1.1.4,<2"
-pyvista = ">=0.44.1,<0.49"
+# The floor tracks the version actually in use, not the oldest that works: a
+# re-solve is free to take any version in the range, and from the 0.44.1 floor
+# it picked 0.44.1 - dragging python, qt6 and mesalib backwards to suit it.
+pyvista = ">=0.48.4,<0.49"
 rasterio = ">=1.4.3,<2"
 rasterstats = ">=0.21.0,<0.22"
 # Mf6Splitter extras (model-splitting-with-flopy.ipynb): pymetis powers
@@ -71,33 +82,6 @@ rasterstats = ">=0.21.0,<0.22"
 # save_node_mapping()/load_node_mapping().
 pymetis = "*"
 h5py = "*"
-
-[pypi-dependencies]
-# flopy tracks its develop branch (not the conda-forge release) for the fix
-# noted in [dependencies] above. Tracking the branch rather than a pinned commit
-# keeps it current with the latest upstream changes; the trade-off is that the
-# resolved version is variable, so a re-solve (pixi install / update) can pull
-# newer commits.
-flopy = { git = "https://github.com/modflowpy/flopy.git", branch = "develop" }
-# Provides the DFN->TOML toolchain that flopy's `generate_classes` needs. The
-# get-mf6 task runs generate_classes so flopy's MODFLOW 6 input classes stay in
-# sync with the modflow6 commit the installed mf6 reports (scripts/get_mf6.py).
-# The `dfn` extra pulls boltons, pooch, pydantic, tomli, and tomli-w.
-modflow-devtools = { version = "*", extras = ["dfn"] }
-# Adjoint-state sensitivity analysis for MODFLOW 6 (Hayek and others, 2025),
-# used by the mf6-adj-* notebooks. Tracks the repository rather than the 1.2.0
-# release because the notebooks need the lak6 performance measure, the lake
-# water balance solved with the flow equations (so a lake sensitivity accounts
-# for the stage responding rather than holding it fixed), specific storage and
-# specific yield reported separately, and the check that rejects packages adding
-# equations to the solution matrix; switch to the released version once those
-# ship. Installed from git rather than conda-forge so it resolves against the
-# flopy develop build above instead of pulling the conda-forge flopy alongside
-# it.
-# main is the development branch; mf6adj has no separate develop branch. The
-# spec tracks that branch, but pixi.lock still pins one commit from it, so a new
-# upstream commit is only picked up by `pixi run update-mf6adj`.
-mf6adj = { git = "https://github.com/INTERA-Inc/mf6adj.git", branch = "main" }
 
 [tasks]
 # Complete the setup once `pixi install` has created the environment: MODFLOW 6,
@@ -126,10 +110,8 @@ get-mf6 = "python scripts/get_mf6.py"
 get-exes = "python scripts/get_exes.py"
 # Verify mp7, triangle, and gridgen are installed on PATH (run after get-exes).
 check-exes = "python scripts/check_exes.py"
-# Re-lock mf6adj at the tip of its development branch and install it. The
-# dependency tracks that branch, but the lock file pins one commit from it so
-# everyone builds the same environment; this is how that pin is moved. It
-# rewrites pixi.lock, so commit the result. The mf6-adj-* notebooks are the ones
+# Re-lock mf6adj at the newest conda-forge release and install it. It rewrites
+# pixi.lock, so commit the result. The mf6-adj-* notebooks are the ones
 # affected, and none of them are in the CI notebook set, so run them by hand
 # afterwards:
 #   pixi run test-notebooks examples/notebooks/mf6-adj-theis.ipynb

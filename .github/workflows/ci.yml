@@ -66,6 +66,13 @@ jobs:
           locked: true
           cache: true
 
+      # Gives the runner a display for pyvista/VTK. Rendering currently goes
+      # through the off-screen (osmesa) VTK build from conda, which needs no
+      # display, so this is insurance: conda-forge is retiring those builds, and
+      # a plain VTK falls back to a real display.
+      - name: Set up headless display
+        uses: pyvista/setup-headless-display-action@v5
+
       - name: Build/download parallel MODFLOW 6 (fresh build)
         # --force so it rebuilds even if setup-pixi restored an env from cache
         # that still contains a previously built mf6.
