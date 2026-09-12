@@ -22,10 +22,9 @@ platforms = [
 
 [dependencies]
 python = "3.11.*"
-# pandas is no longer capped: with flopy, modflowapi and mf6adj all coming from
-# conda-forge, nothing in the stack holds it below 3 any more - the cap used to
-# come from pyemu, then from the mf6adj git branch. The floor only keeps a 1.x
-# resolve out.
+# pandas is no longer capped: nothing in the stack holds it below 3 any more.
+# The cap came from pyemu, then from an older mf6adj; mf6adj now allows <4. The
+# floor only keeps a 1.x resolve out.
 pandas = ">=2.0"
 numpy = "*"
 matplotlib = "*"
@@ -43,11 +42,13 @@ nbconvert = "*"
 # post-processes models, modflowapi drives a running MODFLOW 6 through the
 # libmf6 shared library, and mf6adj (Hayek and others, 2025) is the adjoint-
 # state sensitivity analysis behind the mf6-adj-* notebooks. flopy and mf6adj
-# tracked their git branches while the fixes and features the notebooks need
-# were unreleased; they have shipped, so the releases are what we use.
+# tracked their git branches while the features the notebooks need were
+# unreleased; they have shipped, so the releases are what we use. 1.4.0 is the
+# first mf6adj release carrying write_performance_measures, which the mf6-adj-*
+# notebooks write their performance measures with.
 flopy = ">=3.11.0"
 modflowapi = ">=1.0.1"
-mf6adj = ">=1.3.0"
+mf6adj = ">=1.4.0"
 # The DFN->TOML toolchain flopy's `generate_classes` needs; the get-mf6 task
 # runs it so flopy's MODFLOW 6 input classes stay in sync with the modflow6
 # commit the installed mf6 reports (scripts/get_mf6.py). conda packages carry no

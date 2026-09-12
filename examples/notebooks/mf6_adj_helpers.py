@@ -1,9 +1,9 @@
 """Shared setup for the adjoint-sensitivity (mf6adj) notebooks.
 
 Both adjoint notebooks start from a synthetic-valley model, run it, and then
-drive mf6adj over the result. The workspace preparation, the adjoint input file,
-and the sensitivity readers are collected here so the notebooks stay focused on
-the sensitivity analysis itself.
+drive mf6adj over the result. The workspace preparation and the sensitivity
+readers are collected here so the notebooks stay focused on the sensitivity
+analysis itself.
 """
 
 import pathlib as pl
@@ -118,38 +118,6 @@ def run_model(ws, mf6_exe, silent=True):
     if not success:
         raise RuntimeError(f"MODFLOW 6 failed in {ws}:\n" + "\n".join(buff[-20:]))
     return success
-
-
-def write_adj_file(ws, filename, measures):
-    """Write an mf6adj performance-measure file.
-
-    Parameters
-    ----------
-    ws : path-like
-        Model workspace.
-    filename : str
-        Name of the adjoint file to write in ``ws``.
-    measures : dict
-        Measure name mapped to a list of ``(kper, kstp, k, i, j, pm_type)``
-        tuples, all zero-based except the package name.
-
-    Returns
-    -------
-    pathlib.Path
-        The file that was written.
-    """
-    path = pl.Path(ws) / filename
-    with open(path, "w") as f:
-        for name, entries in measures.items():
-            f.write(f"begin performance_measure {name}\n")
-            for kper, kstp, k, i, j, pm_type in entries:
-                # the adjoint file is one-based
-                f.write(
-                    f"{kper + 1} {kstp + 1} {k + 1} {i + 1} {j + 1} "
-                    f"{pm_type} direct 1.0 -1.0e+30\n"
-                )
-            f.write("end performance_measure\n\n")
-    return path
 
 
 def package_cells(gwf, package):
