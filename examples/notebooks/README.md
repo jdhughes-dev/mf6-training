@@ -60,8 +60,9 @@ local grid refinement, and running models in parallel.
    left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
-   `mf6-coastal-ghb` is left out for the same reason: it runs four simulations,
-   which takes about 45 seconds.
+   `mf6-coastal-ghb` and the two `mf6-coastal-density` notebooks are left out for
+   the same reason: each runs several simulations, taking 30 seconds to two
+   minutes.
 
 7. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
    for the markdown that accompanies the code: the voice, how much to explain,
@@ -204,6 +205,8 @@ The overland-flow (OLF) model is a distinct MODFLOW 6 model type — a sibling o
 | Notebook | What it demonstrates |
 |---|---|
 | [`mf6-coastal-ghb`](mf6-coastal-ghb.ipynb) | Put the sea along the southern edge of the synthetic valley with a general-head boundary (GHB) at sea level, and measure how much of the river's and the stream's discharge the coast takes. The starting point for a variable-density valley. |
+| [`mf6-coastal-density`](mf6-coastal-density.ipynb) | Couple flow and transport on the coastal valley and let the Buoyancy (BUY) package make sea water heavier than fresh water: the saltwater wedge, the circulation cell it drives, and what changes when buoyancy is switched off. |
+| [`mf6-coastal-density-advanced`](mf6-coastal-density-advanced.ipynb) | The same saltwater intrusion on the advanced valley (SFR, LAK, UZF, MAW, MVR), including how SSM handles the advanced packages and why the mover needs an MVT package. |
 
 ### Heat transport
 

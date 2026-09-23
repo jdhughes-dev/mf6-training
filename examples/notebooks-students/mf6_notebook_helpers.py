@@ -195,13 +195,18 @@ def load_spatial_data():
 # scripts/build_coastal_datasets.py and the coastal notebooks so the datasets
 # and the notebooks cannot drift apart.
 #
-# The GHB head is sea level in every layer. MODFLOW 6 solves in hydraulic head,
-# and a hydrostatic seawater column with its surface at sea level has that head
-# at every depth; the Buoyancy (BUY) package converts it using the ELEVATION
-# auxiliary. The CONCENTRATION auxiliary is inert until BUY is active, so the
-# same boundary serves the constant-density and variable-density models.
+# The boundary head depends on whether density is simulated. With the Buoyancy
+# (BUY) package active, MODFLOW 6 solves in hydraulic head and a hydrostatic
+# seawater column with its surface at sea level has that head at every depth, so
+# the head is sea level and BUY converts it using the ELEVATION auxiliary. In a
+# constant-density model there is no such conversion, and the weight of the
+# seawater column has to be put in by hand as an equivalent freshwater head,
+# which rises with depth and resists freshwater outflow at the bottom of the
+# aquifer. The CONCENTRATION auxiliary is inert until BUY is active.
 
 SEAWATER_CONCENTRATION = 35.0  # kg/m3, the concentration BUY gets its density from
+FRESHWATER_DENSITY = 1000.0  # kg/m3
+DENSITY_SLOPE = 0.7  # kg/m3 per unit concentration, so seawater is 1024.5
 
 
 def coastal_ghb_data(
@@ -212,6 +217,7 @@ def coastal_ghb_data(
     concentration=SEAWATER_CONCENTRATION,
     cond_mult=1.0,
     flow_length=None,
+    equivalent_freshwater=False,
 ):
     """(stress-period data, auxiliary names) for a sea-level GHB along one row.
 
@@ -219,6 +225,11 @@ def coastal_ghb_data(
     ``skip_cols`` - the stream outlet keeps the only surface outflow there.
     Conductance is the cell conductance across the outer face, scaled by
     ``cond_mult``.
+
+    ``equivalent_freshwater`` raises the boundary head with depth to carry the
+    weight of the seawater column, which is how a constant-density model
+    represents a saltwater coast. Leave it False when BUY is active, or the
+    density is counted twice.
     """
     import numpy as np
 
@@ -247,10 +258,16 @@ def coastal_ghb_data(
             # the boundary acts over the submerged part of the face, which is
             # what BUY needs to convert the sea-level head to a density head
             elevation = 0.5 * (min(cell_top, sea_level) + cell_bot)
+            bhead = sea_level
+            if equivalent_freshwater:
+                density_ratio = (
+                    FRESHWATER_DENSITY + DENSITY_SLOPE * concentration
+                ) / FRESHWATER_DENSITY
+                bhead += (density_ratio - 1.0) * (sea_level - elevation)
             spd.append(
                 (
                     (k, row, j),
-                    sea_level,
+                    bhead,
                     cond,
                     elevation,
                     concentration,
