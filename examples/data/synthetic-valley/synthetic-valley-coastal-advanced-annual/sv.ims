@@ -1,0 +1,16 @@
+BEGIN options
+  PRINT_OPTION  summary
+  COMPLEXITY  complex
+END options
+
+BEGIN nonlinear
+  OUTER_DVCLOSE  1.00000000E-05
+  OUTER_MAXIMUM  5000
+END nonlinear
+
+BEGIN linear
+  INNER_MAXIMUM  100
+  INNER_DVCLOSE  1.00000000E-06
+  LINEAR_ACCELERATION  bicgstab
+END linear
+

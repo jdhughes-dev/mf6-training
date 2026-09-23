@@ -1,0 +1,7 @@
+BEGIN options
+END options
+
+BEGIN continuous  FILEOUT  sv.ghb.obs.csv
+  coast-swgw  ghb  coast
+END continuous  FILEOUT  sv.ghb.obs.csv
+
