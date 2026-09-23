@@ -61,6 +61,11 @@ running models in parallel.
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
 
+7. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
+   for the markdown that accompanies the code: the voice, how much to explain,
+   how to introduce a term, what a "What to look for" cell owes the reader, and
+   the figure conventions.
+
 > **Naming.** Notebooks are prefixed `mf6-` (or `flopy-` for the FloPy-basics
 > introductions). A notebook's paired helper module shares its name with hyphens
 > replaced by underscores (Python modules cannot contain hyphens).

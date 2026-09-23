@@ -34,3 +34,11 @@ pixi run pre-commit-run
 
 CI runs the same hooks on every push and pull request, so committing with the
 hook installed keeps notebooks clean and code consistently formatted.
+
+## Notebook prose
+
+The markdown cells in the training notebooks follow
+[`examples/notebooks/STYLE.md`](examples/notebooks/STYLE.md): the voice, how
+much to explain, how a term is introduced, what a "What to look for" cell has to
+give the reader, and the figure conventions. Read it before writing or editing a
+notebook's prose.
