@@ -1,0 +1,127 @@
+BEGIN options
+  BOUNDNAMES
+END options
+
+BEGIN dimensions
+  NMAWWELLS  2
+END dimensions
+
+BEGIN packagedata
+  1       0.50000000    -220.40000000       0.00000000  thiem  2  reilly
+  2       0.50000000    -271.72000000       0.00000000  thiem  2  vc
+END packagedata
+
+BEGIN connectiondata
+  1  1  4 6 15     -50.69000000    -136.13000000    -999.00000000    -999.00000000
+  1  2  5 6 15    -136.13000000    -220.40000000    -999.00000000    -999.00000000
+  2  1  4 33 6     -50.71000000    -161.21000000    -999.00000000    -999.00000000
+  2  2  5 33 6    -161.21000000    -271.72000000    -999.00000000    -999.00000000
+END connectiondata
+
+BEGIN period  1
+  1  status  inactive
+  2  status  inactive
+END period  1
+
+BEGIN period  2
+  1  status  active
+  2  status  active
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  2
+
+BEGIN period  3
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  3
+
+BEGIN period  4
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  4
+
+BEGIN period  5
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  5
+
+BEGIN period  6
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  6
+
+BEGIN period  7
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  7
+
+BEGIN period  8
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  8
+
+BEGIN period  9
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  9
+
+BEGIN period  10
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  10
+
+BEGIN period  11
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  11
+
+BEGIN period  12
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  12
+
+BEGIN period  13
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  13
+
+BEGIN period  14
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  14
+
+BEGIN period  15
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  15
+
+BEGIN period  16
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  16
+
+BEGIN period  17
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  17
+
+BEGIN period  18
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  18
+
+BEGIN period  19
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  19
+
+BEGIN period  20
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  20
+
+BEGIN period  21
+  1  rate  -67000.00000000
+  2  rate  -2.68000000E+05
+END period  21
+

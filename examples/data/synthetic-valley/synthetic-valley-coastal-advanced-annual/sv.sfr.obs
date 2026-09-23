@@ -1,0 +1,9 @@
+BEGIN options
+  PRINT_INPUT
+END options
+
+BEGIN continuous  FILEOUT  sv.sfr.obs.csv
+  riv-swgw  sfr  riv
+  riv-flow  downstream-flow  17
+END continuous  FILEOUT  sv.sfr.obs.csv
+

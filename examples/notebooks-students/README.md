@@ -47,6 +47,7 @@ the notebooks import, and are generated too.
 - [`mf6-adv-mvr.ipynb`](mf6-adv-mvr.ipynb) — 5 exercises, generated from [`../notebooks/mf6-adv-mvr.ipynb`](../notebooks/mf6-adv-mvr.ipynb)
 - [`mf6-adv-sfr.ipynb`](mf6-adv-sfr.ipynb) — 6 exercises, generated from [`../notebooks/mf6-adv-sfr.ipynb`](../notebooks/mf6-adv-sfr.ipynb)
 - [`mf6-adv-uzf.ipynb`](mf6-adv-uzf.ipynb) — 8 exercises, generated from [`../notebooks/mf6-adv-uzf.ipynb`](../notebooks/mf6-adv-uzf.ipynb)
+- [`mf6-coastal-ghb.ipynb`](mf6-coastal-ghb.ipynb) — 1 exercise, generated from [`../notebooks/mf6-coastal-ghb.ipynb`](../notebooks/mf6-coastal-ghb.ipynb)
 - [`mf6-mesh-generation-gridgen.ipynb`](mf6-mesh-generation-gridgen.ipynb) — 5 exercises, generated from [`../notebooks/mf6-mesh-generation-gridgen.ipynb`](../notebooks/mf6-mesh-generation-gridgen.ipynb)
 - [`mf6-mesh-generation-triangle-voronoi.ipynb`](mf6-mesh-generation-triangle-voronoi.ipynb) — 5 exercises, generated from [`../notebooks/mf6-mesh-generation-triangle-voronoi.ipynb`](../notebooks/mf6-mesh-generation-triangle-voronoi.ipynb)
 - [`mf6-model-splitting-with-flopy.ipynb`](mf6-model-splitting-with-flopy.ipynb) — 12 exercises, generated from [`../notebooks/mf6-model-splitting-with-flopy.ipynb`](../notebooks/mf6-model-splitting-with-flopy.ipynb)

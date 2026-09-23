@@ -1,0 +1,47 @@
+BEGIN options
+END options
+
+BEGIN dimensions
+  MAXBOUND  1
+END dimensions
+
+BEGIN period  12
+  5 35 16 -3.00000000E+05
+END period  12
+
+BEGIN period  13
+  5 35 16 -3.00000000E+05
+END period  13
+
+BEGIN period  14
+  5 35 16 -3.00000000E+05
+END period  14
+
+BEGIN period  15
+  5 35 16 -3.00000000E+05
+END period  15
+
+BEGIN period  16
+  5 35 16 -3.00000000E+05
+END period  16
+
+BEGIN period  17
+  5 35 16 -3.00000000E+05
+END period  17
+
+BEGIN period  18
+  5 35 16 -3.00000000E+05
+END period  18
+
+BEGIN period  19
+  5 35 16 -3.00000000E+05
+END period  19
+
+BEGIN period  20
+  5 35 16 -3.00000000E+05
+END period  20
+
+BEGIN period  21
+  5 35 16 -3.00000000E+05
+END period  21
+
