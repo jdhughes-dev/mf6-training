@@ -140,6 +140,11 @@ Open the project in VS Code:
 pixi run code
 ```
 
+`.vscode/settings.json` makes the pixi environment the default Python
+interpreter, so notebooks open with it as their kernel. On Windows the
+interpreter is `.pixi\envs\default\python.exe`, which the setting does not
+point to; pick it once with **Python: Select Interpreter**.
+
 Drop into a shell with the environment activated (so `python`, `mf6`,
 `mp7`, etc. are all on `PATH`):
 
