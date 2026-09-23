@@ -117,6 +117,12 @@ check-exes = "python scripts/check_exes.py"
 # afterwards:
 #   pixi run test-notebooks examples/notebooks/mf6-adj-theis.ipynb
 update-mf6adj = "pixi update mf6adj"
+# Rebuild the coastal synthetic-valley datasets: each shipped base and advanced
+# model plus a sea-level general-head boundary along the southern edge. The
+# result is committed under examples/data/synthetic-valley/, so commit what this
+# rewrites. Pass --check to report drift instead of rewriting them, and
+# --cond-mult to scale the coastal conductance.
+build-coastal = "python scripts/build_coastal_datasets.py"
 # Generate the hands-on student copies of the notebooks: the same prose and
 # figures with the code marked "# exercise:" removed for students to write.
 # With no arguments it converts every marked notebook in examples/notebooks;
