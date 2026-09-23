@@ -97,16 +97,20 @@ def find_mf6_libraries(env_path=None):
 IN2FT = 1.0 / 12.0  # inches -> feet unit conversion used by several packages
 
 
-def synthetic_valley_workspaces(sample_frequency, name="sv"):
-    """(base_ws, advanced_ws) paths for the selected sample frequency."""
-    base_ws = pl.Path(
-        f"../data/synthetic-valley/synthetic-valley-base-{sample_frequency}"
-    )
-    advanced_ws = pl.Path(f"models/synthetic-valley-advanced-{sample_frequency}")
+def synthetic_valley_workspaces(sample_frequency, name="sv", *, variant=None):
+    """(base_ws, advanced_ws) paths for the selected sample frequency.
+
+    ``variant`` selects a variant of the valley, e.g. "coastal" for the models
+    carrying the sea-level general-head boundary; None is the valley the
+    advanced-packages notebooks build.
+    """
+    stem = "-".join(["synthetic-valley"] + ([variant] if variant else []))
+    base_ws = pl.Path(f"../data/synthetic-valley/{stem}-base-{sample_frequency}")
+    advanced_ws = pl.Path(f"models/{stem}-advanced-{sample_frequency}")
     return base_ws, advanced_ws
 
 
-def load_or_create_advanced_model(sample_frequency, name="sv"):
+def load_or_create_advanced_model(sample_frequency, name="sv", *, variant=None):
     """Return the advanced-packages simulation for the selected frequency.
 
     If the advanced model already exists under models/ (i.e. an earlier notebook
@@ -117,7 +121,9 @@ def load_or_create_advanced_model(sample_frequency, name="sv"):
     """
     import flopy
 
-    base_ws, advanced_ws = synthetic_valley_workspaces(sample_frequency, name)
+    base_ws, advanced_ws = synthetic_valley_workspaces(
+        sample_frequency, name, variant=variant
+    )
     if (advanced_ws / "mfsim.nam").is_file():
         sim = flopy.mf6.MFSimulation.load(
             sim_name=name,
@@ -179,6 +185,79 @@ def load_spatial_data():
     lake_location = nc_ds["lake_location"].to_numpy()
     lake_area = float(lake_location.sum()) * 500.0 * 500.0
     return nc_ds, lake_location, lake_area
+
+
+# ---------------------------------------------------------------------------
+# Synthetic-valley coastal boundary
+# ---------------------------------------------------------------------------
+# The valley drains south, and the coastal variants put a general-head boundary
+# (GHB) at sea level along that edge. The builder below is shared by
+# scripts/build_coastal_datasets.py and the coastal notebooks so the datasets
+# and the notebooks cannot drift apart.
+#
+# The GHB head is sea level in every layer. MODFLOW 6 solves in hydraulic head,
+# and a hydrostatic seawater column with its surface at sea level has that head
+# at every depth; the Buoyancy (BUY) package converts it using the ELEVATION
+# auxiliary. The CONCENTRATION auxiliary is inert until BUY is active, so the
+# same boundary serves the constant-density and variable-density models.
+
+SEAWATER_CONCENTRATION = 35.0  # kg/m3, the concentration BUY gets its density from
+
+
+def coastal_ghb_data(
+    gwf,
+    row=None,
+    skip_cols=(8,),
+    sea_level=0.0,
+    concentration=SEAWATER_CONCENTRATION,
+    cond_mult=1.0,
+    flow_length=None,
+):
+    """(stress-period data, auxiliary names) for a sea-level GHB along one row.
+
+    Every active cell in ``row`` gets a boundary, except the columns in
+    ``skip_cols`` - the stream outlet keeps the only surface outflow there.
+    Conductance is the cell conductance across the outer face, scaled by
+    ``cond_mult``.
+    """
+    import numpy as np
+
+    dis = gwf.dis
+    nlay, nrow, _ = dis.nlay.data, dis.nrow.data, dis.ncol.data
+    if row is None:
+        row = nrow - 1
+    delr = np.atleast_1d(dis.delr.array)
+    delc = np.atleast_1d(dis.delc.array)
+    top = dis.top.array
+    botm = dis.botm.array
+    idomain = dis.idomain.array
+    k11 = gwf.npf.k.array
+
+    spd = []
+    for k in range(nlay):
+        for j in range(len(delr)):
+            if j in skip_cols or idomain[k, row, j] <= 0:
+                continue
+            cell_top = top[row, j] if k == 0 else botm[k - 1, row, j]
+            cell_bot = botm[k, row, j]
+            thickness = cell_top - cell_bot
+            # half a cell from the cell center to the face the sea is on
+            length = 0.5 * delc[row] if flow_length is None else flow_length
+            cond = cond_mult * k11[k, row, j] * delr[j] * thickness / length
+            # the boundary acts over the submerged part of the face, which is
+            # what BUY needs to convert the sea-level head to a density head
+            elevation = 0.5 * (min(cell_top, sea_level) + cell_bot)
+            spd.append(
+                (
+                    (k, row, j),
+                    sea_level,
+                    cond,
+                    elevation,
+                    concentration,
+                    "coast",
+                )
+            )
+    return spd, ["ELEVATION", "CONCENTRATION"]
 
 
 # ---------------------------------------------------------------------------
