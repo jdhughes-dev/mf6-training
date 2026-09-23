@@ -210,6 +210,9 @@ Notebook figures are teaching figures, and they are read on a projector. Follow
 the conventions the manuscript figures use, since the same plots often end up in
 a report:
 
+- **Start the notebook with `%matplotlib inline`.** Without it only the first
+  figure drawn inside a `flopy.plot.styles` context is rendered, and every later
+  one is silently dropped.
 - **Draw inside a `flopy.plot.styles` context** — `styles.USGSMap()` for maps,
   `styles.USGSPlot()` for everything else. The style supplies the fonts, tick
   geometry, and save settings; do not re-set them.
