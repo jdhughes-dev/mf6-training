@@ -130,9 +130,9 @@ The hands-on material lives in
 notebooks, and a table of every notebook with a short description of the MODFLOW 6
 capability it demonstrates — building models with FloPy, driving MODFLOW 6 through
 its API, the advanced packages (UZF, MAW, SFR, LAK, MVR), adjoint-state
-sensitivity analysis, solute and heat transport, variable-density flow, particle
-tracking, XT3D, unstructured-grid generation, local grid refinement, and
-parallel runs.
+sensitivity analysis, solute and heat transport, variable-density flow, coastal
+boundaries, particle tracking, XT3D, unstructured-grid generation, local grid
+refinement, and parallel runs.
 
 Open the project in VS Code:
 

@@ -10,9 +10,9 @@ look for in the results) with runnable code, and closes with a short recap.
 Between them the notebooks cover building models from scratch with FloPy, driving
 MODFLOW 6 live through its API, the advanced hydrologic packages (UZF, MAW, SFR,
 LAK, MVR), adjoint-state sensitivity analysis, solute and heat transport,
-variable-density flow, land subsidence, overland flow, particle tracking, the
-XT3D flow formulation, unstructured-grid generation, local grid refinement, and
-running models in parallel.
+variable-density flow, coastal boundaries, land subsidence, overland flow,
+particle tracking, the XT3D flow formulation, unstructured-grid generation,
+local grid refinement, and running models in parallel.
 
 ## How to use
 
@@ -60,6 +60,8 @@ running models in parallel.
    left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
+   `mf6-coastal-ghb` is left out for the same reason: it runs four simulations,
+   which takes about 45 seconds.
 
 > **Naming.** Notebooks are prefixed `mf6-` (or `flopy-` for the FloPy-basics
 > introductions). A notebook's paired helper module shares its name with hyphens
@@ -191,6 +193,12 @@ The overland-flow (OLF) model is a distinct MODFLOW 6 model type — a sibling o
 | [`mf6-gwt1d`](mf6-gwt1d.ipynb) | One-dimensional solute transport (GWT) in a steady flow field; compare advection schemes, cell size, and time step against an analytical solution to study numerical dispersion, with the exercises driven by notebook controls. |
 | [`mf6-density-bubble`](mf6-density-bubble.ipynb) | Variable-density flow (BUY): a dense saltwater bubble sinking through fresh water, coupling GWF and GWT. |
 | [`mf6-density-henry-hilleke`](mf6-density-henry-hilleke.ipynb) | Coupled variable-density flow with heat (GWF + GWT + GWE + PRT): a Henry-type saltwater intrusion in which temperature also affects fluid density. |
+
+### Coastal boundaries
+
+| Notebook | What it demonstrates |
+|---|---|
+| [`mf6-coastal-ghb`](mf6-coastal-ghb.ipynb) | Put the sea along the southern edge of the synthetic valley with a general-head boundary (GHB) at sea level, and measure how much of the river's and the stream's discharge the coast takes. The starting point for a variable-density valley. |
 
 ### Heat transport
 
