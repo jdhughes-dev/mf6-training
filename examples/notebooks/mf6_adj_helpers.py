@@ -249,7 +249,7 @@ THEIS_WELLS = {
 }
 # An alternative pumping schedule, used to show that the sensitivities do not
 # depend on the rates they were computed with: A pumps half as much again, B is
-# never switched on, and C starts five periods earlier at half its rate. Each
+# never switched on, and C starts four periods earlier at half its rate. Each
 # entry is (rate in m3/d, zero-based stress period the well starts in).
 THEIS_ALT_SCHEDULE = {
     "A": (-3000.0, 0),
