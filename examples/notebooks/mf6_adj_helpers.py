@@ -241,7 +241,7 @@ THEIS_T = THEIS_K * THEIS_THICK  # transmissivity (m2/d)
 THEIS_S = THEIS_SS * THEIS_THICK  # storativity
 
 # name -> (x, y, rate in m3/d, zero-based stress period the well starts in),
-# with x and y measured in metres from the centre of the domain
+# with x and y measured in meters from the center of the domain
 THEIS_WELLS = {
     "A": (0.0, 0.0, -2000.0, 0),
     "B": (-2000.0, 2000.0, -1200.0, 3),
@@ -257,7 +257,7 @@ THEIS_ALT_SCHEDULE = {
     "C": (-800.0, 2),
 }
 
-# observation points, also in metres from the centre
+# observation points, also in meters from the center
 THEIS_OBS = {
     "OBS1": (1500.0, 0.0),
     "OBS2": (-1000.0, -1500.0),
@@ -267,7 +267,7 @@ THEIS_OBS = {
 
 
 def theis_cell(x, y):
-    """Zero-based (row, column) of the point (x, y) metres from the centre."""
+    """Zero-based (row, column) of the point (x, y) meters from the center."""
     return int((THEIS_HALF - y) // THEIS_DX), int((x + THEIS_HALF) // THEIS_DX)
 
 
