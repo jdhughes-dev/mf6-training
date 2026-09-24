@@ -33,7 +33,7 @@ def total_discharge(sim):
 
 
 def draw_map(ax, field, delr, delc, levels=None, title=None, vmin=None, vmax=None):
-    """Draw one masked ``(nrow, ncol)`` field on ``ax``, inactive cells in grey.
+    """Draw one masked ``(nrow, ncol)`` field on ``ax``, inactive cells in gray.
     The OLF DIS2D grid is regular, so the array is drawn directly with its cell
     size (row 0 is the north edge). Returns the image, for the color bar."""
     nrow, ncol = field.shape
