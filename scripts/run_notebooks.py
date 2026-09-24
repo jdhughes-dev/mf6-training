@@ -36,6 +36,8 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/mf6-api-d.ipynb",  # ~5 s
     # A 1-D coupled flow-and-transport benchmark.
     "examples/notebooks/mf6-gwt1d.ipynb",  # ~12 s
+    # A plume spreading from a point source on a Voronoi grid (Triangle + FMI transport).
+    "examples/notebooks/mf6-gwt-plume.ipynb",  # ~9 s
     # Variable-density flow: a dense saltwater bubble sinking (coupled GWF-GWT + BUY).
     "examples/notebooks/mf6-density-bubble.ipynb",  # ~15 s
     # Local grid refinement (LGR) with two coupled GWF models.
