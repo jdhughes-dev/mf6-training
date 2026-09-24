@@ -60,9 +60,9 @@ local grid refinement, and running models in parallel.
    left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
-   `mf6-coastal-ghb` and the two `mf6-coastal-density` notebooks are left out for
-   the same reason: each runs several simulations, taking 30 seconds to two
-   minutes.
+   `mf6-coastal-ghb`, the two `mf6-coastal-density` notebooks, and
+   `mf6-gwt-source-water` are left out for the same reason: each runs several
+   simulations, taking 30 seconds to a few minutes.
 
 7. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
    for the markdown that accompanies the code: the voice, how much to explain,
@@ -198,6 +198,7 @@ The overland-flow (OLF) model is a distinct MODFLOW 6 model type — a sibling o
 |---|---|
 | [`mf6-gwt1d`](mf6-gwt1d.ipynb) | One-dimensional solute transport (GWT) in a steady flow field; compare advection schemes, cell size, and time step against an analytical solution to study numerical dispersion, with the exercises driven by notebook controls. |
 | [`mf6-gwt-plume`](mf6-gwt-plume.ipynb) | Two-dimensional solute transport on a Voronoi (DISV) grid: a contaminant plume spreading from a point source on a freshwater island, with transport run from saved flow output through the Flow Model Interface (FMI). |
+| [`mf6-gwt-source-water`](mf6-gwt-source-water.ipynb) | Source-water identification: label the lake, the recharge, and the water already in the aquifer one at a time, and read the fraction of each well's water that came from each, checking that the fractions add to 1. |
 | [`mf6-density-bubble`](mf6-density-bubble.ipynb) | Variable-density flow (BUY): a dense saltwater bubble sinking through fresh water, coupling GWF and GWT. |
 | [`mf6-density-henry-hilleke`](mf6-density-henry-hilleke.ipynb) | Coupled variable-density flow with heat (GWF + GWT + GWE + PRT): a Henry-type saltwater intrusion in which temperature also affects fluid density. |
 
