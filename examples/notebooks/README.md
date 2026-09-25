@@ -174,7 +174,8 @@ solve per performance measure returns the sensitivity of that measure to every p
 
 | Notebook | What it demonstrates |
 |---|---|
-| [`mf6-adj-capture`](mf6-adj-capture.ipynb) | Streamflow and lake capture: define a performance measure on the SFR and LAK exchange, read the capture fraction from the sensitivity to a well rate, map where hydraulic conductivity controls capture, and check the result against a two-run difference. |
+| [`mf6-adj-capture`](mf6-adj-capture.ipynb) | Streamflow and lake capture: define a performance measure on the SFR and LAK exchange, read the capture fraction from the sensitivity to a well rate, map where hydraulic conductivity controls capture, and check the result with a two-run difference. |
+| [`mf6-adj-coastal-capture`](mf6-adj-coastal-capture.ipynb) | Split one well's capture three ways on the coastal valley, with the sea represented as a GHB at the equivalent freshwater head: one measure per outlet, the divide where the sea overtakes the stream, and the flow a foot of sea-level rise adds. |
 | [`mf6-adj-theis`](mf6-adj-theis.ipynb) | Verify the method: on an idealised confined aquifer that meets the Theis assumptions, compare the drawdown at several observation wells from two MODFLOW 6 runs, from superposed adjoint sensitivities, and from the Theis equation. |
 | [`mf6-adj-drawdown3d`](mf6-adj-drawdown3d.ipynb) | Take the same superposition to a water-table aquifer over a confined one, pumped by a well in each: rebuild the drawdown in both layers, price any pumping rates from drop-down multipliers without rerunning the model, and see why the reconstruction is no longer exact once a water table is involved. |
 
