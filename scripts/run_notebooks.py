@@ -46,10 +46,20 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/mf6-model-splitting-with-flopy.ipynb",  # ~8 s
     # XT3D on an unstructured (DISV) grid with a quadtree-refined interior.
     "examples/notebooks/mf6-xt3d-unstructured.ipynb",  # ~7 s
+    # XT3D with a full conductivity tensor: rotated anisotropy driving whirls.
+    "examples/notebooks/mf6-xt3d-whirls.ipynb",  # ~3 s
     # Quadtree unstructured grid built with the Gridgen executable.
     "examples/notebooks/mf6-mesh-generation-gridgen.ipynb",  # ~7 s
     # Triangle + Voronoi unstructured grids built with the Triangle executable.
     "examples/notebooks/mf6-mesh-generation-triangle-voronoi.ipynb",  # ~6 s
+    # Structured (DIS) grids over a watershed: constant, variable, and LGR spacing.
+    "examples/notebooks/mf6-mesh-generation-rectilinear.ipynb",  # ~9 s
+    # PRT particle tracking: pathlines through a water-table aquifer.
+    "examples/notebooks/mf6-prt-watertable.ipynb",  # ~4 s
+    # PRT backward tracking, which is where a well's water comes from.
+    "examples/notebooks/mf6-prt-backward.ipynb",  # ~3 s
+    # PRT on a Voronoi (DISV) grid, reading the shipped binary grid file.
+    "examples/notebooks/mf6-prt-voronoi.ipynb",  # ~19 s
     # CSUB land subsidence: no-delay vs delay interbeds (two short runs).
     "examples/notebooks/mf6-csub.ipynb",  # ~19 s
     # OLF overland flow: steady sheet flow across a plane for several Manning's n.
