@@ -58,7 +58,8 @@ local grid refinement, and running models in parallel.
 
    A handful of notebooks are intentionally slow (several minutes each) and are
    left out of the default set — for example `mf6-api-a-basic`,
-   `mf6-api-e-streamflow-augmentation`, `mf6-api-f-nitrate-reduction`,
+   `mf6-api-e-streamflow-augmentation`, `mf6-api-e-coastal-augmentation`,
+   `mf6-api-f-nitrate-reduction`,
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
    `mf6-coastal-ghb`, the two `mf6-coastal-density` notebooks, and
@@ -153,6 +154,7 @@ Driving a running model through [modflowapi](https://github.com/MODFLOW-USGS/mod
 | [`mf6-api-c-recharge-callback`](mf6-api-c-recharge-callback.ipynb) | Change a model input (recharge) while the simulation is running, using a modflowapi callback. |
 | [`mf6-api-d-reverse-drain`](mf6-api-d-reverse-drain.ipynb) | Add a head-dependent boundary (a reverse drain) directly through the API package. |
 | [`mf6-api-e-streamflow-augmentation`](mf6-api-e-streamflow-augmentation.ipynb) | Augment streamflow with a prediction well whose pumping rate is recomputed each outer iteration from the simulated SFR flow. |
+| [`mf6-api-e-coastal-augmentation`](mf6-api-e-coastal-augmentation.ipynb) | Run the same operating rule on the coastal valley, with the sea as a GHB at the equivalent freshwater head: the well draws most of its water from the sea, so the stream keeps 0.65 of every unit pumped instead of 0.28. |
 | [`mf6-api-f-nitrate-reduction`](mf6-api-f-nitrate-reduction.ipynb) | Couple three transport models through a first-order sequential reaction chain via API callbacks. |
 
 ### Advanced hydrologic packages
