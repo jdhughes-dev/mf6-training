@@ -64,7 +64,11 @@ local grid refinement, and running models in parallel.
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
    `mf6-coastal-ghb`, the two `mf6-coastal-density` notebooks, and
    `mf6-gwt-source-water` are left out for the same reason: each runs several
-   simulations, taking 30 seconds to a few minutes.
+   simulations, taking 30 seconds to a few minutes. The two `flopy-intro-gwt`
+   notebooks are out as well: they run the 121-period Voronoi valley, which takes
+   several minutes the first time. `flopy-intro-gwt-a` skips that run when the
+   output is already there, so it is quick to re-run but not from a clean
+   checkout.
 
 7. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
    for the markdown that accompanies the code: the voice, how much to explain,
