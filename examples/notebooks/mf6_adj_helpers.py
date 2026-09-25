@@ -13,6 +13,7 @@ import flopy
 import h5py
 import numpy as np
 import pandas as pd
+from mf6_notebook_helpers import DENSITY_SLOPE, FRESHWATER_DENSITY
 
 DATA_ROOT = pl.Path("../data/synthetic-valley")
 MODEL_ROOT = pl.Path("models")
@@ -25,6 +26,7 @@ def prepare_model(
     prediction_rate=None,
     pumping=True,
     outer_dvclose=None,
+    equivalent_freshwater=False,
 ):
     """Copy a synthetic-valley model into models/ and return its workspace.
 
@@ -33,7 +35,9 @@ def prepare_model(
     workspace : str
         Directory name under ``models/``.
     variant : str
-        ``"advanced"`` (SFR, LAK, UZF, MAW, MVR) or ``"base"`` (RIV, RCH, EVT).
+        ``"advanced"`` (SFR, LAK, UZF, MAW, MVR) or ``"base"`` (RIV, RCH, EVT),
+        either of them prefixed with ``"coastal-"`` for the variant that carries
+        a general-head boundary along the southern row.
     sample_frequency : str
         ``"annual"`` or ``"monthly"``.
     prediction_rate : float, optional
@@ -42,6 +46,9 @@ def prepare_model(
         When False, blank the production-well rates.
     outer_dvclose : float, optional
         Tighten the outer convergence criterion.
+    equivalent_freshwater : bool
+        Raise the coastal boundary heads to carry the weight of the seawater
+        column, for a coastal variant run at a constant fluid density.
 
     Returns
     -------
@@ -57,6 +64,8 @@ def prepare_model(
 
     if prediction_rate is not None:
         _set_well_rate(ws / "sv.prediction.well", prediction_rate)
+    if equivalent_freshwater:
+        _equivalent_freshwater_ghb(ws / "sv.ghb")
     if not pumping:
         # the production wells are MAW in the advanced model and WEL in the
         # base model, so switch off whichever of the two the model carries
@@ -81,6 +90,36 @@ def _set_well_rate(path, rate):
         parts = line.split()
         if len(parts) == 4 and parts[0].isdigit():
             lines.append(f"  {parts[0]} {parts[1]} {parts[2]} {rate:.8E}")
+        else:
+            lines.append(line)
+    path.write_text("\n".join(lines) + "\n")
+
+
+def _equivalent_freshwater_ghb(path):
+    """Raise every boundary head in a coastal GHB file to a freshwater head.
+
+    The shipped coastal boundary is at sea level, which is the head of a column
+    of seawater. A model at a constant freshwater density needs the head that
+    column would exert expressed in fresh water, which rises with depth below
+    sea level. The file already carries the elevation and the concentration of
+    each boundary as auxiliary variables, so the conversion reads from the line
+    it rewrites.
+    """
+    lines = []
+    for line in path.read_text().splitlines():
+        parts = line.split()
+        if len(parts) == 8 and parts[0].isdigit():
+            sea_level, elevation, concentration = (
+                float(parts[3]),
+                float(parts[5]),
+                float(parts[6]),
+            )
+            density_ratio = (
+                FRESHWATER_DENSITY + DENSITY_SLOPE * concentration
+            ) / FRESHWATER_DENSITY
+            bhead = sea_level + (density_ratio - 1.0) * (sea_level - elevation)
+            parts[3] = f"{bhead:.8E}"
+            lines.append("  " + " ".join(parts))
         else:
             lines.append(line)
     path.write_text("\n".join(lines) + "\n")
