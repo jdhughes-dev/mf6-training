@@ -14,13 +14,6 @@ import h5py
 import numpy as np
 import pandas as pd
 
-# The MAW package adds an equation per well to the MODFLOW 6 solution matrix.
-# mf6adj rebuilds the adjoint matrix from the groundwater-flow grid connectivity
-# alone, so it cannot use that matrix; the advanced model ships the equivalent
-# WEL cells, which carry the same rates split across layers 4 and 5.
-MAW_PACKAGE_LINE = "maw6  sv.maw  pwell"
-WEL_PACKAGE_LINE = "wel6  sv.pwell.wel  pwell"
-
 DATA_ROOT = pl.Path("../data/synthetic-valley")
 MODEL_ROOT = pl.Path("models")
 
@@ -40,7 +33,7 @@ def prepare_model(
     workspace : str
         Directory name under ``models/``.
     variant : str
-        ``"advanced"`` (SFR, LAK, UZF, MVR) or ``"base"`` (RIV, RCH, EVT).
+        ``"advanced"`` (SFR, LAK, UZF, MAW, MVR) or ``"base"`` (RIV, RCH, EVT).
     sample_frequency : str
         ``"annual"`` or ``"monthly"``.
     prediction_rate : float, optional
@@ -62,13 +55,12 @@ def prepare_model(
     ws.parent.mkdir(parents=True, exist_ok=True)
     shutil.copytree(src, ws)
 
-    if variant == "advanced":
-        nam = (ws / "sv.nam").read_text()
-        (ws / "sv.nam").write_text(nam.replace(MAW_PACKAGE_LINE, WEL_PACKAGE_LINE))
-
     if prediction_rate is not None:
         _set_well_rate(ws / "sv.prediction.well", prediction_rate)
     if not pumping:
+        # the production wells are MAW in the advanced model and WEL in the
+        # base model, so switch off whichever of the two the model carries
+        _zero_maw_rates(ws / "sv.maw")
         _blank_periods(ws / "sv.pwell.wel")
         _blank_periods(ws / "sv.prediction.well")
     if outer_dvclose is not None:
@@ -94,8 +86,24 @@ def _set_well_rate(path, rate):
     path.write_text("\n".join(lines) + "\n")
 
 
+def _zero_maw_rates(path):
+    """Set every rate in a MAW file to zero, leaving the wells idle."""
+    if not path.is_file():
+        return
+    lines = []
+    for line in path.read_text().splitlines():
+        parts = line.split()
+        if len(parts) == 3 and parts[1].lower() == "rate":
+            lines.append(f"  {parts[0]}  rate  0.00000000")
+        else:
+            lines.append(line)
+    path.write_text("\n".join(lines) + "\n")
+
+
 def _blank_periods(path):
     """Drop every stress-period entry from a WEL file, leaving the wells idle."""
+    if not path.is_file():
+        return
     keep, inside = [], False
     for line in path.read_text().splitlines():
         stripped = line.strip().lower()
@@ -123,11 +131,16 @@ def run_model(ws, mf6_exe, silent=True):
 def package_cells(gwf, package):
     """Return the zero-based (layer, row, column) cells a package occupies."""
     pkg = gwf.get_package(package)
-    if package.lower().startswith("lak"):
-        records = pkg.connectiondata.array
-    elif package.lower().startswith("sfr"):
-        records = pkg.packagedata.array
-    else:
+    # an advanced package carries its cells in connectiondata (LAK, MAW) or in
+    # packagedata (SFR); take whichever holds a cellid
+    records = None
+    for attribute in ("connectiondata", "packagedata"):
+        data = getattr(pkg, attribute, None)
+        array = None if data is None else data.array
+        if array is not None and "cellid" in (array.dtype.names or ()):
+            records = array
+            break
+    if records is None:
         # a list package can start in any stress period, so take the first
         # period that has entries
         records = None
