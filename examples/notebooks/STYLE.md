@@ -7,8 +7,8 @@ can follow in a live class and review on their own afterward.
 
 The reference notebooks are
 [`flopy-intro-gwf-only-a.ipynb`](flopy-intro-gwf-only-a.ipynb) (a guided model
-build) and [`mf6-api-a.ipynb`](mf6-api-a.ipynb) (a concept walk-through). When in
-doubt, match them.
+build) and [`mf6-api-a-basic.ipynb`](mf6-api-a-basic.ipynb) (a concept
+walk-through). When in doubt, match them.
 
 ## Where these rules come from
 

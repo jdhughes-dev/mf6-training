@@ -57,7 +57,8 @@ local grid refinement, and running models in parallel.
    ```
 
    A handful of notebooks are intentionally slow (several minutes each) and are
-   left out of the default set — for example `mf6-api-a`/`-e`/`-f`,
+   left out of the default set — for example `mf6-api-a-basic`,
+   `mf6-api-e-streamflow-augmentation`, `mf6-api-f-nitrate-reduction`,
    `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
    `mf6-adj-*` series, and `mf6-parallel` — but they still run.
    `mf6-coastal-ghb`, the two `mf6-coastal-density` notebooks, and
@@ -147,12 +148,12 @@ Driving a running model through [modflowapi](https://github.com/MODFLOW-USGS/mod
 
 | Notebook | What it demonstrates |
 |---|---|
-| [`mf6-api-a`](mf6-api-a.ipynb) | Basic API use: step a model through time with `update()` and read its state, introducing the API lifecycle and callback mechanism. |
-| [`mf6-api-b`](mf6-api-b.ipynb) | Monitor solver convergence live by driving a manual solver loop through the API. |
-| [`mf6-api-c`](mf6-api-c.ipynb) | Change a model input (recharge) while the simulation is running, using a modflowapi callback. |
-| [`mf6-api-d`](mf6-api-d.ipynb) | Add a head-dependent boundary (a reverse drain) directly through the API package. |
-| [`mf6-api-e`](mf6-api-e.ipynb) | Augment streamflow with a prediction well whose pumping rate is recomputed each outer iteration from the simulated SFR flow. |
-| [`mf6-api-f`](mf6-api-f.ipynb) | Couple three transport models through a first-order sequential reaction chain via API callbacks. |
+| [`mf6-api-a-basic`](mf6-api-a-basic.ipynb) | Basic API use: step a model through time with `update()` and read its state, introducing the API lifecycle and callback mechanism. |
+| [`mf6-api-b-convergence`](mf6-api-b-convergence.ipynb) | Monitor solver convergence live by driving a manual solver loop through the API. |
+| [`mf6-api-c-recharge-callback`](mf6-api-c-recharge-callback.ipynb) | Change a model input (recharge) while the simulation is running, using a modflowapi callback. |
+| [`mf6-api-d-reverse-drain`](mf6-api-d-reverse-drain.ipynb) | Add a head-dependent boundary (a reverse drain) directly through the API package. |
+| [`mf6-api-e-streamflow-augmentation`](mf6-api-e-streamflow-augmentation.ipynb) | Augment streamflow with a prediction well whose pumping rate is recomputed each outer iteration from the simulated SFR flow. |
+| [`mf6-api-f-nitrate-reduction`](mf6-api-f-nitrate-reduction.ipynb) | Couple three transport models through a first-order sequential reaction chain via API callbacks. |
 
 ### Advanced hydrologic packages
 

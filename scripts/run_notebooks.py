@@ -20,20 +20,20 @@ from nbconvert.preprocessors import ExecutePreprocessor
 
 # Notebooks executed by default when no paths are passed on the command line.
 # Kept to fast (< ~30 s), self-contained notebooks so CI stays quick; slower
-# notebooks (e.g. mf6-api-a/e, mf6-gwe-stallman, mf6-density-henry-hilleke (~8 min),
-# mf6-adv-*) are intentionally excluded. Times below are approximate
-# single-run wall times.
+# notebooks (e.g. mf6-api-a-basic, mf6-api-e-streamflow-augmentation,
+# mf6-gwe-stallman, mf6-density-henry-hilleke (~8 min), mf6-adv-*) are
+# intentionally excluded. Times below are approximate single-run wall times.
 DEFAULT_NOTEBOOKS = (
     "examples/notebooks/flopy-intro-gwf-only-a.ipynb",  # ~6 s
     # b loads and post-processes the model a runs, so it must follow a here.
     "examples/notebooks/flopy-intro-gwf-only-b.ipynb",  # ~4 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
     # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
-    "examples/notebooks/mf6-api-c.ipynb",  # ~11 s
+    "examples/notebooks/mf6-api-c-recharge-callback.ipynb",  # ~11 s
     # A manual solver loop watching convergence live (modflowapi, synthetic valley).
-    "examples/notebooks/mf6-api-b.ipynb",  # ~21 s
+    "examples/notebooks/mf6-api-b-convergence.ipynb",  # ~21 s
     # A head-dependent reverse drain built through the API package.
-    "examples/notebooks/mf6-api-d.ipynb",  # ~5 s
+    "examples/notebooks/mf6-api-d-reverse-drain.ipynb",  # ~5 s
     # A 1-D coupled flow-and-transport benchmark.
     "examples/notebooks/mf6-gwt1d.ipynb",  # ~12 s
     # A plume spreading from a point source on a Voronoi grid (Triangle + FMI transport).
