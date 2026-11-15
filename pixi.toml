@@ -10,14 +10,14 @@ requires-pixi = ">=0.71"
 # [system-requirements] table):
 #  - linux-64 pins a lower __linux (kernel) version for the openmpi/petsc stack
 #    used by the parallel (extended) MODFLOW 6 build.
-#  - the macOS minimums keep resolution on recent SDKs so conda-forge can supply
+#  - the macOS minimum keeps resolution on recent SDKs so conda-forge can supply
 #    the openmpi/petsc binaries the extended MODFLOW 6 build links against.
+# Intel macs (osx-64) are not supported: CI does not test them.
 platforms = [
     "win-64",
     { platform = "linux-64", linux = "4.4.0" },
     { platform = "linux-aarch64", linux = "4.4.0" },
     { platform = "osx-arm64", macos = "14.0" },
-    "osx-64",
 ]
 
 [dependencies]
@@ -104,9 +104,8 @@ get-mf6 = "python scripts/get_mf6.py"
 # provided by mf6: mp7 (MODPATH 7) for particle tracking, plus gridgen/triangle
 # for unstructured grid generation. (mf6 itself comes from the get-mf6 task.)
 # Prebuilt binaries come from flopy's get-modflow on the platforms USGS ships
-# them for (win-64, linux-64, osx-arm64). On platforms with no prebuilt binaries
-# - Intel macs (osx-64) and linux-aarch64 - they are built from source from the
-# MODFLOW-ORG repos (get_exes.py delegates to build_exes.py) and installed into
+# them for (win-64, linux-64, osx-arm64). On linux-aarch64, which has no prebuilt
+# binaries, they are built from source from the MODFLOW-ORG repos (get_exes.py delegates to build_exes.py) and installed into
 # the env prefix like mf6. Pass --force to rebuild the source-built exes.
 get-exes = "python scripts/get_exes.py"
 # Verify mp7, triangle, and gridgen are installed on PATH (run after get-exes).
@@ -164,7 +163,7 @@ pre-commit-run = "pre-commit run --all-files"
 # --- Auto-install parallel (extended) MODFLOW 6 ---------------------------
 # conda-forge does NOT ship a parallel-enabled mf6, so we provide it ourselves:
 #   * Windows (win-64): download the prebuilt extended nightly and copy it in.
-#   * Unix (linux-64, osx-64, osx-arm64): build from source with PETSc/MPI.
+#   * Unix (linux-64, linux-aarch64, osx-arm64): build from source with PETSc/MPI.
 # pixi has no post-install hook, so we run the (idempotent) installer from an
 # activation script. The first `pixi run`/`pixi shell` performs the build;
 # every later activation is a fast no-op once `mf6` is present. Binaries are

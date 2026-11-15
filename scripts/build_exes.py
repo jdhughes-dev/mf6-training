@@ -3,8 +3,7 @@
 
 USGS ships prebuilt mp7 / triangle / gridgen binaries only for win-64, linux-64,
 and osx-arm64 (the MODFLOW-ORG/executables release). On the other supported
-platforms - Intel macOS (osx-64) and linux-aarch64 - flopy's ``get-modflow`` has
-nothing to download, so we clone each program from the MODFLOW-ORG GitHub
+platform, linux-aarch64, flopy's ``get-modflow`` has nothing to download, so we clone each program from the MODFLOW-ORG GitHub
 organization and build it with meson (every repo ships a meson.build with
 ``install: true``).
 

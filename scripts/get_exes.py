@@ -8,9 +8,9 @@ These are needed by the notebooks but are not provided by mf6 itself:
 
 USGS ships prebuilt binaries only for win-64, linux-64, and osx-arm64 (the
 MODFLOW-ORG/executables release), installed here via flopy's ``get-modflow``. On
-the other supported platforms - Intel macOS (osx-64) and linux-aarch64 - there
-are no prebuilt binaries, so they are built from source instead (this script
-delegates to scripts/build_exes.py).
+the other supported platform, linux-aarch64, there are no prebuilt binaries, so
+they are built from source instead (this script delegates to
+scripts/build_exes.py).
 
 This is the "main" executables task run inside the pixi env via
 ``pixi run get-exes`` (and from the activation hook). Pass ``--force`` to rebuild
@@ -26,8 +26,6 @@ from pathlib import Path
 def needs_source_build() -> bool:
     """True on supported platforms USGS ships no prebuilt binaries for."""
     machine = platform.machine().lower()
-    if sys.platform == "darwin" and machine in ("x86_64", "amd64"):
-        return True  # Intel macOS (osx-64)
     if sys.platform.startswith("linux") and machine in ("aarch64", "arm64"):
         return True  # linux-aarch64
     return False

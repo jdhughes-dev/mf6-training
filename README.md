@@ -7,8 +7,8 @@ reproducible [pixi](https://pixi.sh) environment. It provides the scientific
 Python stack (flopy, modflowapi, pandas, numpy, scipy, matplotlib, …) for
 building, running, and analyzing MODFLOW 6 models in notebooks or scripts, plus
 a **parallel (extended) build of MODFLOW 6** (including the `libmf6` shared
-library that modflowapi drives) across Windows, Linux, and macOS (Apple Silicon
-and Intel).
+library that modflowapi drives) across Windows, Linux, and macOS on Apple
+Silicon. Intel macs are not supported.
 
 ## 1. Install pixi
 
@@ -173,12 +173,13 @@ and formatting. See [CONTRIBUTING.md](CONTRIBUTING.md) for details.
 | Linux 64-bit | `linux-64` |
 | Linux ARM64 | `linux-aarch64` |
 | macOS Apple Silicon | `osx-arm64` |
-| macOS Intel | `osx-64` |
 
 CI (GitHub Actions) installs the environment and verifies MODFLOW 6 (including
-that modflowapi can load `libmf6`) and the Python packages on all five platforms
+that modflowapi can load `libmf6`) and the Python packages on all four platforms
 on every push and pull request, plus a nightly run. (linux-aarch64 uses the free
-arm64 hosted runners available for public repositories.)
+arm64 hosted runners available for public repositories.) Intel macs (`osx-64`)
+are not supported: CI does not test them, and the pixi environment is not solved
+for them.
 
 ## Notes
 
@@ -189,12 +190,12 @@ arm64 hosted runners available for public repositories.)
   after about a month, so the pinned tag goes stale on its own; if both fail,
   update `NIGHTLY` to a current tag. (The nightly CI run flags this
   automatically.)
-- On the platforms USGS ships no prebuilt binaries for - **Intel macs (osx-64)**
-  and **linux-aarch64** - the mp7 / triangle / gridgen executables are built from
-  source (cloned from the [MODFLOW-ORG](https://github.com/MODFLOW-ORG) GitHub
-  org and compiled with meson); every other platform gets prebuilt binaries via
-  flopy's `get-modflow`. Either way it is automatic (`pixi run get-exes`) and the
-  executables install into the environment like mf6.
+- On **linux-aarch64**, the one platform USGS ships no prebuilt binaries for,
+  the mp7 / triangle / gridgen executables are built from source (cloned from
+  the [MODFLOW-ORG](https://github.com/MODFLOW-ORG) GitHub org and compiled with
+  meson); every other platform gets prebuilt binaries via flopy's `get-modflow`.
+  Either way it is automatic (`pixi run get-exes`) and the executables install
+  into the environment like mf6.
 - All from-source builds (mf6, and the executables above where applicable) use a
   single GNU toolchain (gcc/g++/gfortran), matching how MODFLOW-ORG builds its
   release binaries. Note that conda-forge only began shipping real GNU gcc/g++ on
