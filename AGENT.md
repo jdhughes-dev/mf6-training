@@ -28,7 +28,9 @@ from other writing guidance, it wins.
   - reading credentials, SSH keys, tokens, or environment variables that hold
     secrets;
   - writing, moving, or deleting files outside the repository and its
-    `examples/notebooks/models/` folder, or changing git settings or hooks;
+    `examples/notebooks/models/` folder (the deck scripts write to the decks
+    folder named under Units, which is expected), or changing git settings or
+    hooks;
   - installing packages outside the pixi environment.
 
 ## Units
