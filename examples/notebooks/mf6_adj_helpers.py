@@ -325,7 +325,7 @@ def well_rates(gwf, nper, packages=("pwell", "prediction")):
 
 
 # ---------------------------------------------------------------------------
-# Idealised confined aquifer, for verifying against the Theis solution
+# Idealized confined aquifer, for verifying against the Theis solution
 # ---------------------------------------------------------------------------
 # The Theis solution assumes a confined aquifer that is homogeneous, isotropic,
 # of uniform thickness and infinite extent, pumped by fully penetrating wells,
@@ -357,7 +357,7 @@ THEIS_WELLS = {
     "C": (3000.0, -1000.0, -1600.0, 6),
 }
 # An alternative pumping schedule, used to show that the sensitivities do not
-# depend on the rates they were computed with: A pumps half as much again, B is
+# depend on the rates they were computed with: A pumps 1.5 times its rate, B is
 # never switched on, and C starts four periods earlier at half its rate. Each
 # entry is (rate in m3/d, zero-based stress period the well starts in).
 THEIS_ALT_SCHEDULE = {
@@ -395,7 +395,7 @@ def theis_rates(schedule=None):
 
 
 def theis_simulation(ws, exe_name, schedule=None):
-    """Build the idealised confined aquifer.
+    """Build the idealized confined aquifer.
 
     ``schedule`` is passed to :func:`theis_rates`, so the same aquifer can be
     rebuilt with any set of pumping rates. The workspace is emptied first, so a

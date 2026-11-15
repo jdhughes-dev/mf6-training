@@ -174,7 +174,7 @@ def build_simulation(
     flopy.mf6.ModflowGwtssm(gwt, sources=[("ghb-1", "AUX", "CONCENTRATION")])
     if gwf.get_package("mvr") is not None:
         # the mover routes water between the advanced packages, and MODFLOW 6
-        # stops unless transport knows about it. An MVT package with no options
+        # stops unless transport includes it. An MVT package with no options
         # satisfies that: the mover carries water but no solute, which is exact
         # here because everything it routes is fresh.
         flopy.mf6.ModflowGwtmvt(gwt)
