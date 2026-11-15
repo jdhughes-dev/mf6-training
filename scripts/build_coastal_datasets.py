@@ -3,8 +3,9 @@
 
 Each coastal model is a shipped base or advanced model plus a general-head
 boundary (GHB) at sea level along the southern edge, which turns the valley into
-a coastal aquifer. Nothing else changes, so a coastal model can be compared cell
-for cell with the model it came from. Run inside the pixi env, e.g.
+a coastal aquifer. The runoff that reaches the coast leaves the model, and the
+model starts from its own steady-state heads (scripts/update_structured_models.py);
+the rest is the model it came from. Run inside the pixi env, e.g.
 `pixi run build-coastal`.
 """
 
@@ -20,6 +21,8 @@ import flopy
 sys.path.insert(0, str(pl.Path(__file__).resolve().parents[1] / "examples/notebooks"))
 
 from mf6_notebook_helpers import coastal_ghb_data  # noqa: E402
+from sv_surface import Surface  # noqa: E402
+from update_structured_models import model_ws, update  # noqa: E402
 
 DATA_ROOT = pl.Path(__file__).resolve().parents[1] / "examples/data/synthetic-valley"
 KINDS = ("base", "advanced")
@@ -30,12 +33,14 @@ FREQUENCIES = ("annual", "monthly")
 DEFAULT_FREQUENCIES = ("annual",)
 
 
-def build_one(kind, sample_frequency, dest, cond_mult=1.0, name="sv"):
+def build_one(kind, sample_frequency, dest, surface, cond_mult=1.0, name="sv"):
     """Write one coastal model and return its GHB stress-period data."""
-    src = DATA_ROOT / f"synthetic-valley-{kind}-{sample_frequency}"
+    src = model_ws(kind, sample_frequency)
     sim = flopy.mf6.MFSimulation.load(
         sim_name=name, sim_ws=src, write_headers=False, verbosity_level=0
     )
+    sim.simulation_data.float_precision = 12
+    sim.simulation_data.float_characters = 20
     gwf = sim.get_model()
     spd, auxiliary = coastal_ghb_data(gwf, cond_mult=cond_mult)
     flopy.mf6.ModflowGwfghb(
@@ -54,6 +59,7 @@ def build_one(kind, sample_frequency, dest, cond_mult=1.0, name="sv"):
         shutil.rmtree(dest)
     sim.set_sim_path(dest)
     sim.write_simulation(silent=True)
+    update(kind, dest, surface, model_ws("advanced", sample_frequency))
     return spd
 
 
@@ -95,12 +101,13 @@ def main(argv=None):
     )
     args = parser.parse_args(argv)
 
+    surface = Surface()
     drifted = []
     for kind, frequency in targets(args.only, args.frequency):
         committed = DATA_ROOT / f"synthetic-valley-coastal-{kind}-{frequency}"
         with tempfile.TemporaryDirectory() as tmp:
             dest = pl.Path(tmp) / committed.name if args.check else committed
-            spd = build_one(kind, frequency, dest, cond_mult=args.cond_mult)
+            spd = build_one(kind, frequency, dest, surface, cond_mult=args.cond_mult)
             print(f"{committed.name}: {len(spd)} GHB cells")
             if args.check:
                 changed = differences(dest, committed)

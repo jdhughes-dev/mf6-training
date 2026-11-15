@@ -4,16 +4,17 @@ BEGIN options
 END options
 
 BEGIN packages
-  DIS6  sv.dis  dis
-  IC6  sv.ic  ic
-  NPF6  sv.npf  npf
-  STO6  sv.sto  sto
-  RCH6  sv.rch  rch_0
-  EVT6  sv.evt  evt_0
-  RIV6  sv.riv  riv-1
-  WEL6  sv.pwell.wel  pwell
-  WEL6  sv.prediction.well  prediction
-  OC6  sv.oc  oc
-  OBS6  sv.gwf.obs  gwf-obs
+  dis6  sv.dis  dis
+  ic6  sv.ic  ic
+  npf6  sv.npf  npf
+  sto6  sv.sto  sto
+  rch6  sv.rch  rch_0
+  evt6  sv.evt  evt_0
+  riv6  sv.riv  riv-1
+  wel6  sv.pwell.wel  pwell
+  wel6  sv.prediction.well  prediction
+  oc6  sv.oc  oc
+  obs6  sv.gwf.obs  gwf-obs
+  drn6  sv.drn  drn-1
 END packages
 

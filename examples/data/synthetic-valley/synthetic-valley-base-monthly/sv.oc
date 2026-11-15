@@ -5,7 +5,7 @@ BEGIN options
 END options
 
 BEGIN period  1
-  SAVE  HEAD  ALL
-  SAVE  BUDGET  ALL
+  SAVE  head  all
+  SAVE  budget  all
 END period  1
 

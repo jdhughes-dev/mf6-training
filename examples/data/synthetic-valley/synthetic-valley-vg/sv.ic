@@ -1,8 +1,0 @@
-BEGIN options
-END options
-
-BEGIN griddata
-  strt
-    CONSTANT      11.00000000
-END griddata
-

@@ -4,17 +4,18 @@ BEGIN options
 END options
 
 BEGIN packages
-  SFR6  sv.sfr  sfr-1
-  MAW6  sv.maw  pwell
-  UZF6  sv.uzf  uzf-1
+  sfr6  sv.sfr  sfr-1
+  maw6  sv.maw  pwell
+  uzf6  sv.uzf  uzf-1
   oc6  sv.oc  oc
   wel6  sv.prediction.well  prediction
   sto6  sv.sto  sto
   npf6  sv.npf  npf
   ic6  sv.ic  ic
   dis6  sv.dis  dis
-  LAK6  sv.lak  lak-1
-  OBS6  sv.obs  obs_2
-  MVR6  sv.mvr  mvr
+  lak6  sv.lak  lak-1
+  obs6  sv.obs  obs_2
+  mvr6  sv.mvr  mvr
+  drn6  sv.drn  drn-1
 END packages
 

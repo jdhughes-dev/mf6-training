@@ -1,0 +1,54 @@
+BEGIN options
+  PRINT_INPUT
+END options
+
+BEGIN continuous  FILEOUT  sv.gwf.aq.csv
+  aq01-i2-j17  head  5 5407
+  aq02-i3-j10  head  4 438
+  aq03-i6-j20  head  4 5806
+  aq04-i12-j22  head  4 5668
+  aq05-i14-j11  head  5 3215
+  aq06-i16-j18  head  4 5966
+  aq07-i17-j1  head  4 5255
+  aq08-i18-j6  head  4 5129
+  aq09-i19-j11  head  4 5523
+  aq10-i18-j22  head  4 5564
+  aq11-i26-j5  head  4 4113
+  aq12-i27-j11  head  4 3949
+  aq13-i28-j23  head  4 5576
+  aq14-i30-j6  head  4 2666
+  aq15-i33-j14  head  5 3938
+  aq16-i36-j1  head  4 5337
+  aq17-i37-j22  head  4 5547
+END continuous  FILEOUT  sv.gwf.aq.csv
+
+BEGIN continuous  FILEOUT  sv.gwf.scenario.csv
+  reilly  head  5 2081
+  vc  head  5 2076
+  dw  head  1 6064
+END continuous  FILEOUT  sv.gwf.scenario.csv
+
+BEGIN continuous  FILEOUT  sv.gwf.wt.csv
+  wt01-i2-j17  head  1 5407
+  wt02-i3-j10  head  1 438
+  wt03-i6-j20  head  1 5806
+  wt04-i12-j22  head  1 5668
+  wt05-i14-j11  head  1 3215
+  wt06-i16-j18  head  1 5966
+  wt07-i17-j1  head  1 5255
+  wt08-i18-j6  head  1 5129
+  wt09-i19-j11  head  1 5523
+  wt10-i18-j22  head  1 5564
+  wt11-i26-j5  head  1 4113
+  wt12-i27-j11  head  1 3949
+  wt13-i28-j23  head  1 5576
+  wt14-i30-j6  head  1 2666
+  wt15-i33-j14  head  1 3938
+  wt16-i36-j1  head  1 5337
+  wt17-i37-j22  head  1 5547
+END continuous  FILEOUT  sv.gwf.wt.csv
+
+BEGIN continuous  FILEOUT  sv.lake.obs.csv
+  lake-stage  head  1 3773
+END continuous  FILEOUT  sv.lake.obs.csv
+

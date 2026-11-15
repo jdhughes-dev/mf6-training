@@ -2,6 +2,6 @@ BEGIN options
 END options
 
 BEGIN continuous  FILEOUT  sv.riv.obs.csv
-  RIV-SWGW  RIV  RIV
+  riv-swgw  riv  riv
 END continuous  FILEOUT  sv.riv.obs.csv
 

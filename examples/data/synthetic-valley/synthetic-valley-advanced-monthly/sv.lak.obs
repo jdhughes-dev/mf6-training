@@ -3,7 +3,7 @@ BEGIN options
 END options
 
 BEGIN continuous  FILEOUT  sv.lake.obs.csv
-  LAKE-STAGE  STAGE  LAKE_HARBAUGH
-  LAKE-SWGW  LAK  LAKE_HARBAUGH
+  lake-stage  stage  lake_harbaugh
+  lake-swgw  lak  lake_harbaugh
 END continuous  FILEOUT  sv.lake.obs.csv
 

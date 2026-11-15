@@ -15,6 +15,7 @@ BEGIN packages
   wel6  sv.prediction.well  prediction
   oc6  sv.oc  oc
   obs6  sv.gwf.obs  gwf-obs
+  drn6  sv.drn  drn-1
   GHB6  sv.ghb  ghb-1
 END packages
 
