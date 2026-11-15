@@ -80,8 +80,11 @@ def find_mf6_libraries(env_path=None):
     else:
         lib_ext, exe_ext = ".dll", ".exe"
 
-    lib_name = find_in_env(f"libmf6{lib_ext}", env_path=env_path)
     mf6_exe = find_in_env(f"mf6{exe_ext}", env_path=env_path)
+    # the library installed with mf6 first, then anywhere in the environment
+    lib_name = mf6_exe.parent / f"libmf6{lib_ext}"
+    if not lib_name.is_file():
+        lib_name = find_in_env(f"libmf6{lib_ext}", env_path=env_path)
     return lib_name, mf6_exe
 
 
