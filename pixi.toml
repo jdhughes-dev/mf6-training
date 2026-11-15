@@ -117,12 +117,22 @@ check-exes = "python scripts/check_exes.py"
 # afterwards:
 #   pixi run test-notebooks examples/notebooks/mf6-adj-theis.ipynb
 update-mf6adj = "pixi update mf6adj"
-# Rebuild the coastal synthetic-valley datasets: each shipped base and advanced
-# model plus a sea-level general-head boundary along the southern edge. The
-# result is committed under examples/data/synthetic-valley/, so commit what this
-# rewrites. Pass --check to report drift instead of rewriting them, and
-# --cond-mult to scale the coastal conductance.
+# Rebuild the synthetic-valley datasets under examples/data/synthetic-valley/,
+# which are committed, so commit what these rewrite. Run them in this order:
+#  1. build-valley puts the land surface, the lake, the seepage drains, and the
+#     runoff routing from the land surface raster on the base and advanced
+#     models, and writes the lake and runoff data the mf6-adv-* notebooks read.
+#  2. build-coastal makes each annual base and advanced model coastal: a
+#     sea-level general-head boundary along the southern edge. Pass --check to
+#     report drift instead of rewriting them, and --cond-mult to scale the
+#     coastal conductance.
+#  3. build-vg moves the annual base and advanced models onto the Voronoi grid.
+# scripts/write_vg_truth.py then writes the truth from a run of the Voronoi-grid
+# advanced model. Each step runs the models it changes to find their
+# steady-state starting heads.
+build-valley = "python scripts/update_structured_models.py"
 build-coastal = "python scripts/build_coastal_datasets.py"
+build-vg = "python scripts/build_vg_models.py"
 # Generate the hands-on student copies of the notebooks: the same prose and
 # figures with the code marked "# exercise:" removed for students to write.
 # With no arguments it converts every marked notebook in examples/notebooks;
@@ -143,6 +153,13 @@ test-notebooks = "python scripts/run_notebooks.py"
 pre-commit-install = "pre-commit install"
 # Run all pre-commit hooks against every file (not just staged changes).
 pre-commit-run = "pre-commit run --all-files"
+
+# --- Notebook display units -----------------------------------------------
+# The synthetic-valley models are in meters and days, and the notebooks show
+# their results in meters. To show them in feet, set MF6_TRAINING_UNITS=feet in
+# the shell before `pixi run ...`, or uncomment these two lines.
+# [activation.env]
+# MF6_TRAINING_UNITS = "feet"
 
 # --- Auto-install parallel (extended) MODFLOW 6 ---------------------------
 # conda-forge does NOT ship a parallel-enabled mf6, so we provide it ourselves:

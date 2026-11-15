@@ -1,0 +1,20 @@
+BEGIN options
+  SAVE_FLOWS
+  NEWTON  UNDER_RELAXATION
+END options
+
+BEGIN packages
+  DISV6  sv.disv  disv
+  IC6  sv.ic  ic
+  NPF6  sv.npf  npf
+  STO6  sv.sto  sto
+  RCH6  sv.rch  rch_0
+  EVT6  sv.evt  evt_0
+  RIV6  sv.riv  riv-1
+  WEL6  sv.pwell.wel  pwell
+  DRN6  sv.drn  drn-1
+  WEL6  sv.prediction.well  prediction
+  OBS6  sv.gwf.obs  gwf-obs
+  OC6  sv.oc  oc
+END packages
+

@@ -4,7 +4,7 @@ The three mesh-generation notebooks (gridgen, rectilinear, triangle-voronoi)
 build different grids over the SAME watershed, so they share the problem extent,
 the fine topographic raster, the boundary/stream geometry, and three helpers that
 sample topography onto a grid, flag the cells the river crosses, and draw the
-boundary and streams. That shared setup lives here so each notebook imports it
+boundary and streams. That shared setup is kept here so each notebook imports it
 instead of repeating ~40 identical lines. Import from the notebook working
 directory (examples/notebooks) so the ``../data`` path resolves.
 """

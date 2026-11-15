@@ -27,6 +27,7 @@ def prepare_model(
     pumping=True,
     outer_dvclose=None,
     equivalent_freshwater=False,
+    uzf_budget=False,
 ):
     """Copy a synthetic-valley model into models/ and return its workspace.
 
@@ -49,6 +50,8 @@ def prepare_model(
     equivalent_freshwater : bool
         Raise the coastal boundary heads to carry the weight of the seawater
         column, for a coastal variant run at a constant fluid density.
+    uzf_budget : bool
+        Save the unsaturated-zone budget to ``sv.uzf.csv``, one row per period.
 
     Returns
     -------
@@ -73,14 +76,41 @@ def prepare_model(
         _blank_periods(ws / "sv.pwell.wel")
         _blank_periods(ws / "sv.prediction.well")
     if outer_dvclose is not None:
-        ims = (ws / "sv.ims").read_text()
-        (ws / "sv.ims").write_text(
-            ims.replace(
-                "OUTER_DVCLOSE  1.00000000E-05",
-                f"OUTER_DVCLOSE  {outer_dvclose:.8E}",
-            )
-        )
+        _set_outer_dvclose(ws / "sv.ims", outer_dvclose)
+    if uzf_budget:
+        _add_option(ws / "sv.uzf", "BUDGETCSV  FILEOUT  sv.uzf.csv")
     return ws
+
+
+def _add_option(path, option):
+    """Add a line to the options block of a package file."""
+    lines = []
+    for line in path.read_text().splitlines():
+        lines.append(line)
+        if line.strip().lower() == "begin options":
+            lines.append(f"  {option}")
+    path.write_text("\n".join(lines) + "\n")
+
+
+def _set_outer_dvclose(path, dvclose):
+    """Replace the outer head-change criterion in an IMS file."""
+    lines = []
+    found = False
+    for line in path.read_text().splitlines():
+        parts = line.split()
+        if len(parts) == 2 and parts[0].upper() == "OUTER_DVCLOSE":
+            lines.append(f"  OUTER_DVCLOSE  {dvclose:.12E}")
+            found = True
+        else:
+            lines.append(line)
+    if not found:
+        raise ValueError(f"no OUTER_DVCLOSE in {path}")
+    path.write_text("\n".join(lines) + "\n")
+
+
+def _is_cell_line(parts, nfields):
+    """True for a list entry that starts with a (layer, row, column) cell."""
+    return len(parts) >= nfields and all(p.isdigit() for p in parts[:3])
 
 
 def _set_well_rate(path, rate):
@@ -88,8 +118,9 @@ def _set_well_rate(path, rate):
     lines = []
     for line in path.read_text().splitlines():
         parts = line.split()
-        if len(parts) == 4 and parts[0].isdigit():
-            lines.append(f"  {parts[0]} {parts[1]} {parts[2]} {rate:.8E}")
+        if _is_cell_line(parts, 4):
+            parts[3] = f"{rate:.12E}"
+            lines.append("  " + " ".join(parts))
         else:
             lines.append(line)
     path.write_text("\n".join(lines) + "\n")
@@ -108,7 +139,8 @@ def _equivalent_freshwater_ghb(path):
     lines = []
     for line in path.read_text().splitlines():
         parts = line.split()
-        if len(parts) == 8 and parts[0].isdigit():
+        # layer row column bhead cond elevation concentration [boundname]
+        if _is_cell_line(parts, 7):
             sea_level, elevation, concentration = (
                 float(parts[3]),
                 float(parts[5]),
@@ -118,7 +150,7 @@ def _equivalent_freshwater_ghb(path):
                 FRESHWATER_DENSITY + DENSITY_SLOPE * concentration
             ) / FRESHWATER_DENSITY
             bhead = sea_level + (density_ratio - 1.0) * (sea_level - elevation)
-            parts[3] = f"{bhead:.8E}"
+            parts[3] = f"{bhead:.12E}"
             lines.append("  " + " ".join(parts))
         else:
             lines.append(line)
@@ -243,6 +275,31 @@ def budget_net(ws, term):
     return (df[f"{term}_IN"] - df[f"{term}_OUT"]).values
 
 
+def pumping_sources(ws_base, ws_pumped, rate, kper, well="WEL(PREDICTION)"):
+    """Return the share of a well's pumping each budget term supplies.
+
+    A share is the change in a term's net inflow to the aquifer between the two
+    runs per unit pumped in stress period ``kper`` (zero-based). The well's own
+    term is left out, so the shares add to one.
+    """
+    base = pd.read_csv(pl.Path(ws_base) / "sv-budget.csv").iloc[kper]
+    pumped = pd.read_csv(pl.Path(ws_pumped) / "sv-budget.csv").iloc[kper]
+    shares = {}
+    for column in base.index:
+        term = column[:-3]
+        if not column.endswith("_IN") or term in ("TOTAL", well):
+            continue
+        before = base[column] - base[f"{term}_OUT"]
+        after = pumped[column] - pumped[f"{term}_OUT"]
+        shares[term] = (after - before) / -rate
+    return shares
+
+
+def csv_row(ws, filename, kper):
+    """Return one stress period (zero-based) of a budget or observation CSV file."""
+    return pd.read_csv(pl.Path(ws) / filename).iloc[kper]
+
+
 def well_rates(gwf, nper, packages=("pwell", "prediction")):
     """Return each well cell's rate for every stress period.
 
@@ -268,7 +325,7 @@ def well_rates(gwf, nper, packages=("pwell", "prediction")):
 
 
 # ---------------------------------------------------------------------------
-# Idealised confined aquifer, for verifying against the Theis solution
+# Idealized confined aquifer, for verifying against the Theis solution
 # ---------------------------------------------------------------------------
 # The Theis solution assumes a confined aquifer that is homogeneous, isotropic,
 # of uniform thickness and infinite extent, pumped by fully penetrating wells,
@@ -300,7 +357,7 @@ THEIS_WELLS = {
     "C": (3000.0, -1000.0, -1600.0, 6),
 }
 # An alternative pumping schedule, used to show that the sensitivities do not
-# depend on the rates they were computed with: A pumps half as much again, B is
+# depend on the rates they were computed with: A pumps 1.5 times its rate, B is
 # never switched on, and C starts four periods earlier at half its rate. Each
 # entry is (rate in m3/d, zero-based stress period the well starts in).
 THEIS_ALT_SCHEDULE = {
@@ -338,7 +395,7 @@ def theis_rates(schedule=None):
 
 
 def theis_simulation(ws, exe_name, schedule=None):
-    """Build the idealised confined aquifer.
+    """Build the idealized confined aquifer.
 
     ``schedule`` is passed to :func:`theis_rates`, so the same aquifer can be
     rebuilt with any set of pumping rates. The workspace is emptied first, so a

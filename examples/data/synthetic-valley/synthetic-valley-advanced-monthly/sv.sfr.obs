@@ -3,7 +3,7 @@ BEGIN options
 END options
 
 BEGIN continuous  FILEOUT  sv.sfr.obs.csv
-  RIV-SWGW  SFR  RIV
-  RIV-FLOW  downstream-flow  17
+  riv-swgw  sfr  riv
+  riv-flow  downstream-flow  17
 END continuous  FILEOUT  sv.sfr.obs.csv
 

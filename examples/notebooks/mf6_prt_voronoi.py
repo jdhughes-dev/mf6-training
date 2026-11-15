@@ -1,9 +1,9 @@
 """Heat-transport (GWE) model for the prt-voronoi notebook.
 
 The GWE model is not the focus of that notebook (PRT is) — it only supplies a
-temperature field to colour the particle tracks — and the notebook itself says
+temperature field to color the particle tracks — and the notebook itself says
 the material-property constants are not worth memorizing. So the ~90-line GWE
-construction lives here and the notebook just calls ``build_gwe``. Adapted from
+construction is kept here and the notebook just calls ``build_gwe``. Adapted from
 MODFLOW 6 example ``ex-gwe-prt``. Import from the notebook working directory so
 relative flow-output paths resolve.
 """

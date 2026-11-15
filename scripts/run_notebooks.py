@@ -29,9 +29,9 @@ DEFAULT_NOTEBOOKS = (
     "examples/notebooks/flopy-intro-gwf-only-b.ipynb",  # ~4 s
     # Exercises the modflowapi path end-to-end: libmf6 discovery, loading the
     # synthetic-valley data, and driving MODFLOW 6 through the API with a callback.
-    "examples/notebooks/mf6-api-c-recharge-callback.ipynb",  # ~11 s
+    "examples/notebooks/mf6-api-c-recharge-callback.ipynb",  # ~5 s
     # A manual solver loop watching convergence live (modflowapi, synthetic valley).
-    "examples/notebooks/mf6-api-b-convergence.ipynb",  # ~21 s
+    "examples/notebooks/mf6-api-b-convergence.ipynb",  # ~7 s
     # A head-dependent reverse drain built through the API package.
     "examples/notebooks/mf6-api-d-reverse-drain.ipynb",  # ~5 s
     # A 1-D coupled flow-and-transport benchmark.

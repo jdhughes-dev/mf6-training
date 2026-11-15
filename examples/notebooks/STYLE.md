@@ -226,6 +226,13 @@ a report:
 - **Derive limits, ticks, and category lists from the constants that define
   them** rather than hardcoding them, so a figure follows the model when the
   model changes.
+- **Show synthetic-valley results in the display units.** The valley models are
+  in meters and days; pass every length, head, flow, and stream flow through
+  `to_display()` and label it with `unit()` or `length_name()` from
+  `mf6_notebook_helpers.py`, so the figure is right whether
+  `MF6_TRAINING_UNITS` is `meters` or `feet`. In the markdown, give the value in
+  meters with feet in parentheses, "1.59 m (5.20 ft)", converting from the
+  unrounded value.
 
 ## Scaffolding — keep it lean
 

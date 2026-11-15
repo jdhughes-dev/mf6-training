@@ -6,12 +6,12 @@ model per nitrogen species, with SFR (streams), LAK (a lake), and MVR (a mover)
 plus advanced-package transport (SFT/LKT/MVT).
 
 None of this construction is the API lesson - it is just the working model the
-reaction callback acts on - so it lives here and the notebook imports
+reaction callback acts on - so it is kept here and the notebook imports
 ``build_prudic_simulation`` (and a few geometry/mass helpers) instead of showing
 ~150 lines of plumbing. All parameters below are taken from the base example and
 are held fixed; the notebook supplies only the reaction configuration.
 
-The data files (grid, boundaries, stream geometry) live in ``../data/<base>``
+The data files (grid, boundaries, stream geometry) are in ``../data/<base>``
 relative to the notebook, so import and call these from that working directory.
 """
 
@@ -492,7 +492,7 @@ def _build_gwt(
             pname="SRC-1",
         )
 
-    # LKT: lake transport (the source species lives here)
+    # LKT: lake transport (the source species enters through the lake)
     lake_strt = slug_source_conc if (is_source and not sustained) else 0.0
     lktpackagedata = [
         (0, lake_strt, 99.0, 999.0, "mylake1"),
