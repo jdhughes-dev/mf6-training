@@ -36,6 +36,9 @@ LAKE_EXTENT = 6.5
 SPILL = 14.96
 # m, the lake level interval of that table
 TABLE_STEP = 0.1524
+# the specific yield of layer 1, whose water table rises and falls, and the
+# specific yield of the base models' lake cells, which store water as open water
+AQUIFER_SY, LAKE_SY = 0.1, 1.0
 # m/d, the horizontal hydraulic conductivity of the base models' lake cells,
 # high enough to keep the lake surface flat, and the ratio of vertical to
 # horizontal hydraulic conductivity in them

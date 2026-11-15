@@ -13,7 +13,7 @@ BEGIN dimensions
 END dimensions
 
 BEGIN packagedata
-  1        7.112878272318  1737  lake_harbaugh
+  1        7.112878273384  1737  lake_harbaugh
 END packagedata
 
 BEGIN connectiondata

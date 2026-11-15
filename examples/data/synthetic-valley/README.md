@@ -16,7 +16,10 @@ Every model works in meters and days and has five layers:
   no thickness, which connect layer 2 directly to layer 4, and
 - layers 4 and 5 are the lower aquifer.
 
-Layer 1 is convertible, except the base models' lake cells. Its top is the land
+Layer 1 is convertible: its saturated thickness follows the water table, which
+stores and releases water with a specific yield of 0.1. The base models' lake
+cells keep their full thickness and store water as open water does, with a
+specific yield of 1 and no specific storage. The top of layer 1 is the land
 surface, from the mean of a 15.24 m raster of the land surface and lake bed over
 each cell. The lake is the basin of that surface flooded to 6.5 m, the largest
 extent of the lake in the advanced models; a cell is in the lake where the
@@ -49,9 +52,16 @@ pass-through cell and the lake is connected to layer 2. The stage-volume-area
 table runs from the bottom of layer 1 to 14.94 m, just below the 14.96 m at
 which the flooded basin would cross the ridge, so the lake has no outlet.
 
+In the advanced models the streambed falls 0.0002 m per meter of stream, the
+drop of the streambed from one reach to the next over the reach length; with
+the flow, it sets how deep the water in the stream is.
+
 The coastal GHB holds a head of 0 m and carries the elevation of the boundary
 and a seawater concentration of 35 kilograms per cubic meter as auxiliary
-variables, for density-dependent flow.
+variables, for density-dependent flow. The conductance of each boundary cell is
+its horizontal hydraulic conductivity times the area of its face on the sea,
+over half the cell length, and layer 3 has boundary cells only where the clay
+is.
 
 The structured models share their aquifer properties, which represent the
 valley with one horizontal hydraulic conductivity field for both aquifers. The

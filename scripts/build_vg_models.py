@@ -2,11 +2,12 @@
 """Build the synthetic-valley models on a Voronoi grid.
 
 Each model is the structured model of the same kind moved onto the Voronoi
-cells, for the valley or, with --variant coastal, the coastal valley. Most inputs and boundaries come from the structured cell that contains
-each Voronoi cell center. The hydraulic conductivity and the clay come from the
-truth dataset in examples/data/synthetic-valley/data, and the land surface, the
-lake, and where runoff goes come from the land surface raster there, in the same
-way as in scripts/update_structured_models.py, which is run first. Layer 3 is
+cells, for the valley or, with --variant coastal, the coastal valley. Most
+inputs and boundaries come from the structured cell that contains each Voronoi
+cell center. The hydraulic conductivity and the clay come from the truth
+dataset in examples/data/synthetic-valley/data, and the land surface, the lake,
+and where runoff goes come from the land surface raster there, in the same way
+as in scripts/update_structured_models.py, which is run first. Layer 3 is
 active only where the clay is. Both models start from their own steady-state
 heads. Run inside the pixi environment, e.g.
 
@@ -31,6 +32,7 @@ from sv_surface import (
     LAKE_FLOOR,
     LAKE_K,
     LAKE_K33,
+    LAKE_SY,
     Surface,
     drain_package,
     drain_rows,
@@ -38,6 +40,7 @@ from sv_surface import (
     mover_records,
     start_from_steady_state,
 )
+from update_structured_models import aquifer_storage
 
 DATA_ROOT = pl.Path(__file__).resolve().parents[1] / "examples/data/synthetic-valley"
 TRUTH = DATA_ROOT / "data/synthetic_valley_truth.nc"
@@ -314,6 +317,11 @@ def build(kind, grid_ws, dest, variant):
     k33[0] = float(np.median(s.npf.k33.array[0][k_s < 0.1 * LAKE_K]))
     icelltype = np.zeros((nlay, vmap.ncpl), dtype=int)
     icelltype[0] = 1
+    shape_s = s.sto.sy.array.shape
+    iconvert, ss, sy = (
+        vmap.layers(a.reshape(shape_s))
+        for a in aquifer_storage(s.sto, vmap.nrow, vmap.ncol)
+    )
     if kind == "base":
         # the top of the lake cells is the lake surface at its highest level
         top[lake] = LAKE_EXTENT
@@ -322,6 +330,8 @@ def build(kind, grid_ws, dest, variant):
         # hydraulic conductivity, letting their saturated thickness follow the
         # head makes the steady-state solution fail to converge
         icelltype[0, lake] = 0
+        # the lake cells store water as open water does, with no compressibility
+        sy[0, lake], ss[0, lake] = LAKE_SY, 0.0
         to_layer2 = np.zeros(vmap.ncpl, dtype=bool)
     else:
         # the lake sits on the aquifer; where its bed is at the bottom of layer
@@ -374,9 +384,9 @@ def build(kind, grid_ws, dest, variant):
     )
     flopy.mf6.ModflowGwfsto(
         gwf,
-        iconvert=layered(vmap.layers(s.sto.iconvert.array)),
-        ss=layered(vmap.layers(s.sto.ss.array)),
-        sy=layered(vmap.layers(s.sto.sy.array)),
+        iconvert=layered(iconvert),
+        ss=layered(ss),
+        sy=layered(sy),
         steady_state={0: True},
         transient={1: True},
     )

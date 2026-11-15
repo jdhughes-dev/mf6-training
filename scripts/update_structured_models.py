@@ -36,6 +36,7 @@ import numpy as np
 import xarray as xr
 from scipy.ndimage import distance_transform_edt
 from sv_surface import (
+    AQUIFER_SY,
     BASE_RECHARGE_SCALE,
     COAST,
     DATA_ROOT,
@@ -44,6 +45,7 @@ from sv_surface import (
     LAKE_FLOOR,
     LAKE_K,
     LAKE_K33,
+    LAKE_SY,
     Surface,
     drain_package,
     drain_rows,
@@ -66,6 +68,7 @@ CHANGED = (
     "mvr",
     "drn",
     "sfr",
+    "sto",
 )
 # m, the head-change criterion of the advanced models' linear solver; it is
 # tight enough that the runoff and seepage the Water Mover sends to a short
@@ -81,6 +84,25 @@ TO_LAKE, TO_COAST = -1, -2
 # the line that adds the drains to the model name file, which is otherwise left
 # as it is
 DRN_ENTRY = "  drn6  sv.drn  drn-1"
+
+
+def aquifer_storage(sto, nrow, ncol):
+    """Storage of the aquifer: convertibility, specific storage, and specific yield.
+
+    Layer 1 is convertible, with a specific yield of AQUIFER_SY. Its specific
+    storage in the base model's lake cells, which have none, is replaced by
+    that of the nearest aquifer cell.
+    """
+    iconvert = dis_layers(sto.iconvert.array)
+    ss = dis_layers(sto.ss.array)
+    sy = dis_layers(sto.sy.array)
+    lake = (ss[0] <= 0.0).reshape(nrow, ncol)
+    if lake.any():
+        _, (ii, jj) = distance_transform_edt(lake, return_indices=True)
+        ss[0] = ss[0].reshape(nrow, ncol)[ii, jj].ravel()
+    iconvert[0] = 1
+    sy[0] = AQUIFER_SY
+    return iconvert, ss, sy
 
 
 def aquifer_k(k, nrow, ncol):
@@ -130,6 +152,7 @@ def update(kind, ws, surface, advanced_ws):
     idomain = dis_layers(dis.idomain.array)
     icelltype = np.zeros((nlay, nrow * ncol), dtype=int)
     icelltype[0] = 1
+    iconvert, ss, sy = aquifer_storage(gwf.sto, nrow, ncol)
 
     if kind == "base":
         top[lake] = LAKE_EXTENT
@@ -138,6 +161,8 @@ def update(kind, ws, surface, advanced_ws):
         # hydraulic conductivity, letting their saturated thickness follow the
         # head makes the steady-state solution fail to converge
         icelltype[0, lake] = 0
+        # the lake cells store water as open water does, with no compressibility
+        sy[0, lake], ss[0, lake] = LAKE_SY, 0.0
         note = base_boundaries(gwf, lake, ncol, advanced_ws)
         stream = [
             i * ncol + j for _, i, j in gwf.riv.stress_period_data.get_data(0)["cellid"]
@@ -193,6 +218,9 @@ def update(kind, ws, surface, advanced_ws):
     gwf.npf.k = k.reshape(shape)
     gwf.npf.k33 = k33.reshape(shape)
     gwf.npf.icelltype = icelltype.reshape(shape)
+    gwf.sto.iconvert = iconvert.reshape(shape)
+    gwf.sto.ss = ss.reshape(shape)
+    gwf.sto.sy = sy.reshape(shape)
     # write only the input files that change, so the others are left as they are
     for package in gwf.packagelist:
         if package.package_type in CHANGED:
@@ -386,6 +414,8 @@ def write_land_surface(ws, dest=LAND_SURFACE):
             "lake_layer": (("row", "column"), layer),
             "aquifer_k": (("row", "column"), gwf.npf.k.array[0]),
             "aquifer_k33": (("row", "column"), gwf.npf.k33.array[0]),
+            "aquifer_ss": (("row", "column"), gwf.sto.ss.array[0]),
+            "aquifer_sy": (("row", "column"), gwf.sto.sy.array[0]),
             "runoff_to": (("row", "column"), runoff_to),
             "stage": ("level", table[:, 0]),
             "volume": ("level", table[:, 1]),
@@ -399,6 +429,8 @@ def write_land_surface(ws, dest=LAND_SURFACE):
         "lake_layer": "the layer the lake leaks to (2 where layer 1 passes water through)",
         "aquifer_k": "m/d, layer 1 horizontal hydraulic conductivity of the aquifer",
         "aquifer_k33": "layer 1 ratio of vertical to horizontal hydraulic conductivity",
+        "aquifer_ss": "1/m, layer 1 specific storage of the aquifer",
+        "aquifer_sy": "layer 1 specific yield of the aquifer",
         "runoff_to": "where runoff goes: the stream reach (from 0), -1 the lake, -2 the coast",
         "stage": "m, lake level",
         "volume": "m3, lake volume at that level",
