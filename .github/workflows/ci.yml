@@ -54,9 +54,9 @@ jobs:
       fail-fast: false
       matrix:
         # ubuntu-latest = linux-64; ubuntu-24.04-arm = linux-aarch64 (free arm64
-        # runner for public repos); macos-latest = Apple Silicon (osx-arm64);
-        # macos-15-intel = Intel (osx-64)
-        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, macos-15-intel, windows-latest]
+        # runner for public repos); macos-latest = Apple Silicon (osx-arm64).
+        # Intel macs (osx-64) are still a pixi platform but are not tested here.
+        os: [ubuntu-latest, ubuntu-24.04-arm, macos-latest, windows-latest]
     steps:
       - uses: actions/checkout@v7
 
