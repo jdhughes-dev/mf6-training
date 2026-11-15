@@ -222,8 +222,8 @@ __marimo__/
 /win64ext/
 /win64ext.zip
 
-# Executable source builds on platforms without prebuilt binaries - Intel mac
-# and linux-aarch64 (cloned by scripts/build_exes.py)
+# Executable source builds on linux-aarch64, which has no prebuilt binaries
+# (cloned by scripts/build_exes.py)
 /modpath-v7/
 /triangle/
 /gridgen/
