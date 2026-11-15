@@ -30,7 +30,7 @@ GWT_NAME = "trans"
 
 SPINUP = 1.0  # d, the steady period with the wells off
 
-POROSITY = 0.25  # the specific yield of the aquifer layers
+POROSITY = 0.25  # the specific yield of layers 2, 4, and 5
 ALH = 75.0  # m, dispersivity along the flow direction
 ATH1 = 7.5  # m, dispersivity across it
 

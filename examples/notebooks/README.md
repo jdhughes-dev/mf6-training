@@ -166,7 +166,7 @@ Driving a running model through [modflowapi](https://github.com/MODFLOW-USGS/mod
 | [`mf6-api-c-recharge-callback`](mf6-api-c-recharge-callback.ipynb) | Change a model input (recharge) while the simulation is running, using a modflowapi callback. |
 | [`mf6-api-d-reverse-drain`](mf6-api-d-reverse-drain.ipynb) | Add a head-dependent boundary (a reverse drain) directly through the API package. |
 | [`mf6-api-e-streamflow-augmentation`](mf6-api-e-streamflow-augmentation.ipynb) | Augment streamflow with a prediction well whose pumping rate is recomputed each outer iteration from the simulated SFR flow. |
-| [`mf6-api-e-coastal-augmentation`](mf6-api-e-coastal-augmentation.ipynb) | Run the same operating rule on the coastal valley, with the sea as a GHB at the equivalent freshwater head: the well draws most of its water from the sea, so the stream keeps 54 percent of the water pumped instead of about 1 percent or less. |
+| [`mf6-api-e-coastal-augmentation`](mf6-api-e-coastal-augmentation.ipynb) | Run the same operating rule on the coastal valley, with the sea as a GHB at the equivalent freshwater head: the well draws most of its water from the sea, so the stream keeps 55 percent of the water pumped instead of about 6 percent. |
 | [`mf6-api-f-nitrate-reduction`](mf6-api-f-nitrate-reduction.ipynb) | Couple three transport models through a first-order sequential reaction chain via API callbacks. |
 
 ### Advanced hydrologic packages
