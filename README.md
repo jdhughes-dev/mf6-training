@@ -179,7 +179,7 @@ CI (GitHub Actions) installs the environment and verifies MODFLOW 6 (including
 that modflowapi can load `libmf6`) and the Python packages on every platform but
 macOS Intel on every push and pull request, plus a nightly run. (linux-aarch64
 uses the free arm64 hosted runners available for public repositories.) macOS
-Intel is still supported but is not tested in CI.
+Intel should still work, but it is no longer tested.
 
 ## Notes
 
