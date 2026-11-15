@@ -32,7 +32,15 @@ local grid refinement, and running models in parallel.
    under `examples/notebooks/models/` (git-ignored), so nothing you run pollutes
    the repository.
 
-4. **Where to start.** The `flopy-intro-*` notebooks are the guided introduction
+4. **Units.** The synthetic-valley models are in meters and days, and the
+   notebooks that use them show their results in meters. To see them in feet,
+   set the environment variable `MF6_TRAINING_UNITS` to `feet` before starting
+   JupyterLab (`MF6_TRAINING_UNITS=feet pixi run jupyter` on macOS or Linux,
+   `$env:MF6_TRAINING_UNITS = "feet"` first in PowerShell), or uncomment the
+   `[activation.env]` lines near the end of `pixi.toml`. The models themselves
+   stay in meters; only the figures and printed results change.
+
+5. **Where to start.** The `flopy-intro-*` notebooks are the guided introduction
    to building and post-processing a model with FloPy; after those, explore by
    topic using the tables below. The lettered notebooks are meant to be read in
    order — `flopy-intro-gwf-only-b` post-processes the model
@@ -41,13 +49,13 @@ local grid refinement, and running models in parallel.
    notebooks build on a shared model. Each checks for and explains any
    prerequisites.
 
-5. **Paired helper modules.** A few notebooks keep their bulkier setup in a
+6. **Paired helper modules.** A few notebooks keep their bulkier setup in a
    same-named Python module (for example `mf6-gwt1d.ipynb` ↔ `mf6_gwt1d.py`,
    `mf6-gwe-stallman.ipynb` ↔ `mf6_gwe_stallman.py`). These are imported by the
    notebook, not run directly. The shared `mf6_notebook_helpers.py` and
    `mf6_mesh_helpers.py` provide utilities used across several notebooks.
 
-6. **Smoke-test from the command line.** To confirm the fast notebooks still run
+7. **Smoke-test from the command line.** To confirm the fast notebooks still run
    end to end (this is what CI does), use the run script — with no arguments it
    runs a default subset, or pass specific paths:
 
@@ -56,21 +64,21 @@ local grid refinement, and running models in parallel.
    pixi run python scripts/run_notebooks.py examples/notebooks/mf6-gwt1d.ipynb
    ```
 
-   A handful of notebooks are intentionally slow (several minutes each) and are
-   left out of the default set — for example `mf6-api-a-basic`,
-   `mf6-api-e-streamflow-augmentation`, `mf6-api-e-coastal-augmentation`,
-   `mf6-api-f-nitrate-reduction`,
-   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adv-*` and
-   `mf6-adj-*` series, and `mf6-parallel` — but they still run.
-   `mf6-coastal-ghb`, the two `mf6-coastal-density` notebooks, and
-   `mf6-gwt-source-water` are left out for the same reason: each runs several
-   simulations, taking 30 seconds to a few minutes. The two `flopy-intro-gwt`
-   notebooks are out as well: they run the 121-period Voronoi valley, which takes
-   several minutes the first time. `flopy-intro-gwt-a` skips that run when the
-   output is already there, so it is quick to re-run but not from a clean
+   A handful of notebooks are intentionally slow and are left out of the default
+   set — for example `mf6-api-e-streamflow-augmentation`,
+   `mf6-api-e-coastal-augmentation`, `mf6-api-f-nitrate-reduction`,
+   `mf6-gwe-stallman`, `mf6-density-henry-hilleke`, the `mf6-adj-*` series, and
+   `mf6-parallel` — but they still run. `mf6-coastal-ghb`, the two
+   `mf6-coastal-density` notebooks, and `mf6-gwt-source-water` are left out for
+   the same reason: each runs several simulations, taking 30 seconds to a few
+   minutes. The `mf6-adv-*` notebooks take a few seconds each but build one
+   model in turn, so they are run in order by hand. The two `flopy-intro-gwt`
+   notebooks are out as well: they run the Voronoi-grid valley, which takes about
+   a minute and a half the first time. `flopy-intro-gwt-a` skips that run when
+   the output is already there, so it is quick to re-run but not from a clean
    checkout.
 
-7. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
+8. **Writing or editing a notebook.** [`STYLE.md`](STYLE.md) is the style guide
    for the markdown that accompanies the code: the voice, how much to explain,
    how to introduce a term, what a "What to look for" cell owes the reader, and
    the figure conventions.
@@ -136,7 +144,7 @@ commit.
 |---|---|
 | [`flopy-intro-gwf-only-a`](flopy-intro-gwf-only-a.ipynb) | Build a groundwater flow (GWF) model from scratch with FloPy — DIS, NPF, IC, RCH, WEL, RIV, OC — then write it and run MODFLOW 6. The guided starting point. |
 | [`flopy-intro-gwf-only-b`](flopy-intro-gwf-only-b.ipynb) | Load the model `flopy-intro-gwf-only-a` ran, read its heads and cell-by-cell flows, and plot them in map view and cross section. |
-| [`flopy-intro-gwt-a`](flopy-intro-gwt-a.ipynb) | Load, run, and inspect an existing GWF model: view hydraulic conductivity, recharge, and the simulated heads through time. A walk-through of how a MODFLOW 6 flow model is assembled. |
+| [`flopy-intro-gwt-a`](flopy-intro-gwt-a.ipynb) | Load, run, and inspect an existing GWF model of the synthetic valley on a Voronoi grid: view hydraulic conductivity, the water applied at the land surface (infiltration and evapotranspiration), and the simulated heads through time, and save what the transport model needs. A walk-through of how a MODFLOW 6 flow model is assembled. |
 | [`flopy-intro-gwt-b`](flopy-intro-gwt-b.ipynb) | Add solute transport (GWT) on top of that flow model, coupled one-way through the Flow Model Interface (FMI), and plot concentrations through time. |
 
 ### Unstructured-grid generation
@@ -158,7 +166,7 @@ Driving a running model through [modflowapi](https://github.com/MODFLOW-USGS/mod
 | [`mf6-api-c-recharge-callback`](mf6-api-c-recharge-callback.ipynb) | Change a model input (recharge) while the simulation is running, using a modflowapi callback. |
 | [`mf6-api-d-reverse-drain`](mf6-api-d-reverse-drain.ipynb) | Add a head-dependent boundary (a reverse drain) directly through the API package. |
 | [`mf6-api-e-streamflow-augmentation`](mf6-api-e-streamflow-augmentation.ipynb) | Augment streamflow with a prediction well whose pumping rate is recomputed each outer iteration from the simulated SFR flow. |
-| [`mf6-api-e-coastal-augmentation`](mf6-api-e-coastal-augmentation.ipynb) | Run the same operating rule on the coastal valley, with the sea as a GHB at the equivalent freshwater head: the well draws most of its water from the sea, so the stream keeps 0.65 of every unit pumped instead of 0.28. |
+| [`mf6-api-e-coastal-augmentation`](mf6-api-e-coastal-augmentation.ipynb) | Run the same operating rule on the coastal valley, with the sea as a GHB at the equivalent freshwater head: the well draws most of its water from the sea, so the stream keeps 54 percent of the water pumped instead of about 1 percent or less. |
 | [`mf6-api-f-nitrate-reduction`](mf6-api-f-nitrate-reduction.ipynb) | Couple three transport models through a first-order sequential reaction chain via API callbacks. |
 
 ### Advanced hydrologic packages
@@ -169,10 +177,10 @@ Each notebook swaps one boundary condition of a shared, calibrated model for an 
 |---|---|
 | [`mf6-adv-uzf`](mf6-adv-uzf.ipynb) | Unsaturated Zone Flow (UZF): route infiltration through an unsaturated column before it reaches the water table. |
 | [`mf6-adv-maw`](mf6-adv-maw.ipynb) | Multi-Aquifer Well (MAW): represent a single well screened across several layers and compute its exchange with each. |
-| [`mf6-adv-lak`](mf6-adv-lak.ipynb) | Lake (LAK): simulate lake stage and its exchange with the groundwater system. |
+| [`mf6-adv-lak`](mf6-adv-lak.ipynb) | Lake (LAK): simulate the lake level, how far the lake spreads, and its exchange with the groundwater system. |
 | [`mf6-adv-sfr`](mf6-adv-sfr.ipynb) | Streamflow Routing (SFR): route flow between connected stream reaches that exchange water with the aquifer. |
-| [`mf6-adv-mvr`](mf6-adv-mvr.ipynb) | Water Mover (MVR): route water between the UZF, LAK, and SFR packages. |
-| [`mf6-adv-processing`](mf6-adv-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals, pumping-induced drawdown, streamflow capture, and lake stage. |
+| [`mf6-adv-mvr`](mf6-adv-mvr.ipynb) | Water Mover (MVR): send runoff and the water of the seepage drains to the lake (LAK) or the stream (SFR) the land surface drains to. |
+| [`mf6-adv-processing`](mf6-adv-processing.ipynb) | Run the assembled advanced model and evaluate it — head residuals against the truth, pumping-induced drawdown, streamflow capture, and the lake level. |
 
 ### Adjoint sensitivity analysis
 

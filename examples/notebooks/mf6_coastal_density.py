@@ -14,7 +14,9 @@ import pathlib as pl
 
 import flopy
 import numpy as np
-from mf6_notebook_helpers import coastal_ghb_data
+
+# display_ticks is used by the notebooks as cd.display_ticks
+from mf6_notebook_helpers import coastal_ghb_data, display_ticks  # noqa: F401
 
 DATA_ROOT = pl.Path("../data/synthetic-valley")
 
@@ -35,19 +37,36 @@ ANNUAL_NSTP = 12
 # of density against concentration, so seawater at 35 kg/m3 gives
 # 1000 + 0.7 * 35 = 1024.5 kg/m3, a density ratio of 1.0245. Only that ratio
 # enters the flow equations, so the concentration unit does not have to match
-# the feet-and-days length and time units of the flow model.
+# the meters and days of the flow model.
 DENSEREF = 1000.0
 DRHODC = 0.7
 SEAWATER = 35.0
 
 # Transport properties. The flow model has no porosity of its own, and the
-# dispersivities are the length scale over which the wedge mixes.
+# dispersivities, in meters, are the length scale over which the wedge mixes:
+# a tenth of the 152.4-m cell along flow, and ten and a hundred times less
+# across it horizontally and vertically.
 POROSITY = 0.2
-ALH = 50.0
-ATH1 = 5.0
-ATV = 0.5
+ALH = 15.24
+ATH1 = 1.524
+ATV = 0.1524
 
 GWT_NAME = "sv_gwt"
+
+
+def base_prediction_rate():
+    """Pumping rate of the base coastal valley's prediction well, in m3/d.
+
+    The advanced valley ships its prediction well at zero, so both variants
+    take the rate from the base valley.
+    """
+    sim = flopy.mf6.MFSimulation.load(
+        sim_ws=str(coastal_workspace("base")),
+        load_only=["wel"],
+        verbosity_level=0,
+    )
+    spd = sim.get_model().get_package("prediction").stress_period_data.get_data()
+    return float(min(min(rec["q"]) for rec in spd.values()))
 
 
 def _trim_periods(package, nper):
@@ -69,7 +88,7 @@ def build_simulation(
     variant="base",
     buoyancy=True,
     equivalent_freshwater=False,
-    prediction_rate=-3.0e5,
+    prediction_rate=None,
     nper=NPER,
 ):
     """Return the coupled flow and transport simulation, written to ``ws``.
@@ -80,8 +99,9 @@ def build_simulation(
     density does. ``equivalent_freshwater`` rebuilds the coastal boundary with
     heads that rise with depth, which is how a constant-density model carries
     the weight of the sea; it belongs with ``buoyancy=False``, or the density is
-    counted twice. ``prediction_rate`` is the rate of the prediction well, which
-    pumps through every transient period.
+    counted twice. ``prediction_rate`` is the rate of the prediction well, in
+    m3/d, which pumps through every transient period; None takes the rate the
+    base coastal valley gives it.
     """
     sim = flopy.mf6.MFSimulation.load(
         sim_name="sv",
@@ -109,6 +129,8 @@ def build_simulation(
     # the shortened run never reaches, so pump it through the transient periods
     prediction = gwf.get_package("prediction")
     cellid = prediction.stress_period_data.get_data(11)["cellid"][0]
+    if prediction_rate is None:
+        prediction_rate = base_prediction_rate()
     prediction.stress_period_data.set_data(
         {kper: [(cellid, prediction_rate)] for kper in range(1, nper)}
     )
@@ -141,7 +163,7 @@ def build_simulation(
         top=dis.top.array,
         botm=dis.botm.array,
         idomain=dis.idomain.array,
-        length_units="feet",
+        length_units="meters",
     )
     flopy.mf6.ModflowGwtic(gwt, strt=0.0)
     flopy.mf6.ModflowGwtmst(gwt, porosity=POROSITY)
@@ -184,8 +206,9 @@ def build_simulation(
 def concentration(ws, totim=None):
     """Simulated salinity, as (ntimes, nlay, nrow, ncol) or one time.
 
-    Inactive cells - the lake footprint in the advanced valley - come back as
-    MODFLOW's 1e30 placeholder and are returned as NaN.
+    Cells with no thickness - layer 3 outside the clay, and the layer 1 cells
+    under the lake in the advanced valley - come back as MODFLOW's 1e30
+    placeholder and are returned as NaN.
     """
     ucn = flopy.utils.HeadFile(pl.Path(ws) / f"{GWT_NAME}.ucn", text="CONCENTRATION")
     conc = ucn.get_alldata() if totim is None else ucn.get_data(totim=totim)
@@ -195,7 +218,7 @@ def concentration(ws, totim=None):
 
 
 def wedge_toe(conc, column, layer, delc, fraction=0.5):
-    """How far inland the wedge reaches along ``column``, in feet.
+    """How far inland the wedge reaches along ``column``, in meters.
 
     The coast is the southern row, so the wedge moves north up a column. The toe
     is the last cell whose salinity is at least ``fraction`` of seawater; a wedge

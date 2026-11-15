@@ -42,7 +42,7 @@ the notebooks import, and are generated too.
 - [`flopy-intro-gwf-only-b.ipynb`](flopy-intro-gwf-only-b.ipynb) — 8 exercises, generated from [`../notebooks/flopy-intro-gwf-only-b.ipynb`](../notebooks/flopy-intro-gwf-only-b.ipynb)
 - [`flopy-intro-gwt-a.ipynb`](flopy-intro-gwt-a.ipynb) — 4 exercises, generated from [`../notebooks/flopy-intro-gwt-a.ipynb`](../notebooks/flopy-intro-gwt-a.ipynb)
 - [`flopy-intro-gwt-b.ipynb`](flopy-intro-gwt-b.ipynb) — 10 exercises, generated from [`../notebooks/flopy-intro-gwt-b.ipynb`](../notebooks/flopy-intro-gwt-b.ipynb)
-- [`mf6-adv-lak.ipynb`](mf6-adv-lak.ipynb) — 8 exercises, generated from [`../notebooks/mf6-adv-lak.ipynb`](../notebooks/mf6-adv-lak.ipynb)
+- [`mf6-adv-lak.ipynb`](mf6-adv-lak.ipynb) — 9 exercises, generated from [`../notebooks/mf6-adv-lak.ipynb`](../notebooks/mf6-adv-lak.ipynb)
 - [`mf6-adv-maw.ipynb`](mf6-adv-maw.ipynb) — 8 exercises, generated from [`../notebooks/mf6-adv-maw.ipynb`](../notebooks/mf6-adv-maw.ipynb)
 - [`mf6-adv-mvr.ipynb`](mf6-adv-mvr.ipynb) — 5 exercises, generated from [`../notebooks/mf6-adv-mvr.ipynb`](../notebooks/mf6-adv-mvr.ipynb)
 - [`mf6-adv-sfr.ipynb`](mf6-adv-sfr.ipynb) — 6 exercises, generated from [`../notebooks/mf6-adv-sfr.ipynb`](../notebooks/mf6-adv-sfr.ipynb)

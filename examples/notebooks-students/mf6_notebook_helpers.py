@@ -18,6 +18,65 @@ from ipywidgets import Checkbox, HBox, Label, Layout
 seconds_per_day = 60 * 60 * 24
 seconds_per_year = seconds_per_day * 365.25
 
+# Display units. The synthetic-valley models are in meters and days; set the
+# environment variable MF6_TRAINING_UNITS to "feet" (for example in the
+# [activation.env] table of pixi.toml) to show their results in feet instead.
+# Each kind of quantity is (factor and label in meters, factor and label in
+# feet), where the factor converts a value in meters and days.
+DISPLAY_UNITS = os.environ.get("MF6_TRAINING_UNITS", "meters").strip().lower()
+if DISPLAY_UNITS not in ("meters", "feet"):
+    raise ValueError(f'MF6_TRAINING_UNITS is "{DISPLAY_UNITS}"; use "meters" or "feet"')
+FT = 0.3048  # m per foot
+_UNITS = {
+    "length": ((1.0, "m"), (1.0 / FT, "ft")),
+    "area": ((1.0, "m$^2$"), (FT**-2, "ft$^2$")),
+    "volume": ((1.0, "m$^3$"), (FT**-3, "ft$^3$")),
+    "rate": ((1.0, "m/d"), (1.0 / FT, "ft/d")),
+    "flow": ((1.0, "m$^3$/d"), (FT**-3, "ft$^3$/d")),
+    "conductance": ((1.0, "m$^2$/d"), (FT**-2, "ft$^2$/d")),
+    # stream flow, given in m3/d, shown per second
+    "streamflow": ((1.0 / 86400.0, "m$^3$/s"), (FT**-3 / 86400.0, "ft$^3$/s")),
+}
+
+
+def to_display(value, kind="length"):
+    """A value in meters and days, in the display units (MF6_TRAINING_UNITS)."""
+    factor = _UNITS[kind][DISPLAY_UNITS == "feet"][0]
+    return value * factor
+
+
+def unit(kind="length", plain=False):
+    """The display-unit label of a kind of quantity, e.g. "m" or "ft$^3$/d";
+    ``plain`` drops the Matplotlib markup ("ft3/d") for printed text."""
+    label = _UNITS[kind][DISPLAY_UNITS == "feet"][1]
+    return label.replace("$^", "").replace("$", "") if plain else label
+
+
+def length_name():
+    """The display length unit spelled out, for labels like "x, in meters"."""
+    return DISPLAY_UNITS
+
+
+def display_ticks(axis, nbins=6):
+    """Put an axis drawn in meters on round values of the display units."""
+    from matplotlib.ticker import MaxNLocator
+
+    lo, hi = sorted(axis.get_view_interval())
+    scale = to_display(1.0)
+    ticks = MaxNLocator(nbins).tick_values(lo * scale, hi * scale)
+    ticks = ticks[(ticks >= lo * scale - 1e-9) & (ticks <= hi * scale + 1e-9)]
+    axis.set_ticks(ticks / scale, labels=[f"{t:,g}" for t in ticks])
+
+
+def label_map_axes(ax, xlabel=True, ylabel=True):
+    """Number and label the axes of a map drawn in meters in the display units."""
+    display_ticks(ax.xaxis)
+    display_ticks(ax.yaxis)
+    if xlabel:
+        ax.set_xlabel(f"x, in {length_name()}")
+    if ylabel:
+        ax.set_ylabel(f"y, in {length_name()}")
+
 
 def find_in_env(filename, env_path=None):
     """Return the path to ``filename`` inside the active pixi/conda environment.
@@ -96,8 +155,6 @@ def find_mf6_libraries(env_path=None):
 # notebook find-or-create that model the same way and check package
 # dependencies, so the notebooks can be run independently and in any order
 # (subject to the dependencies enforced by require_packages).
-
-IN2FT = 1.0 / 12.0  # inches -> feet unit conversion used by several packages
 
 
 def synthetic_valley_workspaces(sample_frequency, name="sv", *, variant=None):
@@ -179,15 +236,35 @@ def load_temporal_data(sample_frequency):
     return pd.read_parquet(path)
 
 
-def load_spatial_data():
-    """(nc_ds, lake_location, lake_area) from the synthetic-valley truth dataset."""
+def load_land_surface():
+    """The lake and runoff input of the advanced model, on the structured grid.
+
+    An xarray Dataset with the lake cells (``lake``), the lake bed
+    (``lake_bed``, m), the layer the lake leaks to (``lake_layer``), layer 1
+    aquifer hydraulic conductivity under the lake (``aquifer_k``, m/d, and the
+    ratio ``aquifer_k33``), where each cell's runoff goes (``runoff_to``: a stream
+    reach numbered from 0, or -1 for the lake), and the lake volume and area at
+    each lake level (``stage``, ``volume``, ``area``). It comes from
+    examples/data/synthetic-valley/data/synthetic_valley_land_surface.nc.
+    """
     import xarray as xa
 
-    nc_path = pl.Path("../data/synthetic-valley/data/synthetic_valley_truth.nc")
-    nc_ds = xa.open_dataset(nc_path)
-    lake_location = nc_ds["lake_location"].to_numpy()
-    lake_area = float(lake_location.sum()) * 500.0 * 500.0
-    return nc_ds, lake_location, lake_area
+    path = pl.Path("../data/synthetic-valley/data/synthetic_valley_land_surface.nc")
+    return xa.open_dataset(path)
+
+
+def load_truth():
+    """The true heads and observed series of the valley.
+
+    An xarray Dataset from the Voronoi-grid advanced model
+    (examples/data/synthetic-valley/data/synthetic_valley_vg_truth.nc): heads in
+    every cell at the end of each stress period, the cell centers and layer
+    bottoms, and the observed series (``obs_<name>``) on the same times.
+    """
+    import xarray as xa
+
+    path = pl.Path("../data/synthetic-valley/data/synthetic_valley_vg_truth.nc")
+    return xa.open_dataset(path)
 
 
 # ---------------------------------------------------------------------------
@@ -483,7 +560,7 @@ def plot_convergence(fig, ax, history, max_ticks=25):
             n = i1 - i0 + 1
             for j, k in enumerate(range(i0, i1 + 1)):
                 xs.append(bi + (j + 0.5) / n if n > 1 else bi + 0.5)
-                yv = history[k][1]
+                yv = to_display(history[k][1])
                 ys.append(np.nan if yv == 0.0 else yv)  # skip exact zeros on log axis
         ax.semilogy(
             xs, ys, marker="o", ms=4, lw=1.0, color="0.25", mfc="cyan", mec="0.25"
@@ -511,7 +588,7 @@ def plot_convergence(fig, ax, history, max_ticks=25):
     )
     flopy.plot.styles.ylabel(
         ax=ax,
-        label="Maximum head change, ft",
+        label=f"Maximum head change, {unit()}",
     )
     flopy.plot.styles.remove_edge_ticks(
         ax=ax,
